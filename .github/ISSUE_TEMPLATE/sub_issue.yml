@@ -1,5 +1,5 @@
 name: Sub Issue (最小作業単位)
-description: Main Issue を達成するための、細かく分割された最小単位のタスクです
+description: Main Issue を達成するための，細かく分割された最小単位のタスクです
 title: "[Sub] "
 labels: ["sub-issue", "task"]
 
@@ -8,14 +8,14 @@ body:
     attributes:
       value: |
         ## 🍏 Sub Issue
-        このIssueは、`main issue` を達成するための最小の作業・PR単位です。
-        対応する作業ブランチ（`subfeature/...`）を作成して作業を進めてください。
+        このIssueは，`main issue` を達成するための最小の作業・PR単位です．
+        対応する作業ブランチ（`subfeature/...`）を作成して作業を進めてください．
 
   - type: input
     id: parent-issue
     attributes:
       label: "親となる Main Issue の番号"
-      description: "このSub Issueが属するMain Issueの番号（#付き）を入力してください。"
+      description: "このSub Issueが属するMain Issueの番号（#付き）を入力してください．"
       placeholder: "#10"
     validations:
       required: true
@@ -24,8 +24,8 @@ body:
     id: details
     attributes:
       label: "作業内容の詳細"
-      description: "具体的にどのような実装や変更を行うのかを記載してください。"
-      placeholder: "例：PlayerController.cs にジャンプ用の入力を受け取る処理を追加し、Rigidbody に上方向の力を加える。"
+      description: "具体的にどのような実装や変更を行うのかを記載してください．"
+      placeholder: "例：PlayerController.cs にジャンプ用の入力を受け取る処理を追加し，Rigidbody に上方向の力を加える．"
     validations:
       required: true
 
@@ -33,7 +33,7 @@ body:
     id: checks
     attributes:
       label: "完了条件 / テスト項目"
-      description: "PRを出す前に手元で確認すべき事項を箇条書きで記載してください。"
+      description: "PRを出す前に手元で確認すべき事項を箇条書きで記載してください．"
       placeholder: |
         - [ ] スペースキーでキャラクターが浮き上がるか
         - [ ] 空中で連続ジャンプできないようになっているか

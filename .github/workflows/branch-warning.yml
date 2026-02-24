@@ -11,4 +11,4 @@ jobs:
     steps:
       - name: Warning Message
         run: |
-          echo "::warning title=Rule Violation::main issueブランチ (feature/*) への直接のコミットは非推奨です。sub issueブランチ (subfeature/*) を作成してPRを出してください。"
+          echo "::warning title=Rule Violation::main issueブランチ (feature/*) への直接のコミットは非推奨です．sub issueブランチ (subfeature/*) を作成してPRを出してください．"
