@@ -1,0 +1,39 @@
+name: Main Issue (大きな機能単位)
+description: ゲームに搭載したい1つの大きな機能（エピックタスク）を定義します
+title: "[Main] "
+labels: ["main-issue", "enhancement"]
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## 🍎 Main Issue
+        このIssueは、ゲームに搭載したい大きな機能を表します。
+        このIssueをもとに、複数の `sub issue` を作成してください。
+
+  - type: textarea
+    id: overview
+    attributes:
+      label: "目的・概要"
+      description: "この機能でゲームに何を追加・変更したいのかを記載してください。"
+      placeholder: "例：プレイヤーがフィールド上でジャンプや攻撃などの基本アクションを行えるようにする。"
+    validations:
+      required: true
+
+  - type: textarea
+    id: requirements
+    attributes:
+      label: "要件（達成条件）"
+      description: "これを満たせばこのMain Issueが完了となる条件(Sub Issueの作成)を箇条書きで記載してください。"
+      placeholder: |
+        - [ ] ジャンプができること
+        - [ ] 攻撃モーションが再生されること
+        - [ ] 敵に当たり判定があること
+    validations:
+      required: true
+
+  - type: markdown
+    attributes:
+      value: |
+        ## 🔗 Sub Issues (タスクリスト)
+        このMain Issueを作成した後、GitHubの右メニューにある「**Create sub-issue**」ボタン、または本文中のチェックボックス（`- [ ] `）の横に現れる🔘アイコンをクリックして、Sub Issueを追加・紐付けしてください。

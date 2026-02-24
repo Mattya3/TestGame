@@ -1,0 +1,40 @@
+name: C# Code Formatting
+
+on:
+  pull_request:
+    paths:
+      - '**.cs'
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: write # Botが自動コミットをPushするために必要
+
+jobs:
+  format:
+    name: Auto Format C# Code
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          # PRの場合はPRのブランチをチェックアウトし，そうでない場合は現在のブランチ
+          ref: ${{ github.event.pull_request.head.ref || github.ref }}
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Install CSharpier
+        run: dotnet tool install -g csharpier
+
+      - name: Run Formatter (CSharpier)
+        # フォルダ直下のすべての.csファイルを再帰的にフォーマット
+        run: dotnet csharpier .
+
+      - name: Commit and Push changes
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "🎨 style: Auto format C# code by CSharpier"
+          commit_user_name: "github-actions[bot]"
+          commit_user_email: "github-actions[bot]@users.noreply.github.com"

@@ -1,0 +1,37 @@
+name: Debug Issue (バグ修正)
+description: 発生したエラーやバグを特定し、修正するための単発のIssueです
+title: "[Debug] "
+labels: ["debug", "bug"]
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## 🐛 Debug Issue
+        エラーや不具合を修正するためのIssueです。
+        Sub Issueは持たず、このIssue単体で解決・クローズします。
+
+  - type: textarea
+    id: description
+    attributes:
+      label: "バグの内容・発生状況"
+      description: "どのようなバグが発生したか、どのような操作をすると再現するかを具体的に記載してください。"
+      placeholder: "例：ジャンプ中に壁に向かって攻撃ボタンを押すと、キャラクターが壁に埋まって動けなくなる。"
+    validations:
+      required: true
+
+  - type: textarea
+    id: error-logs
+    attributes:
+      label: "エラーログ（任意）"
+      description: "Unityのコンソールに出た赤文字のエラー（スタックトレース）があればコピペしてください。"
+      render: shell
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: "本来のあるべき挙動"
+      description: "どのように動くのが正解か（修正後の目標）を記載してください。"
+      placeholder: "壁に当たっても埋まらず、重力に従って落下すること。"
+    validations:
+      required: true
