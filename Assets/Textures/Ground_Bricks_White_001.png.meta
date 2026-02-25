@@ -100,7 +100,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Ground001_0
+      name: Ground_Brick_White_001_TL
       rect:
         serializedVersion: 2
         x: 0
@@ -122,7 +122,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ground001_1
+      name: Ground_Brick_White_001_TR
       rect:
         serializedVersion: 2
         x: 128
@@ -144,7 +144,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ground001_2
+      name: Ground_Brick_White_001_BL
       rect:
         serializedVersion: 2
         x: 0
@@ -166,7 +166,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ground001_3
+      name: Ground_Brick_White_001_BR
       rect:
         serializedVersion: 2
         x: 128
@@ -203,10 +203,10 @@ TextureImporter:
       - key: SpriteEditor.SliceSettings
         value: '{"sliceOnImport":false,"gridCellCount":{"x":2.0,"y":2.0},"gridSpriteSize":{"x":128.0,"y":128.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      Ground001_0: -6520549267777095549
-      Ground001_1: 1079715416
-      Ground001_2: 829625706
-      Ground001_3: 1454740770
+      Ground_Brick_White_001_BL: 829625706
+      Ground_Brick_White_001_BR: 1454740770
+      Ground_Brick_White_001_TL: -6520549267777095549
+      Ground_Brick_White_001_TR: 1079715416
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
