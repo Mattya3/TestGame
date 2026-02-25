@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: Ground001_0
+  m_Name: Ground_Bricks_White_001_TR
   m_EditorClassIdentifier: UnityEngine.dll::UnityEngine.Tilemaps.Tile
-  m_Sprite: {fileID: -6520549267777095549, guid: d49ea5b5e6d49d843801ccb897d182ea, type: 3}
+  m_Sprite: {fileID: 1079715416, guid: d49ea5b5e6d49d843801ccb897d182ea, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1
