@@ -1,7 +1,6 @@
-## 関連するIssue番号
-- **Main Issue**: #<!-- 親となるMain Issueの番号を記入してください -->
-- **Sub / Debug Issue**: Resolves #<!-- 対応するSub/Debug Issueの番号を記入してください -->
-  - *(`Resolves #番号` と書くことで，このPRがマージされた瞬間にそのIssueが自動的にCloseされます)*
+## 🍎 関連するIssue
+<!-- AUTOMATED_ISSUE_BLOCK -->
+*(ブランチ名からIssueが自動的に紐付けされます)*
 
 ## 変更内容
 - どのような変更を行ったかを箇条書きで具体的に記載してください．
