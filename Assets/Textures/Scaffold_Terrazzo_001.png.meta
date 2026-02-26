@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: d49ea5b5e6d49d843801ccb897d182ea
+guid: 3c5ed3e426de73e4d89479d6840bdaec
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6520549267777095549
-    second: Ground001_0
+      213: -8937828437912384909
+    second: Scaffold001_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -51,7 +51,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 128
+  spritePixelsToUnits: 256
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -100,7 +100,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Ground001_0
+      name: Scaffold_Terrazzo_001
       rect:
         serializedVersion: 2
         x: 0
@@ -108,15 +108,15 @@ TextureImporter:
         width: 256
         height: 256
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 38876b10dfa5285a0800000000000000
-      internalID: -6520549267777095549
+      spriteID: 37a09dee36476f380800000000000000
+      internalID: -8937828437912384909
       vertices: []
       indices: 
       edges: []
@@ -125,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 2883aa43f99fce741bce44fe7e2bc90c
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Ground001_0: -6520549267777095549
+      Scaffold_Terrazzo_001: -8937828437912384909
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
