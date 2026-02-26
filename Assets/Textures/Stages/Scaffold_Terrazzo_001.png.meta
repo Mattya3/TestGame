@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: d49ea5b5e6d49d843801ccb897d182ea
+guid: 3c5ed3e426de73e4d89479d6840bdaec
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6520549267777095549
-    second: Ground001_0
+      213: -8937828437912384909
+    second: Scaffold_Terrazzo_001
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -96,15 +96,28 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Ground_Brick_White_001_TL
+      name: Scaffold_Terrazzo_001
       rect:
         serializedVersion: 2
         x: 0
-        y: 256
+        y: 0
         width: 256
         height: 256
       alignment: 0
@@ -115,74 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 38876b10dfa5285a0800000000000000
-      internalID: -6520549267777095549
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Ground_Brick_White_001_TR
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 256
-        width: 256
-        height: 256
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e5919d28a9ce06d4b9d9129f318e4cc9
-      internalID: 1079715416
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Ground_Brick_White_001_BL
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 256
-        height: 256
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 99de91a6774d43e4bb7cede479e92bce
-      internalID: 829625706
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Ground_Brick_White_001_BR
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 0
-        width: 256
-        height: 256
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e38b63875e8699c43a2e655b6de4be31
-      internalID: 1454740770
+      spriteID: 37a09dee36476f380800000000000000
+      internalID: -8937828437912384909
       vertices: []
       indices: 
       edges: []
@@ -191,7 +138,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 8e06d090ff93a2646ad1518ea55c2c32
+    spriteID: 2883aa43f99fce741bce44fe7e2bc90c
     internalID: 0
     vertices: []
     indices: 
@@ -199,14 +146,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries:
-      - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":2.0,"y":2.0},"gridSpriteSize":{"x":128.0,"y":128.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
+      entries: []
     nameFileIdTable:
-      Ground_Brick_White_001_BL: 829625706
-      Ground_Brick_White_001_BR: 1454740770
-      Ground_Brick_White_001_TL: -6520549267777095549
-      Ground_Brick_White_001_TR: 1079715416
+      Scaffold_Terrazzo_001: -8937828437912384909
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
