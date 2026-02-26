@@ -33,7 +33,7 @@ jobs:
 
       - name: Run Formatter (CSharpier)
         # フォルダ直下のすべての.csファイルを再帰的にフォーマット
-        run: dotnet-csharpier .
+        run: dotnet csharpier .
 
       - name: Commit and Push changes
         uses: stefanzweifel/git-auto-commit-action@v5
