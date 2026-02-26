@@ -25,17 +25,14 @@ jobs:
         with:
           dotnet-version: '8.0.x'
 
-      - name: Add .NET tools to PATH
-        run: echo "$HOME/.dotnet/tools" >> $GITHUB_PATH
-
       - name: Install CSharpier
         run: |
           dotnet new tool-manifest --force
           dotnet tool install csharpier
 
       - name: Run Formatter (CSharpier)
-        # フォルダ直下のすべての.csファイルを再帰的にフォーマット
-        run: dotnet tool run csharpier .
+        # 'format'サブコマンドを明示し，ローカルツールとして実行します
+        run: dotnet tool run csharpier format .
 
       - name: Commit and Push changes
         uses: stefanzweifel/git-auto-commit-action@v5
