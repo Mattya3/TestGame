@@ -1,3 +1,7 @@
+> [!IMPORTANT]
+> 🍏 **[Sub Issue 向けのPRを作成する場合はこちらをクリック](https://github.com/Mattya3/TestGame/compare/main...branch?expand=1&template=sub_issue.md)**
+> (※表示内容が切り替わります)
+
 ## 🍎 関連するIssue
 <!-- AUTOMATED_ISSUE_BLOCK -->
 *(ブランチ名からIssueが自動的に紐付けされます)*

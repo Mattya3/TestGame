@@ -45,7 +45,6 @@ jobs:
                   state_reason: 'completed'
                 });
 
-                // コメントを残すと親切
                 await github.rest.issues.createComment({
                   owner: context.repo.owner,
                   repo: context.repo.repo,
