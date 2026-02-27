@@ -6,10 +6,8 @@ public class Player : MonoBehaviour
 {
     [SerializeField, Range(0f, 20f)]
     private float _moveSpeed;
-    [SerializeField, Range(0f, 10f)]
+    [SerializeField, Range(0f, 40f)]
     private float _jumpForce;
-    [SerializeField, Range(0f, 10f)]
-    private float _gravityScale = 3f;
 
     private Vector2 _inputDirection;
     private Rigidbody2D _rigidBody; // _rb と略すこともあるが，初回なのでわかりやすく
