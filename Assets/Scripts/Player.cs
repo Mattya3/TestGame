@@ -42,8 +42,10 @@ public class Player : MonoBehaviour
     /// </summary>
     public void OnJump(InputAction.CallbackContext context)
     {
-        if (!context.performed) return;
-        if (!_IsGrounded()) return;
+        if (!context.performed)
+            return;
+        if (!_IsGrounded())
+            return;
 
         _rigidBody.AddForce(Vector2.up * _jumpForce, ForceMode2D.Impulse);
     }
@@ -68,7 +70,14 @@ public class Player : MonoBehaviour
         Vector2 boxSize = new Vector2(bounds.size.x, GROUND_CHECK_THICKNESS);
 
         // 下方向にわずかにキャストして接触を確認
-        RaycastHit2D hit = Physics2D.BoxCast(origin, boxSize, 0f, Vector2.down, GROUND_CHECK_THICKNESS, LayerMask.GetMask("Solid"));
+        RaycastHit2D hit = Physics2D.BoxCast(
+            origin,
+            boxSize,
+            0f,
+            Vector2.down,
+            GROUND_CHECK_THICKNESS,
+            LayerMask.GetMask("Solid")
+        );
 
         return hit.collider != null;
     }
