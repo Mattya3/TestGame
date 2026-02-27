@@ -592,7 +592,7 @@ GameObject:
   - component: {fileID: 1959278145}
   - component: {fileID: 1959278144}
   - component: {fileID: 1959278143}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: GroundTilemap
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -2370,7 +2370,7 @@ GameObject:
   - component: {fileID: 1962187054}
   - component: {fileID: 1962187053}
   - component: {fileID: 1962187052}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: ScaffoldTilemap
   m_TagString: Scaffold
   m_Icon: {fileID: 0}
