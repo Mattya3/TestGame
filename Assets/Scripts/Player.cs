@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(Collider2D))]
 public class Player : MonoBehaviour
 {
     [SerializeField, Range(0f, 20f)]
@@ -12,10 +13,15 @@ public class Player : MonoBehaviour
 
     private Vector2 _inputDirection;
     private Rigidbody2D _rigidBody; // _rb と略すこともあるが，初回なのでわかりやすく
+    private Collider2D _collider;
+
+    // 接地判定用の定数
+    private const float GROUND_CHECK_THICKNESS = 0.005f;
 
     void Awake()
     {
         _rigidBody = GetComponent<Rigidbody2D>();
+        _collider = GetComponent<Collider2D>();
     }
 
     void Update()
@@ -36,10 +42,10 @@ public class Player : MonoBehaviour
     /// </summary>
     public void OnJump(InputAction.CallbackContext context)
     {
-        if (context.performed && _GroundCheck())
-        {
-            _rigidBody.AddForce(Vector2.up * _jumpForce, ForceMode2D.Impulse);
-        }
+        if (!context.performed) return;
+        if (!_IsGrounded()) return;
+
+        _rigidBody.AddForce(Vector2.up * _jumpForce, ForceMode2D.Impulse);
     }
 
     private void _Move()
@@ -50,16 +56,20 @@ public class Player : MonoBehaviour
         );
     }
 
-    private bool _GroundCheck()
+    private bool _IsGrounded()
     {
-        // キャラクターの足元に接触判定を飛ばして地面に接触しているか判定
+        // コライダの境界情報（Bounds）を使用して，足元の位置と幅を動的に計算
+        Bounds bounds = _collider.bounds;
 
-        // 開始地点をプレイヤーの中心から 0.65f（足元より少し下）にずらし，自身を判定範囲から除外
-        Vector2 origin = (Vector2)transform.position + Vector2.down * 0.65f;
-        // ごく短い距離（0.005f）だけ下に判定を飛ばす
-        Vector2 boxSize = new Vector2(1f, 0.005f);
-        // ~0 はすべてのレイヤーを意味する(必要に応じて修正が必要). 何かしらが下に存在する場合trueとなる
-        RaycastHit2D hit = Physics2D.BoxCast(origin, boxSize, 0f, Vector2.down, 0.005f, ~0);
+        // 開始地点：コライダの下端中央
+        Vector2 origin = new Vector2(bounds.center.x, bounds.min.y - GROUND_CHECK_THICKNESS * 2);
+
+        // ボックスのサイズ：コライダの横幅と同じ，高さはごく薄く設定
+        Vector2 boxSize = new Vector2(bounds.size.x, GROUND_CHECK_THICKNESS);
+
+        // 下方向にわずかにキャストして接触を確認
+        RaycastHit2D hit = Physics2D.BoxCast(origin, boxSize, 0f, Vector2.down, GROUND_CHECK_THICKNESS, LayerMask.GetMask("Ground"));
+
         return hit.collider != null;
     }
 }
