@@ -2,20 +2,20 @@ using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
 
 [RequireComponent(typeof(Camera))]
-public class CameraFollowController : MonoBehaviour
+public class CameraController : MonoBehaviour
 {
     [SerializeField]
-    private GameObject _target; // �J�������Ǐ]����Ώ�
+    private GameObject _target; // 追従する対象のゲームオブジェクト
 
     [SerializeField]
-    private Vector2 _offset; // �J�����ƑΏۂ̈ʒu�̃I�t�Z�b�g
+    private Vector2 _offset; // 対象からのオフセット
 
     // Awake is called when the script instance is being loaded
     void Awake()
     {
         if (_target == null)
         {
-            Debug.LogError("�J������target �����ݒ�ł�", this);
+            Debug.LogError("カメラのtargetが設定されていません", this);
             enabled = false;
         }
     }
