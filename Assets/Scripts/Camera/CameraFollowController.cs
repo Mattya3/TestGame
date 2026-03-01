@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[RequireComponent(typeof(Camera))]
 public class CameraFollowController : MonoBehaviour
 {
     [SerializeField] private Object _target; // ƒJƒƒ‰‚ª’Ç]‚·‚é‘ÎÛ
