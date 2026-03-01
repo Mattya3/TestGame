@@ -4,23 +4,24 @@ using static UnityEngine.GraphicsBuffer;
 [RequireComponent(typeof(Camera))]
 public class CameraFollowController : MonoBehaviour
 {
-    [SerializeField] private GameObject _target; // ƒJƒƒ‰‚ª’Ç]‚·‚é‘ÎÛ
-    [SerializeField] private Vector2 _offset; // ƒJƒƒ‰‚Æ‘ÎÛ‚ÌˆÊ’u‚ÌƒIƒtƒZƒbƒg
+    [SerializeField]
+    private GameObject _target; // ï¿½Jï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç]ï¿½ï¿½ï¿½ï¿½Îï¿½
+
+    [SerializeField]
+    private Vector2 _offset; // ï¿½Jï¿½ï¿½ï¿½ï¿½ï¿½Æ‘ÎÛ‚ÌˆÊ’uï¿½ÌƒIï¿½tï¿½Zï¿½bï¿½g
 
     // Awake is called when the script instance is being loaded
     void Awake()
     {
         if (_target == null)
         {
-            Debug.LogError("ƒJƒƒ‰‚Étarget ‚ª–¢İ’è‚Å‚·", this);
+            Debug.LogError("ï¿½Jï¿½ï¿½ï¿½ï¿½ï¿½ï¿½target ï¿½ï¿½ï¿½ï¿½ï¿½İ’ï¿½Å‚ï¿½", this);
             enabled = false;
         }
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-    }
+    void Start() { }
 
     // Update is called once per frame
     void Update()
