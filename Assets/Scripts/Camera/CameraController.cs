@@ -1,5 +1,4 @@
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
 
 [RequireComponent(typeof(Camera))]
 public class CameraController : MonoBehaviour
@@ -20,11 +19,8 @@ public class CameraController : MonoBehaviour
         }
     }
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start() { }
-
-    // Update is called once per frame
-    void Update()
+    // LateUpdate is called after all Update functions have been called
+    void LateUpdate()
     {
         var targetPosition = _target.transform.position;
         transform.position = new Vector3(
