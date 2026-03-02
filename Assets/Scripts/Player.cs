@@ -25,7 +25,6 @@ public class Player : MonoBehaviour
     private const string SOLID_LAYER_NAME = "Solid"; // 上に乗れるオブジェクトのレイヤ０
     private const string DEAD_ZONE_TAG = "DeadZone"; // リスタート発生判定用のタグ
 
-
     void Awake()
     {
         _rigidBody = GetComponent<Rigidbody2D>();
@@ -34,7 +33,8 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        if(_NeedRestart()){
+        if (_NeedRestart())
+        {
             _RestartStage();
             return;
         }
