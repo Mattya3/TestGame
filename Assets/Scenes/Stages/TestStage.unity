@@ -578,6 +578,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Player
   _moveSpeed: 5
   _jumpForce: 15
+  _deathYThreshold: -5
 --- !u!1 &1959278139
 GameObject:
   m_ObjectHideFlags: 0
