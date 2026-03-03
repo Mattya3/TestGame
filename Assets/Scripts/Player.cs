@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static GameConstants;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(Collider2D))]
@@ -24,8 +25,6 @@ public class Player : MonoBehaviour
     private bool _touchedDeadZone = false;
 
     private const float GROUND_CHECK_THICKNESS = 0.005f; // 接地判定用の定数
-    private const string SOLID_LAYER_NAME = "Solid"; // 上に乗れるオブジェクトのレイヤ０
-    private const string DEAD_ZONE_TAG = "DeadZone"; // リスタート発生判定用のタグ
 
     void Awake()
     {
@@ -71,7 +70,7 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag(DEAD_ZONE_TAG))
+        if (collision.CompareTag(Tags.DEAD_ZONE))
         {
             _touchedDeadZone = true;
         }
@@ -95,7 +94,7 @@ public class Player : MonoBehaviour
             0f,
             Vector2.down,
             GROUND_CHECK_THICKNESS,
-            LayerMask.GetMask(SOLID_LAYER_NAME)
+            LayerMask.GetMask(Layers.SOLID)
         );
 
         return hit.collider != null;
