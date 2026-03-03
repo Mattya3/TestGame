@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(Collider2D))]
@@ -15,11 +14,14 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float _deathYThreshold;
 
+    [SerializeField]
+    private GameManager _gameManager;
+
     private Vector2 _inputDirection;
     private Rigidbody2D _rigidBody; // _rb と略すこともあるが，初回なのでわかりやすく
     private Collider2D _collider;
 
-    private bool _isDead = false;
+    private bool _touchedDeadZone = false;
 
     private const float GROUND_CHECK_THICKNESS = 0.005f; // 接地判定用の定数
     private const string SOLID_LAYER_NAME = "Solid"; // 上に乗れるオブジェクトのレイヤ０
@@ -33,17 +35,14 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        if (_NeedRestart())
+        if (_IsDead())
         {
-            _RestartStage();
-            return;
+            _gameManager.HandlePlayerDeath();
         }
         _Move();
     }
 
-    /// <summary>
-    /// 移動入力を受け取ります。
-    /// </summary>
+    
     public void OnMove(InputAction.CallbackContext context)
     {
         _inputDirection = context.ReadValue<Vector2>();
@@ -74,7 +73,7 @@ public class Player : MonoBehaviour
     {
         if (collision.CompareTag(DEAD_ZONE_TAG))
         {
-            _isDead = true;
+            _touchedDeadZone = true;
         }
     }
 
@@ -104,7 +103,5 @@ public class Player : MonoBehaviour
 
     private bool _IsFallen() => transform.position.y < _deathYThreshold;
 
-    private bool _NeedRestart() => _IsFallen() || _isDead;
-
-    private void _RestartStage() => SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    private bool _IsDead() => _IsFallen() || _touchedDeadZone;
 }
