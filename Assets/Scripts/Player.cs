@@ -23,6 +23,7 @@ public class Player : MonoBehaviour
     private Collider2D _collider;
 
     private bool _touchedDeadZone = false;
+    private bool _alive = true;
 
     private const float GROUND_CHECK_THICKNESS = 0.005f; // 接地判定用の定数
 
@@ -34,9 +35,13 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        if(!_alive)
+            return;
         if (_IsDead())
         {
+            _alive = false;
             _gameManager.HandlePlayerDeath();
+            return;
         }
         _Move();
     }
