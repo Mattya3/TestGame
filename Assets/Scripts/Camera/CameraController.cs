@@ -18,6 +18,11 @@ public class CameraController : MonoBehaviour
             Debug.LogError("カメラのtargetが設定されていません", this);
             enabled = false;
         }
+        if (_offset.z >= 0)
+        {
+            Debug.LogError("カメラのoffset.zは負の値でなければなりません", this);
+            enabled = false;
+        }
     }
 
     // LateUpdate is called after all Update functions have been called
