@@ -209,7 +209,7 @@ GameObject:
   - component: {fileID: 1113217127}
   - component: {fileID: 1113217130}
   - component: {fileID: 1113217131}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -347,7 +347,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   _target: {fileID: 1662044830}
-  _offset: {x: 0, y: 1}
+  _offset: {x: 0, y: 1, z: -10}
 --- !u!1 &1662044830
 GameObject:
   m_ObjectHideFlags: 0
