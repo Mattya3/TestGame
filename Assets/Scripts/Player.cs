@@ -35,7 +35,7 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        if(!_alive)
+        if (!_alive)
             return;
         if (_IsDead())
         {
@@ -46,7 +46,6 @@ public class Player : MonoBehaviour
         _Move();
     }
 
-    
     public void OnMove(InputAction.CallbackContext context)
     {
         _inputDirection = context.ReadValue<Vector2>();

@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void HandlePlayerDeath()
     {
-       _RestartStage();
+        _RestartStage();
     }
 
     private void _RestartStage()
