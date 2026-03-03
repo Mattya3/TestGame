@@ -1,4 +1,5 @@
 using UnityEngine;
+using static UnityEngine.RuleTile.TilingRuleOutput;
 
 [RequireComponent(typeof(Camera))]
 public class CameraController : MonoBehaviour
@@ -9,8 +10,6 @@ public class CameraController : MonoBehaviour
     [SerializeField]
     private Vector3 _offset; // 対象からのオフセット
 
-    private float _originalZ = 0f; // カメラの元のZ位置。デフォルトで0でないので、Awakeで保存しておく
-
     // Awake is called when the script instance is being loaded
     void Awake()
     {
@@ -19,18 +18,12 @@ public class CameraController : MonoBehaviour
             Debug.LogError("カメラのtargetが設定されていません", this);
             enabled = false;
         }
-
-        _originalZ = transform.position.z; // カメラの元のZ位置を保存
     }
 
     // LateUpdate is called after all Update functions have been called
     void LateUpdate()
     {
         var targetPosition = _target.transform.position;
-        transform.position = new Vector3(
-            targetPosition.x + _offset.x,
-            targetPosition.y + _offset.y,
-            _originalZ + _offset.z
-        );
+        transform.position = targetPosition + _offset;
     }
 }
