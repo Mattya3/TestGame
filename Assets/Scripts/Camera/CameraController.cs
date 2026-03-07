@@ -140,8 +140,16 @@ public class CameraController : MonoBehaviour
         }
 
         // InfinityやNaNが含まれていないことを確認
-        if (float.IsInfinity(_minX) || float.IsInfinity(_maxX) || float.IsInfinity(_minY) || float.IsInfinity(_maxY) ||
-            float.IsNaN(_minX) || float.IsNaN(_maxX) || float.IsNaN(_minY) || float.IsNaN(_maxY))
+        if (
+            float.IsInfinity(_minX)
+            || float.IsInfinity(_maxX)
+            || float.IsInfinity(_minY)
+            || float.IsInfinity(_maxY)
+            || float.IsNaN(_minX)
+            || float.IsNaN(_maxX)
+            || float.IsNaN(_minY)
+            || float.IsNaN(_maxY)
+        )
         {
             Debug.LogError("カメラの制約に無効な値が含まれています", this);
             return false;
