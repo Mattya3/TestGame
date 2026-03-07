@@ -10,6 +10,11 @@ public class CameraController : MonoBehaviour
     [SerializeField]
     private Vector3 _offset; // 対象からのオフセット
 
+    [SerializeField, Min(0f)]
+    private float _smoothTime = 0.1f; // カメラの移動のスムーズさを調整するための時間
+
+    private Vector3 _velocity = Vector3.zero; // カメラの現在の速度
+
     // Awake is called when the script instance is being loaded
     void Awake()
     {
@@ -25,10 +30,23 @@ public class CameraController : MonoBehaviour
         }
     }
 
+    // Start is called before the first frame update
+    void Start()
+    {
+        // カメラの初期位置を設定
+        transform.position = _target.transform.position + _offset;
+    }
+
     // LateUpdate is called after all Update functions have been called
     void LateUpdate()
     {
         var targetPosition = _target.transform.position;
-        transform.position = targetPosition + _offset;
+        var destination = targetPosition + _offset;
+        transform.position = Vector3.SmoothDamp(
+            transform.position,
+            destination,
+            ref _velocity,
+            _smoothTime
+        );
     }
 }
