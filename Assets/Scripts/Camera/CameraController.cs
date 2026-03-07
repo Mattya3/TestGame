@@ -33,7 +33,7 @@ public class CameraController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-         // カメラの初期位置を設定
+        // カメラの初期位置を設定
         transform.position = _target.transform.position + _offset;
     }
 
