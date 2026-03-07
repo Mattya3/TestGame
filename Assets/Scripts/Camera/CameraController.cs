@@ -57,6 +57,10 @@ public class CameraController : MonoBehaviour
             Debug.LogError("カメラのoffset.zは負の値でなければなりません", this);
             enabled = false;
         }
+        if (!_AreConstraintsValid())
+        {
+            enabled = false;
+        }
 
         _camera = GetComponent<Camera>();
     }
@@ -101,7 +105,7 @@ public class CameraController : MonoBehaviour
     // エディタ上でカメラの移動範囲を視覚化するためのGizmosを描画
     void OnDrawGizmosSelected()
     {
-        if (!_AreConstraintsValid())
+        if (!_AreConstraintsVisualizable())
             return;
 
         // デバッグ終了時などに参照が失われる場合があるため、カメラコンポーネントへの参照を再取得
@@ -139,11 +143,24 @@ public class CameraController : MonoBehaviour
             return false;
         }
 
-        // InfinityやNaNが含まれていないことを確認
-        if (float.IsInfinity(_minX) || float.IsInfinity(_maxX) || float.IsInfinity(_minY) || float.IsInfinity(_maxY) ||
-            float.IsNaN(_minX) || float.IsNaN(_maxX) || float.IsNaN(_minY) || float.IsNaN(_maxY))
+        // NaNが含まれていないことを確認
+        if (float.IsNaN(_minX) || float.IsNaN(_maxX) || float.IsNaN(_minY) || float.IsNaN(_maxY))
         {
             Debug.LogError("カメラの制約に無効な値が含まれています", this);
+            return false;
+        }
+
+        return true;
+    }
+
+    bool _AreConstraintsVisualizable()
+    {
+        if (!_AreConstraintsValid())
+            return false;
+
+        if (float.IsInfinity(_minX) || float.IsInfinity(_maxX) || float.IsInfinity(_minY) || float.IsInfinity(_maxY))
+        {
+            Debug.LogWarning("カメラの制約が無限大を含んでいるため、Gizmosで視覚化できません", this);
             return false;
         }
 
