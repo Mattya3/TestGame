@@ -118,13 +118,18 @@ public class CameraController : MonoBehaviour
 
         var halfHeight = _camera.orthographicSize;
         var halfWidth = halfHeight * _camera.aspect;
+
+        var visualMinX = (_lockX ? transform.position.x : _minX) - halfWidth;
+        var visualMaxX = (_lockX ? transform.position.x : _maxX) + halfWidth;
+        var visualMinY = (_lockY ? transform.position.y : _minY) - halfHeight;
+        var visualMaxY = (_lockY ? transform.position.y : _maxY) + halfHeight;
+
         var cameraSize = new Vector3(
-            (_maxX - _minX) + halfWidth * 2,
-            (_maxY - _minY) + halfHeight * 2,
+            (visualMaxX - visualMinX),
+            (visualMaxY - visualMinY),
             1
         );
-        var cameraCenter = new Vector3((_minX + _maxX) / 2, (_minY + _maxY) / 2, 0);
-
+        var cameraCenter = new Vector3((visualMinX + visualMaxX) / 2, (visualMinY + visualMaxY) / 2, 0);
         Gizmos.color = Color.green;
         Gizmos.DrawWireCube(cameraCenter, cameraSize);
     }
