@@ -144,12 +144,7 @@ public class CameraController : MonoBehaviour
         }
 
         // NaNが含まれていないことを確認
-        if (
-            float.IsNaN(_minX)
-            || float.IsNaN(_maxX)
-            || float.IsNaN(_minY)
-            || float.IsNaN(_maxY)
-        )
+        if (float.IsNaN(_minX) || float.IsNaN(_maxX) || float.IsNaN(_minY) || float.IsNaN(_maxY))
         {
             Debug.LogError("カメラの制約に無効な値が含まれています", this);
             return false;
@@ -163,9 +158,17 @@ public class CameraController : MonoBehaviour
         if (!_AreConstraintsValid())
             return false;
 
-        if (float.IsInfinity(_minX) || float.IsInfinity(_maxX) || float.IsInfinity(_minY) || float.IsInfinity(_maxY))
+        if (
+            float.IsInfinity(_minX)
+            || float.IsInfinity(_maxX)
+            || float.IsInfinity(_minY)
+            || float.IsInfinity(_maxY)
+        )
         {
-            Debug.LogWarning("カメラの制約が無限大を含んでいるため、Gizmosで視覚化できません", this);
+            Debug.LogWarning(
+                "カメラの制約が無限大を含んでいるため、Gizmosで視覚化できません",
+                this
+            );
             return false;
         }
 
