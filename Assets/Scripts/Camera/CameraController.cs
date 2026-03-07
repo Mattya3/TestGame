@@ -68,7 +68,8 @@ public class CameraController : MonoBehaviour
     void Start()
     {
         // カメラの初期位置を設定
-        transform.position = _target.transform.position + _offset;
+        var destination = _CalculateDestination();
+        transform.position = destination;
     }
 
     // LateUpdate is called after all Update functions have been called
