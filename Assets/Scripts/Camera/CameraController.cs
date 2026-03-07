@@ -101,6 +101,9 @@ public class CameraController : MonoBehaviour
     // エディタ上でカメラの移動範囲を視覚化するためのGizmosを描画
     void OnDrawGizmosSelected()
     {
+        if (!_AreConstraintsValid())
+            return;
+
         // デバッグ終了時などに参照が失われる場合があるため、カメラコンポーネントへの参照を再取得
         if (_camera == null)
         {
@@ -120,5 +123,30 @@ public class CameraController : MonoBehaviour
 
         Gizmos.color = Color.green;
         Gizmos.DrawWireCube(cameraCenter, cameraSize);
+    }
+
+    bool _AreConstraintsValid()
+    {
+        // 最小値が最大値より小さいことを確認
+        if (_minX > _maxX)
+        {
+            Debug.LogError("カメラのminXはmaxXより小さくなければなりません", this);
+            return false;
+        }
+        if (_minY > _maxY)
+        {
+            Debug.LogError("カメラのminYはmaxYより小さくなければなりません", this);
+            return false;
+        }
+
+        // InfinityやNaNが含まれていないことを確認
+        if (float.IsInfinity(_minX) || float.IsInfinity(_maxX) || float.IsInfinity(_minY) || float.IsInfinity(_maxY) ||
+            float.IsNaN(_minX) || float.IsNaN(_maxX) || float.IsNaN(_minY) || float.IsNaN(_maxY))
+        {
+            Debug.LogError("カメラの制約に無効な値が含まれています", this);
+            return false;
+        }
+
+        return true;
     }
 }
