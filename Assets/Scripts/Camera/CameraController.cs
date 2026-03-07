@@ -144,7 +144,12 @@ public class CameraController : MonoBehaviour
         }
 
         // NaNが含まれていないことを確認
-        if (float.IsNaN(_minX) || float.IsNaN(_maxX) || float.IsNaN(_minY) || float.IsNaN(_maxY))
+        if (
+            float.IsNaN(_minX)
+            || float.IsNaN(_maxX)
+            || float.IsNaN(_minY)
+            || float.IsNaN(_maxY)
+        )
         {
             Debug.LogError("カメラの制約に無効な値が含まれています", this);
             return false;
