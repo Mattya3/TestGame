@@ -6,7 +6,6 @@ public class CameraController : MonoBehaviour
 {
     // == Destination ==
     [Header("Destination")]
-
     [SerializeField]
     private GameObject _target; // 追従する対象のゲームオブジェクト
 
@@ -15,7 +14,6 @@ public class CameraController : MonoBehaviour
 
     // == Smoothing ==
     [Header("Smoothing")]
-
     [SerializeField, Min(0f)]
     private float _smoothTime = 0.1f; // カメラの移動のスムーズさを調整するための時間
 
@@ -23,7 +21,6 @@ public class CameraController : MonoBehaviour
 
     // == Constraints ==
     [Header("Constraints")]
-
     [SerializeField]
     private bool _lockX = false; // X軸の移動をロックするかどうか
 
@@ -89,10 +86,14 @@ public class CameraController : MonoBehaviour
         var targetPosition = _target.transform.position;
         var destination = targetPosition + _offset;
 
-        if (_lockX) destination.x = transform.position.x;
-        else destination.x = Mathf.Clamp(destination.x, _minX, _maxX);
-        if (_lockY) destination.y = transform.position.y;
-        else destination.y = Mathf.Clamp(destination.y, _minY, _maxY);
+        if (_lockX)
+            destination.x = transform.position.x;
+        else
+            destination.x = Mathf.Clamp(destination.x, _minX, _maxX);
+        if (_lockY)
+            destination.y = transform.position.y;
+        else
+            destination.y = Mathf.Clamp(destination.y, _minY, _maxY);
 
         return destination;
     }
@@ -103,7 +104,7 @@ public class CameraController : MonoBehaviour
         // デバッグ終了時などに参照が失われる場合があるため、カメラコンポーネントへの参照を再取得
         if (_camera == null)
         {
-             _camera = GetComponent<Camera>();
+            _camera = GetComponent<Camera>();
             if (_camera == null)
                 return;
         }
@@ -115,11 +116,7 @@ public class CameraController : MonoBehaviour
             (_maxY - _minY) + halfHeight * 2,
             1
         );
-        var cameraCenter = new Vector3(
-            (_minX + _maxX) / 2,
-            (_minY + _maxY) / 2,
-            0
-        );
+        var cameraCenter = new Vector3((_minX + _maxX) / 2, (_minY + _maxY) / 2, 0);
 
         Gizmos.color = Color.green;
         Gizmos.DrawWireCube(cameraCenter, cameraSize);
