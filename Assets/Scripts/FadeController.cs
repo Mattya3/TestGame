@@ -1,12 +1,17 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
-using System.Collections;
 
 public class FadeController : MonoBehaviour
 {
-    [SerializeField] private Image _fadeImage;
-    [SerializeField, Min(0.0f)] private float _fadeTime;
-    [SerializeField, Min(0.0f)] private float _waitAfterFade;
+    [SerializeField]
+    private Image _fadeImage;
+
+    [SerializeField, Min(0.0f)]
+    private float _fadeTime;
+
+    [SerializeField, Min(0.0f)]
+    private float _waitAfterFade;
 
     private void Awake()
     {
@@ -19,7 +24,7 @@ public class FadeController : MonoBehaviour
     public IEnumerator FadeOut()
     {
         _ActivateCanvas();
-        
+
         float timer = 0f;
         while (timer < _fadeTime)
         {

@@ -1,11 +1,12 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using System.Collections;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] private FadeController _fadeController;
-    
+    [SerializeField]
+    private FadeController _fadeController;
+
     /// <summary>
     /// プレイヤーが死亡したときに呼び出されます。
     /// </summary>
