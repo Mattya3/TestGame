@@ -39,6 +39,8 @@ public class CameraController : MonoBehaviour
     [SerializeField]
     private float _topBound = float.PositiveInfinity; // カメラのY座標の最大値
 
+    private Rect _boundingRect => Rect.MinMaxRect(_leftBound, _bottomBound, _rightBound, _topBound); // カメラの移動範囲を表す矩形
+
     // == Component References ==
     private Camera _camera; // カメラコンポーネントへの参照
 
@@ -89,16 +91,8 @@ public class CameraController : MonoBehaviour
     {
         var targetPosition = _target.transform.position;
         var destination = targetPosition + _offset;
-
-        if (_freezeX)
-            destination.x = transform.position.x;
-        else
-            destination.x = Mathf.Clamp(destination.x, _leftBound, _rightBound);
-        if (_freezeY)
-            destination.y = transform.position.y;
-        else
-            destination.y = Mathf.Clamp(destination.y, _bottomBound, _topBound);
-
+        destination.x = _freezeX ? transform.position.x : Mathf.Clamp(destination.x, _leftBound, _rightBound);
+        destination.y = _freezeY ? transform.position.y : Mathf.Clamp(destination.y, _bottomBound, _topBound);
         return destination;
     }
 
