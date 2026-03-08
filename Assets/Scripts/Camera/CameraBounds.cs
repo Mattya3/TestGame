@@ -38,17 +38,16 @@ public class CameraBounds
         return float.IsInfinity(_leftBound) || float.IsInfinity(_rightBound) || float.IsInfinity(_bottomBound) || float.IsInfinity(_topBound);
     }
 
-    public float BoundX(float x, float originalX)
+    public Vector3 Bound(Vector3 pos, Vector3 originalPos)
     {
-        return _freezeX ? originalX : Mathf.Clamp(x, _leftBound, _rightBound);
+        return new Vector3(
+            _freezeX ? originalPos.x : Mathf.Clamp(pos.x, _leftBound, _rightBound),
+            _freezeY ? originalPos.y : Mathf.Clamp(pos.y, _bottomBound, _topBound),
+            pos.z
+        );
     }
 
-    public float BoundY(float y, float originalY)
-    {
-        return _freezeY ? originalY : Mathf.Clamp(y, _bottomBound, _topBound);
-    }
-
-    public void DrawGizmos(Camera camera, Vector3 originalPosition)
+    public void DrawGizmos(Camera camera, Vector3 originalPos)
     {
         if (!_CanDrawGizmos())
             return;
@@ -56,10 +55,10 @@ public class CameraBounds
         var halfHeight = camera.orthographicSize;
         var halfWidth = halfHeight * camera.aspect;
 
-        var visualLeft = (_freezeX ? originalPosition.x : _leftBound) - halfWidth;
-        var visualRight = (_freezeX ? originalPosition.x : _rightBound) + halfWidth;
-        var visualBottom = (_freezeY ? originalPosition.y : _bottomBound) - halfHeight;
-        var visualTop = (_freezeY ? originalPosition.y : _topBound) + halfHeight;
+        var visualLeft = (_freezeX ? originalPos.x : _leftBound) - halfWidth;
+        var visualRight = (_freezeX ? originalPos.x : _rightBound) + halfWidth;
+        var visualBottom = (_freezeY ? originalPos.y : _bottomBound) - halfHeight;
+        var visualTop = (_freezeY ? originalPos.y : _topBound) + halfHeight;
 
         var cameraSize = new Vector3((visualRight - visualLeft), (visualTop - visualBottom), 1);
         var cameraCenter = new Vector3(

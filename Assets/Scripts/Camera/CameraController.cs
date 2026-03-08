@@ -22,7 +22,7 @@ public class CameraController : MonoBehaviour
     // == Constraints ==
     [Header("Constraints")]
     [SerializeField]
-    private CameraBounds _bounds; // カメラの移動制約
+    private CameraBounds _bounds = new CameraBounds(); // カメラの移動制約
 
     // == Component References ==
     private Camera _camera; // カメラコンポーネントへの参照
@@ -88,10 +88,7 @@ public class CameraController : MonoBehaviour
     private Vector3 _CalculateDestination()
     {
         var targetPosition = _target.transform.position;
-        var destination = targetPosition + _offset;
-        destination.x = _bounds.BoundX(destination.x, transform.position.x);
-        destination.y = _bounds.BoundY(destination.y, transform.position.y);
-        return destination;
+        return _bounds.Bound(targetPosition + _offset, transform.position);
     }
 
     // エディタ上でカメラの移動範囲を視覚化するためのGizmosを描画
