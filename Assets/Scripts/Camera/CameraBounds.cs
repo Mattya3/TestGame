@@ -6,22 +6,22 @@ using static UnityEngine.RuleTile.TilingRuleOutput;
 public class CameraBounds
 {
     [SerializeField]
-    private bool _freezeX = false; // X²‚ÌˆÚ“®‚ğƒƒbƒN‚·‚é‚©‚Ç‚¤‚©
+    private bool _freezeX = false; // Xï¿½ï¿½ï¿½ÌˆÚ“ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½bï¿½Nï¿½ï¿½ï¿½é‚©ï¿½Ç‚ï¿½ï¿½ï¿½
 
     [SerializeField]
-    private bool _freezeY = false; // Y²‚ÌˆÚ“®‚ğƒƒbƒN‚·‚é‚©‚Ç‚¤‚©
+    private bool _freezeY = false; // Yï¿½ï¿½ï¿½ÌˆÚ“ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½bï¿½Nï¿½ï¿½ï¿½é‚©ï¿½Ç‚ï¿½ï¿½ï¿½
 
     [SerializeField]
-    private float _leftBound = float.NegativeInfinity; // ƒJƒƒ‰‚ÌXÀ•W‚ÌÅ¬’l
+    private float _leftBound = float.NegativeInfinity; // ï¿½Jï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Xï¿½ï¿½ï¿½Wï¿½ÌÅï¿½ï¿½l
 
     [SerializeField]
-    private float _rightBound = float.PositiveInfinity; // ƒJƒƒ‰‚ÌXÀ•W‚ÌÅ‘å’l
+    private float _rightBound = float.PositiveInfinity; // ï¿½Jï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Xï¿½ï¿½ï¿½Wï¿½ÌÅ‘ï¿½l
 
     [SerializeField]
-    private float _bottomBound = float.NegativeInfinity; // ƒJƒƒ‰‚ÌYÀ•W‚ÌÅ¬’l
+    private float _bottomBound = float.NegativeInfinity; // ï¿½Jï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Yï¿½ï¿½ï¿½Wï¿½ÌÅï¿½ï¿½l
 
     [SerializeField]
-    private float _topBound = float.PositiveInfinity; // ƒJƒƒ‰‚ÌYÀ•W‚ÌÅ‘å’l
+    private float _topBound = float.PositiveInfinity; // ï¿½Jï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Yï¿½ï¿½ï¿½Wï¿½ÌÅ‘ï¿½l
 
     public bool HasReversedBounds()
     {
@@ -30,12 +30,18 @@ public class CameraBounds
 
     public bool HasNaN()
     {
-        return float.IsNaN(_leftBound) || float.IsNaN(_rightBound) || float.IsNaN(_bottomBound) || float.IsNaN(_topBound);
+        return float.IsNaN(_leftBound)
+            || float.IsNaN(_rightBound)
+            || float.IsNaN(_bottomBound)
+            || float.IsNaN(_topBound);
     }
 
     public bool HasInfinity()
     {
-        return float.IsInfinity(_leftBound) || float.IsInfinity(_rightBound) || float.IsInfinity(_bottomBound) || float.IsInfinity(_topBound);
+        return float.IsInfinity(_leftBound)
+            || float.IsInfinity(_rightBound)
+            || float.IsInfinity(_bottomBound)
+            || float.IsInfinity(_topBound);
     }
 
     public Vector3 Bound(Vector3 pos, Vector3 originalPos)
