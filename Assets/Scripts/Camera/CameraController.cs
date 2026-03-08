@@ -128,7 +128,7 @@ public class CameraController : MonoBehaviour
         Gizmos.DrawWireCube(cameraCenter, cameraSize);
     }
 
-    bool _AreConstraintsValid()
+    private bool _AreConstraintsValid()
     {
         // 最小値が最大値より小さいことを確認
         if (_leftBound > _rightBound)
@@ -152,7 +152,7 @@ public class CameraController : MonoBehaviour
         return true;
     }
 
-    bool _AreConstraintsVisualizable()
+    private bool _AreConstraintsVisualizable()
     {
         if (!_AreConstraintsValid())
             return false;
