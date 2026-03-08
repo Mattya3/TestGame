@@ -3,6 +3,9 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    [SerializeField]
+    private UIEffectController _uiEffectController;
+
     /// <summary>
     /// プレイヤーが死亡したときに呼び出されます。
     /// </summary>
@@ -13,6 +16,9 @@ public class GameManager : MonoBehaviour
 
     private void _RestartStage()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        _uiEffectController.PlayDeathEffect(() =>
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        });
     }
 }

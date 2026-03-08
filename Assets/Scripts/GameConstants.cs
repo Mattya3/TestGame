@@ -9,4 +9,9 @@ public static class GameConstants
     {
         public const string SOLID = "Solid";
     }
+
+    public static class UI
+    {
+        public const string FADE_BLACK_OUT = "FadeBlackOut";
+    }
 }

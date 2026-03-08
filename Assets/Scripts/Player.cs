@@ -40,6 +40,8 @@ public class Player : MonoBehaviour
         if (_IsDead())
         {
             _alive = false;
+            _rigidBody.linearVelocity = Vector2.zero;
+            _rigidBody.bodyType = RigidbodyType2D.Static;
             _gameManager.HandlePlayerDeath();
             return;
         }
