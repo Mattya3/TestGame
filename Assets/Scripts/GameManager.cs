@@ -1,26 +1,23 @@
-using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     [SerializeField]
-    private FadeController _fadeController;
+    private UIEffectController _uiEffectController;
 
     /// <summary>
     /// プレイヤーが死亡したときに呼び出されます。
     /// </summary>
     public void HandlePlayerDeath()
     {
-        StartCoroutine(_RestartStage());
+        _RestartStage();
     }
 
-    private IEnumerator _RestartStage()
+    private void _RestartStage()
     {
-        if (_fadeController != null)
-        {
-            yield return _fadeController.FadeOut();
-        }
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        _uiEffectController.PlayEffect(GameConstants.UI.FADE_BLACK_OUT, () => {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        });
     }
 }
