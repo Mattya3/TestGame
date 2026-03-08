@@ -22,10 +22,10 @@ public class CameraController : MonoBehaviour
     // == Constraints ==
     [Header("Constraints")]
     [SerializeField]
-    private bool _lockX = false; // X軸の移動をロックするかどうか
+    private bool _freezeX = false; // X軸の移動をロックするかどうか
 
     [SerializeField]
-    private bool _lockY = false; // Y軸の移動をロックするかどうか
+    private bool _freezeY = false; // Y軸の移動をロックするかどうか
 
     [SerializeField]
     private float _minX = float.NegativeInfinity; // カメラのX座標の最小値
@@ -90,11 +90,11 @@ public class CameraController : MonoBehaviour
         var targetPosition = _target.transform.position;
         var destination = targetPosition + _offset;
 
-        if (_lockX)
+        if (_freezeX)
             destination.x = transform.position.x;
         else
             destination.x = Mathf.Clamp(destination.x, _minX, _maxX);
-        if (_lockY)
+        if (_freezeY)
             destination.y = transform.position.y;
         else
             destination.y = Mathf.Clamp(destination.y, _minY, _maxY);
@@ -119,10 +119,10 @@ public class CameraController : MonoBehaviour
         var halfHeight = _camera.orthographicSize;
         var halfWidth = halfHeight * _camera.aspect;
 
-        var visualMinX = (_lockX ? transform.position.x : _minX) - halfWidth;
-        var visualMaxX = (_lockX ? transform.position.x : _maxX) + halfWidth;
-        var visualMinY = (_lockY ? transform.position.y : _minY) - halfHeight;
-        var visualMaxY = (_lockY ? transform.position.y : _maxY) + halfHeight;
+        var visualMinX = (_freezeX ? transform.position.x : _minX) - halfWidth;
+        var visualMaxX = (_freezeX ? transform.position.x : _maxX) + halfWidth;
+        var visualMinY = (_freezeY ? transform.position.y : _minY) - halfHeight;
+        var visualMaxY = (_freezeY ? transform.position.y : _maxY) + halfHeight;
 
         var cameraSize = new Vector3((visualMaxX - visualMinX), (visualMaxY - visualMinY), 1);
         var cameraCenter = new Vector3(
