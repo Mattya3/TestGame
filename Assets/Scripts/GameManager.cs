@@ -16,11 +16,9 @@ public class GameManager : MonoBehaviour
 
     private void _RestartStage()
     {
-        _uiEffectController.PlayDeathEffect(
-            () =>
-            {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-            }
-        );
+        _uiEffectController.PlayDeathEffect(() =>
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        });
     }
 }
