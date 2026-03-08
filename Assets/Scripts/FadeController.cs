@@ -13,11 +13,6 @@ public class FadeController : MonoBehaviour
     [SerializeField, Min(0.0f)]
     private float _waitAfterFade;
 
-    private void Awake()
-    {
-        _fadeImage.color = new Color(0, 0, 0, 0);
-    }
-
     /// <summary>
     /// フェードアウト処理を実行します。
     /// </summary>
@@ -45,8 +40,6 @@ public class FadeController : MonoBehaviour
 
     private void _ActivateCanvas()
     {
-        Canvas parentCanvas = GetComponentInParent<Canvas>(true);
-        parentCanvas.gameObject.SetActive(true);
         gameObject.SetActive(true);
     }
 }
