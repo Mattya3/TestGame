@@ -28,16 +28,16 @@ public class CameraController : MonoBehaviour
     private bool _freezeY = false; // Y軸の移動をロックするかどうか
 
     [SerializeField]
-    private float _minX = float.NegativeInfinity; // カメラのX座標の最小値
+    private float _leftBound = float.NegativeInfinity; // カメラのX座標の最小値
 
     [SerializeField]
-    private float _maxX = float.PositiveInfinity; // カメラのX座標の最大値
+    private float _rightBound = float.PositiveInfinity; // カメラのX座標の最大値
 
     [SerializeField]
-    private float _minY = float.NegativeInfinity; // カメラのY座標の最小値
+    private float _bottomBound = float.NegativeInfinity; // カメラのY座標の最小値
 
     [SerializeField]
-    private float _maxY = float.PositiveInfinity; // カメラのY座標の最大値
+    private float _topBound = float.PositiveInfinity; // カメラのY座標の最大値
 
     // == Component References ==
     private Camera _camera; // カメラコンポーネントへの参照
@@ -93,11 +93,11 @@ public class CameraController : MonoBehaviour
         if (_freezeX)
             destination.x = transform.position.x;
         else
-            destination.x = Mathf.Clamp(destination.x, _minX, _maxX);
+            destination.x = Mathf.Clamp(destination.x, _leftBound, _rightBound);
         if (_freezeY)
             destination.y = transform.position.y;
         else
-            destination.y = Mathf.Clamp(destination.y, _minY, _maxY);
+            destination.y = Mathf.Clamp(destination.y, _bottomBound, _topBound);
 
         return destination;
     }
@@ -119,10 +119,10 @@ public class CameraController : MonoBehaviour
         var halfHeight = _camera.orthographicSize;
         var halfWidth = halfHeight * _camera.aspect;
 
-        var visualMinX = (_freezeX ? transform.position.x : _minX) - halfWidth;
-        var visualMaxX = (_freezeX ? transform.position.x : _maxX) + halfWidth;
-        var visualMinY = (_freezeY ? transform.position.y : _minY) - halfHeight;
-        var visualMaxY = (_freezeY ? transform.position.y : _maxY) + halfHeight;
+        var visualMinX = (_freezeX ? transform.position.x : _leftBound) - halfWidth;
+        var visualMaxX = (_freezeX ? transform.position.x : _rightBound) + halfWidth;
+        var visualMinY = (_freezeY ? transform.position.y : _bottomBound) - halfHeight;
+        var visualMaxY = (_freezeY ? transform.position.y : _topBound) + halfHeight;
 
         var cameraSize = new Vector3((visualMaxX - visualMinX), (visualMaxY - visualMinY), 1);
         var cameraCenter = new Vector3(
@@ -137,19 +137,19 @@ public class CameraController : MonoBehaviour
     bool _AreConstraintsValid()
     {
         // 最小値が最大値より小さいことを確認
-        if (_minX > _maxX)
+        if (_leftBound > _rightBound)
         {
             Debug.LogError("カメラのminXはmaxXより小さくなければなりません", this);
             return false;
         }
-        if (_minY > _maxY)
+        if (_bottomBound > _topBound)
         {
             Debug.LogError("カメラのminYはmaxYより小さくなければなりません", this);
             return false;
         }
 
         // NaNが含まれていないことを確認
-        if (float.IsNaN(_minX) || float.IsNaN(_maxX) || float.IsNaN(_minY) || float.IsNaN(_maxY))
+        if (float.IsNaN(_leftBound) || float.IsNaN(_rightBound) || float.IsNaN(_bottomBound) || float.IsNaN(_topBound))
         {
             Debug.LogError("カメラの制約に無効な値が含まれています", this);
             return false;
@@ -164,10 +164,10 @@ public class CameraController : MonoBehaviour
             return false;
 
         if (
-            float.IsInfinity(_minX)
-            || float.IsInfinity(_maxX)
-            || float.IsInfinity(_minY)
-            || float.IsInfinity(_maxY)
+            float.IsInfinity(_leftBound)
+            || float.IsInfinity(_rightBound)
+            || float.IsInfinity(_bottomBound)
+            || float.IsInfinity(_topBound)
         )
         {
             Debug.LogWarning(
