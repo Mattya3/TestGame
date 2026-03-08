@@ -6,22 +6,22 @@ using static UnityEngine.RuleTile.TilingRuleOutput;
 public class CameraBounds
 {
     [SerializeField]
-    private bool _freezeX = false; // X���̈ړ������b�N���邩�ǂ���
+    private bool _freezeX = false; // X座標を初期位置で固定するフラグ
 
     [SerializeField]
-    private bool _freezeY = false; // Y���̈ړ������b�N���邩�ǂ���
+    private bool _freezeY = false; // Y座標を初期位置で固定するフラグ
 
     [SerializeField]
-    private float _leftBound = float.NegativeInfinity; // �J������X���W�̍ŏ��l
+    private float _leftBound = float.NegativeInfinity; // X座標の最小値
 
     [SerializeField]
-    private float _rightBound = float.PositiveInfinity; // �J������X���W�̍ő�l
+    private float _rightBound = float.PositiveInfinity; // X座標の最大値
 
     [SerializeField]
-    private float _bottomBound = float.NegativeInfinity; // �J������Y���W�̍ŏ��l
+    private float _bottomBound = float.NegativeInfinity; // Y座標の最小値
 
     [SerializeField]
-    private float _topBound = float.PositiveInfinity; // �J������Y���W�̍ő�l
+    private float _topBound = float.PositiveInfinity; // Y座標の最大値
 
     public bool HasReversedBounds()
     {
