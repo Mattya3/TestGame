@@ -16,8 +16,12 @@ public class GameManager : MonoBehaviour
 
     private void _RestartStage()
     {
-        _uiEffectController.PlayEffect(GameConstants.UI.FADE_BLACK_OUT, () => {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        });
+        _uiEffectController.PlayEffect(
+            GameConstants.UI.FADE_BLACK_OUT,
+            () =>
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            }
+        );
     }
 }
