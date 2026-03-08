@@ -49,22 +49,37 @@ public class CameraController : MonoBehaviour
     // Awake is called when the script instance is being loaded
     void Awake()
     {
+        if (!_IsConfigurationValid())
+        {
+            enabled = false;
+            return;
+        }
+        _camera = GetComponent<Camera>();
+    }
+
+    private bool _IsConfigurationValid()
+    {
         if (_target == null)
         {
             Debug.LogError("カメラのtargetが設定されていません", this);
-            enabled = false;
+            return false;
         }
         if (_offset.z >= 0)
         {
             Debug.LogError("カメラのoffset.zは負の値でなければなりません", this);
-            enabled = false;
+            return false;
         }
-        if (!_AreConstraintsValid())
+        if (_leftBound > _rightBound || _bottomBound > _topBound)
         {
-            enabled = false;
+            Debug.LogError("カメラ制約の最小値は最大値より小さくなければなりません", this);
+            return false;
         }
-
-        _camera = GetComponent<Camera>();
+        if (float.IsNaN(_leftBound) || float.IsNaN(_rightBound) || float.IsNaN(_bottomBound) || float.IsNaN(_topBound))
+        {
+            Debug.LogError("カメラの制約に無効な値が含まれています", this);
+            return false;
+        }
+        return true;
     }
 
     // Start is called before the first frame update
@@ -131,14 +146,9 @@ public class CameraController : MonoBehaviour
     private bool _AreConstraintsValid()
     {
         // 最小値が最大値より小さいことを確認
-        if (_leftBound > _rightBound)
+        if (_leftBound > _rightBound || _bottomBound > _topBound)
         {
-            Debug.LogError("カメラのminXはmaxXより小さくなければなりません", this);
-            return false;
-        }
-        if (_bottomBound > _topBound)
-        {
-            Debug.LogError("カメラのminYはmaxYより小さくなければなりません", this);
+            Debug.LogError("カメラ制約の最小値は最大値より小さくなければなりません", this);
             return false;
         }
 
