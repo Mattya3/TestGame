@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using UnityEngine;
 
 [RequireComponent(typeof(Animator))]
@@ -8,6 +8,14 @@ public class UIEffectController : MonoBehaviour
     private Animator _animator;
 
     private Action _onEffectComplete;
+
+    public void Awake()
+    {
+        if (_animator == null)
+        {
+            Debug.LogError("Animatorがアサインされていません。");
+        }
+    }
 
     /// <summary>
     /// 指定されたアニメーション演出（トリガー）を実行します。
