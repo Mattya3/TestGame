@@ -13,17 +13,11 @@ public class Player : MonoBehaviour
     private float _jumpForce;
 
     [SerializeField]
-    private float _deathYThreshold;
-
-    [SerializeField]
     private GameManager _gameManager;
 
     private Vector2 _inputDirection;
-    private Rigidbody2D _rigidBody; // _rb と略すこともあるが，初回なのでわかりやすく
+    private Rigidbody2D _rigidBody;
     private Collider2D _collider;
-
-    private bool _touchedDeadZone = false;
-    private bool _alive = true;
 
     private const float GROUND_CHECK_THICKNESS = 0.005f; // 接地判定用の定数
 
@@ -35,16 +29,9 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        if (!_alive)
+        if (!_gameManager.IsPlayerAlive)
             return;
-        if (_IsDead())
-        {
-            _alive = false;
-            _rigidBody.linearVelocity = Vector2.zero;
-            _rigidBody.bodyType = RigidbodyType2D.Static;
-            _gameManager.HandlePlayerDeath();
-            return;
-        }
+        
         _Move();
     }
 
@@ -74,11 +61,20 @@ public class Player : MonoBehaviour
         );
     }
 
+    /// <summary>
+    /// 物理演算を停止します。
+    /// </summary>
+    public void OnFreeze()
+    {
+        _rigidBody.linearVelocity = Vector2.zero;
+        _rigidBody.bodyType = RigidbodyType2D.Static;
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag(Tags.DEAD_ZONE))
         {
-            _touchedDeadZone = true;
+            _gameManager.HandlePlayerDeath(DeathReason.DeadZone);
         }
     }
 
@@ -105,8 +101,4 @@ public class Player : MonoBehaviour
 
         return hit.collider != null;
     }
-
-    private bool _IsFallen() => transform.position.y < _deathYThreshold;
-
-    private bool _IsDead() => _IsFallen() || _touchedDeadZone;
 }
