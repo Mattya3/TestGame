@@ -1,6 +1,5 @@
-using System;
+﻿using System;
 using UnityEngine;
-using static UnityEngine.RuleTile.TilingRuleOutput;
 
 [Serializable]
 public class CameraBounds
