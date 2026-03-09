@@ -1,5 +1,4 @@
-using UnityEngine;
-using static UnityEngine.RuleTile.TilingRuleOutput;
+﻿using UnityEngine;
 
 [RequireComponent(typeof(Camera))]
 public class CameraController : MonoBehaviour
