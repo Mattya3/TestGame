@@ -31,7 +31,7 @@ public class Player : MonoBehaviour
     {
         if (!_gameManager.IsPlayerAlive)
             return;
-        
+
         _Move();
     }
 

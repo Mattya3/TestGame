@@ -7,7 +7,8 @@ public class ElecticBarMove : MonoBehaviour
 
     void Update()
     {
-        if (!GameManager.Instance.IsPlayerAlive) return;
+        if (!GameManager.Instance.IsPlayerAlive)
+            return;
 
         transform.Translate(Vector3.right * _moveSpeed * Time.deltaTime);
     }

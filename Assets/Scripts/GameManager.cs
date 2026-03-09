@@ -18,12 +18,14 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance == null) Instance = this;
+        if (Instance == null)
+            Instance = this;
     }
 
     private void Update()
     {
-        if (!IsPlayerAlive || _player == null) return;
+        if (!IsPlayerAlive || _player == null)
+            return;
 
         if (_player.transform.position.y < _deathYThreshold)
         {

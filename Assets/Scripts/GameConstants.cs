@@ -18,6 +18,6 @@ public static class GameConstants
     public enum DeathReason
     {
         Fall,
-        DeadZone
+        DeadZone,
     }
 }
