@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.InputSystem;
 using static GameConstants;
 
@@ -31,6 +31,12 @@ public class Player : MonoBehaviour
     {
         _rigidBody = GetComponent<Rigidbody2D>();
         _collider = GetComponent<Collider2D>();
+
+        if (_gameManager == null)
+        {
+            Debug.LogError("GameManagerがアサインされていません。");
+            enabled = false;
+        }
     }
 
     void Update()
