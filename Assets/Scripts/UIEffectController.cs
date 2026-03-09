@@ -9,7 +9,7 @@ public class UIEffectController : MonoBehaviour
 
     private Action _onEffectComplete;
 
-    public void Awake()
+    void Awake()
     {
         if (_animator == null)
         {
