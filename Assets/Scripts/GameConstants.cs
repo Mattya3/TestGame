@@ -14,4 +14,10 @@ public static class GameConstants
     {
         public const string FADE_BLACK_OUT = "FadeBlackOut";
     }
+
+    public enum DeathReason
+    {
+        Fall,
+        DeadZone,
+    }
 }
