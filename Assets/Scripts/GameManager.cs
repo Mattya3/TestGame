@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using static GameConstants;
 
@@ -10,37 +10,25 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private UIEffectController _uiEffectController;
 
-    [SerializeField]
-    private float _deathYThreshold;
-
-    [SerializeField]
-    private Player _player;
-
     private void Awake()
     {
         if (Instance == null)
             Instance = this;
     }
 
-    private void Update()
-    {
-        if (!IsPlayerAlive || _player == null)
-            return;
-
-        if (_player.transform.position.y < _deathYThreshold)
-        {
-            HandlePlayerDeath(DeathReason.Fall);
-        }
-    }
-
     /// <summary>
     /// プレイヤーが死亡したときに呼び出されます。
     /// </summary>
-    public void HandlePlayerDeath(DeathReason reason)
+    public void HandlePlayerDeath(Player deadPlayer, DeathReason deathReason)
     {
+        if (!IsPlayerAlive) return;
         IsPlayerAlive = false;
-        _player.OnFreeze();
-
+        
+        Player[] allPlayers = Object.FindObjectsByType<Player>(FindObjectsSortMode.None);
+        foreach (Player p in allPlayers)
+        {
+            p.Freeze();
+        }
         _RestartStage();
     }
 

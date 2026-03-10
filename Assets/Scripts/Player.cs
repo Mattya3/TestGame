@@ -12,9 +12,6 @@ public class Player : MonoBehaviour
     [SerializeField, Range(0f, 40f)]
     private float _jumpForce;
 
-    [SerializeField]
-    private GameManager _gameManager;
-
     private Vector2 _inputDirection;
     private Rigidbody2D _rigidBody;
     private Collider2D _collider;
@@ -29,7 +26,7 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        if (!_gameManager.IsPlayerAlive)
+        if (!GameManager.Instance.IsPlayerAlive)
             return;
 
         _Move();
@@ -64,20 +61,26 @@ public class Player : MonoBehaviour
     /// <summary>
     /// 物理演算を停止します。
     /// </summary>
-    public void OnFreeze()
+    public void Freeze()
     {
         _rigidBody.linearVelocity = Vector2.zero;
         _rigidBody.bodyType = RigidbodyType2D.Static;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag(Tags.DEAD_ZONE))
-        {
-            _gameManager.HandlePlayerDeath(DeathReason.DeadZone);
-        }
-    }
 
+    /// <summary>
+    /// プレイヤーの死亡処理を行います
+    /// </summary>
+    public void Die(DeathReason deathReason)
+    {
+        if (!GameManager.Instance.IsPlayerAlive)
+            return;
+        
+        // TODO: 死亡理由に沿った処理を追加
+
+        GameManager.Instance.HandlePlayerDeath(this, deathReason);
+    }
+    
     private bool _IsGrounded()
     {
         // コライダの境界情報（Bounds）を使用して，足元の位置と幅を動的に計算
