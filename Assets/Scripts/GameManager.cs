@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections.Generic;
 using static GameConstants;
 
 public class GameManager : MonoBehaviour
@@ -10,10 +11,21 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private UIEffectController _uiEffectController;
 
+    private List<Player> _players = new List<Player>();
+
     private void Awake()
     {
         if (Instance == null)
             Instance = this;
+    }
+
+    /// <summary>
+    /// プレイヤーを登録します。
+    /// </summary>
+    public void RegisterPlayer(Player player)
+    {
+        if (!_players.Contains(player))
+            _players.Add(player);
     }
 
     /// <summary>
@@ -25,10 +37,9 @@ public class GameManager : MonoBehaviour
             return;
         IsPlayerAlive = false;
 
-        Player[] allPlayers = Object.FindObjectsByType<Player>(FindObjectsSortMode.None);
-        foreach (Player p in allPlayers)
+        for (int i = 0; i < _players.Count; i++)
         {
-            p.Freeze();
+            _players[i].Freeze();
         }
         _RestartStage();
     }

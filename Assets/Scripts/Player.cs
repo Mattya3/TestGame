@@ -24,6 +24,12 @@ public class Player : MonoBehaviour
         _collider = GetComponent<Collider2D>();
     }
 
+    void Start()
+    {
+        // Awakeではインスタンスが生成される前に実行される恐れがあるためStart
+        GameManager.Instance.RegisterPlayer(this); 
+    }
+
     void Update()
     {
         if (!GameManager.Instance.IsPlayerAlive)
