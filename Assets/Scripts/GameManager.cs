@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
+using System;
 using System.Collections.Generic;
 using static GameConstants;
 
@@ -7,6 +8,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
     public bool IsPlayerAlive { get; private set; } = true;
+
+    public event Action OnPlayerDied;
 
     [SerializeField]
     private UIEffectController _uiEffectController;
@@ -41,6 +44,8 @@ public class GameManager : MonoBehaviour
         {
             _players[i].Freeze();
         }
+
+        OnPlayerDied?.Invoke();
         _RestartStage();
     }
 

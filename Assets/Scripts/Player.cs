@@ -28,13 +28,11 @@ public class Player : MonoBehaviour
     {
         // Awakeではインスタンスが生成される前に実行される恐れがあるためStart
         GameManager.Instance.RegisterPlayer(this); 
+        GameManager.Instance.OnPlayerDied += () => enabled = false;
     }
 
     void Update()
     {
-        if (!GameManager.Instance.IsPlayerAlive)
-            return;
-
         _Move();
     }
 
