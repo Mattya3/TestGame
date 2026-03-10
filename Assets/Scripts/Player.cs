@@ -67,7 +67,6 @@ public class Player : MonoBehaviour
         _rigidBody.bodyType = RigidbodyType2D.Static;
     }
 
-
     /// <summary>
     /// プレイヤーの死亡処理を行います
     /// </summary>
@@ -75,12 +74,12 @@ public class Player : MonoBehaviour
     {
         if (!GameManager.Instance.IsPlayerAlive)
             return;
-        
+
         // TODO: 死亡理由に沿った処理を追加
 
         GameManager.Instance.HandlePlayerDeath(this, deathReason);
     }
-    
+
     private bool _IsGrounded()
     {
         // コライダの境界情報（Bounds）を使用して，足元の位置と幅を動的に計算

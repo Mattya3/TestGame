@@ -21,9 +21,10 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void HandlePlayerDeath(Player deadPlayer, DeathReason deathReason)
     {
-        if (!IsPlayerAlive) return;
+        if (!IsPlayerAlive)
+            return;
         IsPlayerAlive = false;
-        
+
         Player[] allPlayers = Object.FindObjectsByType<Player>(FindObjectsSortMode.None);
         foreach (Player p in allPlayers)
         {
