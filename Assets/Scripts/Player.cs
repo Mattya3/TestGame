@@ -76,7 +76,7 @@ public class Player : MonoBehaviour
     /// </summary>
     public void Die(DeathReason deathReason)
     {
-        if (!GameManager.Instance.IsPlayerAlive)
+        if (!GameManager.Instance.ArePlayersAlive)
             return;
 
         // TODO: 死亡理由に沿った処理を追加

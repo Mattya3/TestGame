@@ -7,7 +7,7 @@ using static GameConstants;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
-    public bool IsPlayerAlive { get; private set; } = true;
+    public bool ArePlayersAlive { get; private set; } = true;
 
     public event Action OnPlayerDied;
 
@@ -36,9 +36,9 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void HandlePlayerDeath(Player deadPlayer, DeathReason deathReason)
     {
-        if (!IsPlayerAlive)
+        if (!ArePlayersAlive)
             return;
-        IsPlayerAlive = false;
+        ArePlayersAlive = false;
 
         for (int i = 0; i < _players.Count; i++)
         {
