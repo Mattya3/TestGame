@@ -84,6 +84,12 @@ public class Player : MonoBehaviour
         GameManager.Instance.HandlePlayerDeath(this, deathReason);
     }
 
+    public void OnGoal()
+    {
+        if (!GameManager.Instance.ArePlayersAlive)
+            return;
+    }
+
     private bool _IsGrounded()
     {
         // コライダの境界情報（Bounds）を使用して，足元の位置と幅を動的に計算
