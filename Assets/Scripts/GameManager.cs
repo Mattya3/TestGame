@@ -10,11 +10,13 @@ public class GameManager : MonoBehaviour
     public bool ArePlayersAlive { get; private set; } = true;
 
     public event Action OnPlayerDied;
+    public event Action OnAllPlayersGoal;
 
     [SerializeField]
     private UIEffectController _uiEffectController;
 
     private List<Player> _players = new List<Player>();
+    private uint _goalPlayerCount = 0;
 
     private void Awake()
     {
@@ -51,11 +53,21 @@ public class GameManager : MonoBehaviour
 
     public void HandlePlayerGoal(Player player)
     {
+        _goalPlayerCount++;
+
         // 2Pがいるときの処理はのちのち実装。とりあえず今はゴールしたプレイヤを止めるだけ。
         for (int i = 0; i < _players.Count; i++)
         {
             _players[i].Freeze();
         }
+
+        // 全員がゴールしたときの処理
+        if (_goalPlayerCount >= _players.Count)
+        {
+            OnAllPlayersGoal?.Invoke();
+        }
+
+        // ゴール演出
         _uiEffectController.PlayGoalEffect(() =>
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
