@@ -88,6 +88,8 @@ public class Player : MonoBehaviour
     {
         if (!GameManager.Instance.ArePlayersAlive)
             return;
+
+        GameManager.Instance.HandlePlayerGoal(this);
     }
 
     private bool _IsGrounded()
