@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class ElecticBarMove : MonoBehaviour
 {
@@ -8,6 +8,7 @@ public class ElecticBarMove : MonoBehaviour
     void Start()
     {
         GameManager.Instance.OnPlayerDied += () => enabled = false;
+        GameManager.Instance.OnAllPlayersGoal += () => enabled = false;
     }
 
     void Update()
