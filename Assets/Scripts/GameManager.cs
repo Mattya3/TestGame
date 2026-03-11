@@ -56,10 +56,7 @@ public class GameManager : MonoBehaviour
         _goalPlayerCount++;
 
         // 2Pがいるときの処理はのちのち実装。とりあえず今はゴールしたプレイヤを止めるだけ。
-        for (int i = 0; i < _players.Count; i++)
-        {
-            _players[i].Freeze();
-        }
+        player.Freeze();
 
         // 全員がゴールしたときの処理
         if (_goalPlayerCount >= _players.Count)
