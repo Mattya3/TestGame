@@ -62,13 +62,13 @@ public class GameManager : MonoBehaviour
         if (_goalPlayerCount >= _players.Count)
         {
             OnAllPlayersGoal?.Invoke();
-        }
 
-        // ゴール演出
-        _uiEffectController.PlayGoalEffect(() =>
-        {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        });
+            // ゴール演出
+            _uiEffectController.PlayGoalEffect(() =>
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            });
+        }
     }
 
     private void _RestartStage()
