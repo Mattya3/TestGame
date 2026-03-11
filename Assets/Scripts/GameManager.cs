@@ -1,14 +1,20 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 using static GameConstants;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
-    public bool IsPlayerAlive { get; private set; } = true;
+    public bool ArePlayersAlive { get; private set; } = true;
+
+    public event Action OnPlayerDied;
 
     [SerializeField]
     private UIEffectController _uiEffectController;
+
+    private List<Player> _players = new List<Player>();
 
     private void Awake()
     {
@@ -17,19 +23,29 @@ public class GameManager : MonoBehaviour
     }
 
     /// <summary>
+    /// プレイヤーを登録します。
+    /// </summary>
+    public void RegisterPlayer(Player player)
+    {
+        if (!_players.Contains(player))
+            _players.Add(player);
+    }
+
+    /// <summary>
     /// プレイヤーが死亡したときに呼び出されます。
     /// </summary>
     public void HandlePlayerDeath(Player deadPlayer, DeathReason deathReason)
     {
-        if (!IsPlayerAlive)
+        if (!ArePlayersAlive)
             return;
-        IsPlayerAlive = false;
+        ArePlayersAlive = false;
 
-        Player[] allPlayers = Object.FindObjectsByType<Player>(FindObjectsSortMode.None);
-        foreach (Player p in allPlayers)
+        for (int i = 0; i < _players.Count; i++)
         {
-            p.Freeze();
+            _players[i].Freeze();
         }
+
+        OnPlayerDied?.Invoke();
         _RestartStage();
     }
 

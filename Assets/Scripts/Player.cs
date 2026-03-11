@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.InputSystem;
 using static GameConstants;
 
@@ -24,11 +24,15 @@ public class Player : MonoBehaviour
         _collider = GetComponent<Collider2D>();
     }
 
+    void Start()
+    {
+        // Awakeではインスタンスが生成される前に実行される恐れがあるためStart
+        GameManager.Instance.RegisterPlayer(this);
+        GameManager.Instance.OnPlayerDied += () => enabled = false;
+    }
+
     void Update()
     {
-        if (!GameManager.Instance.IsPlayerAlive)
-            return;
-
         _Move();
     }
 
@@ -72,7 +76,7 @@ public class Player : MonoBehaviour
     /// </summary>
     public void Die(DeathReason deathReason)
     {
-        if (!GameManager.Instance.IsPlayerAlive)
+        if (!GameManager.Instance.ArePlayersAlive)
             return;
 
         // TODO: 死亡理由に沿った処理を追加
