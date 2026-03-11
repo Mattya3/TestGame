@@ -12,18 +12,9 @@ public class Player : MonoBehaviour
     [SerializeField, Range(0f, 40f)]
     private float _jumpForce;
 
-    [SerializeField]
-    private float _deathYThreshold;
-
-    [SerializeField]
-    private GameManager _gameManager;
-
     private Vector2 _inputDirection;
-    private Rigidbody2D _rigidBody; // _rb と略すこともあるが，初回なのでわかりやすく
+    private Rigidbody2D _rigidBody;
     private Collider2D _collider;
-
-    private bool _touchedDeadZone = false;
-    private bool _alive = true;
 
     private const float GROUND_CHECK_THICKNESS = 0.005f; // 接地判定用の定数
 
@@ -31,26 +22,17 @@ public class Player : MonoBehaviour
     {
         _rigidBody = GetComponent<Rigidbody2D>();
         _collider = GetComponent<Collider2D>();
+    }
 
-        if (_gameManager == null)
-        {
-            Debug.LogError("GameManagerがアサインされていません。");
-            enabled = false;
-        }
+    void Start()
+    {
+        // Awakeではインスタンスが生成される前に実行される恐れがあるためStart
+        GameManager.Instance.RegisterPlayer(this);
+        GameManager.Instance.OnPlayerDied += () => enabled = false;
     }
 
     void Update()
     {
-        if (!_alive)
-            return;
-        if (_IsDead())
-        {
-            _alive = false;
-            _rigidBody.linearVelocity = Vector2.zero;
-            _rigidBody.bodyType = RigidbodyType2D.Static;
-            _gameManager.HandlePlayerDeath();
-            return;
-        }
         _Move();
     }
 
@@ -80,12 +62,26 @@ public class Player : MonoBehaviour
         );
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    /// <summary>
+    /// 物理演算を停止します。
+    /// </summary>
+    public void Freeze()
     {
-        if (collision.CompareTag(Tags.DEAD_ZONE))
-        {
-            _touchedDeadZone = true;
-        }
+        _rigidBody.linearVelocity = Vector2.zero;
+        _rigidBody.bodyType = RigidbodyType2D.Static;
+    }
+
+    /// <summary>
+    /// プレイヤーの死亡処理を行います
+    /// </summary>
+    public void Die(DeathReason deathReason)
+    {
+        if (!GameManager.Instance.ArePlayersAlive)
+            return;
+
+        // TODO: 死亡理由に沿った処理を追加
+
+        GameManager.Instance.HandlePlayerDeath(this, deathReason);
     }
 
     private bool _IsGrounded()
@@ -111,8 +107,4 @@ public class Player : MonoBehaviour
 
         return hit.collider != null;
     }
-
-    private bool _IsFallen() => transform.position.y < _deathYThreshold;
-
-    private bool _IsDead() => _IsFallen() || _touchedDeadZone;
 }

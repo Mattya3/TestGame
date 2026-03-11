@@ -1,24 +1,51 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.SceneManagement;
+using static GameConstants;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager Instance { get; private set; }
+    public bool ArePlayersAlive { get; private set; } = true;
+
+    public event Action OnPlayerDied;
+
     [SerializeField]
     private UIEffectController _uiEffectController;
 
-    void Awake()
+    private List<Player> _players = new List<Player>();
+
+    private void Awake()
     {
-        if (_uiEffectController == null)
-        {
-            Debug.LogError("UIEffectControllerがアタッチされていません。");
-        }
+        if (Instance == null)
+            Instance = this;
+    }
+
+    /// <summary>
+    /// プレイヤーを登録します。
+    /// </summary>
+    public void RegisterPlayer(Player player)
+    {
+        if (!_players.Contains(player))
+            _players.Add(player);
     }
 
     /// <summary>
     /// プレイヤーが死亡したときに呼び出されます。
     /// </summary>
-    public void HandlePlayerDeath()
+    public void HandlePlayerDeath(Player deadPlayer, DeathReason deathReason)
     {
+        if (!ArePlayersAlive)
+            return;
+        ArePlayersAlive = false;
+
+        for (int i = 0; i < _players.Count; i++)
+        {
+            _players[i].Freeze();
+        }
+
+        OnPlayerDied?.Invoke();
         _RestartStage();
     }
 
