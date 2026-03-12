@@ -917,7 +917,7 @@ GameObject:
   - component: {fileID: 1711588342}
   - component: {fileID: 1711588345}
   m_Layer: 5
-  m_Name: FadeBlackImage
+  m_Name: PlayerDeathEffect
   m_TagString: Respawn
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
