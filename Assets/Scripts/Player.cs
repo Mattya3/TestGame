@@ -6,6 +6,8 @@ using static GameConstants;
 [RequireComponent(typeof(Collider2D))]
 public class Player : MonoBehaviour
 {
+    public bool HasReachedGoal { get; private set; } = false;
+
     [SerializeField, Range(0f, 20f)]
     private float _moveSpeed;
 
@@ -17,8 +19,6 @@ public class Player : MonoBehaviour
     private Collider2D _collider;
 
     private const float GROUND_CHECK_THICKNESS = 0.005f; // 接地判定用の定数
-
-    public bool HasReachedGoal { get; private set; } = false;
 
     void Awake()
     {
