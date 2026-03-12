@@ -7,6 +7,12 @@ public class ScreenEffectsController : MonoBehaviour
     [SerializeField]
     private Animator _animator;
 
+    [SerializeField]
+    private GameObject _playerDeathEffect;
+
+    [SerializeField]
+    private GameObject _allPlayersGoalEffect;
+
     private Action _onEffectComplete;
 
     void Awake()
@@ -22,18 +28,19 @@ public class ScreenEffectsController : MonoBehaviour
     /// </summary>
     public void PlayDeathEffect(Action onComplete)
     {
+        _playerDeathEffect.SetActive(true);
         _PlayEffect(GameConstants.UI.FADE_BLACK_OUT, onComplete);
     }
 
     public void PlayGoalEffect(Action onComplete)
     {
+        _allPlayersGoalEffect.SetActive(true);
         _PlayEffect(GameConstants.UI.FADE_BLACK_OUT, onComplete);
     }
 
     private void _PlayEffect(string triggerName, Action onComplete)
     {
         _onEffectComplete = onComplete;
-        gameObject.SetActive(true);
         _animator.SetTrigger(triggerName);
     }
 
