@@ -317,7 +317,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d336189fd478d4687adac70df9d6ec8a, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::UIEffectController
+  m_EditorClassIdentifier: Assembly-CSharp::ScreenEffectsController
   _animator: {fileID: 875144714}
 --- !u!95 &875144714
 Animator:
