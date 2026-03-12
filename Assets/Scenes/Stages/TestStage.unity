@@ -320,7 +320,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::UIEffectController
   _animator: {fileID: 875144714}
   _playerDeathEffect: {fileID: 1711588340}
-  _allPlayersGoalEffect: {fileID: 1711588340}
+  _allPlayersGoalEffect: {fileID: 1845946230}
 --- !u!95 &875144714
 Animator:
   serializedVersion: 7
