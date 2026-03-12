@@ -43,22 +43,34 @@ public class AnimationClipPathReplacer : EditorWindow
 
         Undo.RecordObject(targetClip, "Replace Animation Paths");
 
-        // すべてのカーブを取得
-        var bindings = AnimationUtility.GetCurveBindings(targetClip);
-        foreach (var binding in bindings)
+        // --- 数値カーブ（Transform, Renderer など） ---
+        var curveBindings = AnimationUtility.GetCurveBindings(targetClip);
+        foreach (var binding in curveBindings)
         {
-            if (binding.path == oldP)
-            {
-                var curve = AnimationUtility.GetEditorCurve(targetClip, binding);
+            if (binding.path != oldP)
+                continue;
 
-                // 新しいバインディングを作成
-                var newBinding = binding;
-                newBinding.path = newP;
+            var curve = AnimationUtility.GetEditorCurve(targetClip, binding);
+            var newBinding = binding;
+            newBinding.path = newP;
 
-                // 古いカーブを削除して新しいカーブを追加
-                AnimationUtility.SetEditorCurve(targetClip, binding, null);
-                AnimationUtility.SetEditorCurve(targetClip, newBinding, curve);
-            }
+            AnimationUtility.SetEditorCurve(targetClip, binding, null);
+            AnimationUtility.SetEditorCurve(targetClip, newBinding, curve);
+        }
+
+        // --- オブジェクト参照カーブ（Sprite, Material など） ---
+        var objectBindings = AnimationUtility.GetObjectReferenceCurveBindings(targetClip);
+        foreach (var binding in objectBindings)
+        {
+            if (binding.path != oldP)
+                continue;
+
+            var keyframes = AnimationUtility.GetObjectReferenceCurve(targetClip, binding);
+            var newBinding = binding;
+            newBinding.path = newP;
+
+            AnimationUtility.SetObjectReferenceCurve(targetClip, binding, null);
+            AnimationUtility.SetObjectReferenceCurve(targetClip, newBinding, keyframes);
         }
 
         EditorUtility.SetDirty(targetClip);
