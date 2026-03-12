@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-using UnityEditor;
+﻿using UnityEditor;
+using UnityEngine;
 
 public class AnimationClipPathReplacer : EditorWindow
 {
@@ -17,7 +17,8 @@ public class AnimationClipPathReplacer : EditorWindow
     {
         GUILayout.Label("Animation Clip Path Replacer", EditorStyles.boldLabel);
 
-        clip = (AnimationClip)EditorGUILayout.ObjectField("Animation Clip", clip, typeof(AnimationClip), false);
+        clip = (AnimationClip)
+            EditorGUILayout.ObjectField("Animation Clip", clip, typeof(AnimationClip), false);
         oldPath = EditorGUILayout.TextField("Old Path", oldPath);
         newPath = EditorGUILayout.TextField("New Path", newPath);
 
