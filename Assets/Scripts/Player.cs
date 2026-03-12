@@ -18,6 +18,8 @@ public class Player : MonoBehaviour
 
     private const float GROUND_CHECK_THICKNESS = 0.005f; // 接地判定用の定数
 
+    public bool HasReachedGoal { get; private set; } = false;
+
     void Awake()
     {
         _rigidBody = GetComponent<Rigidbody2D>();
@@ -90,6 +92,7 @@ public class Player : MonoBehaviour
         if (!GameManager.Instance.ArePlayersAlive)
             return;
 
+        HasReachedGoal = true;
         GameManager.Instance.HandlePlayerGoal(this);
     }
 
