@@ -25,6 +25,11 @@ public class UIEffectController : MonoBehaviour
         _PlayEffect(GameConstants.UI.FADE_BLACK_OUT, onComplete);
     }
 
+    public void PlayGoalEffect(Action onComplete)
+    {
+        _PlayEffect(GameConstants.UI.FADE_BLACK_OUT, onComplete);
+    }
+
     private void _PlayEffect(string triggerName, Action onComplete)
     {
         _onEffectComplete = onComplete;
