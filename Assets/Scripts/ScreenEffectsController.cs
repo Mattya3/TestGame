@@ -28,13 +28,11 @@ public class ScreenEffectsController : MonoBehaviour
     /// </summary>
     public void PlayDeathEffect(Action onComplete)
     {
-        _playerDeathEffect.SetActive(true);
         _PlayEffect(GameConstants.AnimationTrigger.PLAYER_DEATH, onComplete);
     }
 
     public void PlayGoalEffect(Action onComplete)
     {
-        _allPlayersGoalEffect.SetActive(true);
         _PlayEffect(GameConstants.AnimationTrigger.ALL_PLAYERS_GOAL, onComplete);
     }
 
