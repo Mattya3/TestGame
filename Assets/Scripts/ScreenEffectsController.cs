@@ -29,13 +29,13 @@ public class ScreenEffectsController : MonoBehaviour
     public void PlayDeathEffect(Action onComplete)
     {
         _playerDeathEffect.SetActive(true);
-        _PlayEffect(GameConstants.UI.FADE_BLACK_OUT, onComplete);
+        _PlayEffect(GameConstants.AnimationTrigger.PLAYER_DEATH, onComplete);
     }
 
     public void PlayGoalEffect(Action onComplete)
     {
         _allPlayersGoalEffect.SetActive(true);
-        _PlayEffect(GameConstants.UI.FADE_BLACK_OUT, onComplete);
+        _PlayEffect(GameConstants.AnimationTrigger.ALL_PLAYERS_GOAL, onComplete);
     }
 
     private void _PlayEffect(string triggerName, Action onComplete)

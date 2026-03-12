@@ -1,4 +1,4 @@
-public static class GameConstants
+﻿public static class GameConstants
 {
     public static class Tags
     {
@@ -10,9 +10,10 @@ public static class GameConstants
         public const string SOLID = "Solid";
     }
 
-    public static class UI
+    public static class AnimationTrigger
     {
-        public const string FADE_BLACK_OUT = "FadeBlackOut";
+        public const string PLAYER_DEATH = "PlayerDeath";
+        public const string ALL_PLAYERS_GOAL = "AllPlayersGoal";
     }
 
     public enum DeathReason
