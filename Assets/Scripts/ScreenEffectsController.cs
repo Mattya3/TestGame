@@ -7,12 +7,6 @@ public class ScreenEffectsController : MonoBehaviour
     [SerializeField]
     private Animator _animator;
 
-    [SerializeField]
-    private GameObject _playerDeathEffect;
-
-    [SerializeField]
-    private GameObject _allPlayersGoalEffect;
-
     private Action _onEffectComplete;
 
     void Awake()
