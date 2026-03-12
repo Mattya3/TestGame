@@ -2,7 +2,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Animator))]
-public class UIEffectController : MonoBehaviour
+public class ScreenEffectsController : MonoBehaviour
 {
     [SerializeField]
     private Animator _animator;
