@@ -3,9 +3,9 @@ using UnityEngine;
 
 public class AnimationClipPathReplacer : EditorWindow
 {
-    private AnimationClip clip;
-    private string oldPath = "";
-    private string newPath = "";
+    private AnimationClip _clip;
+    private string _oldPath = "";
+    private string _newPath = "";
 
     [MenuItem("Tools/Animation Clip Path Replacer")]
     public static void ShowWindow()
@@ -17,19 +17,19 @@ public class AnimationClipPathReplacer : EditorWindow
     {
         GUILayout.Label("Animation Clip Path Replacer", EditorStyles.boldLabel);
 
-        clip = (AnimationClip)
-            EditorGUILayout.ObjectField("Animation Clip", clip, typeof(AnimationClip), false);
-        oldPath = EditorGUILayout.TextField("Old Path", oldPath);
-        newPath = EditorGUILayout.TextField("New Path", newPath);
+        _clip = (AnimationClip)
+            EditorGUILayout.ObjectField("Animation Clip", _clip, typeof(AnimationClip), false);
+        _oldPath = EditorGUILayout.TextField("Old Path", _oldPath);
+        _newPath = EditorGUILayout.TextField("New Path", _newPath);
 
         if (GUILayout.Button("Replace Paths"))
         {
-            if (clip == null)
+            if (_clip == null)
             {
                 EditorUtility.DisplayDialog("Error", "Please select an AnimationClip.", "OK");
                 return;
             }
-            ReplacePaths(clip, oldPath, newPath);
+            ReplacePaths(_clip, _oldPath, _newPath);
         }
     }
 
