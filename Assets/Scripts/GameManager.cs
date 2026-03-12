@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using static GameConstants;
@@ -16,7 +17,6 @@ public class GameManager : MonoBehaviour
     private UIEffectController _uiEffectController;
 
     private List<Player> _players = new List<Player>();
-    private uint _goalPlayerCount = 0;
 
     private void Awake()
     {
@@ -53,13 +53,11 @@ public class GameManager : MonoBehaviour
 
     public void HandlePlayerGoal(Player player)
     {
-        _goalPlayerCount++;
-
         // 2Pがいるときの処理はのちのち実装。とりあえず今はゴールしたプレイヤを止めるだけ。
         player.Freeze();
 
         // 全員がゴールしたときの処理
-        if (_goalPlayerCount >= _players.Count)
+        if (_AllPlayersHaveReachedGoal())
         {
             OnAllPlayersGoal?.Invoke();
 
@@ -70,6 +68,8 @@ public class GameManager : MonoBehaviour
             });
         }
     }
+
+    private bool _AllPlayersHaveReachedGoal() => _players.All(player => player.HasReachedGoal);
 
     private void _RestartStage()
     {
