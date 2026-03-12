@@ -680,7 +680,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e1743204e3654d82b5b1997f90360f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
-  _uiEffectController: {fileID: 0}
+  _screenEffectsController: {fileID: 875144713}
 --- !u!4 &1422380077
 Transform:
   m_ObjectHideFlags: 0
