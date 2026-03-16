@@ -2,7 +2,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Animator))]
-public class UIEffectController : MonoBehaviour
+public class ScreenEffectsController : MonoBehaviour
 {
     [SerializeField]
     private Animator _animator;
@@ -22,13 +22,17 @@ public class UIEffectController : MonoBehaviour
     /// </summary>
     public void PlayDeathEffect(Action onComplete)
     {
-        _PlayEffect(GameConstants.UI.FADE_BLACK_OUT, onComplete);
+        _PlayEffect(GameConstants.AnimationTrigger.PLAYER_DEATH, onComplete);
+    }
+
+    public void PlayGoalEffect(Action onComplete)
+    {
+        _PlayEffect(GameConstants.AnimationTrigger.ALL_PLAYERS_GOAL, onComplete);
     }
 
     private void _PlayEffect(string triggerName, Action onComplete)
     {
         _onEffectComplete = onComplete;
-        gameObject.SetActive(true);
         _animator.SetTrigger(triggerName);
     }
 

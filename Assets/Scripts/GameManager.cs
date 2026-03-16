@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using static GameConstants;
@@ -10,9 +11,10 @@ public class GameManager : MonoBehaviour
     public bool ArePlayersAlive { get; private set; } = true;
 
     public event Action OnPlayerDied;
+    public event Action OnAllPlayersGoal;
 
     [SerializeField]
-    private UIEffectController _uiEffectController;
+    private ScreenEffectsController _screenEffectsController;
 
     private List<Player> _players = new List<Player>();
 
@@ -49,9 +51,29 @@ public class GameManager : MonoBehaviour
         _RestartStage();
     }
 
+    public void HandlePlayerGoal(Player player)
+    {
+        // 2Pがいるときの処理はのちのち実装。とりあえず今はゴールしたプレイヤを止めるだけ。
+        player.Freeze();
+
+        // 全員がゴールしたときの処理
+        if (_AllPlayersHaveReachedGoal())
+        {
+            OnAllPlayersGoal?.Invoke();
+
+            // ゴール演出
+            _screenEffectsController.PlayGoalEffect(() =>
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            });
+        }
+    }
+
+    private bool _AllPlayersHaveReachedGoal() => _players.All(player => player.HasReachedGoal);
+
     private void _RestartStage()
     {
-        _uiEffectController.PlayDeathEffect(() =>
+        _screenEffectsController.PlayDeathEffect(() =>
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         });

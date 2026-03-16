@@ -6,6 +6,8 @@ using static GameConstants;
 [RequireComponent(typeof(Collider2D))]
 public class Player : MonoBehaviour
 {
+    public bool HasReachedGoal { get; private set; } = false;
+
     [SerializeField, Range(0f, 20f)]
     private float _moveSpeed;
 
@@ -29,6 +31,7 @@ public class Player : MonoBehaviour
         // Awakeではインスタンスが生成される前に実行される恐れがあるためStart
         GameManager.Instance.RegisterPlayer(this);
         GameManager.Instance.OnPlayerDied += () => enabled = false;
+        GameManager.Instance.OnAllPlayersGoal += () => enabled = false;
     }
 
     void Update()
@@ -82,6 +85,15 @@ public class Player : MonoBehaviour
         // TODO: 死亡理由に沿った処理を追加
 
         GameManager.Instance.HandlePlayerDeath(this, deathReason);
+    }
+
+    public void OnGoal()
+    {
+        if (!GameManager.Instance.ArePlayersAlive)
+            return;
+
+        HasReachedGoal = true;
+        GameManager.Instance.HandlePlayerGoal(this);
     }
 
     private bool _IsGrounded()
