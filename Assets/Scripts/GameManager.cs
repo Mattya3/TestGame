@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
     public event Action OnAllPlayersGoal;
 
     [SerializeField]
-    private UIEffectController _uiEffectController;
+    private ScreenEffectsController _screenEffectsController;
 
     private List<Player> _players = new List<Player>();
 
@@ -62,7 +62,7 @@ public class GameManager : MonoBehaviour
             OnAllPlayersGoal?.Invoke();
 
             // ゴール演出
-            _uiEffectController.PlayGoalEffect(() =>
+            _screenEffectsController.PlayGoalEffect(() =>
             {
                 SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             });
@@ -73,7 +73,7 @@ public class GameManager : MonoBehaviour
 
     private void _RestartStage()
     {
-        _uiEffectController.PlayDeathEffect(() =>
+        _screenEffectsController.PlayDeathEffect(() =>
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         });
