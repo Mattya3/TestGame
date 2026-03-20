@@ -29,13 +29,16 @@ public class AudioLooper : MonoBehaviour
             enabled = false;
             return;
         }
-        if (_loopBeginSample >= _loopEndSample)
+
+        var correctedLoopBeginSample = _CorrectSample(_loopBeginSample);
+        var correctedLoopEndSample = _CorrectSample(_loopEndSample);
+        if (correctedLoopBeginSample >= correctedLoopEndSample)
         {
             Debug.LogError("Loop begin sample must be less than loop end sample.");
             enabled = false;
             return;
         }
-        if (_loopEndSample > _audioSource.clip.samples)
+        if (correctedLoopEndSample > (uint)_audioSource.clip.samples)
         {
             Debug.LogError(
                 "Loop end sample must be less than or equal to the total number of samples in the AudioClip."
