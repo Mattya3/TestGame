@@ -278,6 +278,7 @@ GameObject:
   - component: {fileID: 507790668}
   - component: {fileID: 507790667}
   - component: {fileID: 507790669}
+  - component: {fileID: 507790670}
   m_Layer: 0
   m_Name: BGM
   m_TagString: Untagged
@@ -413,6 +414,21 @@ MonoBehaviour:
   _originalFrequency: 44100
   _loopBeginSample: 811245
   _loopEndSample: 3069183
+--- !u!114 &507790670
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 507790666}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7816173083aff64bb8ce355bfd66cc7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  _audioSource: {fileID: 0}
+  _fadeOutTimeOnPlayerDied: 0.1
+  _fadeOutTimeOnAllPlayersGoal: 1
 --- !u!1 &875144711
 GameObject:
   m_ObjectHideFlags: 0
