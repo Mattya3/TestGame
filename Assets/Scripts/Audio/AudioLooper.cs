@@ -56,6 +56,6 @@ public class AudioLooper : MonoBehaviour
     private uint _CorrectSample(uint sample)
     {
         // ビルド時に周波数が変わることがあるため、元の周波数を考慮してサンプル位置を補正
-        return (uint)(sample * _audioSource.clip.frequency / _originalFrequency);
+        return (uint)(sample * (ulong)_audioSource.clip.frequency / _originalFrequency);
     }
 }
