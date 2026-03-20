@@ -57,6 +57,9 @@ public class AudioLooper : MonoBehaviour
         var correctedLoopDurationSamples =
             correctedLoopEndSample - _CorrectSample(_loopBeginSample);
 
+        if (correctedLoopDurationSamples == 0)
+            return; // ループ区間が無い場合は何もしない
+
         if (_audioSource.timeSamples >= correctedLoopEndSample)
         {
             _audioSource.timeSamples -= (int)correctedLoopDurationSamples;
