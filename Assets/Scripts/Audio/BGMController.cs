@@ -47,9 +47,11 @@ public class BGMController : MonoBehaviour
         while (elapsedTime < fadeOutTime)
         {
             elapsedTime += Time.deltaTime;
-            _audioSource.volume = Mathf.Lerp(startVolume, 0.0f, elapsedTime / fadeOutTime);
+            var t = Mathf.Clamp01(elapsedTime / fadeOutTime);
+            _audioSource.volume = Mathf.Lerp(startVolume, 0.0f, t);
             yield return null;
         }
+        _audioSource.volume = 0.0f;
         _audioSource.Stop();
         _audioSource.volume = startVolume; // 次回再生のために音量を元に戻す
     }
