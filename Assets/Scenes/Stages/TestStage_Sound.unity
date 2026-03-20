@@ -3646,7 +3646,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff8a6fa19d78244ad8fda9e2ddabb937, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ElecticBarMove
-  _moveSpeed: 1
+  _moveSpeed: 0.1
 --- !u!114 &2067377657
 MonoBehaviour:
   m_ObjectHideFlags: 0
