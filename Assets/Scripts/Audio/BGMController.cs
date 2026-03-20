@@ -4,10 +4,14 @@ using UnityEngine;
 [RequireComponent(typeof(AudioSource))]
 public class BGMController : MonoBehaviour
 {
-    [SerializeField] private AudioSource _audioSource;
+    [SerializeField]
+    private AudioSource _audioSource;
 
-    [SerializeField, Min(0.0f)] private float _fadeOutTimeOnPlayerDied = 0.1f;
-    [SerializeField, Min(0.0f)] private float _fadeOutTimeOnAllPlayersGoal = 1.0f;
+    [SerializeField, Min(0.0f)]
+    private float _fadeOutTimeOnPlayerDied = 0.1f;
+
+    [SerializeField, Min(0.0f)]
+    private float _fadeOutTimeOnAllPlayersGoal = 1.0f;
 
     private void Awake()
     {
