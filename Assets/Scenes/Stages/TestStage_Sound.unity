@@ -426,7 +426,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7816173083aff64bb8ce355bfd66cc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  _audioSource: {fileID: 0}
+  _audioSource: {fileID: 507790667}
   _fadeOutTimeOnPlayerDied: 0.1
   _fadeOutTimeOnAllPlayersGoal: 1
 --- !u!1 &875144711
