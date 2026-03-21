@@ -16,13 +16,21 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private ScreenEffectsController _screenEffectsController;
 
+    [SerializeField] 
+    private MovementRuleEffect _movementRuleEffect;
+
+    private GameMoveController _moveController;
+
     private List<Player> _players = new List<Player>();
 
     private void Awake()
     {
         if (Instance == null)
             Instance = this;
+        _moveController = new GameMoveController(_movementRuleEffect);
     }
+
+    public bool ShouldReverseInput => _moveController.ShouldReverseInput(_players);
 
     /// <summary>
     /// プレイヤーを登録します。
