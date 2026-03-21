@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private ScreenEffectsController _screenEffectsController;
 
-    [SerializeField] 
+    [SerializeField]
     private MovementRuleEffect _movementRuleEffect;
 
     private GameMoveController _moveController;

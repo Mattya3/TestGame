@@ -11,7 +11,7 @@ public class GameMoveController
     {
         _rule = rule;
     }
-    
+
     public bool ShouldReverseInput(IReadOnlyList<Player> players)
     {
         switch (_rule)
