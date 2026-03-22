@@ -276,9 +276,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 148448684}
-  - component: {fileID: 148448688}
   m_Layer: 0
-  m_Name: PlayerSounds
+  m_Name: PlayerSoundSources
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -302,38 +301,6 @@ Transform:
   - {fileID: 610625221}
   m_Father: {fileID: 1662044832}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &148448688
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 148448683}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea4f66e25e4363348b3c87b238c204c6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
-  _footstepSound:
-    _clip: {fileID: 8300000, guid: 30c122f7e8df5624c8b30a8ab7ab033c, type: 3}
-    _source: {fileID: 610625222}
-    _volume: 1
-  _jumpSound:
-    _clip: {fileID: 8300000, guid: 11e1b3d106b33ac46a4532336ba18c9f, type: 3}
-    _source: {fileID: 1676670357}
-    _volume: 1
-  _landSound:
-    _clip: {fileID: 8300000, guid: 33de3926a926b3c469b0546332cb200b, type: 3}
-    _source: {fileID: 1676670357}
-    _volume: 1
-  _deathSound:
-    _clip: {fileID: 8300000, guid: a71fef06768b07244b5fc5e7c4e78158, type: 3}
-    _source: {fileID: 407794016}
-    _volume: 1
-  _goalSound:
-    _clip: {fileID: 8300000, guid: e435a9441bd3dc7499cf53337bc37c57, type: 3}
-    _source: {fileID: 407794016}
-    _volume: 1
 --- !u!1 &169167984
 GameObject:
   m_ObjectHideFlags: 0
@@ -1749,6 +1716,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Player
   _moveSpeed: 5
   _jumpForce: 15
+  _sounds:
+    _footstepSound:
+      _clip: {fileID: 8300000, guid: 30c122f7e8df5624c8b30a8ab7ab033c, type: 3}
+      _source: {fileID: 610625222}
+      _volume: 1
+    _jumpSound:
+      _clip: {fileID: 8300000, guid: 11e1b3d106b33ac46a4532336ba18c9f, type: 3}
+      _source: {fileID: 1676670357}
+      _volume: 1
+    _landSound:
+      _clip: {fileID: 8300000, guid: 33de3926a926b3c469b0546332cb200b, type: 3}
+      _source: {fileID: 1676670357}
+      _volume: 1
+    _deathSound:
+      _clip: {fileID: 8300000, guid: a71fef06768b07244b5fc5e7c4e78158, type: 3}
+      _source: {fileID: 407794016}
+      _volume: 1
+    _goalSound:
+      _clip: {fileID: 8300000, guid: e435a9441bd3dc7499cf53337bc37c57, type: 3}
+      _source: {fileID: 407794016}
+      _volume: 1
 --- !u!1 &1676670355
 GameObject:
   m_ObjectHideFlags: 0
