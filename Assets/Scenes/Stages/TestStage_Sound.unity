@@ -277,6 +277,7 @@ GameObject:
   m_Component:
   - component: {fileID: 169167985}
   - component: {fileID: 169167986}
+  - component: {fileID: 169167987}
   m_Layer: 0
   m_Name: FailureMusic
   m_TagString: Untagged
@@ -396,6 +397,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &169167987
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 169167984}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d07f06ce4532acf4d9d4e8a9d36ad743, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  _delayBeforePlaying: 1
 --- !u!1 &507790666
 GameObject:
   m_ObjectHideFlags: 0
