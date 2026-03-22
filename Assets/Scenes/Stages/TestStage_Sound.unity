@@ -278,7 +278,7 @@ GameObject:
   - component: {fileID: 148448684}
   - component: {fileID: 148448685}
   m_Layer: 0
-  m_Name: PlayerSound
+  m_Name: PlayerSounds
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
