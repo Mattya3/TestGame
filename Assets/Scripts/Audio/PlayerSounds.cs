@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.Audio;
 
-public class PlayerSounds : MonoBehaviour
+public class PlayerSounds
 {
     [Serializable]
     private class AudioClipInfo
@@ -10,6 +10,26 @@ public class PlayerSounds : MonoBehaviour
         [SerializeField] private AudioClip _clip;
         [SerializeField] private AudioSource _source;
         [SerializeField, Range(0.0f, 1.0f)] private float _volume = 1.0f;
+
+        public bool IsValid()
+        {
+            if (_clip == null)
+            {
+                Debug.LogError("AudioClip is null.");
+                return false;
+            }
+            if (_source == null)
+            {
+                Debug.LogError("AudioSource is null.");
+                return false;
+            }
+            return true;
+        }
+
+        public void Play()
+        {
+            _source.PlayOneShot(_clip, _volume);
+        }
     }
 
     [SerializeField] private AudioClipInfo _footstepSound;
@@ -18,15 +38,23 @@ public class PlayerSounds : MonoBehaviour
     [SerializeField] private AudioClipInfo _deathSound;
     [SerializeField] private AudioClipInfo _goalSound;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public bool IsValid()
     {
-        
+        if (
+            !_footstepSound.IsValid() ||
+            !_jumpSound.IsValid() ||
+            !_landSound.IsValid() ||
+            !_deathSound.IsValid() ||
+            !_goalSound.IsValid())
+        {
+            return false;
+        }
+        return true;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public void OnFootstep() => _footstepSound.Play();
+    public void OnJump() => _jumpSound.Play();
+    public void OnLand() => _landSound.Play();
+    public void OnDeath() => _deathSound.Play();
+    public void OnGoal() => _goalSound.Play();
 }
