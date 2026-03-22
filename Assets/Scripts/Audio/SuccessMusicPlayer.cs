@@ -4,7 +4,8 @@ using UnityEngine;
 [RequireComponent(typeof(AudioSource))]
 public class SuccessMusicPlayer : MonoBehaviour
 {
-    [SerializeField] private float _delayBeforePlaying = 1f;
+    [SerializeField]
+    private float _delayBeforePlaying = 1f;
 
     private AudioSource _audioSource;
 
