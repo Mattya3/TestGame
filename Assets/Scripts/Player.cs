@@ -57,7 +57,10 @@ public class Player : MonoBehaviour
         if (_GetValidGroundHit(Layers.SOLID, Layers.PLAYER).collider == null)
             return;
 
-        float deltaVy = Mathf.Max(Mathf.Min(_jumpInitialVelocity, _jumpInitialVelocity - _rigidBody.linearVelocity.y), 0f);
+        float deltaVy = Mathf.Max(
+            Mathf.Min(_jumpInitialVelocity, _jumpInitialVelocity - _rigidBody.linearVelocity.y),
+            0f
+        );
 
         _rigidBody.AddForce(Vector2.up * deltaVy * _rigidBody.mass, ForceMode2D.Impulse);
     }
@@ -70,8 +73,11 @@ public class Player : MonoBehaviour
         RaycastHit2D hit = _GetValidGroundHit(Layers.PLAYER);
         Collider2D groundMoveCollider = hit.collider;
 
-        if (groundMoveCollider != null){
-            groundVelocity = groundMoveCollider.attachedRigidbody.GetPointVelocity(groundMoveCollider.bounds.center);
+        if (groundMoveCollider != null)
+        {
+            groundVelocity = groundMoveCollider.attachedRigidbody.GetPointVelocity(
+                groundMoveCollider.bounds.center
+            );
         }
 
         _rigidBody.linearVelocity = new Vector2(
@@ -114,16 +120,19 @@ public class Player : MonoBehaviour
     private RaycastHit2D _GetValidGroundHit(params string[] layerNames)
     {
         RaycastHit2D hit = _GroundCheck(layerNames);
-        if (hit.collider == null) return hit;
+        if (hit.collider == null)
+            return hit;
 
         Rigidbody2D groundRigidbody = hit.collider.attachedRigidbody;
-        if (groundRigidbody == null) return hit;
+        if (groundRigidbody == null)
+            return hit;
 
         float groundVelocityY = groundRigidbody.GetPointVelocity(_collider.bounds.center).y;
         float relativeVy = groundVelocityY - _rigidBody.linearVelocity.y;
 
         // 相対上向き速度が閾値（GROUND_MOVE_MARGIN）を超える場合は設定していないものとみなす
-        if (relativeVy > GROUND_MOVE_MARGIN) return new RaycastHit2D();
+        if (relativeVy > GROUND_MOVE_MARGIN)
+            return new RaycastHit2D();
         return hit;
     }
 
@@ -134,5 +143,5 @@ public class Player : MonoBehaviour
         Vector2 boxSize = new Vector2(bounds.size.x, GROUND_CHECK_THICKNESS);
         int mask = LayerMask.GetMask(layerNames);
         return Physics2D.BoxCast(origin, boxSize, 0f, Vector2.down, GROUND_CHECK_THICKNESS, mask);
-   }
+    }
 }
