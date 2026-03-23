@@ -1,4 +1,6 @@
+using UnityEngine;
+
 public class DemoMoveController : IGameMoveController
 {
-    public bool ShouldReverseInput() => false;
+    public Vector2 ConvertInputDirection(Vector2 rawInput) => rawInput;
 }

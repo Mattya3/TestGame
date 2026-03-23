@@ -61,10 +61,10 @@ public class Player : MonoBehaviour
 
     private void _Move()
     {
-        float inverter = GameManager.Instance.ShouldReverseInput ? -1f : 1f;
+        Vector2 convertedDirection = GameManager.Instance.ConvertInputDirection(_inputDirection);
 
         _rigidBody.linearVelocity = new Vector2(
-            _inputDirection.x * _moveSpeed * inverter,
+            convertedDirection.x * _moveSpeed,
             _rigidBody.linearVelocity.y
         );
     }
