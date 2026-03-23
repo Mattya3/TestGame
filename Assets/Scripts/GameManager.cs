@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private MovementRuleEffect _movementRuleEffect;
 
-    private GameMoveController _moveController;
+    private IGameMoveController _moveController;
 
     private List<Player> _players = new List<Player>();
 
@@ -31,8 +31,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        _moveController = new GameMoveController(_movementRuleEffect, _players);
-
+        _moveController = GameMoveControllerFactory.Create(_movementRuleEffect, _players);
     }
 
     public bool ShouldReverseInput => _moveController.ShouldReverseInput();
