@@ -24,6 +24,19 @@ public class GameManager : MonoBehaviour
             Instance = this;
     }
 
+    public void RegisterEventAction(GameEvent gameEvent, Action eventAction)
+    {
+        switch (gameEvent)
+        {
+            case GameEvent.Failure:
+                OnPlayerDied += eventAction;
+                break;
+            case GameEvent.Success:
+                OnAllPlayersGoal += eventAction;
+                break;
+        }
+    }
+
     /// <summary>
     /// プレイヤーを登録します。
     /// </summary>

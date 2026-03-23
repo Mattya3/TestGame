@@ -21,4 +21,10 @@
         Fall,
         DeadZone,
     }
+
+    public enum GameEvent
+    {
+        Failure,
+        Success,
+    }
 }
