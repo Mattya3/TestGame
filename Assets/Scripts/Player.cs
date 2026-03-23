@@ -14,7 +14,7 @@ public class Player : MonoBehaviour
     private float _moveSpeed;
 
     [SerializeField, Range(0f, 40f)]
-    private float _jumpForce;
+    private float _jumpInitialVelocity;
 
     private Vector2 _inputDirection;
     private Rigidbody2D _rigidBody;
@@ -57,7 +57,9 @@ public class Player : MonoBehaviour
         if (_GetValidGroundHit(Layers.SOLID, Layers.PLAYER).collider == null)
             return;
 
-        _rigidBody.AddForce(Vector2.up * _jumpForce, ForceMode2D.Impulse);
+        float deltaVy = Mathf.Max(Mathf.Min(_jumpInitialVelocity, _jumpInitialVelocity - _rigidBody.linearVelocity.y), 0f);
+
+        _rigidBody.AddForce(Vector2.up * deltaVy * _rigidBody.mass, ForceMode2D.Impulse);
     }
 
     private void _Move()

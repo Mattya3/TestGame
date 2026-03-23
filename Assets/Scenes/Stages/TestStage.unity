@@ -312,7 +312,7 @@ GameObject:
   - component: {fileID: 734981633}
   - component: {fileID: 734981632}
   - component: {fileID: 734981631}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Player2
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -402,7 +402,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
   _moveSpeed: 5
-  _jumpForce: 15
+  _jumpInitialVelocity: 15
 --- !u!50 &734981633
 Rigidbody2D:
   serializedVersion: 5
@@ -995,7 +995,7 @@ GameObject:
   - component: {fileID: 1662044834}
   - component: {fileID: 1662044836}
   - component: {fileID: 1662044835}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Player1
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -1232,7 +1232,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
   _moveSpeed: 5
-  _jumpForce: 15
+  _jumpInitialVelocity: 15
 --- !u!1 &1711588340
 GameObject:
   m_ObjectHideFlags: 0
