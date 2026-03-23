@@ -118,7 +118,7 @@ public class Player : MonoBehaviour
             0f,
             Vector2.down,
             GROUND_CHECK_THICKNESS,
-            LayerMask.GetMask(Layers.SOLID)
+            LayerMask.GetMask(Layers.SOLID, Layers.PLAYER)
         );
 
         return hit.collider != null;
