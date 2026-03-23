@@ -9,10 +9,13 @@ public class GameMoveController
     private readonly MovementRuleEffect _rule;
     private readonly ReadOnlyCollection<Player> _players;
 
+    private int _requiredPlayersForReverse;
+
     public GameMoveController(MovementRuleEffect rule, List<Player> players)
     {
         _rule = rule;
         _players = players.AsReadOnly();
+        _requiredPlayersForReverse = _players.Count;
     }
 
     public bool ShouldReverseInput()
@@ -22,7 +25,7 @@ public class GameMoveController
             case MovementRuleEffect.Demo:
                 return false;
             case MovementRuleEffect.Reverse:
-                return _players.Count(p => p.InputDirection.x != 0) >= MAX_PLAYERS;
+                return _players.Count(p => p.InputDirection.x != 0) >= _requiredPlayersForReverse;
             default:
                 return false;
         }
