@@ -27,10 +27,15 @@ public class GameManager : MonoBehaviour
     {
         if (Instance == null)
             Instance = this;
-        _moveController = new GameMoveController(_movementRuleEffect);
     }
 
-    public bool ShouldReverseInput => _moveController.ShouldReverseInput(_players);
+    private void Start()
+    {
+        _moveController = new GameMoveController(_movementRuleEffect, _players);
+
+    }
+
+    public bool ShouldReverseInput => _moveController.ShouldReverseInput();
 
     /// <summary>
     /// プレイヤーを登録します。
