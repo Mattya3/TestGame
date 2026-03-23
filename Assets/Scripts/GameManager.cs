@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour
             Instance = this;
     }
 
-    public void RegisterEvent(GameEvent gameEvent, Action eventAction)
+    public void RegisterEventAction(GameEvent gameEvent, Action eventAction)
     {
         switch (gameEvent)
         {

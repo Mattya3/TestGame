@@ -20,7 +20,7 @@ public class EventMusicPlayer : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        GameManager.Instance.RegisterEvent(_targetEvent, _Play);
+        GameManager.Instance.RegisterEventAction(_targetEvent, _Play);
     }
 
     private void _Play()
