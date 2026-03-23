@@ -8,6 +8,8 @@ public class Player : MonoBehaviour
 {
     public bool HasReachedGoal { get; private set; } = false;
 
+    public Vector2 InputDirection => _inputDirection;
+
     [SerializeField, Range(0f, 20f)]
     private float _moveSpeed;
 
@@ -59,8 +61,10 @@ public class Player : MonoBehaviour
 
     private void _Move()
     {
+        Vector2 convertedDirection = GameManager.Instance.ConvertInputDirection(_inputDirection);
+
         _rigidBody.linearVelocity = new Vector2(
-            _inputDirection.x * _moveSpeed,
+            convertedDirection.x * _moveSpeed,
             _rigidBody.linearVelocity.y
         );
     }

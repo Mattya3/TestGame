@@ -16,6 +16,11 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private ScreenEffectsController _screenEffectsController;
 
+    [SerializeField]
+    private MovementRuleEffect _movementRuleEffect;
+
+    private IGameMoveController _moveController;
+
     private List<Player> _players = new List<Player>();
 
     private void Awake()
@@ -23,6 +28,14 @@ public class GameManager : MonoBehaviour
         if (Instance == null)
             Instance = this;
     }
+
+    private void Start()
+    {
+        _moveController = GameMoveControllerFactory.Create(_movementRuleEffect, _players);
+    }
+
+    public Vector2 ConvertInputDirection(Vector2 rawInput) =>
+        _moveController.ConvertInputDirection(rawInput);
 
     /// <summary>
     /// プレイヤーを登録します。
