@@ -4,7 +4,6 @@ using UnityEngine;
 [RequireComponent(typeof(AudioSource))]
 public class BGMController : MonoBehaviour
 {
-    [SerializeField]
     private AudioSource _audioSource;
 
     [SerializeField, Min(0.0f)]
@@ -15,12 +14,7 @@ public class BGMController : MonoBehaviour
 
     private void Awake()
     {
-        if (_audioSource == null)
-        {
-            Debug.LogError("AudioSource is not assigned.");
-            enabled = false;
-            return;
-        }
+        _audioSource = GetComponent<AudioSource>();
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
