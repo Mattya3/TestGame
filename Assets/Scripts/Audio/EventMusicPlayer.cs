@@ -2,8 +2,11 @@
 using UnityEngine;
 
 [RequireComponent(typeof(AudioSource))]
-public class FailureMusicPlayer : MonoBehaviour
+public class EventMusicPlayer : MonoBehaviour
 {
+    [SerializeField]
+    private GameConstants.GameEvent _targetEvent;
+
     [SerializeField]
     private float _delayBeforePlaying = 1f;
 
@@ -17,10 +20,10 @@ public class FailureMusicPlayer : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        GameManager.Instance.OnPlayerDied += _OnFailure;
+        GameManager.Instance.RegisterEvent(_targetEvent, _Play);
     }
 
-    private void _OnFailure()
+    private void _Play()
     {
         StartCoroutine(_CoPlay());
     }
