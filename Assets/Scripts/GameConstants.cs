@@ -31,6 +31,6 @@
     public enum MovementRuleEffect
     {
         Demo, //デモ用, 入力反転が起こらない
-        Normal, //通常用, 入力反転が起こる
+        Reverse, //通常用, 入力反転が起こる
     }
 }

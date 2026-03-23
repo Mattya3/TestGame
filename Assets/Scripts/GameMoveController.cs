@@ -21,7 +21,7 @@ public class GameMoveController
         {
             case MovementRuleEffect.Demo:
                 return false;
-            case MovementRuleEffect.Normal:
+            case MovementRuleEffect.Reverse:
                 return _players.Count(p => p.InputDirection.x != 0) >= MAX_PLAYERS;
             default:
                 return false;
