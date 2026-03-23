@@ -20,7 +20,8 @@ public class Player : MonoBehaviour
 
     private const float GROUND_CHECK_THICKNESS = 0.005f; // 接地判定用の定数
 
-    [SerializeField] private PlayerSounds _sounds;
+    [SerializeField]
+    private PlayerSounds _sounds;
 
     void Awake()
     {
@@ -109,8 +110,10 @@ public class Player : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.layer != LayerMask.NameToLayer(Layers.SOLID)) return;
-        if (!_IsGrounded()) return; // 接触時に着地しているかで判定
+        if (collision.gameObject.layer != LayerMask.NameToLayer(Layers.SOLID))
+            return;
+        if (!_IsGrounded())
+            return; // 接触時に着地しているかで判定
 
         _sounds.OnLand();
     }
