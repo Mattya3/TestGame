@@ -410,7 +410,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EventMusicPlayer
   _targetEvent: 0
-  _delayBeforePlaying: 0.5
+  _delayBeforePlaying: 0.2
 --- !u!1 &507790666
 GameObject:
   m_ObjectHideFlags: 0
