@@ -11,16 +11,16 @@ public class PlayerSounds
         [SerializeField] private AudioSource _source;
         [SerializeField, Range(0.0f, 1.0f)] private float _volume = 1.0f;
 
-        public bool IsValid()
+        public bool IsValid(string soundName)
         {
             if (_clip == null)
             {
-                Debug.LogError("AudioClip is null.");
+                Debug.LogError($"AudioClip for {soundName} is null.");
                 return false;
             }
             if (_source == null)
             {
-                Debug.LogError("AudioSource is null.");
+                Debug.LogError($"AudioSource for {soundName} is null.");
                 return false;
             }
             return true;
@@ -41,11 +41,11 @@ public class PlayerSounds
     public bool IsValid()
     {
         if (
-            !_footstepSound.IsValid() ||
-            !_jumpSound.IsValid() ||
-            !_landSound.IsValid() ||
-            !_deathSound.IsValid() ||
-            !_goalSound.IsValid())
+            !_footstepSound.IsValid("Footstep") ||
+            !_jumpSound.IsValid("Jump") ||
+            !_landSound.IsValid("Land") ||
+            !_deathSound.IsValid("Death") ||
+            !_goalSound.IsValid("Goal"))
         {
             return false;
         }
