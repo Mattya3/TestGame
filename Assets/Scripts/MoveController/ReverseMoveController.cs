@@ -22,7 +22,8 @@ public class ReverseMoveController : IGameMoveController
         int movingCount = 0;
         for (int i = 0; i < _players.Count; i++)
         {
-            if (_players[i].InputDirection.x != 0) movingCount++;
+            if (_players[i].InputDirection.x != 0)
+                movingCount++;
         }
         return movingCount >= _requiredCount;
     }

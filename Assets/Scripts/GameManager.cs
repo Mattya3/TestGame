@@ -34,7 +34,8 @@ public class GameManager : MonoBehaviour
         _moveController = GameMoveControllerFactory.Create(_movementRuleEffect, _players);
     }
 
-    public Vector2 ConvertInputDirection(Vector2 rawInput) => _moveController.ConvertInputDirection(rawInput);
+    public Vector2 ConvertInputDirection(Vector2 rawInput) =>
+        _moveController.ConvertInputDirection(rawInput);
 
     /// <summary>
     /// プレイヤーを登録します。
