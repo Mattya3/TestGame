@@ -4305,7 +4305,7 @@ GameObject:
   - component: {fileID: 2067377657}
   m_Layer: 0
   m_Name: ElectricBar
-  m_TagString: ElecticBar
+  m_TagString: ElectricBar
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

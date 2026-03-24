@@ -3380,7 +3380,7 @@ GameObject:
   - component: {fileID: 2067377657}
   m_Layer: 0
   m_Name: ElectricBar
-  m_TagString: ElecticBar
+  m_TagString: ElectricBar
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3516,7 +3516,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ff8a6fa19d78244ad8fda9e2ddabb937, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ElecticBarMove
+  m_EditorClassIdentifier: Assembly-CSharp::ElectricBarMove
   _moveSpeed: 1
 --- !u!114 &2067377657
 MonoBehaviour:
