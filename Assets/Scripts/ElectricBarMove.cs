@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using static GameConstants;
 
-public class ElecticBarMove : MonoBehaviour
+public class ElectricBarMove : MonoBehaviour
 {
     [SerializeField]
     private float _moveSpeed;
