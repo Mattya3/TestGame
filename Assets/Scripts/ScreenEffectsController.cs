@@ -22,12 +22,12 @@ public class ScreenEffectsController : MonoBehaviour
     /// </summary>
     public void PlayDeathEffect(Action onComplete)
     {
-        _PlayEffect(GameConstants.AnimationTrigger.PLAYER_DEATH, onComplete);
+        _PlayEffect(GameConstants.AnimationTrigger.FAILURE, onComplete);
     }
 
     public void PlayGoalEffect(Action onComplete)
     {
-        _PlayEffect(GameConstants.AnimationTrigger.ALL_PLAYERS_GOAL, onComplete);
+        _PlayEffect(GameConstants.AnimationTrigger.SUCCESS, onComplete);
     }
 
     private void _PlayEffect(string triggerName, Action onComplete)
