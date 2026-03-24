@@ -20,8 +20,8 @@ public class BGMController : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        GameManager.Instance.OnPlayerDied += _OnFailure;
-        GameManager.Instance.OnAllPlayersGoal += _OnSuccess;
+        GameManager.Instance.OnFailure += _OnFailure;
+        GameManager.Instance.OnSuccess += _OnSuccess;
     }
 
     private void _OnFailure()
