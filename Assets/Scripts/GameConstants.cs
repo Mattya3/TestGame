@@ -8,7 +8,7 @@
     public static class Layers
     {
         public const string SOLID = "Solid";
-        public const string PLAYER = "Player";
+        public const string CHARACTER = "Character";
     }
 
     public static class AnimationTrigger

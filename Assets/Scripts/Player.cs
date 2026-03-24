@@ -54,7 +54,7 @@ public class Player : MonoBehaviour
     {
         if (!context.performed)
             return;
-        if (_GetValidGroundHit(Layers.SOLID, Layers.PLAYER).collider == null)
+        if (_GetValidGroundHit(Layers.SOLID, Layers.CHARACTER).collider == null)
             return;
 
         float deltaVy = Mathf.Max(
@@ -70,7 +70,7 @@ public class Player : MonoBehaviour
         Vector2 convertedDirection = GameManager.Instance.ConvertInputDirection(_inputDirection);
         Vector2 groundVelocity = Vector2.zero;
 
-        RaycastHit2D hit = _GetValidGroundHit(Layers.PLAYER);
+        RaycastHit2D hit = _GetValidGroundHit(Layers.CHARACTER);
         Collider2D groundMoveCollider = hit.collider;
 
         if (groundMoveCollider != null)
