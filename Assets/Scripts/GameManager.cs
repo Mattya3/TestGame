@@ -75,7 +75,7 @@ public class GameManager : MonoBehaviour
             OnSuccess?.Invoke();
 
             // ゴール演出
-            _screenEffectsController.PlayGoalEffect(() =>
+            _screenEffectsController.PlaySuccessEffect(() =>
             {
                 SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             });
@@ -86,7 +86,7 @@ public class GameManager : MonoBehaviour
 
     private void _RestartStage()
     {
-        _screenEffectsController.PlayDeathEffect(() =>
+        _screenEffectsController.PlayFailureEffect(() =>
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         });

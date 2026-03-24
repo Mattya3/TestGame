@@ -20,12 +20,12 @@ public class ScreenEffectsController : MonoBehaviour
     /// <summary>
     /// 指定されたアニメーション演出（トリガー）を実行します。
     /// </summary>
-    public void PlayDeathEffect(Action onComplete)
+    public void PlayFailureEffect(Action onComplete)
     {
         _PlayEffect(GameConstants.AnimationTrigger.FAILURE, onComplete);
     }
 
-    public void PlayGoalEffect(Action onComplete)
+    public void PlaySuccessEffect(Action onComplete)
     {
         _PlayEffect(GameConstants.AnimationTrigger.SUCCESS, onComplete);
     }
