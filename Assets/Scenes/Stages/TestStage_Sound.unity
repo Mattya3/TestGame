@@ -732,8 +732,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7816173083aff64bb8ce355bfd66cc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  _fadeOutTimeOnPlayerDied: 0.1
-  _fadeOutTimeOnAllPlayersGoal: 0.75
+  _fadeOutTimeOnFailure: 0.1
+  _fadeOutTimeOnSuccess: 1
 --- !u!1 &610625220
 GameObject:
   m_ObjectHideFlags: 0
