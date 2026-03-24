@@ -10,8 +10,8 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
     public bool ArePlayersAlive { get; private set; } = true;
 
-    public event Action OnFailure;
-    public event Action OnSuccess;
+    private event Action OnFailure;
+    private event Action OnSuccess;
 
     [SerializeField]
     private ScreenEffectsController _screenEffectsController;
