@@ -7,10 +7,10 @@ public class BGMController : MonoBehaviour
     private AudioSource _audioSource;
 
     [SerializeField, Min(0.0f)]
-    private float _fadeOutTimeOnPlayerDied = 0.1f;
+    private float _fadeOutTimeOnFailure = 0.1f;
 
     [SerializeField, Min(0.0f)]
-    private float _fadeOutTimeOnAllPlayersGoal = 1.0f;
+    private float _fadeOutTimeOnSuccess = 1.0f;
 
     private void Awake()
     {
@@ -20,18 +20,18 @@ public class BGMController : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        GameManager.Instance.OnPlayerDied += _OnPlayerDied;
-        GameManager.Instance.OnAllPlayersGoal += _OnAllPlayersGoal;
+        GameManager.Instance.OnPlayerDied += _OnFailure;
+        GameManager.Instance.OnAllPlayersGoal += _OnSuccess;
     }
 
-    private void _OnPlayerDied()
+    private void _OnFailure()
     {
-        StartCoroutine(_CoFadeOut(_fadeOutTimeOnPlayerDied));
+        StartCoroutine(_CoFadeOut(_fadeOutTimeOnFailure));
     }
 
-    private void _OnAllPlayersGoal()
+    private void _OnSuccess()
     {
-        StartCoroutine(_CoFadeOut(_fadeOutTimeOnAllPlayersGoal));
+        StartCoroutine(_CoFadeOut(_fadeOutTimeOnSuccess));
     }
 
     private IEnumerator _CoFadeOut(float fadeOutTime)
