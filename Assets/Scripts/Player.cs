@@ -68,17 +68,7 @@ public class Player : MonoBehaviour
     private void _Move()
     {
         Vector2 convertedDirection = GameManager.Instance.ConvertInputDirection(_inputDirection);
-        Vector2 groundVelocity = Vector2.zero;
-
-        RaycastHit2D hit = _GetValidGroundHit(Layers.CHARACTER);
-        Collider2D groundMoveCollider = hit.collider;
-
-        if (groundMoveCollider != null)
-        {
-            groundVelocity = groundMoveCollider.attachedRigidbody.GetPointVelocity(
-                groundMoveCollider.bounds.center
-            );
-        }
+        Vector2 groundVelocity = _GetGroundVelocity();
 
         _rigidBody.linearVelocity = new Vector2(
             convertedDirection.x * _moveSpeed + groundVelocity.x,
@@ -143,5 +133,15 @@ public class Player : MonoBehaviour
         Vector2 boxSize = new Vector2(bounds.size.x, GROUND_CHECK_THICKNESS);
         int mask = LayerMask.GetMask(layerNames);
         return Physics2D.BoxCast(origin, boxSize, 0f, Vector2.down, GROUND_CHECK_THICKNESS, mask);
+    }
+
+    private Vector2 _GetGroundVelocity()
+    {
+        RaycastHit2D hit = _GetValidGroundHit(Layers.CHARACTER);
+        if (hit.collider == null || hit.collider.attachedRigidbody == null)
+            return Vector2.zero;
+
+        Rigidbody2D groundRigidbody = hit.collider.attachedRigidbody;
+        return groundRigidbody.GetPointVelocity(_collider.bounds.center);
     }
 }
