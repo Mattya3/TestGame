@@ -3,7 +3,6 @@
 [RequireComponent(typeof(AudioSource))]
 public class AudioLooper : MonoBehaviour
 {
-    [SerializeField]
     private AudioSource _audioSource;
 
     [SerializeField, Min(1)]
@@ -17,12 +16,8 @@ public class AudioLooper : MonoBehaviour
 
     private void Awake()
     {
-        if (_audioSource == null)
-        {
-            Debug.LogError("AudioSource is not assigned.");
-            enabled = false;
-            return;
-        }
+        _audioSource = GetComponent<AudioSource>();
+
         if (_audioSource.clip == null)
         {
             Debug.LogError("AudioSource does not have an AudioClip assigned.");
