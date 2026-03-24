@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using static GameConstants;
 
 public class ElecticBarMove : MonoBehaviour
 {
@@ -7,8 +8,8 @@ public class ElecticBarMove : MonoBehaviour
 
     void Start()
     {
-        GameManager.Instance.OnFailure += () => enabled = false;
-        GameManager.Instance.OnSuccess += () => enabled = false;
+        GameManager.Instance.RegisterEventAction(GameEvent.Failure, () => enabled = false);
+        GameManager.Instance.RegisterEventAction(GameEvent.Success, () => enabled = false);
     }
 
     void Update()
