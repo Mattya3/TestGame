@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.InputSystem;
 using static GameConstants;
 
@@ -21,7 +21,7 @@ public class Player : MonoBehaviour
     private Collider2D _collider;
 
     private const float GROUND_CHECK_THICKNESS = 0.005f; // 接地判定用の定数
-    private const float GROUND_MOVE_MARGIN = 0.001f; // 地面との相対速度による接地判定用の定数
+    private const float GROUND_MOVE_MARGIN = -0.001f; // 地面との相対速度による接地判定用の定数
 
     void Awake()
     {
@@ -61,7 +61,6 @@ public class Player : MonoBehaviour
             Mathf.Min(_jumpInitialVelocity, _jumpInitialVelocity - _rigidBody.linearVelocity.y),
             0f
         );
-
         _rigidBody.AddForce(Vector2.up * deltaVy * _rigidBody.mass, ForceMode2D.Impulse);
     }
 
@@ -120,8 +119,8 @@ public class Player : MonoBehaviour
         float groundVelocityY = groundRigidbody.GetPointVelocity(_collider.bounds.center).y;
         float relativeVy = groundVelocityY - _rigidBody.linearVelocity.y;
 
-        // 相対上向き速度が閾値（GROUND_MOVE_MARGIN）を超える場合は設定していないものとみなす
-        if (relativeVy > GROUND_MOVE_MARGIN)
+        // 相対上向き速度が閾値（GROUND_MOVE_MARGIN）を下回る場合は接地していないものとみなす
+        if (relativeVy < GROUND_MOVE_MARGIN)
             return new RaycastHit2D();
         return hit;
     }
