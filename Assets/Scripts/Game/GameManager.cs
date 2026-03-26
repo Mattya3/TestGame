@@ -7,14 +7,8 @@ using static GameConstants;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager Instance { get; private set; }
-    public bool ArePlayersAlive { get; private set; } = true;
-
-    private event Action _onFailure;
-    private event Action _onSuccess;
-
     [SerializeField]
-    private ScreenEffectsController _screenEffectsController;
+    private StageManager _stageManager;
 
     [SerializeField]
     private MovementRuleEffect _movementRuleEffect;
@@ -22,6 +16,12 @@ public class GameManager : MonoBehaviour
     private IGameMoveController _moveController;
 
     private List<Player> _players = new List<Player>();
+
+    private event Action _onFailure;
+    private event Action _onSuccess;
+
+    public static GameManager Instance { get; private set; }
+    public bool ArePlayersAlive { get; private set; } = true;
 
     private void Awake()
     {
@@ -77,34 +77,20 @@ public class GameManager : MonoBehaviour
         }
 
         _onFailure?.Invoke();
-        _RestartStage();
+        _stageManager.RestartStage();
     }
 
     public void HandlePlayerGoal(Player player)
     {
-        // 2Pがいるときの処理はのちのち実装。とりあえず今はゴールしたプレイヤを止めるだけ。
         player.Freeze();
 
-        // 全員がゴールしたときの処理
         if (_AllPlayersHaveReachedGoal())
         {
             _onSuccess?.Invoke();
 
-            // ゴール演出
-            _screenEffectsController.PlaySuccessEffect(() =>
-            {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-            });
+            _stageManager.CompleteStage();
         }
     }
 
     private bool _AllPlayersHaveReachedGoal() => _players.All(player => player.HasReachedGoal);
-
-    private void _RestartStage()
-    {
-        _screenEffectsController.PlayFailureEffect(() =>
-        {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        });
-    }
 }
