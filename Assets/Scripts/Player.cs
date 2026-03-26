@@ -23,10 +23,19 @@ public class Player : MonoBehaviour
     private const float GROUND_CHECK_THICKNESS = 0.005f; // 接地判定用の定数
     private const float GROUND_MOVE_MARGIN = 0.001f; // 地面との相対速度による接地判定用の定数
 
+    [SerializeField]
+    private PlayerSounds _sounds;
+
     void Awake()
     {
         _rigidBody = GetComponent<Rigidbody2D>();
         _collider = GetComponent<Collider2D>();
+
+        if (_sounds == null || !_sounds.IsValid())
+        {
+            Debug.LogError("PlayerSounds is not properly set up.");
+            enabled = false;
+        }
     }
 
     void Start()
@@ -62,6 +71,7 @@ public class Player : MonoBehaviour
             0f
         );
         _rigidBody.AddForce(Vector2.up * deltaVy * _rigidBody.mass, ForceMode2D.Impulse);
+        _sounds.OnJump();
     }
 
     private void _Move()
@@ -93,6 +103,7 @@ public class Player : MonoBehaviour
             return;
 
         // TODO: 死亡理由に沿った処理を追加
+        _sounds.OnDeath();
 
         GameManager.Instance.HandlePlayerDeath(this, deathReason);
     }
@@ -102,6 +113,7 @@ public class Player : MonoBehaviour
         if (!GameManager.Instance.ArePlayersAlive)
             return;
 
+        _sounds.OnGoal();
         HasReachedGoal = true;
         GameManager.Instance.HandlePlayerGoal(this);
     }
@@ -123,6 +135,16 @@ public class Player : MonoBehaviour
         if (relativeVy > GROUND_MOVE_MARGIN)
             return new RaycastHit2D();
         return hit;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.layer != LayerMask.NameToLayer(Layers.SOLID))
+            return;
+        if (_GetValidGroundHit(Layers.SOLID, Layers.CHARACTER).collider == null)
+            return; // 接触時に着地しているかで判定
+
+        _sounds.OnLand();
     }
 
     private RaycastHit2D _GroundCheck(params string[] layerNames)
