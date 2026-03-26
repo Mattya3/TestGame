@@ -22,7 +22,7 @@
         Fall,
         DeadZone,
     }
-    
+
     public enum MovementRuleEffect
     {
         Demo, //デモ用, 入力反転が起こらない
