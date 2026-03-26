@@ -6,14 +6,11 @@ public class ElectricBarMove : MonoBehaviour
     [SerializeField]
     private float _moveSpeed;
 
-    void Start()
-    {
-        GameManager.Instance.RegisterEventAction(GameEvent.Failure, () => enabled = false);
-        GameManager.Instance.RegisterEventAction(GameEvent.Success, () => enabled = false);
-    }
+    [SerializeField]
+    private Vector3 _direction = Vector3.right;
 
-    void Update()
+    private void Update()
     {
-        transform.Translate(Vector3.right * _moveSpeed * Time.deltaTime);
+        transform.Translate(_direction * _moveSpeed * Time.deltaTime);
     }
 }
