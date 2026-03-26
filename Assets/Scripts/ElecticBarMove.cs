@@ -7,8 +7,8 @@ public class ElecticBarMove : MonoBehaviour
 
     void Start()
     {
-        GameManager.Instance.OnPlayerDied += () => enabled = false;
-        GameManager.Instance.OnAllPlayersGoal += () => enabled = false;
+        GameManager.Instance.OnFailure += () => enabled = false;
+        GameManager.Instance.OnSuccess += () => enabled = false;
     }
 
     void Update()

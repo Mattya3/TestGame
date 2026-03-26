@@ -10,8 +10,8 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
     public bool ArePlayersAlive { get; private set; } = true;
 
-    public event Action OnPlayerDied;
-    public event Action OnAllPlayersGoal;
+    public event Action OnFailure;
+    public event Action OnSuccess;
 
     [SerializeField]
     private ScreenEffectsController _screenEffectsController;
@@ -29,10 +29,10 @@ public class GameManager : MonoBehaviour
         switch (gameEvent)
         {
             case GameEvent.Failure:
-                OnPlayerDied += eventAction;
+                OnFailure += eventAction;
                 break;
             case GameEvent.Success:
-                OnAllPlayersGoal += eventAction;
+                OnSuccess += eventAction;
                 break;
         }
     }
@@ -60,7 +60,7 @@ public class GameManager : MonoBehaviour
             _players[i].Freeze();
         }
 
-        OnPlayerDied?.Invoke();
+        OnFailure?.Invoke();
         _RestartStage();
     }
 
@@ -72,10 +72,10 @@ public class GameManager : MonoBehaviour
         // 全員がゴールしたときの処理
         if (_AllPlayersHaveReachedGoal())
         {
-            OnAllPlayersGoal?.Invoke();
+            OnSuccess?.Invoke();
 
             // ゴール演出
-            _screenEffectsController.PlayGoalEffect(() =>
+            _screenEffectsController.PlaySuccessEffect(() =>
             {
                 SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             });
@@ -86,7 +86,7 @@ public class GameManager : MonoBehaviour
 
     private void _RestartStage()
     {
-        _screenEffectsController.PlayDeathEffect(() =>
+        _screenEffectsController.PlayFailureEffect(() =>
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         });
