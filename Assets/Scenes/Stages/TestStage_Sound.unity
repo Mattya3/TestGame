@@ -1708,7 +1708,7 @@ MonoBehaviour:
     m_ActionName: 'Player2/Jump[/Keyboard/upArrow]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
-  m_DefaultActionMap: 
+  m_DefaultActionMap: 46afbac9-0ca9-41e7-9b7e-3265440b4100
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!114 &1662044836
