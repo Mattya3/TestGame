@@ -34,6 +34,9 @@ public class GameManager : MonoBehaviour
             case GameEvent.Success:
                 _onSuccess += eventAction;
                 break;
+            default:
+                Debug.LogError($"Unhandled GameEvent value in RegisterEventAction: {gameEvent}");
+                throw new ArgumentOutOfRangeException(nameof(gameEvent), gameEvent, null);
         }
     }
 
