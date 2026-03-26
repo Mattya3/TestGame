@@ -1312,6 +1312,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   _screenEffectsController: {fileID: 875144713}
+  _movementRuleEffect: 0
 --- !u!4 &1422380077
 Transform:
   m_ObjectHideFlags: 0
@@ -1697,9 +1698,17 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 715ecb71-28e3-444b-a24f-bf6fe6eda3ad
     m_ActionName: 'Player/Jump[/Keyboard/w,/Keyboard/upArrow]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: d0c3151b-fd4c-4ddc-a71d-7de492325219
+    m_ActionName: 'Player2/Move[/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 9c6fc38e-396e-46d3-9dc5-c0939febac30
+    m_ActionName: 'Player2/Jump[/Keyboard/upArrow]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
-  m_DefaultActionMap: Player
+  m_DefaultActionMap: 
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!114 &1662044836
@@ -1715,7 +1724,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
   _moveSpeed: 5
-  _jumpForce: 15
+  _jumpInitialVelocity: 15
   _sounds:
     _footstepSound:
       _clip: {fileID: 8300000, guid: 30c122f7e8df5624c8b30a8ab7ab033c, type: 3}
