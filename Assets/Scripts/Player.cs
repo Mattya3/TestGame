@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.InputSystem;
 using static GameConstants;
 
@@ -131,7 +131,7 @@ public class Player : MonoBehaviour
         float groundVelocityY = groundRigidbody.GetPointVelocity(_collider.bounds.center).y;
         float relativeVy = _rigidBody.linearVelocity.y - groundVelocityY;
 
-        // 相対上向き速度が閾値（GROUND_MOVE_MARGIN）を下回る場合は接地していないものとみなす
+        // 相対上向き速度が閾値（GROUND_MOVE_MARGIN）を上回る場合は接地していないものとみなす
         if (relativeVy > GROUND_MOVE_MARGIN)
             return new RaycastHit2D();
         return hit;
