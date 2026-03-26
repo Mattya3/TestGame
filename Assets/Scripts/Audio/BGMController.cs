@@ -5,32 +5,25 @@ using static GameConstants;
 [RequireComponent(typeof(AudioSource))]
 public class BGMController : MonoBehaviour
 {
-    private AudioSource _audioSource;
-
     [SerializeField, Min(0.0f)]
     private float _fadeOutTimeOnFailure = 0.1f;
 
     [SerializeField, Min(0.0f)]
     private float _fadeOutTimeOnSuccess = 1.0f;
 
+    private AudioSource _audioSource;
+
     private void Awake()
     {
         _audioSource = GetComponent<AudioSource>();
     }
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        GameManager.Instance.RegisterEventAction(GameEvent.Failure, _OnFailure);
-        GameManager.Instance.RegisterEventAction(GameEvent.Success, _OnSuccess);
-    }
-
-    private void _OnFailure()
+    public void OnFailure()
     {
         StartCoroutine(_CoFadeOut(_fadeOutTimeOnFailure));
     }
 
-    private void _OnSuccess()
+    public void OnSuccess()
     {
         StartCoroutine(_CoFadeOut(_fadeOutTimeOnSuccess));
     }

@@ -5,9 +5,6 @@ using UnityEngine;
 public class EventMusicPlayer : MonoBehaviour
 {
     [SerializeField]
-    private GameConstants.GameEvent _targetEvent;
-
-    [SerializeField]
     private float _delayBeforePlaying = 1f;
 
     private AudioSource _audioSource;
@@ -17,13 +14,7 @@ public class EventMusicPlayer : MonoBehaviour
         _audioSource = GetComponent<AudioSource>();
     }
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        GameManager.Instance.RegisterEventAction(_targetEvent, _Play);
-    }
-
-    private void _Play()
+    public void Play()
     {
         StartCoroutine(_CoPlay());
     }
