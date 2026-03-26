@@ -28,7 +28,6 @@ public class CameraController : MonoBehaviour
 
     // == Unity Event Functions ==
 
-    // Awake is called when the script instance is being loaded
     void Awake()
     {
         if (!_IsConfigurationValid())
@@ -64,7 +63,6 @@ public class CameraController : MonoBehaviour
         return true;
     }
 
-    // Start is called before the first frame update
     void Start()
     {
         // カメラの初期位置を設定
@@ -72,7 +70,6 @@ public class CameraController : MonoBehaviour
         transform.position = destination;
     }
 
-    // LateUpdate is called after all Update functions have been called
     void LateUpdate()
     {
         var destination = _CalculateDestination();

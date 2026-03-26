@@ -1,4 +1,5 @@
-﻿using UnityEditor;
+﻿using System;
+using UnityEditor;
 using UnityEngine;
 
 public class AnimationClipPathReplacer : EditorWindow
@@ -45,36 +46,46 @@ public class AnimationClipPathReplacer : EditorWindow
 
         // --- 数値カーブ（Transform, Renderer など） ---
         var curveBindings = AnimationUtility.GetCurveBindings(targetClip);
-        foreach (var binding in curveBindings)
-        {
-            if (binding.path != oldP)
-                continue;
-
-            var curve = AnimationUtility.GetEditorCurve(targetClip, binding);
-            var newBinding = binding;
-            newBinding.path = newP;
-
-            AnimationUtility.SetEditorCurve(targetClip, binding, null);
-            AnimationUtility.SetEditorCurve(targetClip, newBinding, curve);
-        }
+        ReplaceBindingsGeneric(targetClip, 
+            curveBindings, 
+            oldP, 
+            newP, 
+            AnimationUtility.GetEditorCurve,
+            AnimationUtility.SetEditorCurve
+        );
 
         // --- オブジェクト参照カーブ（Sprite, Material など） ---
         var objectBindings = AnimationUtility.GetObjectReferenceCurveBindings(targetClip);
-        foreach (var binding in objectBindings)
-        {
-            if (binding.path != oldP)
-                continue;
-
-            var keyframes = AnimationUtility.GetObjectReferenceCurve(targetClip, binding);
-            var newBinding = binding;
-            newBinding.path = newP;
-
-            AnimationUtility.SetObjectReferenceCurve(targetClip, binding, null);
-            AnimationUtility.SetObjectReferenceCurve(targetClip, newBinding, keyframes);
-        }
+        ReplaceBindingsGeneric(targetClip, 
+            objectBindings, 
+            oldP, 
+            newP, 
+            AnimationUtility.GetObjectReferenceCurve,
+            AnimationUtility.SetObjectReferenceCurve
+        );
 
         EditorUtility.SetDirty(targetClip);
         AssetDatabase.SaveAssets();
         Debug.Log($"Replaced path \"{oldP}\" → \"{newP}\" in {targetClip.name}");
+    }
+
+    private void ReplaceBindingsGeneric<T>(
+        AnimationClip targetClip, 
+        EditorCurveBinding[] bindings, 
+        string oldP, 
+        string newP, 
+        Func<AnimationClip, EditorCurveBinding, T> getter, 
+        Action<AnimationClip, EditorCurveBinding, T> setter)
+    {
+        foreach (var binding in bindings)
+        {
+            if (binding.path != oldP) continue;
+            T data = getter(targetClip, binding);
+            var newBinding = binding;
+            newBinding.path = newP;
+
+            setter(targetClip, binding, default);
+            setter(targetClip, newBinding, data);
+        }
     }
 }
