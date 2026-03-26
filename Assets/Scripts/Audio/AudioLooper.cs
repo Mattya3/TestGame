@@ -51,8 +51,7 @@ public class AudioLooper : MonoBehaviour
         // 再生中に周波数が変わることがある（らしい）ので、Updateで毎フレーム計算
         var correctedLoopBeginSample = _CorrectSample(_loopBeginSample);
         var correctedLoopEndSample = _CorrectSample(_loopEndSample);
-        var correctedLoopDurationSamples =
-            correctedLoopEndSample - correctedLoopBeginSample;
+        var correctedLoopDurationSamples = correctedLoopEndSample - correctedLoopBeginSample;
 
         if (correctedLoopDurationSamples == 0)
             return; // ループ区間が無い場合は何もしない

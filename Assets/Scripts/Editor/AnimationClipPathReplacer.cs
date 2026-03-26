@@ -46,20 +46,22 @@ public class AnimationClipPathReplacer : EditorWindow
 
         // --- 数値カーブ（Transform, Renderer など） ---
         var curveBindings = AnimationUtility.GetCurveBindings(targetClip);
-        ReplaceBindingsGeneric(targetClip, 
-            curveBindings, 
-            oldP, 
-            newP, 
+        ReplaceBindingsGeneric(
+            targetClip,
+            curveBindings,
+            oldP,
+            newP,
             AnimationUtility.GetEditorCurve,
             AnimationUtility.SetEditorCurve
         );
 
         // --- オブジェクト参照カーブ（Sprite, Material など） ---
         var objectBindings = AnimationUtility.GetObjectReferenceCurveBindings(targetClip);
-        ReplaceBindingsGeneric(targetClip, 
-            objectBindings, 
-            oldP, 
-            newP, 
+        ReplaceBindingsGeneric(
+            targetClip,
+            objectBindings,
+            oldP,
+            newP,
             AnimationUtility.GetObjectReferenceCurve,
             AnimationUtility.SetObjectReferenceCurve
         );
@@ -70,16 +72,18 @@ public class AnimationClipPathReplacer : EditorWindow
     }
 
     private void ReplaceBindingsGeneric<T>(
-        AnimationClip targetClip, 
-        EditorCurveBinding[] bindings, 
-        string oldP, 
-        string newP, 
-        Func<AnimationClip, EditorCurveBinding, T> getter, 
-        Action<AnimationClip, EditorCurveBinding, T> setter)
+        AnimationClip targetClip,
+        EditorCurveBinding[] bindings,
+        string oldP,
+        string newP,
+        Func<AnimationClip, EditorCurveBinding, T> getter,
+        Action<AnimationClip, EditorCurveBinding, T> setter
+    )
     {
         foreach (var binding in bindings)
         {
-            if (binding.path != oldP) continue;
+            if (binding.path != oldP)
+                continue;
             T data = getter(targetClip, binding);
             var newBinding = binding;
             newBinding.path = newP;

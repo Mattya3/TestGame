@@ -1,7 +1,7 @@
-using UnityEngine;
-using UnityEngine.Events;
 using System;
 using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Events;
 using static GameConstants;
 
 public class GameEventTrigger : MonoBehaviour
@@ -9,7 +9,7 @@ public class GameEventTrigger : MonoBehaviour
     [Serializable]
     public class EventReaction
     {
-        public GameEvent TargetEvent;      // イベントの種類
+        public GameEvent TargetEvent; // イベントの種類
         public UnityEvent OnEventTriggered; // 発火時のアクション
     }
 
@@ -20,7 +20,10 @@ public class GameEventTrigger : MonoBehaviour
     {
         foreach (var reaction in _reactions)
         {
-            GameManager.Instance.RegisterEventAction(reaction.TargetEvent, () => reaction.OnEventTriggered?.Invoke());
+            GameManager.Instance.RegisterEventAction(
+                reaction.TargetEvent,
+                () => reaction.OnEventTriggered?.Invoke()
+            );
         }
     }
 }
