@@ -11,9 +11,7 @@ public class GameManager : MonoBehaviour
     private StageManager _stageManager;
 
     [SerializeField]
-    private MovementRuleEffect _movementRuleEffect;
-
-    private IGameMoveController _moveController;
+    private MovementRuleManager _movementRuleManager;
 
     private List<Player> _players = new List<Player>();
 
@@ -31,11 +29,11 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        _moveController = GameMoveControllerFactory.Create(_movementRuleEffect, _players);
+        _movementRuleManager.Initialize(_players);
     }
 
     public Vector2 ConvertInputDirection(Vector2 rawInput) =>
-        _moveController.ConvertInputDirection(rawInput);
+        _movementRuleManager.ConvertInputDirection(rawInput);
 
     public void RegisterEventAction(GameEvent gameEvent, Action eventAction)
     {
