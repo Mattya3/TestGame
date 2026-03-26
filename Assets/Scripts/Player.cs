@@ -42,8 +42,8 @@ public class Player : MonoBehaviour
     {
         // Awakeではインスタンスが生成される前に実行される恐れがあるためStart
         GameManager.Instance.RegisterPlayer(this);
-        GameManager.Instance.OnFailure += () => enabled = false;
-        GameManager.Instance.OnSuccess += () => enabled = false;
+        GameManager.Instance.RegisterEventAction(GameEvent.Failure, () => enabled = false);
+        GameManager.Instance.RegisterEventAction(GameEvent.Success, () => enabled = false);
     }
 
     void Update()

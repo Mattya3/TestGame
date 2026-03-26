@@ -10,8 +10,8 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
     public bool ArePlayersAlive { get; private set; } = true;
 
-    public event Action OnFailure;
-    public event Action OnSuccess;
+    private event Action _onFailure;
+    private event Action _onSuccess;
 
     [SerializeField]
     private ScreenEffectsController _screenEffectsController;
@@ -42,11 +42,14 @@ public class GameManager : MonoBehaviour
         switch (gameEvent)
         {
             case GameEvent.Failure:
-                OnFailure += eventAction;
+                _onFailure += eventAction;
                 break;
             case GameEvent.Success:
-                OnSuccess += eventAction;
+                _onSuccess += eventAction;
                 break;
+            default:
+                Debug.LogError($"Unhandled GameEvent value in RegisterEventAction: {gameEvent}");
+                throw new ArgumentOutOfRangeException(nameof(gameEvent), gameEvent, null);
         }
     }
 
@@ -73,7 +76,7 @@ public class GameManager : MonoBehaviour
             _players[i].Freeze();
         }
 
-        OnFailure?.Invoke();
+        _onFailure?.Invoke();
         _RestartStage();
     }
 
@@ -85,7 +88,7 @@ public class GameManager : MonoBehaviour
         // 全員がゴールしたときの処理
         if (_AllPlayersHaveReachedGoal())
         {
-            OnSuccess?.Invoke();
+            _onSuccess?.Invoke();
 
             // ゴール演出
             _screenEffectsController.PlaySuccessEffect(() =>
