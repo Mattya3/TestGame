@@ -9,7 +9,7 @@ public class ScreenEffectsController : MonoBehaviour
 
     private Action _onEffectComplete;
 
-    void Awake()
+    private void Awake()
     {
         if (_animator == null)
         {
