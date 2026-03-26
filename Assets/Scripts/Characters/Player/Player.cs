@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-using System;
+﻿using System;
+using UnityEngine;
 using UnityEngine.InputSystem;
 using static GameConstants;
 
@@ -41,7 +41,6 @@ public class Player : MonoBehaviour
             Debug.LogError("PlayerSounds is not properly set up.");
             enabled = false;
         }
-        
     }
 
     void Start()
@@ -110,7 +109,7 @@ public class Player : MonoBehaviour
     {
         _sounds.OnGoal();
         HasReachedGoal = true;
-        
+
         OnGoal?.Invoke(this);
     }
 

@@ -6,9 +6,9 @@ using static GameConstants;
 public class PlayerManager : MonoBehaviour
 {
     private List<Player> _players = new List<Player>();
-    
+
     public bool ArePlayersAlive { get; private set; } = true;
-    
+
     public IReadOnlyList<Player> Players => _players;
 
     private void OnEnable()
@@ -20,23 +20,23 @@ public class PlayerManager : MonoBehaviour
     {
         if (!_players.Contains(player))
             _players.Add(player);
-            player.OnDied += (reason) => 
-            {
-                if(ArePlayersAlive)
-                    HandlePlayerDeath(player, reason);
-            };
-            player.OnGoal += (player) => 
-            {
-                if(ArePlayersAlive)
-                    HandlePlayerGoal(player);
-            };
+        player.OnDied += (reason) =>
+        {
+            if (ArePlayersAlive)
+                HandlePlayerDeath(player, reason);
+        };
+        player.OnGoal += (player) =>
+        {
+            if (ArePlayersAlive)
+                HandlePlayerGoal(player);
+        };
     }
 
     public void HandlePlayerDeath(Player deadPlayer, DeathReason deathReason)
     {
         if (!ArePlayersAlive)
             return;
-            
+
         SetPlayersDead();
         FreezeAllPlayers();
 
@@ -47,9 +47,9 @@ public class PlayerManager : MonoBehaviour
     {
         player.Freeze();
 
-        if (!AllPlayersReachedGoal()) 
+        if (!AllPlayersReachedGoal())
             return;
-            
+
         GameManager.Instance.HandleSuccess();
     }
 

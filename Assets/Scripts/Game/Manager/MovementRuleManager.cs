@@ -1,7 +1,7 @@
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 using static GameConstants;
-using System.Collections.Generic;
-using System;
 
 public class MovementRuleManager : MonoBehaviour
 {
@@ -16,7 +16,7 @@ public class MovementRuleManager : MonoBehaviour
     }
 
     public Vector2 ConvertInputDirection(Vector2 input)
-    {        
+    {
         return _moveController.ConvertInputDirection(input);
     }
 }
