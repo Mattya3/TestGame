@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using static GameConstants;
 
 [RequireComponent(typeof(AudioSource))]
 public class BGMController : MonoBehaviour
@@ -20,8 +21,8 @@ public class BGMController : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        GameManager.Instance.OnFailure += _OnFailure;
-        GameManager.Instance.OnSuccess += _OnSuccess;
+        GameManager.Instance.RegisterEventAction(GameEvent.Failure, _OnFailure);
+        GameManager.Instance.RegisterEventAction(GameEvent.Success, _OnSuccess);
     }
 
     private void _OnFailure()

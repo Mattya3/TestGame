@@ -716,7 +716,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4eddd1a7247b05e4fa56071cc0870d41, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: '::'
+  m_EditorClassIdentifier: Assembly-CSharp::AudioLooper
   _originalFrequency: 44100
   _loopBeginSample: 811245
   _loopEndSample: 3069183
@@ -731,7 +731,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d7816173083aff64bb8ce355bfd66cc7, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: '::'
+  m_EditorClassIdentifier: Assembly-CSharp::BGMController
   _fadeOutTimeOnFailure: 0.1
   _fadeOutTimeOnSuccess: 1
 --- !u!1 &610625220
@@ -1121,7 +1121,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ce2637f37b99d9a458062c727bd3d1fd, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: '::'
+  m_EditorClassIdentifier: Assembly-CSharp::ColliderGoal
 --- !u!1 &1113217126
 GameObject:
   m_ObjectHideFlags: 0
@@ -4305,7 +4305,7 @@ GameObject:
   - component: {fileID: 2067377657}
   m_Layer: 0
   m_Name: ElectricBar
-  m_TagString: ElecticBar
+  m_TagString: ElectricBar
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4441,7 +4441,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ff8a6fa19d78244ad8fda9e2ddabb937, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ElecticBarMove
+  m_EditorClassIdentifier: Assembly-CSharp::ElectricBarMove
   _moveSpeed: 1
 --- !u!114 &2067377657
 MonoBehaviour:
@@ -4454,7 +4454,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f77f788cdb054476aa3e36387df4d62c, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DeadZone
+  m_EditorClassIdentifier: Assembly-CSharp::ColliderDeadZone
   _deathReason: 1
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
