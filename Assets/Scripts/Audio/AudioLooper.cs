@@ -3,16 +3,18 @@
 [RequireComponent(typeof(AudioSource))]
 public class AudioLooper : MonoBehaviour
 {
-    private AudioSource _audioSource;
+    private const uint DEFAULT_SAMPLE_RATE = 44100;
 
     [SerializeField, Min(1)]
-    private uint _originalFrequency = 44100; // Unityがビルド時に周波数を変えてしまうことがあるため、元の周波数を外から指定
+    private uint _originalFrequency = DEFAULT_SAMPLE_RATE; // Unityがビルド時に周波数を変えてしまうことがあるため、元の周波数を外から指定
 
     [SerializeField]
     private uint _loopBeginSample = 0;
 
     [SerializeField]
-    private uint _loopEndSample = 44100;
+    private uint _loopEndSample = DEFAULT_SAMPLE_RATE;
+
+    private AudioSource _audioSource;
 
     private void Awake()
     {
@@ -41,16 +43,16 @@ public class AudioLooper : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (!_audioSource.isPlaying)
             return;
 
         // 再生中に周波数が変わることがある（らしい）ので、Updateで毎フレーム計算
+        var correctedLoopBeginSample = _CorrectSample(_loopBeginSample);
         var correctedLoopEndSample = _CorrectSample(_loopEndSample);
         var correctedLoopDurationSamples =
-            correctedLoopEndSample - _CorrectSample(_loopBeginSample);
+            correctedLoopEndSample - correctedLoopBeginSample;
 
         if (correctedLoopDurationSamples == 0)
             return; // ループ区間が無い場合は何もしない
