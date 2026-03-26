@@ -37,6 +37,19 @@ public class GameManager : MonoBehaviour
     public Vector2 ConvertInputDirection(Vector2 rawInput) =>
         _moveController.ConvertInputDirection(rawInput);
 
+    public void RegisterEventAction(GameEvent gameEvent, Action eventAction)
+    {
+        switch (gameEvent)
+        {
+            case GameEvent.Failure:
+                OnPlayerDied += eventAction;
+                break;
+            case GameEvent.Success:
+                OnAllPlayersGoal += eventAction;
+                break;
+        }
+    }
+
     /// <summary>
     /// プレイヤーを登録します。
     /// </summary>
