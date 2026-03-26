@@ -52,14 +52,6 @@ public class GameManager : MonoBehaviour
     }
 
     /// <summary>
-    /// プレイヤーを登録します。
-    /// </summary>
-    public void RegisterPlayer(Player player)
-    {
-        _playerManager.RegisterPlayer(player);
-    }
-
-    /// <summary>
     /// プレイヤーが死亡したときに呼び出されます。
     /// </summary>
     public void HandleFailure()
