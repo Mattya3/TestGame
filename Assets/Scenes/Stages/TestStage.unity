@@ -2244,7 +2244,7 @@ GameObject:
   - component: {fileID: 1711588344}
   - component: {fileID: 1711588343}
   m_Layer: 5
-  m_Name: PlayerDeathEffect
+  m_Name: FailureEffect
   m_TagString: Respawn
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2463,7 +2463,7 @@ GameObject:
   - component: {fileID: 1845946233}
   - component: {fileID: 1845946232}
   m_Layer: 5
-  m_Name: AllPlayersGoalEffect
+  m_Name: SuccessEffect
   m_TagString: Respawn
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4846,8 +4846,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7816173083aff64bb8ce355bfd66cc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  _fadeOutTimeOnPlayerDied: 0.1
-  _fadeOutTimeOnAllPlayersGoal: 0.75
+  _fadeOutTimeOnFailure: 0.1
+  _fadeOutTimeOnSuccess: 1
 --- !u!114 &1981519073
 MonoBehaviour:
   m_ObjectHideFlags: 0
