@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System;
 using UnityEngine.InputSystem;
 using static GameConstants;
 
@@ -6,6 +7,10 @@ using static GameConstants;
 [RequireComponent(typeof(Collider2D))]
 public class Player : MonoBehaviour
 {
+    public static event Action<Player> OnCreated;
+    public event Action<Player> OnGoal;
+    public event Action<DeathReason> OnDied;
+
     public bool HasReachedGoal { get; private set; } = false;
 
     public Vector2 InputDirection => _inputDirection;
@@ -36,14 +41,12 @@ public class Player : MonoBehaviour
             Debug.LogError("PlayerSounds is not properly set up.");
             enabled = false;
         }
+        
     }
 
     void Start()
     {
-        // Awakeではインスタンスが生成される前に実行される恐れがあるためStart
-        GameManager.Instance.RegisterPlayer(this);
-        GameManager.Instance.RegisterEventAction(GameEvent.Failure, () => enabled = false);
-        GameManager.Instance.RegisterEventAction(GameEvent.Success, () => enabled = false);
+        OnCreated?.Invoke(this);
     }
 
     void Update()
@@ -99,23 +102,16 @@ public class Player : MonoBehaviour
     /// </summary>
     public void Die(DeathReason deathReason)
     {
-        if (!GameManager.Instance.ArePlayersAlive)
-            return;
-
-        // TODO: 死亡理由に沿った処理を追加
         _sounds.OnDeath();
-
-        GameManager.Instance.HandlePlayerDeath(this, deathReason);
+        OnDied?.Invoke(deathReason);
     }
 
-    public void OnGoal()
+    public void Goal()
     {
-        if (!GameManager.Instance.ArePlayersAlive)
-            return;
-
         _sounds.OnGoal();
         HasReachedGoal = true;
-        GameManager.Instance.HandlePlayerGoal(this);
+        
+        OnGoal?.Invoke(this);
     }
 
     private RaycastHit2D _GetValidGroundHit(params string[] layerNames)

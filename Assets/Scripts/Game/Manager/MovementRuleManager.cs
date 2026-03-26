@@ -10,7 +10,7 @@ public class MovementRuleManager : MonoBehaviour
 
     private IGameMoveController _moveController;
 
-    public void Initialize(List<Player> players)
+    public void Initialize(IReadOnlyList<Player> players)
     {
         _moveController = GameMoveControllerFactory.Create(_movementRuleEffect, players);
     }

@@ -13,13 +13,13 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private MovementRuleManager _movementRuleManager;
 
-    private List<Player> _players = new List<Player>();
+    [SerializeField]
+    private PlayerManager _playerManager;
 
     private event Action _onFailure;
     private event Action _onSuccess;
 
     public static GameManager Instance { get; private set; }
-    public bool ArePlayersAlive { get; private set; } = true;
 
     private void Awake()
     {
@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        _movementRuleManager.Initialize(_players);
+        _movementRuleManager.Initialize(_playerManager.Players);
     }
 
     public Vector2 ConvertInputDirection(Vector2 rawInput) =>
@@ -56,39 +56,23 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void RegisterPlayer(Player player)
     {
-        if (!_players.Contains(player))
-            _players.Add(player);
+        _playerManager.RegisterPlayer(player);
     }
 
     /// <summary>
     /// プレイヤーが死亡したときに呼び出されます。
     /// </summary>
-    public void HandlePlayerDeath(Player deadPlayer, DeathReason deathReason)
+    public void HandleFailure()
     {
-        if (!ArePlayersAlive)
-            return;
-        ArePlayersAlive = false;
-
-        for (int i = 0; i < _players.Count; i++)
-        {
-            _players[i].Freeze();
-        }
-
         _onFailure?.Invoke();
         _stageManager.RestartStage();
     }
 
-    public void HandlePlayerGoal(Player player)
+    public void HandleSuccess()
     {
-        player.Freeze();
-
-        if (_AllPlayersHaveReachedGoal())
-        {
-            _onSuccess?.Invoke();
-
-            _stageManager.CompleteStage();
-        }
+        _onSuccess?.Invoke();
+        _stageManager.CompleteStage();
     }
 
-    private bool _AllPlayersHaveReachedGoal() => _players.All(player => player.HasReachedGoal);
+    public bool ArePlayersAlive() => _playerManager.ArePlayersAlive;
 }

@@ -6,7 +6,7 @@ public class ColliderGoal : MonoBehaviour
     {
         if (collision.TryGetComponent<Player>(out Player player))
         {
-            player.OnGoal();
+            player.Goal();
         }
     }
 }
