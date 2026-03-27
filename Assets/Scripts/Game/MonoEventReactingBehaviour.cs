@@ -18,6 +18,7 @@ public abstract class MonoEventReactingBehaviour : MonoBehaviour
     }
 
     protected virtual void OnSuccess() { }
+
     protected virtual void OnFailure() { }
 
     // オーバーライドするが，イベントを購読したくない場合はfalseを返すように実装
@@ -25,9 +26,12 @@ public abstract class MonoEventReactingBehaviour : MonoBehaviour
 
     private bool _IsOverridden(string methodName)
     {
-        var method = GetType().GetMethod(methodName, 
-            BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public);
-        
+        var method = GetType()
+            .GetMethod(
+                methodName,
+                BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public
+            );
+
         return method != null && method.DeclaringType != typeof(MonoEventReactingBehaviour);
     }
 }

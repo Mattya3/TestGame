@@ -27,9 +27,9 @@ public static class GameEventTrigger
 
     public static void TriggerEvent(GameEvent gameEvent)
     {
-        if(gameEvent == GameEvent.Success)
+        if (gameEvent == GameEvent.Success)
             OnSuccess?.Invoke();
-        else if(gameEvent == GameEvent.Failure)
+        else if (gameEvent == GameEvent.Failure)
             OnFailure?.Invoke();
     }
 
