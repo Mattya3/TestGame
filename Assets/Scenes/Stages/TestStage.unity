@@ -1580,7 +1580,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 887804184}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce2637f37b99d9a458062c727bd3d1fd, type: 3}
+  m_Script: {fileID: 11500000, guid: 348b3df0fa6fe459ba6d97b072225db0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
 --- !u!1 &952535229
@@ -2942,7 +2942,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1913331933}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f77f788cdb054476aa3e36387df4d62c, type: 3}
+  m_Script: {fileID: 11500000, guid: 814c26f0685dd4c758815aa977b75e2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ColliderDeadZone
   _deathReason: 0
@@ -5512,7 +5512,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2067377652}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f77f788cdb054476aa3e36387df4d62c, type: 3}
+  m_Script: {fileID: 11500000, guid: 814c26f0685dd4c758815aa977b75e2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DeadZone
   _deathReason: 1

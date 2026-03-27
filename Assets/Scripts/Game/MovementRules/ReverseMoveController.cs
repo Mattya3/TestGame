@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ReverseMoveController : IGameMoveController
+public class ReverseMoveController : IMoveController
 {
     private readonly IReadOnlyList<Player> _players;
     private readonly int _requiredCount;

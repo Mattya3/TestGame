@@ -1,6 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
-using static GameConstants;
+using static Constants;
 
 [RequireComponent(typeof(AudioSource))]
 public class BGMController : MonoBehaviour

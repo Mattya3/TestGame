@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class ColliderGoal : MonoBehaviour
+public class GoalTrigger : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D collision)
     {

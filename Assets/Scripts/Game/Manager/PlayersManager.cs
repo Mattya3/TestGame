@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using static GameConstants;
+using static Constants;
 
 public class PlayersManager : MonoBehaviour
 {

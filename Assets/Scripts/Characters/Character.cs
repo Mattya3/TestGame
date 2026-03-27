@@ -1,6 +1,6 @@
 using System;
 using UnityEngine;
-using static GameConstants;
+using static Constants;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(Collider2D))]

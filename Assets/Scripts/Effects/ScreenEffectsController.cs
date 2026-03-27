@@ -22,12 +22,12 @@ public class ScreenEffectsController : MonoBehaviour
     /// </summary>
     public void PlayFailureEffect(Action onComplete)
     {
-        _PlayEffect(GameConstants.AnimationTrigger.FAILURE, onComplete);
+        _PlayEffect(Constants.AnimationTrigger.FAILURE, onComplete);
     }
 
     public void PlaySuccessEffect(Action onComplete)
     {
-        _PlayEffect(GameConstants.AnimationTrigger.SUCCESS, onComplete);
+        _PlayEffect(Constants.AnimationTrigger.SUCCESS, onComplete);
     }
 
     private void _PlayEffect(string triggerName, Action onComplete)

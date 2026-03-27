@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-using static GameConstants;
+using static Constants;
 
 public class GameEventTrigger : MonoBehaviour
 {

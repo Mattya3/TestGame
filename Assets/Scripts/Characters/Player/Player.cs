@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using static GameConstants;
+using static Constants;
 
 public class Player : Character
 {
@@ -10,7 +10,7 @@ public class Player : Character
     public event Action<DeathReason> OnDied;
 
     public bool HasReachedGoal { get; private set; } = false;
-    public IGameMoveController MoveController { get; set; }
+    public IMoveController MoveController { get; set; }
 
     [SerializeField] 
     private PlayerSounds _sounds;

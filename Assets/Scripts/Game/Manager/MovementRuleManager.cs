@@ -1,18 +1,18 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using static GameConstants;
+using static Constants;
 
 public class MovementRuleManager : MonoBehaviour
 {
     [SerializeField]
     private MovementRuleEffect _movementRuleEffect;
 
-    private IGameMoveController _moveController;
+    private IMoveController _moveController;
 
     public void Initialize(IReadOnlyList<Player> players)
     {
-        _moveController = GameMoveControllerFactory.Create(_movementRuleEffect, players);
+        _moveController = MoveControllerFactory.Create(_movementRuleEffect, players);
         foreach (var player in players)
         {
             _ApplyNewRule(player);
