@@ -11,10 +11,7 @@ public class ScreenEffectsController : MonoBehaviour
 
     private void Awake()
     {
-        if (_animator == null)
-        {
-            Debug.LogError("Animatorがアサインされていません。");
-        }
+        _animator = GetComponent<Animator>();
     }
 
     /// <summary>

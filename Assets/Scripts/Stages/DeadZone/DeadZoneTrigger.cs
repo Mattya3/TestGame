@@ -1,6 +1,7 @@
 using UnityEngine;
 using static Constants;
 
+[RequireComponent(typeof(Collider2D))]
 public class DeadZoneTrigger : MonoBehaviour
 {
     [SerializeField]
