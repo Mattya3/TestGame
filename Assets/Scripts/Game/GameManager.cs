@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
     private MovementRuleManager _movementRuleManager;
 
     [SerializeField]
-    private PlayerManager _playerManager;
+    private PlayersManager _playersManager;
 
     private event Action _onFailure;
     private event Action _onSuccess;
@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        _movementRuleManager.Initialize(_playerManager.Players);
+        _movementRuleManager.Initialize(_playersManager.Players);
     }
 
     public Vector2 ConvertInputDirection(Vector2 rawInput) =>
@@ -66,5 +66,5 @@ public class GameManager : MonoBehaviour
         _stageManager.CompleteStage();
     }
 
-    public bool ArePlayersAlive() => _playerManager.ArePlayersAlive;
+    public bool ArePlayersAlive() => _playersManager.ArePlayersAlive;
 }

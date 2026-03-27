@@ -2030,7 +2030,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   _stageManager: {fileID: 554078608}
   _movementRuleManager: {fileID: 845628946}
-  _playerManager: {fileID: 1825111104}
+  _playersManager: {fileID: 1825111104}
 --- !u!4 &1422380077
 Transform:
   m_ObjectHideFlags: 0
@@ -2572,7 +2572,7 @@ GameObject:
   - component: {fileID: 1825111103}
   - component: {fileID: 1825111104}
   m_Layer: 0
-  m_Name: PlayerManager
+  m_Name: PlayersManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2602,9 +2602,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1825111102}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 92d1f7448987d48c3873f0c5ed885bbc, type: 3}
+  m_Script: {fileID: 11500000, guid: 238f69d430c80405baa708c31c271005, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerManager
+  m_EditorClassIdentifier: Assembly-CSharp::PlayersManager
 --- !u!1 &1837054319
 GameObject:
   m_ObjectHideFlags: 0

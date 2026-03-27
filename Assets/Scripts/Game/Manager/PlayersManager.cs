@@ -3,7 +3,7 @@ using System.Linq;
 using UnityEngine;
 using static GameConstants;
 
-public class PlayerManager : MonoBehaviour
+public class PlayersManager : MonoBehaviour
 {
     private List<Player> _players = new List<Player>();
 
