@@ -23,5 +23,4 @@ public class ElectricBarMove : MonoEventReactingBehaviour
     {
         enabled = false;
     }
-
 }
