@@ -12,7 +12,7 @@ public class Player : Character
     public bool HasReachedGoal { get; private set; } = false;
     public IMoveController MoveController { get; set; }
 
-    [SerializeField] 
+    [SerializeField]
     private PlayerSounds _sounds;
 
     private Vector2 _inputDirection;
@@ -38,7 +38,7 @@ public class Player : Character
     {
         if (!context.performed)
             return;
-        
+
         _ApplyJump();
         _sounds.OnJump();
     }

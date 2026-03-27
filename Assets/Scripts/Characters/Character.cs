@@ -40,10 +40,12 @@ public abstract class Character : MonoBehaviour
 
     protected void _ApplyJump()
     {
-        if (!_groundDetector.IsGrounded()) return;
-        
+        if (!_groundDetector.IsGrounded())
+            return;
+
         float deltaVy = Mathf.Max(
-            Mathf.Min(_jumpInitialVelocity, _jumpInitialVelocity - _rigidBody.linearVelocity.y), 0f
+            Mathf.Min(_jumpInitialVelocity, _jumpInitialVelocity - _rigidBody.linearVelocity.y),
+            0f
         );
         _rigidBody.AddForce(Vector2.up * deltaVy * _rigidBody.mass, ForceMode2D.Impulse);
     }
