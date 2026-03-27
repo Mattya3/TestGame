@@ -20,7 +20,7 @@ public abstract class MonoEventReactingBehaviour : MonoBehaviour
     protected virtual void OnSuccess() { }
     protected virtual void OnFailure() { }
 
-    // オーバーライドするが，イベントを購読したくない場合はfalseを返すように実装
+    // オーバーライドするが，イベントを登録したくない場合はfalseを返すように実装
     protected virtual bool _ShouldSubscribe(GameEvent gameEvent) => true;
 
     private bool _IsOverridden(string methodName)
