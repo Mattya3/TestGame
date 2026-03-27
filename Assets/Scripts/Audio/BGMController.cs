@@ -1,37 +1,31 @@
 ﻿using System.Collections;
 using UnityEngine;
+using static Constants;
 
 [RequireComponent(typeof(AudioSource))]
-public class BGMController : MonoBehaviour
+public class BGMController : MonoEventReactingBehaviour
 {
+    [SerializeField, Min(0.0f)]
+    private float _fadeOutTimeOnFailure = 0.1f;
+
+    [SerializeField, Min(0.0f)]
+    private float _fadeOutTimeOnSuccess = 1.0f;
+
     private AudioSource _audioSource;
-
-    [SerializeField, Min(0.0f)]
-    private float _fadeOutTimeOnPlayerDied = 0.1f;
-
-    [SerializeField, Min(0.0f)]
-    private float _fadeOutTimeOnAllPlayersGoal = 1.0f;
 
     private void Awake()
     {
         _audioSource = GetComponent<AudioSource>();
     }
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    protected override void OnFailure()
     {
-        GameManager.Instance.OnPlayerDied += _OnPlayerDied;
-        GameManager.Instance.OnAllPlayersGoal += _OnAllPlayersGoal;
+        StartCoroutine(_CoFadeOut(_fadeOutTimeOnFailure));
     }
 
-    private void _OnPlayerDied()
+    protected override void OnSuccess()
     {
-        StartCoroutine(_CoFadeOut(_fadeOutTimeOnPlayerDied));
-    }
-
-    private void _OnAllPlayersGoal()
-    {
-        StartCoroutine(_CoFadeOut(_fadeOutTimeOnAllPlayersGoal));
+        StartCoroutine(_CoFadeOut(_fadeOutTimeOnSuccess));
     }
 
     private IEnumerator _CoFadeOut(float fadeOutTime)

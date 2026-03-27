@@ -312,7 +312,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3582371656211cc4f89cd7dfefbd22e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EventMusicPlayer
-  _targetEvent: 0
+  _gameEvent: 0
   _delayBeforePlaying: 0.2
 --- !u!82 &161220177
 AudioSource:
@@ -540,6 +540,51 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &554078607
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 554078609}
+  - component: {fileID: 554078608}
+  m_Layer: 0
+  m_Name: SceneTransitionManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &554078608
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 554078607}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7fe494deb39a49188f26597f2d46182, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ScreenManager
+  _screenEffectsController: {fileID: 875144713}
+--- !u!4 &554078609
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 554078607}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1422380077}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &644407297
 GameObject:
   m_ObjectHideFlags: 0
@@ -808,6 +853,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Player
   _moveSpeed: 5
   _jumpInitialVelocity: 15
+  _groundDetector: {fileID: 1663018031}
   _sounds:
     _footstepSound:
       _clip: {fileID: 8300000, guid: 30c122f7e8df5624c8b30a8ab7ab033c, type: 3}
@@ -975,6 +1021,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2090028617}
+  - {fileID: 1663018032}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &798238768
@@ -1106,6 +1153,51 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &845628945
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 845628947}
+  - component: {fileID: 845628946}
+  m_Layer: 0
+  m_Name: MovementRuleManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &845628946
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 845628945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 900b1b34497064c488b6f70a73795756, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MovementRuleManager
+  _movementRuleEffect: 1
+--- !u!4 &845628947
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 845628945}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1422380077}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &875144711
 GameObject:
   m_ObjectHideFlags: 0
@@ -1328,9 +1420,53 @@ MonoBehaviour:
   m_GameObject: {fileID: 887804184}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce2637f37b99d9a458062c727bd3d1fd, type: 3}
+  m_Script: {fileID: 11500000, guid: 348b3df0fa6fe459ba6d97b072225db0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+--- !u!1 &952535229
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 952535231}
+  - component: {fileID: 952535230}
+  m_Layer: 7
+  m_Name: GroundDetector
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &952535230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 952535229}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 710dedd5ed10e4becbdde73a478a731d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GroundDetector
+--- !u!4 &952535231
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 952535229}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1435100477}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1093922456
 GameObject:
   m_ObjectHideFlags: 0
@@ -1778,8 +1914,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e1743204e3654d82b5b1997f90360f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
-  _screenEffectsController: {fileID: 875144713}
-  _movementRuleEffect: 1
+  _sceneTransitionManager: {fileID: 554078608}
+  _movementRuleManager: {fileID: 845628946}
+  _playersManager: {fileID: 1825111104}
 --- !u!4 &1422380077
 Transform:
   m_ObjectHideFlags: 0
@@ -1792,7 +1929,10 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 554078609}
+  - {fileID: 845628947}
+  - {fileID: 1825111103}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1435100471
@@ -1900,6 +2040,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Player
   _moveSpeed: 5
   _jumpInitialVelocity: 15
+  _groundDetector: {fileID: 952535230}
   _sounds:
     _footstepSound:
       _clip: {fileID: 8300000, guid: 30c122f7e8df5624c8b30a8ab7ab033c, type: 3}
@@ -2067,6 +2208,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1527323605}
+  - {fileID: 952535231}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1527323604
@@ -2232,6 +2374,50 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1527323605}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1663018030
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1663018032}
+  - component: {fileID: 1663018031}
+  m_Layer: 7
+  m_Name: GroundDetector
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1663018031
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1663018030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 710dedd5ed10e4becbdde73a478a731d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GroundDetector
+--- !u!4 &1663018032
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1663018030}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 740941447}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1711588340
 GameObject:
   m_ObjectHideFlags: 0
@@ -2244,7 +2430,7 @@ GameObject:
   - component: {fileID: 1711588344}
   - component: {fileID: 1711588343}
   m_Layer: 5
-  m_Name: PlayerDeathEffect
+  m_Name: FailureEffect
   m_TagString: Respawn
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2307,6 +2493,50 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1711588340}
   m_CullTransparentMesh: 1
+--- !u!1 &1825111102
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1825111103}
+  - component: {fileID: 1825111104}
+  m_Layer: 0
+  m_Name: PlayersManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1825111103
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1825111102}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1422380077}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1825111104
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1825111102}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 238f69d430c80405baa708c31c271005, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayersManager
 --- !u!1 &1837054319
 GameObject:
   m_ObjectHideFlags: 0
@@ -2352,7 +2582,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3582371656211cc4f89cd7dfefbd22e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EventMusicPlayer
-  _targetEvent: 1
+  _gameEvent: 1
   _delayBeforePlaying: 1
 --- !u!82 &1837054322
 AudioSource:
@@ -2463,7 +2693,7 @@ GameObject:
   - component: {fileID: 1845946233}
   - component: {fileID: 1845946232}
   m_Layer: 5
-  m_Name: AllPlayersGoalEffect
+  m_Name: SuccessEffect
   m_TagString: Respawn
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2553,7 +2783,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1913331933}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f77f788cdb054476aa3e36387df4d62c, type: 3}
+  m_Script: {fileID: 11500000, guid: 814c26f0685dd4c758815aa977b75e2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ColliderDeadZone
   _deathReason: 0
@@ -2591,7 +2821,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 10, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -2601,7 +2831,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 100, y: 0.01}
+  m_Size: {x: 120, y: 2}
   m_EdgeRadius: 0
 --- !u!4 &1913331936
 Transform:
@@ -2612,7 +2842,7 @@ Transform:
   m_GameObject: {fileID: 1913331933}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -6.5, z: 0}
+  m_LocalPosition: {x: 0, y: -8, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4846,8 +5076,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7816173083aff64bb8ce355bfd66cc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  _fadeOutTimeOnPlayerDied: 0.1
-  _fadeOutTimeOnAllPlayersGoal: 0.75
+  _fadeOutTimeOnFailure: 0.1
+  _fadeOutTimeOnSuccess: 1
 --- !u!114 &1981519073
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4975,7 +5205,7 @@ GameObject:
   - component: {fileID: 2067377657}
   m_Layer: 0
   m_Name: ElectricBar
-  m_TagString: ElecticBar
+  m_TagString: ElectricBar
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5111,8 +5341,9 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ff8a6fa19d78244ad8fda9e2ddabb937, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ElecticBarMove
+  m_EditorClassIdentifier: Assembly-CSharp::ElectricBarMove
   _moveSpeed: 1
+  _direction: {x: 1, y: 0, z: 0}
 --- !u!114 &2067377657
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5122,7 +5353,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2067377652}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f77f788cdb054476aa3e36387df4d62c, type: 3}
+  m_Script: {fileID: 11500000, guid: 814c26f0685dd4c758815aa977b75e2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DeadZone
   _deathReason: 1
@@ -5168,9 +5399,9 @@ SceneRoots:
   - {fileID: 113552095}
   - {fileID: 2067377655}
   - {fileID: 1422380077}
-  - {fileID: 48347793}
   - {fileID: 1913331936}
   - {fileID: 887804186}
   - {fileID: 1435100477}
   - {fileID: 740941447}
   - {fileID: 644407298}
+  - {fileID: 48347793}

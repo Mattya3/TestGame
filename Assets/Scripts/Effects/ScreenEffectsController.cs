@@ -9,25 +9,22 @@ public class ScreenEffectsController : MonoBehaviour
 
     private Action _onEffectComplete;
 
-    void Awake()
+    private void Awake()
     {
-        if (_animator == null)
-        {
-            Debug.LogError("Animatorがアサインされていません。");
-        }
+        _animator = GetComponent<Animator>();
     }
 
     /// <summary>
     /// 指定されたアニメーション演出（トリガー）を実行します。
     /// </summary>
-    public void PlayDeathEffect(Action onComplete)
+    public void PlayFailureEffect(Action onComplete)
     {
-        _PlayEffect(GameConstants.AnimationTrigger.PLAYER_DEATH, onComplete);
+        _PlayEffect(Constants.AnimationTrigger.FAILURE, onComplete);
     }
 
-    public void PlayGoalEffect(Action onComplete)
+    public void PlaySuccessEffect(Action onComplete)
     {
-        _PlayEffect(GameConstants.AnimationTrigger.ALL_PLAYERS_GOAL, onComplete);
+        _PlayEffect(Constants.AnimationTrigger.SUCCESS, onComplete);
     }
 
     private void _PlayEffect(string triggerName, Action onComplete)

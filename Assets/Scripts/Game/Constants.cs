@@ -1,4 +1,4 @@
-﻿public static class GameConstants
+﻿public static class Constants
 {
     public static class Tags
     {
@@ -13,8 +13,8 @@
 
     public static class AnimationTrigger
     {
-        public const string PLAYER_DEATH = "PlayerDeath";
-        public const string ALL_PLAYERS_GOAL = "AllPlayersGoal";
+        public const string FAILURE = "Failure";
+        public const string SUCCESS = "Success";
     }
 
     public enum DeathReason

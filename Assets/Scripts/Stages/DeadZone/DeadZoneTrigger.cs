@@ -1,7 +1,8 @@
 using UnityEngine;
-using static GameConstants;
+using static Constants;
 
-public class ColliderDeadZone : MonoBehaviour
+[RequireComponent(typeof(Collider2D))]
+public class DeadZoneTrigger : MonoBehaviour
 {
     [SerializeField]
     private DeathReason _deathReason;

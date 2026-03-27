@@ -716,8 +716,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4eddd1a7247b05e4fa56071cc0870d41, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: '::'
-  _audioSource: {fileID: 507790667}
+  m_EditorClassIdentifier: Assembly-CSharp::AudioLooper
   _originalFrequency: 44100
   _loopBeginSample: 811245
   _loopEndSample: 3069183
@@ -732,10 +731,9 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d7816173083aff64bb8ce355bfd66cc7, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: '::'
-  _audioSource: {fileID: 507790667}
-  _fadeOutTimeOnPlayerDied: 0.1
-  _fadeOutTimeOnAllPlayersGoal: 0.75
+  m_EditorClassIdentifier: Assembly-CSharp::BGMController
+  _fadeOutTimeOnFailure: 0.1
+  _fadeOutTimeOnSuccess: 1
 --- !u!1 &610625220
 GameObject:
   m_ObjectHideFlags: 0
@@ -1123,7 +1121,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ce2637f37b99d9a458062c727bd3d1fd, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: '::'
+  m_EditorClassIdentifier: Assembly-CSharp::ColliderGoal
 --- !u!1 &1113217126
 GameObject:
   m_ObjectHideFlags: 0
@@ -1314,6 +1312,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   _screenEffectsController: {fileID: 875144713}
+  _movementRuleEffect: 0
 --- !u!4 &1422380077
 Transform:
   m_ObjectHideFlags: 0
@@ -1699,9 +1698,17 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 715ecb71-28e3-444b-a24f-bf6fe6eda3ad
     m_ActionName: 'Player/Jump[/Keyboard/w,/Keyboard/upArrow]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: d0c3151b-fd4c-4ddc-a71d-7de492325219
+    m_ActionName: 'Player2/Move[/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 9c6fc38e-396e-46d3-9dc5-c0939febac30
+    m_ActionName: 'Player2/Jump[/Keyboard/upArrow]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
-  m_DefaultActionMap: Player
+  m_DefaultActionMap: 46afbac9-0ca9-41e7-9b7e-3265440b4100
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!114 &1662044836
@@ -1717,7 +1724,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
   _moveSpeed: 5
-  _jumpForce: 15
+  _jumpInitialVelocity: 15
   _sounds:
     _footstepSound:
       _clip: {fileID: 8300000, guid: 30c122f7e8df5624c8b30a8ab7ab033c, type: 3}
@@ -1880,7 +1887,7 @@ GameObject:
   - component: {fileID: 1711588344}
   - component: {fileID: 1711588343}
   m_Layer: 5
-  m_Name: PlayerDeathEffect
+  m_Name: FailureEffect
   m_TagString: Respawn
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1955,7 +1962,7 @@ GameObject:
   - component: {fileID: 1845946233}
   - component: {fileID: 1845946232}
   m_Layer: 5
-  m_Name: AllPlayersGoalEffect
+  m_Name: SuccessEffect
   m_TagString: Respawn
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4307,7 +4314,7 @@ GameObject:
   - component: {fileID: 2067377657}
   m_Layer: 0
   m_Name: ElectricBar
-  m_TagString: ElecticBar
+  m_TagString: ElectricBar
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4443,7 +4450,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ff8a6fa19d78244ad8fda9e2ddabb937, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ElecticBarMove
+  m_EditorClassIdentifier: Assembly-CSharp::ElectricBarMove
   _moveSpeed: 1
 --- !u!114 &2067377657
 MonoBehaviour:
@@ -4456,7 +4463,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f77f788cdb054476aa3e36387df4d62c, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DeadZone
+  m_EditorClassIdentifier: Assembly-CSharp::ColliderDeadZone
   _deathReason: 1
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
