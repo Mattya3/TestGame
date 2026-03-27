@@ -1,19 +1,26 @@
 ﻿using UnityEngine;
-using static GameConstants;
+using static Constants;
 
-public class ElectricBarMove : MonoBehaviour
+public class ElectricBarMove : MonoEventReactingBehaviour
 {
     [SerializeField]
     private float _moveSpeed;
 
-    void Start()
+    [SerializeField]
+    private Vector3 _direction = Vector3.right;
+
+    private void Update()
     {
-        GameManager.Instance.RegisterEventAction(GameEvent.Failure, () => enabled = false);
-        GameManager.Instance.RegisterEventAction(GameEvent.Success, () => enabled = false);
+        transform.Translate(_direction * _moveSpeed * Time.deltaTime);
     }
 
-    void Update()
+    protected override void OnFailure()
     {
-        transform.Translate(Vector3.right * _moveSpeed * Time.deltaTime);
+        enabled = false;
+    }
+
+    protected override void OnSuccess()
+    {
+        enabled = false;
     }
 }

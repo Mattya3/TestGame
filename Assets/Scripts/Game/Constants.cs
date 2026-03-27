@@ -1,4 +1,4 @@
-﻿public static class GameConstants
+﻿public static class Constants
 {
     public static class Tags
     {

@@ -1,11 +1,12 @@
 ﻿using System.Collections;
 using UnityEngine;
+using static Constants;
 
 [RequireComponent(typeof(AudioSource))]
-public class EventMusicPlayer : MonoBehaviour
+public class EventMusicPlayer : MonoEventReactingBehaviour
 {
     [SerializeField]
-    private GameConstants.GameEvent _targetEvent;
+    private GameEvent _gameEvent;
 
     [SerializeField]
     private float _delayBeforePlaying = 1f;
@@ -17,13 +18,17 @@ public class EventMusicPlayer : MonoBehaviour
         _audioSource = GetComponent<AudioSource>();
     }
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    protected override bool _ShouldSubscribe(GameEvent gameEvent)
     {
-        GameManager.Instance.RegisterEventAction(_targetEvent, _Play);
+        return gameEvent == _gameEvent;
     }
 
-    private void _Play()
+    protected override void OnFailure()
+    {
+        StartCoroutine(_CoPlay());
+    }
+
+    protected override void OnSuccess()
     {
         StartCoroutine(_CoPlay());
     }

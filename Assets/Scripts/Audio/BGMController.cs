@@ -1,36 +1,29 @@
 ﻿using System.Collections;
 using UnityEngine;
-using static GameConstants;
+using static Constants;
 
 [RequireComponent(typeof(AudioSource))]
-public class BGMController : MonoBehaviour
+public class BGMController : MonoEventReactingBehaviour
 {
-    private AudioSource _audioSource;
-
     [SerializeField, Min(0.0f)]
     private float _fadeOutTimeOnFailure = 0.1f;
 
     [SerializeField, Min(0.0f)]
     private float _fadeOutTimeOnSuccess = 1.0f;
 
+    private AudioSource _audioSource;
+
     private void Awake()
     {
         _audioSource = GetComponent<AudioSource>();
     }
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        GameManager.Instance.RegisterEventAction(GameEvent.Failure, _OnFailure);
-        GameManager.Instance.RegisterEventAction(GameEvent.Success, _OnSuccess);
-    }
-
-    private void _OnFailure()
+    protected override void OnFailure()
     {
         StartCoroutine(_CoFadeOut(_fadeOutTimeOnFailure));
     }
 
-    private void _OnSuccess()
+    protected override void OnSuccess()
     {
         StartCoroutine(_CoFadeOut(_fadeOutTimeOnSuccess));
     }

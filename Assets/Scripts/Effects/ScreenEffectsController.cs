@@ -9,12 +9,9 @@ public class ScreenEffectsController : MonoBehaviour
 
     private Action _onEffectComplete;
 
-    void Awake()
+    private void Awake()
     {
-        if (_animator == null)
-        {
-            Debug.LogError("Animatorがアサインされていません。");
-        }
+        _animator = GetComponent<Animator>();
     }
 
     /// <summary>
@@ -22,12 +19,12 @@ public class ScreenEffectsController : MonoBehaviour
     /// </summary>
     public void PlayFailureEffect(Action onComplete)
     {
-        _PlayEffect(GameConstants.AnimationTrigger.FAILURE, onComplete);
+        _PlayEffect(Constants.AnimationTrigger.FAILURE, onComplete);
     }
 
     public void PlaySuccessEffect(Action onComplete)
     {
-        _PlayEffect(GameConstants.AnimationTrigger.SUCCESS, onComplete);
+        _PlayEffect(Constants.AnimationTrigger.SUCCESS, onComplete);
     }
 
     private void _PlayEffect(string triggerName, Action onComplete)
