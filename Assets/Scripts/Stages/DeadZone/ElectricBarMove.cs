@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using static Constants;
 
-public class ElectricBarMove : MonoBehaviour
+public class ElectricBarMove : MonoEventReactingBehaviour
 {
     [SerializeField]
     private float _moveSpeed;
@@ -13,4 +13,15 @@ public class ElectricBarMove : MonoBehaviour
     {
         transform.Translate(_direction * _moveSpeed * Time.deltaTime);
     }
+
+    protected override void OnFailure()
+    {
+        enabled = false;
+    }
+
+    protected override void OnSuccess()
+    {
+        enabled = false;
+    }
+
 }

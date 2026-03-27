@@ -4,7 +4,7 @@ using static Constants;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(Collider2D))]
-public abstract class Character : MonoBehaviour
+public abstract class Character : MonoEventReactingBehaviour
 {
     [SerializeField, Range(0f, 20f)]
     private float _moveSpeed;
@@ -48,6 +48,16 @@ public abstract class Character : MonoBehaviour
             0f
         );
         _rigidBody.AddForce(Vector2.up * deltaVy * _rigidBody.mass, ForceMode2D.Impulse);
+    }
+
+    protected override void OnFailure()
+    {
+        enabled = false;
+    }
+
+    protected override void OnSuccess()
+    {
+        enabled = false;
     }
 
     public void Freeze()

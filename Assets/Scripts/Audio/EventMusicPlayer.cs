@@ -1,9 +1,13 @@
 ﻿using System.Collections;
 using UnityEngine;
+using static Constants;
 
 [RequireComponent(typeof(AudioSource))]
-public class EventMusicPlayer : MonoBehaviour
+public class EventMusicPlayer : MonoEventReactingBehaviour
 {
+    [SerializeField]
+    private GameEvent _gameEvent;
+
     [SerializeField]
     private float _delayBeforePlaying = 1f;
 
@@ -14,7 +18,17 @@ public class EventMusicPlayer : MonoBehaviour
         _audioSource = GetComponent<AudioSource>();
     }
 
-    public void Play()
+    protected override bool _ShouldSubscribe(GameEvent gameEvent)
+    {
+        return gameEvent == _gameEvent;
+    }
+
+    protected override void OnFailure()
+    {
+        StartCoroutine(_CoPlay());
+    }
+
+    protected override void OnSuccess()
     {
         StartCoroutine(_CoPlay());
     }

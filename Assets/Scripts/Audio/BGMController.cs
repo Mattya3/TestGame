@@ -3,7 +3,7 @@ using UnityEngine;
 using static Constants;
 
 [RequireComponent(typeof(AudioSource))]
-public class BGMController : MonoBehaviour
+public class BGMController : MonoEventReactingBehaviour
 {
     [SerializeField, Min(0.0f)]
     private float _fadeOutTimeOnFailure = 0.1f;
@@ -18,12 +18,12 @@ public class BGMController : MonoBehaviour
         _audioSource = GetComponent<AudioSource>();
     }
 
-    public void OnFailure()
+    protected override void OnFailure()
     {
         StartCoroutine(_CoFadeOut(_fadeOutTimeOnFailure));
     }
 
-    public void OnSuccess()
+    protected override void OnSuccess()
     {
         StartCoroutine(_CoFadeOut(_fadeOutTimeOnSuccess));
     }

@@ -4,26 +4,38 @@ using UnityEngine;
 using UnityEngine.Events;
 using static Constants;
 
-public class GameEventTrigger : MonoBehaviour
+public static class GameEventTrigger
 {
-    [Serializable]
-    public class EventReaction
+    private static event Action OnSuccess;
+    private static event Action OnFailure;
+
+    public static void RegisterEventAction(GameEvent gameEvent, Action eventAction)
     {
-        public GameEvent TargetEvent; // イベントの種類
-        public UnityEvent OnEventTriggered; // 発火時のアクション
+        switch (gameEvent)
+        {
+            case GameEvent.Failure:
+                OnFailure += eventAction;
+                break;
+            case GameEvent.Success:
+                OnSuccess += eventAction;
+                break;
+            default:
+                Debug.LogError($"Unhandled GameEvent value in RegisterEventAction: {gameEvent}");
+                throw new ArgumentOutOfRangeException(nameof(gameEvent), gameEvent, null);
+        }
     }
 
-    [SerializeField]
-    private List<EventReaction> _reactions = new List<EventReaction>();
-
-    private void Start()
+    public static void TriggerEvent(GameEvent gameEvent)
     {
-        foreach (var reaction in _reactions)
-        {
-            GameManager.Instance.RegisterEventAction(
-                reaction.TargetEvent,
-                () => reaction.OnEventTriggered?.Invoke()
-            );
-        }
+        if(gameEvent == GameEvent.Success)
+            OnSuccess?.Invoke();
+        else if(gameEvent == GameEvent.Failure)
+            OnFailure?.Invoke();
+    }
+
+    public static void ResetEvents()
+    {
+        OnSuccess = null;
+        OnFailure = null;
     }
 }
