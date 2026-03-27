@@ -8,7 +8,7 @@ using static Constants;
 public class GameManager : MonoBehaviour
 {
     [SerializeField]
-    private StageManager _stageManager;
+    private SceneTransitionManager _sceneTransitionManager;
 
     [SerializeField]
     private MovementRuleManager _movementRuleManager;
@@ -54,13 +54,13 @@ public class GameManager : MonoBehaviour
     public void HandleFailure()
     {
         _onFailure?.Invoke();
-        _stageManager.RestartStage();
+        _sceneTransitionManager.RestartStage();
     }
 
     public void HandleSuccess()
     {
         _onSuccess?.Invoke();
-        _stageManager.CompleteStage();
+        _sceneTransitionManager.CompleteStage();
     }
 
     public bool ArePlayersAlive() => _playersManager.ArePlayersAlive;

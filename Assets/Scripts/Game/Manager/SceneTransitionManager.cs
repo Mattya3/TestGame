@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class StageManager : MonoBehaviour
+public class SceneTransitionManager : MonoBehaviour
 {
     [SerializeField]
     private ScreenEffectsController _screenEffectsController;
