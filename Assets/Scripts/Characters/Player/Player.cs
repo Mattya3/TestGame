@@ -12,6 +12,7 @@ public class Player : MonoBehaviour
     public event Action<DeathReason> OnDied;
 
     public bool HasReachedGoal { get; private set; } = false;
+    public IGameMoveController MoveController { get; set; }
 
     public Vector2 InputDirection => _inputDirection;
 
@@ -78,7 +79,7 @@ public class Player : MonoBehaviour
 
     private void _Move()
     {
-        Vector2 convertedDirection = GameManager.Instance.ConvertInputDirection(_inputDirection);
+        Vector2 convertedDirection = MoveController.ConvertInputDirection(_inputDirection);
         Vector2 groundVelocity = _GetGroundVelocity();
 
         _rigidBody.linearVelocity = new Vector2(

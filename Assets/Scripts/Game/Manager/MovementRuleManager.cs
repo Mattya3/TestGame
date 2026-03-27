@@ -13,10 +13,14 @@ public class MovementRuleManager : MonoBehaviour
     public void Initialize(IReadOnlyList<Player> players)
     {
         _moveController = GameMoveControllerFactory.Create(_movementRuleEffect, players);
+        foreach (var player in players)
+        {
+            _ApplyNewRule(player);
+        }
     }
 
-    public Vector2 ConvertInputDirection(Vector2 input)
+    private void _ApplyNewRule(Player player)
     {
-        return _moveController.ConvertInputDirection(input);
+        player.MoveController = _moveController;
     }
 }

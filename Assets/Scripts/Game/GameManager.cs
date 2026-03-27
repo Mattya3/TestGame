@@ -32,9 +32,6 @@ public class GameManager : MonoBehaviour
         _movementRuleManager.Initialize(_playersManager.Players);
     }
 
-    public Vector2 ConvertInputDirection(Vector2 rawInput) =>
-        _movementRuleManager.ConvertInputDirection(rawInput);
-
     public void RegisterEventAction(GameEvent gameEvent, Action eventAction)
     {
         switch (gameEvent)
