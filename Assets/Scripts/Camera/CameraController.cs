@@ -8,7 +8,7 @@ public class CameraController : MonoBehaviour
     [SerializeField]
     private Constants.CameraTargetMode _targetMode = Constants.CameraTargetMode.Players;
 
-    ICameraTarget _cameraTarget;
+    private ICameraTarget _cameraTarget;
 
     [SerializeField]
     private Vector3 _offset; // 対象からのオフセット
