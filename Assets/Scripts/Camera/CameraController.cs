@@ -68,7 +68,7 @@ public class CameraController : MonoBehaviour
         }
         catch (System.Exception ex)
         {
-            Debug.LogError($"カメターゲットの作成に失敗: {ex.Message}", this);
+            Debug.LogError($"カメラターゲットの作成に失敗: {ex.Message}", this);
             enabled = false;
             return;
         }
