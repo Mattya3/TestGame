@@ -15,12 +15,10 @@ public abstract class Character : MonoEventReactingBehaviour
     [SerializeField]
     protected GroundDetector _groundDetector;
 
-    private Collider2D _collider;
     private Rigidbody2D _rigidBody;
 
     protected virtual void Awake()
     {
-        _collider = GetComponent<Collider2D>();
         _rigidBody = GetComponent<Rigidbody2D>();
     }
 
