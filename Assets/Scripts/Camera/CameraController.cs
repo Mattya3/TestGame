@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 
 [RequireComponent(typeof(Camera))]
-[RequireComponent(typeof(ICameraTarget))]
 public class CameraController : MonoBehaviour
 {
     // == Smoothing ==
@@ -24,13 +23,14 @@ public class CameraController : MonoBehaviour
 
     void Awake()
     {
+        _camera = GetComponent<Camera>();
+        _cameraTarget = GetComponent<ICameraTarget>();
+
         if (!_IsConfigurationValid())
         {
             enabled = false;
             return;
         }
-        _camera = GetComponent<Camera>();
-        _cameraTarget = GetComponent<ICameraTarget>();
     }
 
     private bool _IsConfigurationValid()
@@ -43,6 +43,11 @@ public class CameraController : MonoBehaviour
         if (_bounds.HasNaN())
         {
             Debug.LogError("カメラの制約に無効な値が含まれています", this);
+            return false;
+        }
+        if (_cameraTarget == null)
+        {
+            Debug.LogError("CameraControllerにはICameraTargetを実装したコンポーネントが必要です", this);
             return false;
         }
         return true;
