@@ -23,7 +23,7 @@
         DeadZone,
     }
 
-    public enum  CameraTargetMode
+    public enum CameraTargetMode
     {
         Players,
     }
