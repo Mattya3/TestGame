@@ -23,6 +23,11 @@
         DeadZone,
     }
 
+    public enum  CameraTargetMode
+    {
+        Players,
+    }
+
     public enum MovementRuleEffect
     {
         Demo, //デモ用, 入力反転が起こらない
