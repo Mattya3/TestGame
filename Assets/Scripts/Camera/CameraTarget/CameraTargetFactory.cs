@@ -11,8 +11,8 @@ public static class CameraTargetFactory
                 return new CameraTarget.Players(GameManager.Instance.Players());
 
             default:
-            Debug.LogError($"Unknown camera target mode: {mode}");
-            throw new System.ArgumentException($"Unknown camera target mode: {mode}");
+                Debug.LogError($"Unknown camera target mode: {mode}");
+                throw new System.ArgumentException($"Unknown camera target mode: {mode}");
         }
     }
 }
