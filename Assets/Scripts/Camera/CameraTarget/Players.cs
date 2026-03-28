@@ -5,8 +5,6 @@ namespace CameraTarget
 {
     public class Players : ICameraTarget
     {
-        private const float CAMERA_MARGIN = 1e-2f;
-
         private IReadOnlyList<Player> _players;
 
         public Players(IReadOnlyList<Player> players)
