@@ -13,6 +13,11 @@ public class CameraController : MonoBehaviour
     [SerializeField]
     private Vector3 _offset; // 対象からのオフセット
 
+    // == Target Shift ==
+    [Header("TargetShift")]
+    [SerializeField]
+    private CameraTargetShift _shift = new CameraTargetShift();
+
     // == Smoothing ==
     [Header("Smoothing")]
     [SerializeField, Min(0f)]
@@ -76,15 +81,19 @@ public class CameraController : MonoBehaviour
         // カメラの初期位置を設定
         var destination = _CalculateDestination();
         transform.position = destination;
+        _shift.Start(destination);
     }
 
     void LateUpdate()
     {
         var destination = _CalculateDestination();
 
+        _shift.LateUpdate(destination);
+        var shiftedDestination = destination + _shift.Shift;
+
         var newPos = Vector3.SmoothDamp(
             transform.position,
-            destination,
+            shiftedDestination,
             ref _velocity,
             _smoothTime
         );

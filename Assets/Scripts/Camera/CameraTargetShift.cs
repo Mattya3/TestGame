@@ -7,7 +7,7 @@ public class CameraTargetShift
     [SerializeField]
     private Vector2 _velocityCoeff;
 
-    [SerializeField]
+    [SerializeField, Min(0.0f)]
     private Vector2 _maxShiftAmount;
 
     private Vector3 _shift = Vector3.zero;
