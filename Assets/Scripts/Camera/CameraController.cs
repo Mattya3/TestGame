@@ -47,7 +47,10 @@ public class CameraController : MonoBehaviour
         }
         if (_cameraTarget == null)
         {
-            Debug.LogError("CameraControllerにはICameraTargetを実装したコンポーネントが必要です", this);
+            Debug.LogError(
+                "CameraControllerにはICameraTargetを実装したコンポーネントが必要です",
+                this
+            );
             return false;
         }
         return true;
