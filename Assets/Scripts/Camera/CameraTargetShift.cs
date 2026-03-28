@@ -22,10 +22,10 @@ public class CameraTargetShift
 
     public void LateUpdate(Vector3 targetPos)
     {
-        var deltaTargetPos = targetPos - _prevTargetPos;
-        var deltaShift = Vector3.Scale(new Vector3(_velocityCoeff.x, _velocityCoeff.y, 0), deltaTargetPos);
+        var delta = targetPos - _prevTargetPos;
+        var scaledDelta = Vector3.Scale(new Vector3(_velocityCoeff.x, _velocityCoeff.y, 0), delta);
 
-        _shift += deltaShift;
+        _shift += scaledDelta;
         _shift = new Vector3(
             Mathf.Clamp(_shift.x, -_maxShiftAmount.x, _maxShiftAmount.x),
             Mathf.Clamp(_shift.y, -_maxShiftAmount.y, _maxShiftAmount.y),

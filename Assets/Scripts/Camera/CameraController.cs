@@ -80,8 +80,10 @@ public class CameraController : MonoBehaviour
 
         // カメラの初期位置を設定
         var destination = _CalculateDestination();
-        transform.position = destination;
         _shift.Start(destination);
+
+        var boundedDestination = _Bound(destination);
+        transform.position = boundedDestination;
     }
 
     void LateUpdate()
@@ -91,20 +93,26 @@ public class CameraController : MonoBehaviour
         _shift.LateUpdate(destination);
         var shiftedDestination = destination + _shift.Shift;
 
+        var boundedDestination = _Bound(shiftedDestination);
+
         var newPos = Vector3.SmoothDamp(
             transform.position,
-            shiftedDestination,
+            boundedDestination,
             ref _velocity,
             _smoothTime
         );
-
         transform.position = newPos;
     }
 
     private Vector3 _CalculateDestination()
     {
         var targetPosition = _cameraTarget.Position();
-        return _bounds.Bound(targetPosition + _offset, transform.position);
+        return targetPosition + _offset;
+    }
+
+    private Vector3 _Bound(Vector3 pos)
+    {
+        return _bounds.Bound(pos, transform.position);
     }
 
     // エディタ上でカメラの移動範囲を視覚化するためのGizmosを描画
