@@ -1,18 +1,9 @@
 ﻿using UnityEngine;
 
 [RequireComponent(typeof(Camera))]
+[RequireComponent(typeof(ICameraTarget))]
 public class CameraController : MonoBehaviour
 {
-    // == Destination ==
-    [Header("Destination")]
-    [SerializeField]
-    private Constants.CameraTargetMode _targetMode = Constants.CameraTargetMode.Players;
-
-    private ICameraTarget _cameraTarget;
-
-    [SerializeField]
-    private Vector3 _offset; // 対象からのオフセット
-
     // == Target Shift ==
     [Header("TargetShift")]
     [SerializeField]
@@ -32,6 +23,7 @@ public class CameraController : MonoBehaviour
 
     // == Component References ==
     private Camera _camera; // カメラコンポーネントへの参照
+    private ICameraTarget _cameraTarget;
 
     // == Unity Event Functions ==
 
@@ -43,15 +35,11 @@ public class CameraController : MonoBehaviour
             return;
         }
         _camera = GetComponent<Camera>();
+        _cameraTarget = GetComponent<ICameraTarget>();
     }
 
     private bool _IsConfigurationValid()
     {
-        if (_offset.z >= 0)
-        {
-            Debug.LogError("カメラのoffset.zは負の値でなければなりません", this);
-            return false;
-        }
         if (_bounds.HasReversedBounds())
         {
             Debug.LogError("カメラ制約の最小値は最大値より小さくなければなりません", this);
@@ -69,7 +57,7 @@ public class CameraController : MonoBehaviour
     {
         try
         {
-            _cameraTarget = CameraTargetFactory.Create(_targetMode);
+            //_cameraTarget = CameraTargetFactory.Create(_targetMode);
         }
         catch (System.Exception ex)
         {
@@ -106,8 +94,7 @@ public class CameraController : MonoBehaviour
 
     private Vector3 _CalculateDestination()
     {
-        var targetPosition = _cameraTarget.Position();
-        return targetPosition + _offset;
+        return _cameraTarget.Position;
     }
 
     private Vector3 _Bound(Vector3 pos)

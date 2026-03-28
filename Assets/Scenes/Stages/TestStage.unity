@@ -1686,6 +1686,7 @@ GameObject:
   - component: {fileID: 1113217128}
   - component: {fileID: 1113217127}
   - component: {fileID: 1113217130}
+  - component: {fileID: 1113217132}
   - component: {fileID: 1113217131}
   m_Layer: 6
   m_Name: Main Camera
@@ -1826,8 +1827,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6e267d69a715fc49bfb7fad50ea8eab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CameraController
-  _targetMode: 0
-  _offset: {x: 0, y: 1, z: -10}
   _shift:
     _velocityCoeff: {x: 2, y: 0}
     _maxShiftAmount: {x: 3, y: 0}
@@ -1839,6 +1838,19 @@ MonoBehaviour:
     _rightBound: 36
     _bottomBound: 0
     _topBound: 1
+--- !u!114 &1113217132
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1113217126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1af60dc605e5cea4f92ea5592086cb80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayersCameraTarget
+  _offset: {x: 0, y: 1, z: -10}
 --- !u!1 &1334626298
 GameObject:
   m_ObjectHideFlags: 0

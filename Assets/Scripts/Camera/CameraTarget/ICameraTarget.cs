@@ -2,5 +2,5 @@
 
 public interface ICameraTarget
 {
-    Vector3 Position();
+    Vector3 Position { get; }
 }

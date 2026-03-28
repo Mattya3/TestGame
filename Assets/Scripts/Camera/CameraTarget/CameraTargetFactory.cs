@@ -7,7 +7,7 @@ public static class CameraTargetFactory
         switch (mode)
         {
             case Constants.CameraTargetMode.Players:
-                return new PlayersCameraTarget(GameManager.Instance.Players);
+                return new PlayersCameraTarget();
 
             default:
                 Debug.LogError($"Unknown camera target mode: {mode}");

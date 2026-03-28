@@ -1,25 +1,42 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayersCameraTarget : ICameraTarget
+public class PlayersCameraTarget : MonoBehaviour, ICameraTarget
 {
-    private IReadOnlyList<Player> _players;
+    [SerializeField]
+    private Vector3 _offset;
 
-    public PlayersCameraTarget(IReadOnlyList<Player> players)
+    private IReadOnlyList<Player> _players;
+    private Vector3 _position = Vector3.zero;
+
+    void Awake()
     {
-        _players = players;
+        if (_offset.z >= 0)
+        {
+            Debug.LogError("カメラのoffset.zは負の値でなければなりません", this);
+            enabled = false;
+            return;
+        }
     }
 
-    public Vector3 Position()
+    void Start()
+    {
+        _players = GameManager.Instance.Players;
+        _position = _offset;
+    }
+
+    void LateUpdate()
     {
         if (_players.Count == 0)
-            return Vector3.zero;
+            return;
 
         var sum = Vector3.zero;
         for (int i = 0; i < _players.Count; i++)
         {
             sum += _players[i].transform.position;
         }
-        return sum / _players.Count;
+        _position = sum / _players.Count + _offset;
     }
+
+    public Vector3 Position => _position;
 }
