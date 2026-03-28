@@ -27,8 +27,9 @@ public class PlayersCameraTarget : MonoBehaviour, ICameraTarget
     {
         _players = GameManager.Instance.Players;
 
-        _position = _CalculateCenter() + _offset;
-        _shift.Start(_position);
+        var center = _CalculateCenter();
+        _shift.Start(center);
+        _position = center + _offset + _shift.Shift;
     }
 
     void LateUpdate()
