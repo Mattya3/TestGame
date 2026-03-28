@@ -62,7 +62,16 @@ public class CameraController : MonoBehaviour
 
     void Start()
     {
-        _cameraTarget = CameraTargetFactory.Create(_targetMode);
+        try
+        {
+            _cameraTarget = CameraTargetFactory.Create(_targetMode);
+        }
+        catch (System.Exception ex)
+        {
+            Debug.LogError($"カメターゲットの作成に失敗: {ex.Message}", this);
+            enabled = false;
+            return;
+        }
 
         // カメラの初期位置を設定
         var destination = _CalculateDestination();
