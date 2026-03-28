@@ -43,8 +43,5 @@ public class GameManager : MonoBehaviour
         _sceneTransitionManager.CompleteStage();
     }
 
-    public IReadOnlyList<Player> Players()
-    {
-        return _playersManager.Players;
-    }
+    public IReadOnlyList<Player> Players => _playersManager.Players;
 }
