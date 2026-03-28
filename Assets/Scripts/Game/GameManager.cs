@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -41,5 +41,10 @@ public class GameManager : MonoBehaviour
         GameEventTrigger.TriggerEvent(GameEvent.Success);
         GameEventTrigger.ResetEvents();
         _sceneTransitionManager.CompleteStage();
+    }
+
+    public IReadOnlyList<Player> Players()
+    {
+        return _playersManager.Players;
     }
 }

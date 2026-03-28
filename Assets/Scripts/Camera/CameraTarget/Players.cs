@@ -12,7 +12,7 @@ namespace CameraTarget
             _players = players;
         }
 
-        public Vector3 Location()
+        public Vector3 Position()
         {
             var sum = Vector3.zero;
             for (int i = 0; i < _players.Count; i++)

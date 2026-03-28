@@ -2,5 +2,5 @@
 
 public interface ICameraTarget
 {
-    Vector3 Location();
+    Vector3 Position();
 }

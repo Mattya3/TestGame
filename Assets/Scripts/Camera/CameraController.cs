@@ -6,7 +6,9 @@ public class CameraController : MonoBehaviour
     // == Destination ==
     [Header("Destination")]
     [SerializeField]
-    private GameObject _target; // 追従する対象のゲームオブジェクト
+    private Constants.CameraTargetMode _targetMode = Constants.CameraTargetMode.Players;
+
+    ICameraTarget _cameraTarget;
 
     [SerializeField]
     private Vector3 _offset; // 対象からのオフセット
@@ -40,11 +42,6 @@ public class CameraController : MonoBehaviour
 
     private bool _IsConfigurationValid()
     {
-        if (_target == null)
-        {
-            Debug.LogError("カメラのtargetが設定されていません", this);
-            return false;
-        }
         if (_offset.z >= 0)
         {
             Debug.LogError("カメラのoffset.zは負の値でなければなりません", this);
@@ -65,6 +62,8 @@ public class CameraController : MonoBehaviour
 
     void Start()
     {
+        _cameraTarget = CameraTargetFactory.Create(_targetMode);
+
         // カメラの初期位置を設定
         var destination = _CalculateDestination();
         transform.position = destination;
@@ -83,7 +82,7 @@ public class CameraController : MonoBehaviour
 
     private Vector3 _CalculateDestination()
     {
-        var targetPosition = _target.transform.position;
+        var targetPosition = _cameraTarget.Position();
         return _bounds.Bound(targetPosition + _offset, transform.position);
     }
 
