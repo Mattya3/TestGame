@@ -67,6 +67,4 @@ public abstract class Character : MonoEventReactingBehaviour
         _rigidBody.linearVelocity = Vector2.zero;
         _rigidBody.bodyType = RigidbodyType2D.Static;
     }
-
-    public Bounds Bounds => _collider.bounds;
 }

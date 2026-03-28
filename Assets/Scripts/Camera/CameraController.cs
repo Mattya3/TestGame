@@ -81,12 +81,15 @@ public class CameraController : MonoBehaviour
     void LateUpdate()
     {
         var destination = _CalculateDestination();
-        transform.position = Vector3.SmoothDamp(
+
+        var newPos = Vector3.SmoothDamp(
             transform.position,
             destination,
             ref _velocity,
             _smoothTime
         );
+
+        transform.position = newPos;
     }
 
     private Vector3 _CalculateDestination()
