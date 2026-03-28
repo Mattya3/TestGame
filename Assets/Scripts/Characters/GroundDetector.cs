@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using static Constants;
 
 public class GroundDetector : MonoBehaviour
@@ -17,12 +17,12 @@ public class GroundDetector : MonoBehaviour
 
     public bool IsGrounded()
     {
-        return _GetValidGroundHit(Layers.SOLID, Layers.CHARACTER).collider != null;
+        return _GetValidGroundHit(Layers.SOLID, Layers.PLAYER).collider != null;
     }
 
     public Vector2 GetGroundVelocity()
     {
-        RaycastHit2D hit = _GetValidGroundHit(Layers.CHARACTER);
+        RaycastHit2D hit = _GetValidGroundHit(Layers.PLAYER);
         if (hit.collider == null || hit.collider.attachedRigidbody == null)
             return Vector2.zero;
 
