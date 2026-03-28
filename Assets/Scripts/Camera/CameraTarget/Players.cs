@@ -14,6 +14,9 @@ namespace CameraTarget
 
         public Vector3 Position()
         {
+            if (_players.Count == 0)
+                return Vector3.zero;
+
             var sum = Vector3.zero;
             for (int i = 0; i < _players.Count; i++)
             {
