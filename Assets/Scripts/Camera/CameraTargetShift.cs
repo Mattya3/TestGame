@@ -30,7 +30,7 @@ public class CameraTargetShift
             Mathf.Clamp(_shift.x, -_maxShiftAmount.x, _maxShiftAmount.x),
             Mathf.Clamp(_shift.y, -_maxShiftAmount.y, _maxShiftAmount.y),
             _shift.z
-            );
+        );
 
         _prevTargetPos = targetPos;
     }
