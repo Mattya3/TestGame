@@ -20,6 +20,7 @@ public class PlayersCameraTarget : MonoBehaviour, ICameraTarget
             enabled = false;
             return;
         }
+        _shift.Awake();
     }
 
     void Start()
