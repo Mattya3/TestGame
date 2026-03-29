@@ -1827,7 +1827,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6e267d69a715fc49bfb7fad50ea8eab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CameraController
-  _smoothTime: 0.3
+  _smoothTimeX: 0.3
+  _smoothTimeY: 0.8
   _bounds:
     _freezeX: 0
     _freezeY: 0

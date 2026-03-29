@@ -6,7 +6,10 @@ public class CameraController : MonoBehaviour
     // == Smoothing ==
     [Header("Smoothing")]
     [SerializeField, Min(0f)]
-    private float _smoothTime = 0.1f; // カメラの移動のスムーズさを調整するための時間
+    private float _smoothTimeX = 0.1f;
+
+    [SerializeField, Min(0f)]
+    private float _smoothTimeY = 0.1f;
 
     private Vector3 _velocity = Vector3.zero; // カメラの現在の速度
 
@@ -69,13 +72,19 @@ public class CameraController : MonoBehaviour
         var destination = _CalculateDestination();
         var boundedDestination = _Bound(destination);
 
-        var newPos = Vector3.SmoothDamp(
-            transform.position,
-            boundedDestination,
-            ref _velocity,
-            _smoothTime
+        var newPosX = Mathf.SmoothDamp(
+            transform.position.x,
+            boundedDestination.x,
+            ref _velocity.x,
+            _smoothTimeX
         );
-        transform.position = newPos;
+        var newPosY = Mathf.SmoothDamp(
+            transform.position.y,
+            boundedDestination.y,
+            ref _velocity.y,
+            _smoothTimeY
+        );
+        transform.position = new Vector3(newPosX, newPosY, boundedDestination.z);
     }
 
     private Vector3 _CalculateDestination()
