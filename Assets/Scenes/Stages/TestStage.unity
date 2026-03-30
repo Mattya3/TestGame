@@ -851,8 +851,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6da054f73cb64dbd9ba4cecfbb19c2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
-  _moveSpeed: 5
-  _jumpInitialVelocity: 15
+  _ActionConfiguration: {fileID: 11400000, guid: 571cce6c34da34715818d94fa829cd87, type: 2}
   _groundDetector: {fileID: 1663018031}
   _sounds:
     _footstepSound:
@@ -1746,9 +1745,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6e267d69a715fc49bfb7fad50ea8eab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CameraController
-  _target: {fileID: 1435100471}
-  _offset: {x: 0, y: 1, z: -10}
-  _smoothTime: 0.3
+  _target: {fileID: 0}
+  _offset: {x: 0, y: 0, z: 0}
+  _smoothTime: 0.1
   _bounds:
     _freezeX: 0
     _freezeY: 0
@@ -2038,8 +2037,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6da054f73cb64dbd9ba4cecfbb19c2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
-  _moveSpeed: 5
-  _jumpInitialVelocity: 15
+  _ActionConfiguration: {fileID: 11400000, guid: 571cce6c34da34715818d94fa829cd87, type: 2}
   _groundDetector: {fileID: 952535230}
   _sounds:
     _footstepSound:
