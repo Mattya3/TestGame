@@ -3,7 +3,6 @@
 [RequireComponent(typeof(Camera))]
 public class CameraController : MonoBehaviour
 {
-    // == Smoothing ==
     [Header("Smoothing")]
     [SerializeField, Min(0f)]
     private float _smoothTimeX = 0.1f;
@@ -11,18 +10,13 @@ public class CameraController : MonoBehaviour
     [SerializeField, Min(0f)]
     private float _smoothTimeY = 0.1f;
 
-    private Vector3 _velocity = Vector3.zero; // カメラの現在の速度
-
-    // == Constraints ==
     [Header("Constraints")]
     [SerializeField]
     private CameraBounds _bounds = new CameraBounds(); // カメラの移動制約
 
-    // == Component References ==
     private Camera _camera; // カメラコンポーネントへの参照
     private ICameraTarget _cameraTarget;
-
-    // == Unity Event Functions ==
+    private Vector3 _velocity = Vector3.zero; // カメラの現在の速度
 
     void Awake()
     {
