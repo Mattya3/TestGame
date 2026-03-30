@@ -21,7 +21,7 @@ public class CameraController : MonoBehaviour
     void Awake()
     {
         _camera = GetComponent<Camera>();
-        _cameraTarget = GetComponent<ICameraTarget>();
+        _cameraTarget = GetComponentInChildren<ICameraTarget>();
 
         if (!_IsConfigurationValid())
         {

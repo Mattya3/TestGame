@@ -540,6 +540,54 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &530464544
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 530464545}
+  - component: {fileID: 530464546}
+  m_Layer: 6
+  m_Name: CameraTarget
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &530464545
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 530464544}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1113217129}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &530464546
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 530464544}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1af60dc605e5cea4f92ea5592086cb80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayersCameraTarget
+  _offset: {x: 0, y: 1, z: -10}
+  _shift:
+    _velocityCoeff: {x: 2, y: 0}
+    _maxShiftAmount: {x: 3, y: 0}
 --- !u!1 &554078607
 GameObject:
   m_ObjectHideFlags: 0
@@ -1686,7 +1734,6 @@ GameObject:
   - component: {fileID: 1113217128}
   - component: {fileID: 1113217127}
   - component: {fileID: 1113217130}
-  - component: {fileID: 1113217132}
   - component: {fileID: 1113217131}
   m_Layer: 6
   m_Name: Main Camera
@@ -1769,6 +1816,7 @@ Transform:
   m_Children:
   - {fileID: 1709418847}
   - {fileID: 760388432}
+  - {fileID: 530464545}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1113217130
@@ -1836,22 +1884,6 @@ MonoBehaviour:
     _rightBound: 36
     _bottomBound: 0
     _topBound: 1
---- !u!114 &1113217132
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1113217126}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1af60dc605e5cea4f92ea5592086cb80, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayersCameraTarget
-  _offset: {x: 0, y: 1, z: -10}
-  _shift:
-    _velocityCoeff: {x: 2, y: 0}
-    _maxShiftAmount: {x: 3, y: 0}
 --- !u!1 &1334626298
 GameObject:
   m_ObjectHideFlags: 0
