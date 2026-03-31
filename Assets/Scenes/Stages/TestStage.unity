@@ -588,8 +588,10 @@ MonoBehaviour:
   _shift:
     _velocityCoeff: {x: 2, y: 0}
     _maxShiftAmount: {x: 3, y: 0}
-    _distanceDampThreshold: {x: 8.8, y: 0}
-    _distanceDampAmount: {x: 0.1, y: 0}
+  _shiftDamp:
+    _distanceDampThreshold: {x: 4, y: 0}
+    _leftCollider: {fileID: 1709418848}
+    _rightCollider: {fileID: 760388433}
 --- !u!1 &554078607
 GameObject:
   m_ObjectHideFlags: 0
