@@ -18,7 +18,10 @@ public class CameraTargetShiftDamp
         var maxDistanceXY = _MaxDistanceXY(players);
         var exceeds = Vector2.Max(Vector2.zero, maxDistanceXY - _distanceDampThreshold);
         var ofsetDistanceLimits = _CalculateDistanceLimits() - _distanceDampThreshold;
-        var scaledExceeds = Vector2.Scale(exceeds, new Vector2(1.0f / ofsetDistanceLimits.x, 1.0f / ofsetDistanceLimits.y));
+        var scaledExceeds = Vector2.Scale(
+            exceeds,
+            new Vector2(1.0f / ofsetDistanceLimits.x, 1.0f / ofsetDistanceLimits.y)
+        );
 
         var curvedExceeds = _CalculateExceedsCurve(scaledExceeds);
         return Vector2.one - Vector2.Min(Vector2.one, curvedExceeds);
