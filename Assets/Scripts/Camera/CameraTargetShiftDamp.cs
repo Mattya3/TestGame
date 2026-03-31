@@ -29,6 +29,9 @@ public class CameraTargetShiftDamp
 
     private Vector2 _MaxDistanceXY(IReadOnlyList<Player> players)
     {
+        if (players.Count == 0)
+            return Vector2.zero;
+
         var minPos = new Vector2(float.MaxValue, float.MaxValue);
         var maxPos = new Vector2(float.MinValue, float.MinValue);
         for (int i = 0; i < players.Count; i++)
