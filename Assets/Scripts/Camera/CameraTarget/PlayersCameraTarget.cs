@@ -35,7 +35,8 @@ public class PlayersCameraTarget : MonoBehaviour, ICameraTarget
     void LateUpdate()
     {
         var center = _CalculateCenter();
-        _shift.LateUpdate(center);
+        var distanceDampFactor = _MaxDistanceXY(_players);
+        _shift.LateUpdate(center, distanceDampFactor);
         _position = center + _offset + _shift.Shift;
     }
 
@@ -50,6 +51,18 @@ public class PlayersCameraTarget : MonoBehaviour, ICameraTarget
             sum += _players[i].transform.position;
         }
         return sum / _players.Count;
+    }
+    private Vector2 _MaxDistanceXY(IReadOnlyList<Player> players)
+    {
+        var minPos = new Vector2(float.MaxValue, float.MaxValue);
+        var maxPos = new Vector2(float.MinValue, float.MinValue);
+        for (int i = 0; i < players.Count; i++)
+        {
+            var pos = players[i].transform.position;
+            minPos = Vector2.Min(minPos, pos);
+            maxPos = Vector2.Max(maxPos, pos);
+        }
+        return maxPos - minPos;
     }
 
     public Vector3 Position => _position;
