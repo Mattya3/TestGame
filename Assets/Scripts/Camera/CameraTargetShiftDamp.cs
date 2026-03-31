@@ -43,12 +43,12 @@ public class CameraTargetShiftDamp
         // return scaledExceeds;
 
         // パターン2:  二次関数的に減衰させる。0付近で勾配が連続になる。
-        //return Vector2.Scale(scaledExceeds, scaledExceeds);
+        return Vector2.Scale(scaledExceeds, scaledExceeds);
 
         // パターン3: 三次関数。0と1付近で勾配が連続になる。
-        var cubed = Vector2.Scale(scaledExceeds, Vector2.Scale(scaledExceeds, scaledExceeds));
-        var squared = Vector2.Scale(scaledExceeds, scaledExceeds);
-        return -0.5f * cubed + 1.5f * squared;
+        //var cubed = Vector2.Scale(scaledExceeds, Vector2.Scale(scaledExceeds, scaledExceeds));
+        //var squared = Vector2.Scale(scaledExceeds, scaledExceeds);
+        //return -0.5f * cubed + 1.5f * squared;
     }
 
     private Vector2 _CalculateDistanceLimits()
