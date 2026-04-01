@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
@@ -14,7 +13,8 @@ public class CameraTargetShift
     private Vector3 _shift = Vector3.zero;
     private Vector3 _prevTargetPos = Vector3.zero;
 
-    public Vector3 Shift => _shift;
+    private const float VELOCITY_SCALE_FACTOR = 0.9f;
+    private const float EPSILON = 1e-3f;
 
     public void Awake()
     {
@@ -37,10 +37,11 @@ public class CameraTargetShift
 
     public void LateUpdate(Vector3 targetPos, Vector2 damp)
     {
-        var delta = targetPos - _prevTargetPos;
-        var scaledDelta = Vector3.Scale(new Vector3(_velocityCoeff.x, _velocityCoeff.y, 0), delta);
-
         var dampedMaxShiftAmount = Vector2.Scale(_maxShiftAmount, damp);
+
+        var delta = targetPos - _prevTargetPos;
+        var velocityScale = _CalculateVelocityScale(dampedMaxShiftAmount);
+        var scaledDelta = Vector3.Scale(new Vector3(_velocityCoeff.x * velocityScale.x, _velocityCoeff.y * velocityScale.y, 0), delta);
 
         _shift += scaledDelta;
         _shift = new Vector3(
@@ -50,5 +51,22 @@ public class CameraTargetShift
         );
 
         _prevTargetPos = targetPos;
+    }
+
+    public Vector3 Get()
+    {
+        return _shift;
+    }
+
+    // シフト量がクリッピング境界に近づくほど、速度を減衰させるスケールを計算
+    // これにより、シフトが最大値に達する前に速度が減少し、滑らかな動きになる
+    // 進行方向から一瞬だけ切り返したときに、シフトが急激に反転するのを防止する効果もある
+    private Vector2 _CalculateVelocityScale(Vector2 dampedShiftAmount)
+    {
+        var normalizedShift = new Vector2(
+            Mathf.Abs(_shift.x) / Mathf.Max(dampedShiftAmount.x, EPSILON),
+            Mathf.Abs(_shift.y) / Mathf.Max(dampedShiftAmount.y, EPSILON)
+        );
+        return Vector2.one - Vector2.Min(Vector2.one, normalizedShift) * VELOCITY_SCALE_FACTOR;
     }
 }

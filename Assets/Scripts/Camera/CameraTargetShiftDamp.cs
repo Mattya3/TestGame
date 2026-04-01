@@ -5,32 +5,36 @@ using UnityEngine;
 public class CameraTargetShiftDamp
 {
     [SerializeField]
-    private Vector2 _distanceDampThreshold;
-
-    [SerializeField]
     private Collider2D _leftCollider;
 
     [SerializeField]
     private Collider2D _rightCollider;
 
+    private const float MARGIN = 1e-2f;
+    private const float EPSILON = 1e-3f;
+
     public Vector2 CalculateDamp(IReadOnlyList<Player> players)
     {
-        var maxDistanceXY = _MaxDistanceXY(players);
-        var exceeds = Vector2.Max(Vector2.zero, maxDistanceXY - _distanceDampThreshold);
-        var offsetDistanceLimits = _CalculateDistanceLimits() - _distanceDampThreshold;
-        var scaledExceeds = Vector2.Scale(
-            exceeds,
-            new Vector2(1.0f / offsetDistanceLimits.x, 1.0f / offsetDistanceLimits.y)
+        var distanceLimits = _CalculateDistanceLimits();
+
+        var spaceXY = _SpaceXY(players);
+        var scaledSpaceXY = Vector2.Scale(
+            spaceXY - Vector2.one * MARGIN,
+            Vector2.Max(new Vector2(0.5f / distanceLimits.x, 0.5f / distanceLimits.y), Vector2.one * EPSILON)
         );
 
-        var curvedExceeds = _CalculateExceedsCurve(scaledExceeds);
-        return Vector2.one - Vector2.Min(Vector2.one, curvedExceeds);
+        var clippedSpaceXY = Vector2.Max(Vector2.Min(Vector2.one, scaledSpaceXY), Vector2.zero);
+        return _CalculateDampCurve(clippedSpaceXY);
     }
 
-    private Vector2 _MaxDistanceXY(IReadOnlyList<Player> players)
+    // プレイヤーの位置とカメラの左右のコライダーとのスペースを計算する。スペースが十分にあるほど1に近づき、スペースがないほど0に近づく。
+    private Vector2 _SpaceXY(IReadOnlyList<Player> players)
     {
         if (players.Count == 0)
             return Vector2.zero;
+
+        if (_leftCollider == null || _rightCollider == null)
+            return float.PositiveInfinity * Vector2.one;
 
         var minPos = new Vector2(float.MaxValue, float.MaxValue);
         var maxPos = new Vector2(float.MinValue, float.MinValue);
@@ -40,20 +44,22 @@ public class CameraTargetShiftDamp
             minPos = Vector2.Min(minPos, bounds.center - bounds.extents);
             maxPos = Vector2.Max(maxPos, bounds.center + bounds.extents);
         }
-        return maxPos - minPos;
+
+        var spaceBehindX = Mathf.Min(minPos.x - _leftCollider.bounds.max.x, _rightCollider.bounds.min.x - maxPos.x);
+        return new Vector2(spaceBehindX, float.PositiveInfinity);
     }
 
-    private Vector2 _CalculateExceedsCurve(Vector2 scaledExceeds)
+    private Vector2 _CalculateDampCurve(Vector2 val)
     {
         // パターン1: 線形減衰
-        // return scaledExceeds;
+        // return val;
 
-        // パターン2:  二次関数的に減衰させる。0付近で勾配が連続になる。
-        return Vector2.Scale(scaledExceeds, scaledExceeds);
+        // パターン2:  二次関数的に減衰させる。1付近で勾配が連続になる。
+        return Vector2.Scale(val, Vector2.one * 2.0f - val);
 
         // パターン3: 三次関数。0と1付近で勾配が連続になる。
-        //var cubed = Vector2.Scale(scaledExceeds, Vector2.Scale(scaledExceeds, scaledExceeds));
-        //var squared = Vector2.Scale(scaledExceeds, scaledExceeds);
+        //var squared = Vector2.Scale(val, val);
+        //var cubed = Vector2.Scale(val, squared);
         //return -0.5f * cubed + 1.5f * squared;
     }
 

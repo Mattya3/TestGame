@@ -32,15 +32,16 @@ public class PlayersCameraTarget : MonoBehaviour, ICameraTarget
 
         var center = _CalculateCenter();
         _shift.Start(center);
-        _position = center + _offset + _shift.Shift;
+        _position = center + _offset + _shift.Get();
     }
 
     void LateUpdate()
     {
         var center = _CalculateCenter();
         var damp = _shiftDamp.CalculateDamp(_players);
+
         _shift.LateUpdate(center, damp);
-        _position = center + _offset + _shift.Shift;
+        _position = center + _offset + _shift.Get();
     }
 
     private Vector3 _CalculateCenter()

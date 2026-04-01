@@ -586,10 +586,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayersCameraTarget
   _offset: {x: 0, y: 1, z: -10}
   _shift:
-    _velocityCoeff: {x: 2, y: 0}
-    _maxShiftAmount: {x: 4, y: 0}
+    _velocityCoeff: {x: 3, y: 0}
+    _maxShiftAmount: {x: 8, y: 0}
   _shiftDamp:
-    _distanceDampThreshold: {x: 2, y: 0}
     _leftCollider: {fileID: 1709418848}
     _rightCollider: {fileID: 760388433}
 --- !u!1 &554078607
@@ -5552,7 +5551,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff8a6fa19d78244ad8fda9e2ddabb937, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ElectricBarMove
-  _moveSpeed: 1
+  _moveSpeed: 0
   _direction: {x: 1, y: 0, z: 0}
 --- !u!114 &2067377657
 MonoBehaviour:
