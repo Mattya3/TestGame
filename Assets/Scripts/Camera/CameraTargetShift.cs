@@ -41,7 +41,10 @@ public class CameraTargetShift
 
         var delta = targetPos - _prevTargetPos;
         var velocityScale = _CalculateVelocityScale(dampedMaxShiftAmount);
-        var scaledDelta = Vector3.Scale(new Vector3(_velocityCoeff.x * velocityScale.x, _velocityCoeff.y * velocityScale.y, 0), delta);
+        var scaledDelta = Vector3.Scale(
+            new Vector3(_velocityCoeff.x * velocityScale.x, _velocityCoeff.y * velocityScale.y, 0),
+            delta
+        );
 
         _shift += scaledDelta;
         _shift = new Vector3(
