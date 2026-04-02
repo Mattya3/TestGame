@@ -35,7 +35,7 @@ public class CameraTargetShift
         _prevTargetPos = targetPos;
     }
 
-    public void LateUpdate(Vector3 targetPos, Vector2 damp)
+    public void FixedUpdate(Vector3 targetPos, Vector2 damp)
     {
         var dampedMaxShiftAmount = Vector2.Scale(_maxShiftAmount, damp);
 
