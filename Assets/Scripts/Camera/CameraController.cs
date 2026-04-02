@@ -76,7 +76,11 @@ public class CameraController : MonoBehaviour
         var destination = _CalculateDestination();
         var boundedDestination = _Bound(destination);
 
-        _collider.transform.position = new Vector3(boundedDestination.x, boundedDestination.y, boundedDestination.z);
+        _collider.transform.position = new Vector3(
+            boundedDestination.x,
+            boundedDestination.y,
+            boundedDestination.z
+        );
     }
 
     void LateUpdate()

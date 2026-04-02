@@ -20,7 +20,10 @@ public class CameraTargetShiftDamp
         var spaceXY = _SpaceXY(players);
         var scaledSpaceXY = Vector2.Scale(
             spaceXY - Vector2.one * MARGIN,
-            Vector2.Max(new Vector2(0.5f / distanceLimits.x, 0.5f / distanceLimits.y), Vector2.one * EPSILON)
+            Vector2.Max(
+                new Vector2(0.5f / distanceLimits.x, 0.5f / distanceLimits.y),
+                Vector2.one * EPSILON
+            )
         );
 
         var clippedSpaceXY = Vector2.Max(Vector2.Min(Vector2.one, scaledSpaceXY), Vector2.zero);
@@ -45,7 +48,10 @@ public class CameraTargetShiftDamp
             maxPos = Vector2.Max(maxPos, bounds.center + bounds.extents);
         }
 
-        var spaceBehindX = Mathf.Min(minPos.x - _leftCollider.bounds.max.x, _rightCollider.bounds.min.x - maxPos.x);
+        var spaceBehindX = Mathf.Min(
+            minPos.x - _leftCollider.bounds.max.x,
+            _rightCollider.bounds.min.x - maxPos.x
+        );
         return new Vector2(spaceBehindX, float.PositiveInfinity);
     }
 
