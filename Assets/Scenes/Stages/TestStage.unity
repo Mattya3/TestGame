@@ -645,7 +645,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 603488903}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1905,7 +1905,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1271411055}
   - component: {fileID: 1271411054}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: CameraController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
