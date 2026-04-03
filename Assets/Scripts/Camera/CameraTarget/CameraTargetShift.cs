@@ -7,9 +7,14 @@ public class CameraTargetShift
     [SerializeField]
     private Vector2 _velocityCoeff;
 
+    [SerializeField, Min(0)]
+    private float _deltaSmoothTime;
+
     [SerializeField]
     private Vector2 _maxShiftAmount;
 
+    private Vector3 _smoothedDelta = Vector3.zero;
+    private Vector3 _deltaVelocity = Vector3.zero;
     private Vector3 _shift = Vector3.zero;
     private Vector3 _prevTargetPos = Vector3.zero;
 
@@ -40,10 +45,12 @@ public class CameraTargetShift
         var dampedMaxShiftAmount = Vector2.Scale(_maxShiftAmount, damp);
 
         var delta = targetPos - _prevTargetPos;
+        _smoothedDelta = Vector3.SmoothDamp(_smoothedDelta, delta, ref _deltaVelocity, _deltaSmoothTime, Mathf.Infinity, Time.fixedDeltaTime);
+
         var velocityScale = _CalculateVelocityScale(dampedMaxShiftAmount);
         var scaledDelta = Vector3.Scale(
             new Vector3(_velocityCoeff.x * velocityScale.x, _velocityCoeff.y * velocityScale.y, 0),
-            delta
+            _smoothedDelta
         );
 
         _shift += scaledDelta;

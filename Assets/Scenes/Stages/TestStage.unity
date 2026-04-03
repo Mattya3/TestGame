@@ -587,6 +587,7 @@ MonoBehaviour:
   _offset: {x: 0, y: 1, z: -10}
   _shift:
     _velocityCoeff: {x: 3, y: 0}
+    _deltaSmoothTime: 0.1
     _maxShiftAmount: {x: 8, y: 0}
   _shiftDamp:
     _leftCollider: {fileID: 1709418848}
