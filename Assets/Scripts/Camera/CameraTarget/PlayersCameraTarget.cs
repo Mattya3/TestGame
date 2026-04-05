@@ -37,6 +37,9 @@ public class PlayersCameraTarget : MonoBehaviour, ICameraTarget
 
     void FixedUpdate()
     {
+        if (_players == null)
+            return;
+
         var center = _CalculateCenter();
         var damp = _shiftDamp.CalculateDamp(_players);
 
@@ -46,8 +49,6 @@ public class PlayersCameraTarget : MonoBehaviour, ICameraTarget
 
     private Vector3 _CalculateCenter()
     {
-        if (_players == null)
-            return Vector3.zero;
         if (_players.Count == 0)
             return Vector3.zero;
 
