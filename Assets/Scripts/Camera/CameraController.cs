@@ -4,7 +4,7 @@ public class CameraController : MonoBehaviour
 {
     [Header("Reference")]
     [SerializeField]
-    private GameObject _collider;
+    private GameObject _colliderRoot;
 
     [Header("Smoothing")]
     [SerializeField, Min(0f)]
@@ -35,6 +35,11 @@ public class CameraController : MonoBehaviour
 
     private bool _IsConfigurationValid()
     {
+        if (_colliderRoot == null)
+        {
+            Debug.LogError("CameraControllerにはColliderオブジェクトが必要です", this);
+            return false;
+        }
         if (_camera == null)
         {
             Debug.LogError("CameraControllerにはCameraコンポーネントが必要です", this);
@@ -67,7 +72,7 @@ public class CameraController : MonoBehaviour
         var destination = _CalculateDestination();
         var boundedDestination = _Bound(destination);
 
-        _collider.transform.position = boundedDestination;
+        _colliderRoot.transform.position = boundedDestination;
         _camera.transform.position = boundedDestination;
     }
 
@@ -76,7 +81,7 @@ public class CameraController : MonoBehaviour
         var destination = _CalculateDestination();
         var boundedDestination = _Bound(destination);
 
-        _collider.transform.position = new Vector3(
+        _colliderRoot.transform.position = new Vector3(
             boundedDestination.x,
             boundedDestination.y,
             boundedDestination.z
@@ -85,7 +90,7 @@ public class CameraController : MonoBehaviour
 
     void LateUpdate()
     {
-        var destination = _collider.transform.position;
+        var destination = _colliderRoot.transform.position;
 
         var newPosX = Mathf.SmoothDamp(
             _camera.transform.position.x,
