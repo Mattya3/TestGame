@@ -35,6 +35,11 @@ public class CameraController : MonoBehaviour
 
     private bool _IsConfigurationValid()
     {
+        if (_collider == null)
+        {
+            Debug.LogError("CameraControllerにはColliderオブジェクトが必要です", this);
+            return false;
+        }
         if (_camera == null)
         {
             Debug.LogError("CameraControllerにはCameraコンポーネントが必要です", this);
