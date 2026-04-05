@@ -9,7 +9,7 @@ public class Player : Character
     public event Action<Player> OnGoal;
     public event Action<DeathReason> OnDied;
 
-    // private IPlayerState _currentState = new GroundState(this);
+    private IPlayerState _currentState = new GroundState(this);
     // private List<IExternalState> _externalStates;
 
     public bool HasReachedGoal { get; private set; } = false;
