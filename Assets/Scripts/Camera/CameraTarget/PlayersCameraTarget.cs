@@ -9,6 +9,9 @@ public class PlayersCameraTarget : MonoBehaviour, ICameraTarget
     [SerializeField]
     private CameraTargetShift _shift = new CameraTargetShift();
 
+    [SerializeField]
+    private CameraTargetShiftDamp _shiftDamp = new CameraTargetShiftDamp();
+
     private IReadOnlyList<Player> _players;
     private Vector3 _position = Vector3.zero;
 
@@ -29,14 +32,16 @@ public class PlayersCameraTarget : MonoBehaviour, ICameraTarget
 
         var center = _CalculateCenter();
         _shift.Start(center);
-        _position = center + _offset + _shift.Shift;
+        _position = center + _offset + _shift.Get();
     }
 
-    void LateUpdate()
+    void FixedUpdate()
     {
         var center = _CalculateCenter();
-        _shift.LateUpdate(center);
-        _position = center + _offset + _shift.Shift;
+        var damp = _shiftDamp.CalculateDamp(_players);
+
+        _shift.FixedUpdate(center, damp);
+        _position = center + _offset + _shift.Get();
     }
 
     private Vector3 _CalculateCenter()

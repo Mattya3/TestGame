@@ -1,8 +1,11 @@
 ﻿using UnityEngine;
 
-[RequireComponent(typeof(Camera))]
 public class CameraController : MonoBehaviour
 {
+    [Header("Reference")]
+    [SerializeField]
+    private GameObject _collider;
+
     [Header("Smoothing")]
     [SerializeField, Min(0f)]
     private float _smoothTimeX = 0.1f;
@@ -20,7 +23,7 @@ public class CameraController : MonoBehaviour
 
     void Awake()
     {
-        _camera = GetComponent<Camera>();
+        _camera = GetComponentInChildren<Camera>();
         _cameraTarget = GetComponentInChildren<ICameraTarget>();
 
         if (!_IsConfigurationValid())
@@ -32,14 +35,9 @@ public class CameraController : MonoBehaviour
 
     private bool _IsConfigurationValid()
     {
-        if (_bounds.HasReversedBounds())
+        if (_camera == null)
         {
-            Debug.LogError("カメラ制約の最小値は最大値より小さくなければなりません", this);
-            return false;
-        }
-        if (_bounds.HasNaN())
-        {
-            Debug.LogError("カメラの制約に無効な値が含まれています", this);
+            Debug.LogError("CameraControllerにはCameraコンポーネントが必要です", this);
             return false;
         }
         if (_cameraTarget == null)
@@ -50,6 +48,16 @@ public class CameraController : MonoBehaviour
             );
             return false;
         }
+        if (_bounds.HasReversedBounds())
+        {
+            Debug.LogError("カメラ制約の最小値は最大値より小さくなければなりません", this);
+            return false;
+        }
+        if (_bounds.HasNaN())
+        {
+            Debug.LogError("カメラの制約に無効な値が含まれています", this);
+            return false;
+        }
         return true;
     }
 
@@ -58,27 +66,40 @@ public class CameraController : MonoBehaviour
         // カメラの初期位置を設定
         var destination = _CalculateDestination();
         var boundedDestination = _Bound(destination);
-        transform.position = boundedDestination;
+
+        _collider.transform.position = boundedDestination;
+        _camera.transform.position = boundedDestination;
     }
 
-    void LateUpdate()
+    private void FixedUpdate()
     {
         var destination = _CalculateDestination();
         var boundedDestination = _Bound(destination);
 
-        var newPosX = Mathf.SmoothDamp(
-            transform.position.x,
+        _collider.transform.position = new Vector3(
             boundedDestination.x,
+            boundedDestination.y,
+            boundedDestination.z
+        );
+    }
+
+    void LateUpdate()
+    {
+        var destination = _collider.transform.position;
+
+        var newPosX = Mathf.SmoothDamp(
+            _camera.transform.position.x,
+            destination.x,
             ref _velocity.x,
             _smoothTimeX
         );
         var newPosY = Mathf.SmoothDamp(
-            transform.position.y,
-            boundedDestination.y,
+            _camera.transform.position.y,
+            destination.y,
             ref _velocity.y,
             _smoothTimeY
         );
-        transform.position = new Vector3(newPosX, newPosY, boundedDestination.z);
+        _camera.transform.position = new Vector3(newPosX, newPosY, destination.z);
     }
 
     private Vector3 _CalculateDestination()
@@ -88,7 +109,7 @@ public class CameraController : MonoBehaviour
 
     private Vector3 _Bound(Vector3 pos)
     {
-        return _bounds.Bound(pos, transform.position);
+        return _bounds.Bound(pos, _camera.transform.position);
     }
 
     // エディタ上でカメラの移動範囲を視覚化するためのGizmosを描画
@@ -97,11 +118,11 @@ public class CameraController : MonoBehaviour
         // デバッグ終了時などに参照が失われる場合があるため、カメラコンポーネントへの参照を再取得
         if (_camera == null)
         {
-            _camera = GetComponent<Camera>();
+            _camera = GetComponentInChildren<Camera>();
             if (_camera == null)
                 return;
         }
 
-        _bounds.DrawGizmos(_camera, transform.position);
+        _bounds.DrawGizmos(_camera, _camera.transform.position);
     }
 }
