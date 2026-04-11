@@ -9936,7 +9936,7 @@ GameObject:
   - component: {fileID: 2095510390}
   - component: {fileID: 2095510392}
   - component: {fileID: 2095510391}
-  m_Layer: 2
+  m_Layer: 8
   m_Name: RockFiller
   m_TagString: Untagged
   m_Icon: {fileID: 0}
