@@ -5683,6 +5683,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58cb87e992e14eb4ebc0d0b20a61a6b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  _cameraTransform: {fileID: 1113217129}
+  _followFactor: {x: 1, y: 1, z: 0}
 --- !u!212 &1506976599
 SpriteRenderer:
   serializedVersion: 2
