@@ -290,6 +290,7 @@ GameObject:
   - component: {fileID: 124127344}
   - component: {fileID: 124127343}
   - component: {fileID: 124127348}
+  - component: {fileID: 124127349}
   m_Layer: 3
   m_Name: SciFiBlocks
   m_TagString: Untagged
@@ -1273,6 +1274,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   _loopDuration: 4
+--- !u!114 &124127349
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 124127341}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df9af37c254e64449ba3ea943e7f9e85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  _maskColor: {r: 0.5058824, g: 0.25882354, b: 0.16862746, a: 0.2}
+  _illuminationColor1: {r: 0.8313726, g: 0.69411767, b: 0.61960787, a: 1}
+  _illuminationColor2: {r: 1, g: 1, b: 1, a: 1}
+  _illuminationColor3: {r: 1, g: 0.9294118, b: 0.5058824, a: 1}
+  _illuminationOffsetVector: {x: -0.1, y: -0.02, z: 0}
 --- !u!1 &161220174
 GameObject:
   m_ObjectHideFlags: 0
@@ -4080,6 +4098,7 @@ GameObject:
   - component: {fileID: 1023410644}
   - component: {fileID: 1023410643}
   - component: {fileID: 1023410645}
+  - component: {fileID: 1023410646}
   m_Layer: 8
   m_Name: SciFiPavements
   m_TagString: Untagged
@@ -4725,6 +4744,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CustomTimeLooper
   _loopDuration: 4
+--- !u!114 &1023410646
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1023410641}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df9af37c254e64449ba3ea943e7f9e85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  _maskColor: {r: 0.5058824, g: 0.25882354, b: 0.16862746, a: 0.2}
+  _illuminationColor1: {r: 0.8313726, g: 0.69411767, b: 0.61960787, a: 1}
+  _illuminationColor2: {r: 1, g: 1, b: 1, a: 1}
+  _illuminationColor3: {r: 1, g: 0.9294118, b: 0.5058824, a: 1}
+  _illuminationOffsetVector: {x: -0.1, y: -0.02, z: 0}
 --- !u!1 &1093922456
 GameObject:
   m_ObjectHideFlags: 0
@@ -5003,6 +5039,7 @@ GameObject:
   - component: {fileID: 1235522552}
   - component: {fileID: 1235522551}
   - component: {fileID: 1235522553}
+  - component: {fileID: 1235522554}
   m_Layer: 8
   m_Name: SciFiScraps
   m_TagString: Untagged
@@ -5348,6 +5385,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CustomTimeLooper
   _loopDuration: 4
+--- !u!114 &1235522554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1235522549}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df9af37c254e64449ba3ea943e7f9e85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  _maskColor: {r: 0.6156863, g: 0.3137255, b: 0.20392159, a: 0.6509804}
+  _illuminationColor1: {r: 0.8313726, g: 0.69411767, b: 0.61960787, a: 1}
+  _illuminationColor2: {r: 1, g: 1, b: 1, a: 1}
+  _illuminationColor3: {r: 1, g: 0.9294118, b: 0.5058824, a: 1}
+  _illuminationOffsetVector: {x: -0.1, y: -0.02, z: 0}
 --- !u!1 &1271411053
 GameObject:
   m_ObjectHideFlags: 0
@@ -13156,7 +13210,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff8a6fa19d78244ad8fda9e2ddabb937, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ElectricBarMove
-  _moveSpeed: 0
+  _moveSpeed: 1
   _direction: {x: 1, y: 0, z: 0}
 --- !u!114 &2067377657
 MonoBehaviour:

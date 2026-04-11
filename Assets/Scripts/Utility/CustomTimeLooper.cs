@@ -9,7 +9,7 @@ public class CustomTimeLooper : MonoBehaviour
     private Material _material;
     private float _time = 0f;
 
-    private const string TimePropertyName = "_CustomTime";
+    private const string TIME_PROPERTY_NAME = "_CustomTime";
 
     private void Awake()
     {
@@ -38,6 +38,6 @@ public class CustomTimeLooper : MonoBehaviour
         if (_time >= _loopDuration)
             _time -= _loopDuration;
 
-        _material.SetFloat(TimePropertyName, _time / _loopDuration);
+        _material.SetFloat(TIME_PROPERTY_NAME, _time / _loopDuration);
     }
 }
