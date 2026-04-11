@@ -1238,7 +1238,7 @@ Tilemap:
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
-  m_Color: {r: 1, g: 0.87003213, b: 0.8349056, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Origin: {x: -10, y: -7, z: 0}
   m_Size: {x: 46, y: 12, z: 1}
   m_TileAnchor: {x: 0.5, y: 0.5, z: 0}
@@ -4079,6 +4079,7 @@ GameObject:
   - component: {fileID: 1023410642}
   - component: {fileID: 1023410644}
   - component: {fileID: 1023410643}
+  - component: {fileID: 1023410645}
   m_Layer: 8
   m_Name: SciFiPavements
   m_TagString: Untagged
@@ -4127,7 +4128,7 @@ TilemapRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 5f469ccd146b5a8449eeced790364716, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4711,6 +4712,19 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!114 &1023410645
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1023410641}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 726d6c3388e7e3d4f83d99636bc42499, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CustomTimeLooper
+  _loopDuration: 4
 --- !u!1 &1093922456
 GameObject:
   m_ObjectHideFlags: 0
@@ -4988,6 +5002,7 @@ GameObject:
   - component: {fileID: 1235522550}
   - component: {fileID: 1235522552}
   - component: {fileID: 1235522551}
+  - component: {fileID: 1235522553}
   m_Layer: 8
   m_Name: SciFiScraps
   m_TagString: Untagged
@@ -5036,7 +5051,7 @@ TilemapRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 5f469ccd146b5a8449eeced790364716, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5320,6 +5335,19 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!114 &1235522553
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1235522549}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 726d6c3388e7e3d4f83d99636bc42499, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CustomTimeLooper
+  _loopDuration: 4
 --- !u!1 &1271411053
 GameObject:
   m_ObjectHideFlags: 0
@@ -13128,7 +13156,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff8a6fa19d78244ad8fda9e2ddabb937, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ElectricBarMove
-  _moveSpeed: 1
+  _moveSpeed: 0
   _direction: {x: 1, y: 0, z: 0}
 --- !u!114 &2067377657
 MonoBehaviour:
