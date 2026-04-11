@@ -289,6 +289,7 @@ GameObject:
   - component: {fileID: 124127345}
   - component: {fileID: 124127344}
   - component: {fileID: 124127343}
+  - component: {fileID: 124127348}
   m_Layer: 3
   m_Name: SciFiBlocks
   m_TagString: Untagged
@@ -647,7 +648,7 @@ TilemapRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 5f469ccd146b5a8449eeced790364716, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1237,7 +1238,7 @@ Tilemap:
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0.87003213, b: 0.8349056, a: 1}
   m_Origin: {x: -10, y: -7, z: 0}
   m_Size: {x: 46, y: 12, z: 1}
   m_TileAnchor: {x: 0.5, y: 0.5, z: 0}
@@ -1259,6 +1260,19 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!114 &124127348
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 124127341}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 726d6c3388e7e3d4f83d99636bc42499, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  _loopDuration: 4
 --- !u!1 &161220174
 GameObject:
   m_ObjectHideFlags: 0
