@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 
 [RequireComponent(typeof(Renderer))]
+[ExecuteInEditMode]
 public class SciFiBlockMaterialConfiguration : MonoBehaviour
 {
     [SerializeField]
@@ -26,18 +27,29 @@ public class SciFiBlockMaterialConfiguration : MonoBehaviour
     private Renderer _renderer;
     private MaterialPropertyBlock _materialPropertyBlock;
 
+    private void OnValidate()
+    {
+        _Initialize();
+    }
+
     private void Awake()
     {
-        _renderer = GetComponent<Renderer>();
-        _materialPropertyBlock = new MaterialPropertyBlock();
+        _Initialize();
     }
 
     private void Update()
     {
-        UpdateMaterialProperties();
+        _UpdateMaterialProperties();
     }
 
-    private void UpdateMaterialProperties()
+    private void _Initialize()
+    {
+        _renderer = GetComponent<Renderer>();
+        _materialPropertyBlock = new MaterialPropertyBlock();
+        _UpdateMaterialProperties();
+    }
+
+    private void _UpdateMaterialProperties()
     {
         _renderer.GetPropertyBlock(_materialPropertyBlock);
         _materialPropertyBlock.SetColor(MASK_COLOR_PROPERTY_NAME, _maskColor);
