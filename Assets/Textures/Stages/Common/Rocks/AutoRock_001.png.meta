@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: de64482d8b63b854e85755662f2c44b1
+guid: 9e65348bee1b2514d887e2db5538dbd8
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 504268731522564885
-    second: Rock_Brown_AlphaMask_001_0
+      213: 5747010437126232761
+    second: AutoRock_001_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,7 +100,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Rock_Brown_AlphaMask_001_0
+      name: AutoRock_001_0
       rect:
         serializedVersion: 2
         x: 0
@@ -113,22 +113,22 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape:
-      - - {x: -54, y: 53}
-        - {x: -64, y: 27}
-        - {x: -64, y: -64}
+      - - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
-        - {x: -31, y: 64}
+        - {x: -26, y: 64}
+        - {x: -54, y: 53}
+        - {x: -64, y: 23}
       tessellationDetail: 0
       bones: []
-      spriteID: 5134db55db58ff600800000000000000
-      internalID: 504268731522564885
+      spriteID: 9ba1f592b8b71cf40800000000000000
+      internalID: 5747010437126232761
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Rock_Brown_AlphaMask_001_1
+      name: AutoRock_001_1
       rect:
         serializedVersion: 2
         x: 128
@@ -143,14 +143,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 12707ce689d387841b06f7fd4820a4a8
-      internalID: -1199210108
+      spriteID: f79117b63825315499bd347d8c471e0d
+      internalID: 1698111069
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Rock_Brown_AlphaMask_001_2
+      name: AutoRock_001_2
       rect:
         serializedVersion: 2
         x: 256
@@ -165,20 +165,20 @@ TextureImporter:
       physicsShape:
       - - {x: -64, y: -64}
         - {x: 64, y: -64}
-        - {x: 64, y: 12}
-        - {x: 55, y: 54}
-        - {x: 19, y: 64}
+        - {x: 64, y: 18}
+        - {x: 56, y: 53}
+        - {x: 24, y: 64}
         - {x: -64, y: 64}
       tessellationDetail: 0
       bones: []
-      spriteID: c0ec1e68e3061fa45bdeb4ec982abeca
-      internalID: -532573878
+      spriteID: c985ad98c08816944b8046c0dea4b741
+      internalID: 1798554153
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Rock_Brown_AlphaMask_001_3
+      name: AutoRock_001_3
       rect:
         serializedVersion: 2
         x: 384
@@ -193,14 +193,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9c9143feb4aa6a54fb791df6f335c1e5
-      internalID: 610822458
+      spriteID: fb840e7b191f60248922c13a8f6c160d
+      internalID: -1398293566
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Rock_Brown_AlphaMask_001_4
+      name: AutoRock_001_4
       rect:
         serializedVersion: 2
         x: 512
@@ -215,14 +215,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e5f06b74cf2f9f343a3d958883a5360b
-      internalID: 1054825381
+      spriteID: 7de1e73eb3ab71943a68e5894d042d29
+      internalID: -49823677
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Rock_Brown_AlphaMask_001_5
+      name: AutoRock_001_5
       rect:
         serializedVersion: 2
         x: 640
@@ -237,14 +237,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0bb44c4b81fd6ce4a8f59e8594f00212
-      internalID: 10793235
+      spriteID: 2fd398ca9d6cc6749a560cad8aef18fd
+      internalID: -868607122
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Rock_Brown_AlphaMask_001_6
+      name: AutoRock_001_6
       rect:
         serializedVersion: 2
         x: 768
@@ -259,14 +259,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dd1215b3bcbf29b47a385cb953859f4d
-      internalID: -143548356
+      spriteID: 439dd1cd79403ba47ae8861bd619e730
+      internalID: 337320861
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Rock_Brown_AlphaMask_001_7
+      name: AutoRock_001_7
       rect:
         serializedVersion: 2
         x: 0
@@ -281,14 +281,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 076d8d128cd330f488bee930b2368d3d
-      internalID: 1754609019
+      spriteID: 6e0e3f6241b26a14c9d4445acfabcad3
+      internalID: 523312618
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Rock_Brown_AlphaMask_001_8
+      name: AutoRock_001_8
       rect:
         serializedVersion: 2
         x: 128
@@ -303,14 +303,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cbdba3042e20d2049b715350966070df
-      internalID: -1634736758
+      spriteID: 474f3e2b9df117148be729ca99dbf145
+      internalID: 977614516
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Rock_Brown_AlphaMask_001_9
+      name: AutoRock_001_9
       rect:
         serializedVersion: 2
         x: 256
@@ -325,14 +325,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7103db4bba6c96a4e97c33417f09e40e
-      internalID: -89160719
+      spriteID: 560fc3f78b04d3246abb8c977715b67e
+      internalID: -1692405776
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Rock_Brown_AlphaMask_001_10
+      name: AutoRock_001_10
       rect:
         serializedVersion: 2
         x: 384
@@ -347,14 +347,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3f1385d8fbf02de45abd50fda139ea66
-      internalID: -1212660589
+      spriteID: 951de803e74b44b418c1fbdf2b31c46a
+      internalID: -1707940204
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Rock_Brown_AlphaMask_001_11
+      name: AutoRock_001_11
       rect:
         serializedVersion: 2
         x: 512
@@ -369,14 +369,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3a135482cba70c94ab3ccf8f211e44a0
-      internalID: 241571027
+      spriteID: 303afa7a1420e284e861731b7ef5e1fa
+      internalID: -33936569
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Rock_Brown_AlphaMask_001_12
+      name: AutoRock_001_12
       rect:
         serializedVersion: 2
         x: 640
@@ -391,14 +391,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 99887bc6cf63f9845b82cc1cf4f6bb84
-      internalID: -1552561569
+      spriteID: 713e7472d7b07b74aa6282db400f6642
+      internalID: -779318816
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Rock_Brown_AlphaMask_001_13
+      name: AutoRock_001_13
       rect:
         serializedVersion: 2
         x: 768
@@ -413,14 +413,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4ec676ba5a72b2e45a322895d4edfebc
-      internalID: 1233260597
+      spriteID: 31e8692585fffc24e9caae8137ae0279
+      internalID: -884759638
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Rock_Brown_AlphaMask_001_14
+      name: AutoRock_001_14
       rect:
         serializedVersion: 2
         x: 0
@@ -435,14 +435,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0b03c48ee796ef6448ef0f761077de33
-      internalID: -726114293
+      spriteID: 4206a11e0d4efe44991396c94e1322fc
+      internalID: 1556494765
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Rock_Brown_AlphaMask_001_15
+      name: AutoRock_001_15
       rect:
         serializedVersion: 2
         x: 128
@@ -457,14 +457,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ddc727489a6079c499ae0871c840b052
-      internalID: 1824078777
+      spriteID: c326b4ed698022b48b2c317be5797fad
+      internalID: 1492016188
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Rock_Brown_AlphaMask_001_16
+      name: AutoRock_001_16
       rect:
         serializedVersion: 2
         x: 256
@@ -479,14 +479,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b7fd07033800d614b929b59c43118bf1
-      internalID: -2028444897
+      spriteID: 930d82566630c7547b92538df4712cc5
+      internalID: 442285471
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Rock_Brown_AlphaMask_001_17
+      name: AutoRock_001_17
       rect:
         serializedVersion: 2
         x: 384
@@ -501,14 +501,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7db8baeefc8cace419b6ed2a29f871cc
-      internalID: -2145875693
+      spriteID: a6ad23db5be4a1843b5ffa4fd1ea9cdf
+      internalID: -982273819
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Rock_Brown_AlphaMask_001_18
+      name: AutoRock_001_18
       rect:
         serializedVersion: 2
         x: 512
@@ -523,14 +523,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 380019d2aaa83ee4898de3a8d9a27c4f
-      internalID: -2102324128
+      spriteID: 7477210b6b1bddf41a375b89ad05685b
+      internalID: 1150439954
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Rock_Brown_AlphaMask_001_19
+      name: AutoRock_001_19
       rect:
         serializedVersion: 2
         x: 640
@@ -545,14 +545,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c8d0c731af02c9a4091151343ba351c5
-      internalID: -184772203
+      spriteID: 226d758886d99bc4298712d0d2b730c2
+      internalID: -917406219
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Rock_Brown_AlphaMask_001_20
+      name: AutoRock_001_20
       rect:
         serializedVersion: 2
         x: 768
@@ -567,8 +567,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 75ecd7b7ce6296e44ad7a3a9ab8a8b3c
-      internalID: 1961924937
+      spriteID: cfd1087d8da8cfb41a70afa2b8427a4e
+      internalID: -1569223062
       vertices: []
       indices: 
       edges: []
@@ -577,45 +577,39 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 6785a6431317b8c49933886717413d10
+    spriteID: 9e1723f8dae365545bd96c28c0182d81
     internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
-    secondaryTextures:
-    - texture: {fileID: 2800000, guid: 754ee01618157bc499d02bd185e44a07, type: 3}
-      name: _FresnelMask
-    - texture: {fileID: 2800000, guid: d163ffe333330e44891858b8a05ebc6f, type: 3}
-      name: _OutlineMask
-    - texture: {fileID: 2800000, guid: 7af8a9fb0901f2546b0666cad892c9a7, type: 3}
-      name: _ShadeMask
+    secondaryTextures: []
     spriteCustomMetadata:
       entries:
       - key: SpriteEditor.SliceSettings
         value: '{"sliceOnImport":false,"gridCellCount":{"x":7.0,"y":3.0},"gridSpriteSize":{"x":128.0,"y":128.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      Rock_Brown_AlphaMask_001_0: 504268731522564885
-      Rock_Brown_AlphaMask_001_1: -1199210108
-      Rock_Brown_AlphaMask_001_10: -1212660589
-      Rock_Brown_AlphaMask_001_11: 241571027
-      Rock_Brown_AlphaMask_001_12: -1552561569
-      Rock_Brown_AlphaMask_001_13: 1233260597
-      Rock_Brown_AlphaMask_001_14: -726114293
-      Rock_Brown_AlphaMask_001_15: 1824078777
-      Rock_Brown_AlphaMask_001_16: -2028444897
-      Rock_Brown_AlphaMask_001_17: -2145875693
-      Rock_Brown_AlphaMask_001_18: -2102324128
-      Rock_Brown_AlphaMask_001_19: -184772203
-      Rock_Brown_AlphaMask_001_2: -532573878
-      Rock_Brown_AlphaMask_001_20: 1961924937
-      Rock_Brown_AlphaMask_001_3: 610822458
-      Rock_Brown_AlphaMask_001_4: 1054825381
-      Rock_Brown_AlphaMask_001_5: 10793235
-      Rock_Brown_AlphaMask_001_6: -143548356
-      Rock_Brown_AlphaMask_001_7: 1754609019
-      Rock_Brown_AlphaMask_001_8: -1634736758
-      Rock_Brown_AlphaMask_001_9: -89160719
+      AutoRock_001_0: 5747010437126232761
+      AutoRock_001_1: 1698111069
+      AutoRock_001_10: -1707940204
+      AutoRock_001_11: -33936569
+      AutoRock_001_12: -779318816
+      AutoRock_001_13: -884759638
+      AutoRock_001_14: 1556494765
+      AutoRock_001_15: 1492016188
+      AutoRock_001_16: 442285471
+      AutoRock_001_17: -982273819
+      AutoRock_001_18: 1150439954
+      AutoRock_001_19: -917406219
+      AutoRock_001_2: 1798554153
+      AutoRock_001_20: -1569223062
+      AutoRock_001_3: -1398293566
+      AutoRock_001_4: -49823677
+      AutoRock_001_5: -868607122
+      AutoRock_001_6: 337320861
+      AutoRock_001_7: 523312618
+      AutoRock_001_8: 977614516
+      AutoRock_001_9: -1692405776
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
