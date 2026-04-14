@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: AutoStackedRocks
+  m_Name: AutoBrownRock
   m_Shader: {fileID: -6465566751694194690, guid: c6811c0fde572514c92ea55dd230d525, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -27,6 +27,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _FresnelMask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _MainTex:
         m_Texture: {fileID: 2800000, guid: ff82eb73d221ce849947ef4ba31b0711, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -39,12 +43,28 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _OutlineMask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _RockBaseColor:
+        m_Texture: {fileID: 2800000, guid: 8d5e35d1c0458364abcfe3348c43413c, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _RockLighting:
+        m_Texture: {fileID: 2800000, guid: 25accc78b7180e846a4bcb54375df3ee, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _RockMaskOffsetTexture:
         m_Texture: {fileID: 2800000, guid: 65206b4c717d5894fb9aad9c479e0f4f, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _RockTexture:
         m_Texture: {fileID: 2800000, guid: d0c83628e76cbc742a1259f762761252, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ShadeMask:
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
@@ -68,7 +88,10 @@ Material:
     m_Colors:
     - White: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _FresnelColor: {r: 0.9921569, g: 0.6156863, b: 0.3764705, a: 1}
+    - _OutlineColor: {r: 0.36470586, g: 0.13333327, b: 0.082352914, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
+    - _ShadeColor: {r: 0.36470586, g: 0.13333327, b: 0.082352914, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
 --- !u!114 &4387286667926657621
