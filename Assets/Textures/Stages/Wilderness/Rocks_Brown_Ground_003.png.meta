@@ -1,0 +1,1095 @@
+fileFormatVersion: 2
+guid: c138516fb66e1fb4c8ce88fcfa630df8
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -964964986029410715
+    second: Rocks_Brown_Ground_003_0
+  - first:
+      213: 8917277251588937514
+    second: Rocks_Brown_Ground_003_1
+  - first:
+      213: 652403363616775874
+    second: Rocks_Brown_Ground_003_2
+  - first:
+      213: -623874703720004389
+    second: Rocks_Brown_Ground_003_3
+  - first:
+      213: 5897368147192249904
+    second: Rocks_Brown_Ground_003_4
+  - first:
+      213: 5060506674487022864
+    second: Rocks_Brown_Ground_003_5
+  - first:
+      213: 8081606796881383125
+    second: Rocks_Brown_Ground_003_6
+  - first:
+      213: -7749737020796254933
+    second: Rocks_Brown_Ground_003_7
+  - first:
+      213: -1534335346528899247
+    second: Rocks_Brown_Ground_003_8
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 128
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Rocks_Brown_Ground_003_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 640
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: -64, y: -64}
+        - {x: 64, y: -64}
+        - {x: 64, y: 62}
+        - {x: -64, y: 64}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 566f6033571cb92f0800000000000000
+      internalID: -964964986029410715
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rocks_Brown_Ground_003_1
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 640
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: -64, y: -64}
+        - {x: 64, y: -64}
+        - {x: 64, y: 60}
+        - {x: -64, y: 62}
+      tessellationDetail: 0
+      bones: []
+      spriteID: a2751a02a6880cb70800000000000000
+      internalID: 8917277251588937514
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rocks_Brown_Ground_003_2
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 640
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: -64, y: -64}
+        - {x: 52, y: -64}
+        - {x: 52, y: 38}
+        - {x: 24, y: 58}
+        - {x: -64, y: 60}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2ced5a2176dcd0900800000000000000
+      internalID: 652403363616775874
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rocks_Brown_Ground_003_3
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 640
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: -64, y: -64}
+        - {x: 64, y: -64}
+        - {x: 64, y: 59}
+        - {x: -64, y: 64}
+      tessellationDetail: 0
+      bones: []
+      spriteID: bd4ca6c234d8757f0800000000000000
+      internalID: -623874703720004389
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rocks_Brown_Ground_003_4
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 640
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: -64, y: -64}
+        - {x: 52, y: -64}
+        - {x: 52, y: 26}
+        - {x: 29, y: 52}
+        - {x: -21, y: 61}
+        - {x: -64, y: 59}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 03ef8139519a7d150800000000000000
+      internalID: 5897368147192249904
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rocks_Brown_Ground_003_5
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 640
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: -64, y: -64}
+        - {x: 52, y: -64}
+        - {x: 52, y: 19}
+        - {x: 44, y: 50}
+        - {x: 14, y: 59}
+        - {x: -64, y: 64}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 015da4c32088a3640800000000000000
+      internalID: 5060506674487022864
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rocks_Brown_Ground_003_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 512
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: -64, y: -64}
+        - {x: 64, y: -64}
+        - {x: 64, y: 61}
+        - {x: -64, y: 64}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5de4f764092a72070800000000000000
+      internalID: 8081606796881383125
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rocks_Brown_Ground_003_7
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 512
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: -64, y: -64}
+        - {x: 64, y: -64}
+        - {x: 64, y: 61}
+        - {x: -64, y: 61}
+      tessellationDetail: 0
+      bones: []
+      spriteID: b25cebc4d37637490800000000000000
+      internalID: -7749737020796254933
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rocks_Brown_Ground_003_8
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 512
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: -64, y: -64}
+        - {x: 52, y: -64}
+        - {x: 52, y: 9}
+        - {x: 32, y: 53}
+        - {x: -64, y: 61}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 15fa1dfa122f4bae0800000000000000
+      internalID: -1534335346528899247
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rocks_Brown_Ground_003_9
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 512
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: -64, y: -64}
+        - {x: 64, y: -64}
+        - {x: 64, y: 61}
+        - {x: -64, y: 64}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 75d6e574b838e2a479ccb0d577ab57e0
+      internalID: 1233338108
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rocks_Brown_Ground_003_10
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 512
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: -64, y: -64}
+        - {x: 52, y: -64}
+        - {x: 52, y: 27}
+        - {x: 38, y: 52}
+        - {x: -64, y: 61}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8aa16b2ea7312dd4e9c17a4a7a91558b
+      internalID: -1420081821
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rocks_Brown_Ground_003_11
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 512
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: -64, y: -64}
+        - {x: 52, y: -64}
+        - {x: 52, y: 40}
+        - {x: 38, y: 53}
+        - {x: 13, y: 61}
+        - {x: -64, y: 64}
+      tessellationDetail: 0
+      bones: []
+      spriteID: c3ed77cde547ebf448a7c5dafc745a98
+      internalID: -782820839
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rocks_Brown_Ground_003_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 384
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c67f3cdaf3f3d5d4bae2f6b5200f6a7e
+      internalID: 1723296734
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rocks_Brown_Ground_003_13
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 384
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b8e2ac3da36644f48aac8bac5363c017
+      internalID: 684677616
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rocks_Brown_Ground_003_14
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 384
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: -64, y: -64}
+        - {x: 52, y: -64}
+        - {x: 52, y: 64}
+        - {x: -64, y: 64}
+      tessellationDetail: 0
+      bones: []
+      spriteID: bdaf639439d97ae4fa292482e4f00b0e
+      internalID: 630311001
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rocks_Brown_Ground_003_15
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 384
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 86307177e229d0146b7ae7186a4294e4
+      internalID: -2030259682
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rocks_Brown_Ground_003_16
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 384
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: -64, y: -64}
+        - {x: 52, y: -64}
+        - {x: 52, y: 64}
+        - {x: -64, y: 64}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8fa5c80ae59af3845afdf9cfaa2cc5e9
+      internalID: -76918651
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rocks_Brown_Ground_003_17
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 384
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: -64, y: -64}
+        - {x: 52, y: -64}
+        - {x: 52, y: 64}
+        - {x: -64, y: 64}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1c380b40481b8e74dab7a6513f6ecb80
+      internalID: 567460043
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rocks_Brown_Ground_003_18
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 256
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: -64, y: -64}
+        - {x: 64, y: -64}
+        - {x: 64, y: 61}
+        - {x: -64, y: 64}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8142723b488b2f848be9390778e11786
+      internalID: 907671587
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rocks_Brown_Ground_003_19
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 256
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: -64, y: -64}
+        - {x: 64, y: -64}
+        - {x: 64, y: 60}
+        - {x: -64, y: 61}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 29985e92e8fcdaa46b459a4e4ee57316
+      internalID: 762299230
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rocks_Brown_Ground_003_20
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 256
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: -64, y: -64}
+        - {x: 52, y: -64}
+        - {x: 52, y: 29}
+        - {x: 42, y: 46}
+        - {x: 6, y: 58}
+        - {x: -64, y: 60}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 03a48f36a50b97b4db45f99ad008b342
+      internalID: -1971078242
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rocks_Brown_Ground_003_21
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 256
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: -64, y: -64}
+        - {x: 64, y: -64}
+        - {x: 64, y: 59}
+        - {x: -64, y: 64}
+      tessellationDetail: 0
+      bones: []
+      spriteID: be986f90c15fc7547b7f5cd61097f16e
+      internalID: 1897812321
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rocks_Brown_Ground_003_22
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 256
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: -64, y: -64}
+        - {x: 52, y: -64}
+        - {x: 52, y: 35}
+        - {x: 21, y: 55}
+        - {x: -64, y: 59}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8baee5b55a3e5154ab02bc8fbf08291e
+      internalID: -628382468
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rocks_Brown_Ground_003_23
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 256
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: -64, y: -64}
+        - {x: 52, y: -64}
+        - {x: 52, y: 42}
+        - {x: 17, y: 61}
+        - {x: -64, y: 64}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 73a27ff15376cd84893c7b0ed4313495
+      internalID: -327120213
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rocks_Brown_Ground_003_24
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 128
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4ebfb80acaa7cee4285b4c8accfdbb97
+      internalID: -1118463138
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rocks_Brown_Ground_003_25
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 128
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4634e8deb8ca87944841901fa1e142a5
+      internalID: 1927251377
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rocks_Brown_Ground_003_26
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 128
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: -64, y: -64}
+        - {x: 52, y: -64}
+        - {x: 52, y: 64}
+        - {x: -64, y: 64}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 33a48710ea684774aa94b46381126aa5
+      internalID: -935896165
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rocks_Brown_Ground_003_27
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 128
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f4848e335d976e240b698ccb029fbf6d
+      internalID: 1171653174
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rocks_Brown_Ground_003_28
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 128
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: -64, y: -64}
+        - {x: 52, y: -64}
+        - {x: 52, y: 64}
+        - {x: -64, y: 64}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 858dec1902816be4e9210bb2bfacafc9
+      internalID: -626178987
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rocks_Brown_Ground_003_29
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 128
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: -64, y: -64}
+        - {x: 52, y: -64}
+        - {x: 52, y: 64}
+        - {x: -64, y: 64}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4c72ca3584effb44d9dc459df2f7b32a
+      internalID: 1429455730
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rocks_Brown_Ground_003_30
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9d2e183b1e71ecd48a10f4eca382836e
+      internalID: -2114790218
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rocks_Brown_Ground_003_31
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0b185758dd9caf5459f8950dae61193c
+      internalID: 1584482886
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rocks_Brown_Ground_003_32
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: -64, y: -64}
+        - {x: 52, y: -64}
+        - {x: 52, y: 64}
+        - {x: -64, y: 64}
+      tessellationDetail: 0
+      bones: []
+      spriteID: c98a4860b9e2b654f8a6554067edc134
+      internalID: 1196909890
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rocks_Brown_Ground_003_33
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 476b62fc7f092f54c8412798e7e90589
+      internalID: -1783098047
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rocks_Brown_Ground_003_34
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: -64, y: -64}
+        - {x: 52, y: -64}
+        - {x: 52, y: 64}
+        - {x: -64, y: 64}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7e00e4607c2226f4f8600633b03059d9
+      internalID: -739036948
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rocks_Brown_Ground_003_35
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: -64, y: -64}
+        - {x: 52, y: -64}
+        - {x: 52, y: 64}
+        - {x: -64, y: 64}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 06bcb71d3b616984fa0dc4f0998265df
+      internalID: -195396959
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 2f32f21c184610b40ad3ba4acf62d340
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":6.0,"y":6.0},"gridSpriteSize":{"x":128.0,"y":128.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      Rocks_Brown_Ground_003_0: -964964986029410715
+      Rocks_Brown_Ground_003_1: 8917277251588937514
+      Rocks_Brown_Ground_003_10: -1420081821
+      Rocks_Brown_Ground_003_11: -782820839
+      Rocks_Brown_Ground_003_12: 1723296734
+      Rocks_Brown_Ground_003_13: 684677616
+      Rocks_Brown_Ground_003_14: 630311001
+      Rocks_Brown_Ground_003_15: -2030259682
+      Rocks_Brown_Ground_003_16: -76918651
+      Rocks_Brown_Ground_003_17: 567460043
+      Rocks_Brown_Ground_003_18: 907671587
+      Rocks_Brown_Ground_003_19: 762299230
+      Rocks_Brown_Ground_003_2: 652403363616775874
+      Rocks_Brown_Ground_003_20: -1971078242
+      Rocks_Brown_Ground_003_21: 1897812321
+      Rocks_Brown_Ground_003_22: -628382468
+      Rocks_Brown_Ground_003_23: -327120213
+      Rocks_Brown_Ground_003_24: -1118463138
+      Rocks_Brown_Ground_003_25: 1927251377
+      Rocks_Brown_Ground_003_26: -935896165
+      Rocks_Brown_Ground_003_27: 1171653174
+      Rocks_Brown_Ground_003_28: -626178987
+      Rocks_Brown_Ground_003_29: 1429455730
+      Rocks_Brown_Ground_003_3: -623874703720004389
+      Rocks_Brown_Ground_003_30: -2114790218
+      Rocks_Brown_Ground_003_31: 1584482886
+      Rocks_Brown_Ground_003_32: 1196909890
+      Rocks_Brown_Ground_003_33: -1783098047
+      Rocks_Brown_Ground_003_34: -739036948
+      Rocks_Brown_Ground_003_35: -195396959
+      Rocks_Brown_Ground_003_4: 5897368147192249904
+      Rocks_Brown_Ground_003_5: 5060506674487022864
+      Rocks_Brown_Ground_003_6: 8081606796881383125
+      Rocks_Brown_Ground_003_7: -7749737020796254933
+      Rocks_Brown_Ground_003_8: -1534335346528899247
+      Rocks_Brown_Ground_003_9: 1233338108
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
