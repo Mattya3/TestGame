@@ -20,7 +20,6 @@ public class LightIntensityModulator : MonoBehaviour
         _initialIntensity = _light.intensity;
     }
 
-    // Update is called once per frame
     void Update()
     {
         _time += Time.deltaTime;
