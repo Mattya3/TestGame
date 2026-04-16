@@ -13040,17 +13040,17 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 0.5}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.32, y: 0.64}
-    newSize: {x: 0.32, y: 100}
+    oldSize: {x: 2, y: 8}
+    newSize: {x: 2, y: 100}
     adaptiveTilingThreshold: 0.5
     drawMode: 2
     adaptiveTiling: 0
-  m_AutoTiling: 1
-  m_Size: {x: 1, y: 1}
+  m_AutoTiling: 0
+  m_Size: {x: 0.25, y: 100}
   m_EdgeRadius: 0
 --- !u!212 &2067377654
 SpriteRenderer:
@@ -13101,12 +13101,12 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -1
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -3683173678298803702, guid: f4c515be68d9449e69b86bdc0436744a, type: 3}
+  m_Sprite: {fileID: -3347871516781289849, guid: cc29d2680de9799438060d37ba89e45e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 2
-  m_Size: {x: 0.32, y: 100}
+  m_Size: {x: 2, y: 100}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -13138,7 +13138,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff8a6fa19d78244ad8fda9e2ddabb937, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ElectricBarMove
-  _moveSpeed: 0
+  _moveSpeed: 1
   _direction: {x: 1, y: 0, z: 0}
 --- !u!114 &2067377657
 MonoBehaviour:
