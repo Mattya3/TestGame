@@ -12996,10 +12996,10 @@ GameObject:
   m_Component:
   - component: {fileID: 2067377655}
   - component: {fileID: 2067377654}
+  - component: {fileID: 2067377658}
   - component: {fileID: 2067377653}
   - component: {fileID: 2067377656}
   - component: {fileID: 2067377657}
-  - component: {fileID: 2067377658}
   m_Layer: 0
   m_Name: ElectricBar
   m_TagString: ElectricBar
