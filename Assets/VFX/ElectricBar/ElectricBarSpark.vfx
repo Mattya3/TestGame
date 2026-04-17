@@ -272,8 +272,8 @@ MonoBehaviour:
   m_CustomAttributes:
   - {fileID: 8926484042661614877}
   m_ParameterInfo:
-  - name: MinY
-    path: MinY
+  - name: BoundsMinY
+    path: BoundsMinY
     tooltip: 
     space: -1
     spaceable: 0
@@ -288,8 +288,8 @@ MonoBehaviour:
     max: Infinity
     enumValues: []
     descendantCount: 0
-  - name: MaxY
-    path: MaxY
+  - name: BoundsMaxY
+    path: BoundsMaxY
     tooltip: 
     space: -1
     spaceable: 0
@@ -5427,7 +5427,7 @@ MonoBehaviour:
   m_InputSlots: []
   m_OutputSlots:
   - {fileID: 8926484042661614828}
-  m_ExposedName: MinY
+  m_ExposedName: BoundsMinY
   m_Exposed: 1
   m_Order: 0
   m_Category: 
@@ -5508,7 +5508,7 @@ MonoBehaviour:
   m_InputSlots: []
   m_OutputSlots:
   - {fileID: 8926484042661614830}
-  m_ExposedName: MaxY
+  m_ExposedName: BoundsMaxY
   m_Exposed: 1
   m_Order: 1
   m_Category: 

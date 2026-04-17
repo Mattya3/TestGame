@@ -13466,6 +13466,12 @@ VisualEffect:
       - m_Value: 50
         m_Name: MaxY
         m_Overridden: 1
+      - m_Value: -50
+        m_Name: BoundsMinY
+        m_Overridden: 1
+      - m_Value: 50
+        m_Name: BoundsMaxY
+        m_Overridden: 1
     m_Vector2f:
       m_Array: []
     m_Vector3f:
@@ -13498,10 +13504,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 261fc52ccb77df84c9d0c59e49625a48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  _spawnPositionMin: -10
-  _spawnPositionMax: 10
+  _spawnPositionMin: -20
+  _spawnPositionMax: 20
   _spawnIntervalMin: 0.1
-  _spawnIntervalMax: 0.3
+  _spawnIntervalMax: 0.2
   _lightPrefab: {fileID: 5395702280908055769, guid: 8a0072913b3cee24e81ba9c68fc3e1e4, type: 3}
   _lightDuration: 0.04
 --- !u!1 &2090028616
