@@ -4,10 +4,10 @@ using UnityEngine.VFX;
 public class ElectricBarSparks : MonoBehaviour
 {
     [SerializeField]
-    private float _spawnPositionYMin = -10.0f;
+    private float _spawnPositionMin = -10.0f;
 
     [SerializeField]
-    private float _spawnPositionYMax = 10.0f;
+    private float _spawnPositionMax = 10.0f;
 
     [SerializeField]
     private float _spawnIntervalMin = 0.1f;
@@ -27,16 +27,16 @@ public class ElectricBarSparks : MonoBehaviour
     private float _spawnTimer = 0.0f;
 
     static readonly string _spawnEventName = "OnSpawn";
-    static readonly int _positionYAttribute = Shader.PropertyToID("SparkPositionY");
+    static readonly int _positionAttribute = Shader.PropertyToID("SparkPosition");
 
     private void Awake()
     {
         _visualEffect = GetComponent<VisualEffect>();
         _eventAttribute = _visualEffect.CreateVFXEventAttribute();
 
-        if (!_eventAttribute.HasFloat(_positionYAttribute))
+        if (!_eventAttribute.HasFloat(_positionAttribute))
         {
-            Debug.LogError("The Visual Effect does not have the required 'SparkPositionY' attribute.");
+            Debug.LogError("The Visual Effect does not have the required 'SparkPosition' attribute.");
             enabled = false;
         }
         if (_lightPrefab == null)
@@ -68,12 +68,12 @@ public class ElectricBarSparks : MonoBehaviour
 
     private void _SpawnSpark()
     {
-        float randomY = Random.Range(_spawnPositionYMin, _spawnPositionYMax);
-        _eventAttribute.SetFloat(_positionYAttribute, randomY);
+        float randomPos = Random.Range(_spawnPositionMin, _spawnPositionMax);
+        _eventAttribute.SetFloat(_positionAttribute, randomPos);
         _visualEffect.SendEvent(_spawnEventName, _eventAttribute);
 
         // light
-        var light = Instantiate(_lightPrefab, transform.position + Vector3.up * randomY, Quaternion.identity, transform);
+        var light = Instantiate(_lightPrefab, transform.position + transform.up * randomPos, Quaternion.identity, transform);
         Destroy(light, _lightDuration);
     }
 }
