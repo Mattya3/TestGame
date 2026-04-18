@@ -25,35 +25,27 @@ public class SciFiBlockMaterialConfiguration : MonoBehaviour
     private const string ILLUMINATION_COLOR3_PROPERTY_NAME = "_IlluminationColor3";
     private const string ILLUMINATION_OFFSET_VECTOR_PROPERTY_NAME = "_IlluminationOffsetVector";
 
-    protected virtual void OnValidate()
+    private void OnValidate()
     {
         Apply();
     }
 
-    protected virtual void Awake()
+    private void Awake()
     {
         Apply();
     }
 
-    protected void Apply()
+    private void Apply()
     {
         var renderer = GetComponent<Renderer>();
         var materialPropertyBlock = new MaterialPropertyBlock();
 
         renderer.GetPropertyBlock(materialPropertyBlock);
-
         materialPropertyBlock.SetColor(MASK_COLOR_PROPERTY_NAME, _maskColor);
         materialPropertyBlock.SetColor(ILLUMINATION_COLOR1_PROPERTY_NAME, _illuminationColor1);
         materialPropertyBlock.SetColor(ILLUMINATION_COLOR2_PROPERTY_NAME, _illuminationColor2);
         materialPropertyBlock.SetColor(ILLUMINATION_COLOR3_PROPERTY_NAME, _illuminationColor3);
         materialPropertyBlock.SetVector(ILLUMINATION_OFFSET_VECTOR_PROPERTY_NAME, _illuminationOffsetVector);
-        _SetAdditionalProperties(materialPropertyBlock);
-
         renderer.SetPropertyBlock(materialPropertyBlock);
-    }
-
-    protected virtual void _SetAdditionalProperties(MaterialPropertyBlock materialPropertyBlock)
-    {
-        // This method can be overridden by derived classes to set additional properties on the material property block.
     }
 }

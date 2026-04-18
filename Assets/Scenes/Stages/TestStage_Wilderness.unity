@@ -6041,9 +6041,10 @@ GameObject:
   m_Component:
   - component: {fileID: 887804186}
   - component: {fileID: 887804185}
+  - component: {fileID: 887804192}
+  - component: {fileID: 887804190}
   - component: {fileID: 887804187}
   - component: {fileID: 887804188}
-  - component: {fileID: 887804190}
   - component: {fileID: 887804191}
   m_Layer: 0
   m_Name: GoalEntity
@@ -6211,13 +6212,25 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5bc4f4a792956c64e9cd767106b1399f, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GoalEntityBaseMaterialConfiguration
-  _maskColor: {r: 1, g: 0.8745099, b: 0.7607844, a: 0.8784314}
+  m_EditorClassIdentifier: Assembly-CSharp::GoalEntityBaseShaderProperties
+  _illuminationThresholds: {x: 1, y: 1, z: 1}
+--- !u!114 &887804192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 887804184}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df9af37c254e64449ba3ea943e7f9e85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  _maskColor: {r: 1, g: 0.8763446, b: 0.759434, a: 0.8784314}
   _illuminationColor1: {r: 0.8313726, g: 0.69411767, b: 0.61960787, a: 1}
   _illuminationColor2: {r: 1, g: 1, b: 1, a: 1}
   _illuminationColor3: {r: 1, g: 0.9294118, b: 0.5058824, a: 1}
   _illuminationOffsetVector: {x: -0.1, y: -0.02, z: 0}
-  _illuminationThresholds: {x: 1, y: 1, z: 1}
 --- !u!1 &952535229
 GameObject:
   m_ObjectHideFlags: 0
@@ -8860,6 +8873,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1659530852}
   - component: {fileID: 1659530853}
+  - component: {fileID: 1659530857}
   - component: {fileID: 1659530855}
   - component: {fileID: 1659530856}
   m_Layer: 0
@@ -8967,13 +8981,25 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0766ec35e9106134eb355c766f721406, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GoalEntityBackPanelMaterialConfiguration
-  _maskColor: {r: 1, g: 0.8745099, b: 0.7607844, a: 0.8784314}
+  m_EditorClassIdentifier: Assembly-CSharp::GoalEntityBackPanelShaderProperties
+  _illuminationThreshold: 1
+--- !u!114 &1659530857
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1659530851}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df9af37c254e64449ba3ea943e7f9e85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  _maskColor: {r: 1, g: 0.8763446, b: 0.759434, a: 0.8784314}
   _illuminationColor1: {r: 0.8313726, g: 0.69411767, b: 0.61960787, a: 1}
   _illuminationColor2: {r: 1, g: 1, b: 1, a: 1}
   _illuminationColor3: {r: 1, g: 0.9294118, b: 0.5058824, a: 1}
   _illuminationOffsetVector: {x: -0.1, y: -0.02, z: 0}
-  _illuminationThreshold: 1
 --- !u!1 &1663018030
 GameObject:
   m_ObjectHideFlags: 0
