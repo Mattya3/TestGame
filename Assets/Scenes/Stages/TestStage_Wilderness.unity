@@ -5925,6 +5925,8 @@ GameObject:
   - component: {fileID: 887804185}
   - component: {fileID: 887804187}
   - component: {fileID: 887804188}
+  - component: {fileID: 887804190}
+  - component: {fileID: 887804189}
   m_Layer: 0
   m_Name: GoalEntity
   m_TagString: Goal
@@ -5958,7 +5960,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: bd0e6895b70847a4fa7c4bd9eb1b1c4a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -6066,6 +6068,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 348b3df0fa6fe459ba6d97b072225db0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+--- !u!114 &887804189
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 887804184}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df9af37c254e64449ba3ea943e7f9e85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  _maskColor: {r: 1, g: 0.8763446, b: 0.759434, a: 0.8784314}
+  _illuminationColor1: {r: 0.8313726, g: 0.69411767, b: 0.61960787, a: 1}
+  _illuminationColor2: {r: 1, g: 1, b: 1, a: 1}
+  _illuminationColor3: {r: 1, g: 0.9294118, b: 0.5058824, a: 1}
+  _illuminationOffsetVector: {x: -0.1, y: -0.02, z: 0}
+--- !u!114 &887804190
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 887804184}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 726d6c3388e7e3d4f83d99636bc42499, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CustomTimeLooper
+  _loopDuration: 4
 --- !u!1 &952535229
 GameObject:
   m_ObjectHideFlags: 0
