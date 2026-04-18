@@ -5827,7 +5827,7 @@ GameObject:
   - component: {fileID: 887804187}
   - component: {fileID: 887804188}
   m_Layer: 0
-  m_Name: GoalFlag
+  m_Name: GoalEntity
   m_TagString: Goal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5882,7 +5882,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -6922694518755181020, guid: 54535365e5fc9284897c4af5f2d94e73, type: 3}
+  m_Sprite: {fileID: -7585599488068199254, guid: fb89109a9cc42a34ea1041017ffe066e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -5901,8 +5901,8 @@ Transform:
   m_GameObject: {fileID: 887804184}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 41.433, y: 3.18, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 1}
+  m_LocalPosition: {x: 47.818157, y: 2.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -5941,17 +5941,17 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.21315718, y: 0}
+  m_Offset: {x: 0, y: -0.18045068}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.58, y: 1.21}
+    oldSize: {x: 3, y: 1}
     newSize: {x: 0.58, y: 1.21}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.15368557, y: 1.21}
+  m_Size: {x: 3, y: 0.63927364}
   m_EdgeRadius: 0
 --- !u!114 &887804188
 MonoBehaviour:
