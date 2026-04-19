@@ -29,6 +29,9 @@
         },
         {
             "m_Id": "ca632ac8e39f476eab99cdc9aed834a6"
+        },
+        {
+            "m_Id": "d450b5ed5f6b48dda51f4ee53f81c4ed"
         }
     ],
     "m_Keywords": [],
@@ -116,6 +119,9 @@
         },
         {
             "m_Id": "fc03afe0765f4ec6a5027c51c1066cfe"
+        },
+        {
+            "m_Id": "c6c1fabda54b471a9746b7643a687eb0"
         }
     ],
     "m_GroupDatas": [],
@@ -357,6 +363,20 @@
                     "m_Id": "3d05e582414e4026946a26a4c09e7cbf"
                 },
                 "m_SlotId": 0
+            }
+        },
+        {
+            "m_OutputSlot": {
+                "m_Node": {
+                    "m_Id": "c6c1fabda54b471a9746b7643a687eb0"
+                },
+                "m_SlotId": 0
+            },
+            "m_InputSlot": {
+                "m_Node": {
+                    "m_Id": "cfd1e9004c22418281f2d9d4076d6b1f"
+                },
+                "m_SlotId": -268857465
             }
         },
         {
@@ -2194,6 +2214,38 @@
 
 {
     "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
+    "m_ObjectId": "8bd217a94a8f4ad09174d4110d1333fb",
+    "m_Id": -268857465,
+    "m_DisplayName": "Intensity",
+    "m_SlotType": 0,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "_Intensity",
+    "m_StageCapability": 3,
+    "m_Value": 1.0,
+    "m_DefaultValue": 0.0,
+    "m_Labels": [],
+    "m_LiteralMode": false
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
+    "m_ObjectId": "8d292690817f463da8cd77e2d7c93790",
+    "m_Id": 0,
+    "m_DisplayName": "IlluminationIntensity",
+    "m_SlotType": 1,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "Out",
+    "m_StageCapability": 3,
+    "m_Value": 0.0,
+    "m_DefaultValue": 0.0,
+    "m_Labels": [],
+    "m_LiteralMode": false
+}
+
+{
+    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.DynamicVectorMaterialSlot",
     "m_ObjectId": "90f31567a4f9427294d4c1694551151e",
     "m_Id": 2,
@@ -2459,9 +2511,6 @@
             "m_Id": "4d92a1b6788448ff860818d6b98696e1"
         },
         {
-            "m_Id": "6876f944280b455b8447d9067aaa338e"
-        },
-        {
             "m_Id": "c13d5b3ceede4d1ab54df0e846d3efd9"
         },
         {
@@ -2469,6 +2518,12 @@
         },
         {
             "m_Id": "3a4e7e12a1fe481ba9bff5981f7248ea"
+        },
+        {
+            "m_Id": "6876f944280b455b8447d9067aaa338e"
+        },
+        {
+            "m_Id": "d450b5ed5f6b48dda51f4ee53f81c4ed"
         },
         {
             "m_Id": "ca632ac8e39f476eab99cdc9aed834a6"
@@ -2808,6 +2863,42 @@
 }
 
 {
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.PropertyNode",
+    "m_ObjectId": "c6c1fabda54b471a9746b7643a687eb0",
+    "m_Group": {
+        "m_Id": ""
+    },
+    "m_Name": "Property",
+    "m_DrawState": {
+        "m_Expanded": true,
+        "m_Position": {
+            "serializedVersion": "2",
+            "x": -1675.0001220703125,
+            "y": 706.0000610351563,
+            "width": 179.0,
+            "height": 33.99993896484375
+        }
+    },
+    "m_Slots": [
+        {
+            "m_Id": "8d292690817f463da8cd77e2d7c93790"
+        }
+    ],
+    "synonyms": [],
+    "m_Precision": 0,
+    "m_PreviewExpanded": true,
+    "m_DismissedVersion": 0,
+    "m_PreviewMode": 0,
+    "m_CustomColors": {
+        "m_SerializableColors": []
+    },
+    "m_Property": {
+        "m_Id": "d450b5ed5f6b48dda51f4ee53f81c4ed"
+    }
+}
+
+{
     "m_SGVersion": 1,
     "m_Type": "UnityEditor.ShaderGraph.Internal.Vector1ShaderProperty",
     "m_ObjectId": "ca632ac8e39f476eab99cdc9aed834a6",
@@ -2914,6 +3005,9 @@
             "m_Id": "d684279749c14300ad11e8c347497b87"
         },
         {
+            "m_Id": "8bd217a94a8f4ad09174d4110d1333fb"
+        },
+        {
             "m_Id": "89f3db27fd8a48fd9b48c63ff620127b"
         }
     ],
@@ -2932,7 +3026,8 @@
         "d61acd00-17af-480f-96fe-83a0abc92d89",
         "6a21825f-eb73-4853-8d5e-ea2af9a07dce",
         "2b3f8073-3095-4473-bc5f-d2759700b3d2",
-        "bad41374-462c-45fd-8e0f-0169623a8cf7"
+        "bad41374-462c-45fd-8e0f-0169623a8cf7",
+        "4baf2944-2462-48e2-878a-f6a22608424e"
     ],
     "m_PropertyIds": [
         660450139,
@@ -2940,7 +3035,8 @@
         -1212420718,
         -958032040,
         -936513587,
-        1638162612
+        1638162612,
+        -268857465
     ],
     "m_Dropdowns": [],
     "m_DropdownSelectedEntries": []
@@ -2966,6 +3062,50 @@
     },
     "m_Labels": [],
     "m_Channel": 0
+}
+
+{
+    "m_SGVersion": 1,
+    "m_Type": "UnityEditor.ShaderGraph.Internal.Vector1ShaderProperty",
+    "m_ObjectId": "d450b5ed5f6b48dda51f4ee53f81c4ed",
+    "m_Guid": {
+        "m_GuidSerialized": "defcd72e-e84d-45c8-9f22-95a24c9ef2ea"
+    },
+    "promotedFromAssetID": "",
+    "promotedFromCategoryName": "",
+    "promotedOrdering": -1,
+    "m_Name": "IlluminationIntensity",
+    "m_DefaultRefNameVersion": 1,
+    "m_RefNameGeneratedByDisplayName": "IlluminationIntensity",
+    "m_DefaultReferenceName": "_IlluminationIntensity",
+    "m_OverrideReferenceName": "",
+    "m_GeneratePropertyBlock": true,
+    "m_UseCustomSlotLabel": false,
+    "m_CustomSlotLabel": "",
+    "m_DismissedVersion": 0,
+    "m_Precision": 0,
+    "overrideHLSLDeclaration": false,
+    "hlslDeclarationOverride": 0,
+    "m_Hidden": false,
+    "m_PerRendererData": false,
+    "m_customAttributes": [],
+    "m_Value": 1.0,
+    "m_FloatType": 0,
+    "m_LiteralFloatMode": false,
+    "m_RangeValues": {
+        "x": 0.0,
+        "y": 1.0
+    },
+    "m_SliderType": 0,
+    "m_SliderPower": 3.0,
+    "m_EnumType": 0,
+    "m_CSharpEnumString": "",
+    "m_EnumNames": [
+        "Default"
+    ],
+    "m_EnumValues": [
+        0
+    ]
 }
 
 {

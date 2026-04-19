@@ -2524,6 +2524,7 @@ MonoBehaviour:
   _illuminationColor1: {r: 0.8313726, g: 0.69411767, b: 0.61960787, a: 1}
   _illuminationColor2: {r: 1, g: 1, b: 1, a: 1}
   _illuminationColor3: {r: 1, g: 0.9294118, b: 0.5058824, a: 1}
+  _illuminationIntensity: 2
   _illuminationOffsetVector: {x: -0.1, y: -0.02, z: 0}
 --- !u!1 &161220174
 GameObject:
@@ -6335,6 +6336,7 @@ MonoBehaviour:
   _illuminationColor1: {r: 0.8313726, g: 0.69411767, b: 0.61960787, a: 1}
   _illuminationColor2: {r: 1, g: 1, b: 1, a: 1}
   _illuminationColor3: {r: 1, g: 0.9294118, b: 0.5058824, a: 1}
+  _illuminationIntensity: 2
   _illuminationOffsetVector: {x: -0.1, y: -0.02, z: 0}
 --- !u!1 &952535229
 GameObject:
@@ -6798,6 +6800,7 @@ MonoBehaviour:
   _illuminationColor1: {r: 0.8313726, g: 0.69411767, b: 0.61960787, a: 1}
   _illuminationColor2: {r: 1, g: 1, b: 1, a: 1}
   _illuminationColor3: {r: 1, g: 0.9294118, b: 0.5058824, a: 1}
+  _illuminationIntensity: 1
   _illuminationOffsetVector: {x: -0.1, y: -0.02, z: 0}
 --- !u!1 &1093922456
 GameObject:
@@ -7459,6 +7462,7 @@ MonoBehaviour:
   _illuminationColor1: {r: 0.8313726, g: 0.69411767, b: 0.61960787, a: 1}
   _illuminationColor2: {r: 1, g: 1, b: 1, a: 1}
   _illuminationColor3: {r: 1, g: 0.9294118, b: 0.5058824, a: 1}
+  _illuminationIntensity: 1
   _illuminationOffsetVector: {x: -0.1, y: -0.02, z: 0}
 --- !u!1 &1271411053
 GameObject:
@@ -9104,6 +9108,7 @@ MonoBehaviour:
   _illuminationColor1: {r: 0.8313726, g: 0.69411767, b: 0.61960787, a: 1}
   _illuminationColor2: {r: 1, g: 1, b: 1, a: 1}
   _illuminationColor3: {r: 1, g: 0.9294118, b: 0.5058824, a: 1}
+  _illuminationIntensity: 3
   _illuminationOffsetVector: {x: -0.1, y: -0.02, z: 0}
 --- !u!1 &1663018030
 GameObject:
