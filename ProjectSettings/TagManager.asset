@@ -45,5 +45,23 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Parallax
+    uniqueID: 4088962231
+    locked: 0
+  - name: StageBack
+    uniqueID: 1709054473
+    locked: 0
+  - name: Stage
+    uniqueID: 2066615391
+    locked: 0
+  - name: Gimmick
+    uniqueID: 1990554817
+    locked: 0
+  - name: Character
+    uniqueID: 2274943527
+    locked: 0
+  - name: StageFront
+    uniqueID: 39888881
+    locked: 0
   m_RenderingLayers:
   - Default
