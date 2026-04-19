@@ -1,28 +1,45 @@
 ﻿using UnityEngine;
 
 [RequireComponent(typeof(Renderer))]
+[ExecuteInEditMode]
 public class MonoMaterialAccessBehaviour : MonoBehaviour
 {
-    protected Material _material;
+    private Renderer _renderer;
+    private MaterialPropertyBlock _materialPropertyBlock;
+
+    protected virtual void OnValidate()
+    {
+        _GetReferences();
+        _Apply();
+    }
 
     protected virtual void Awake()
     {
-        _material = GetComponent<Renderer>().material;
-        if (_material == null)
-        {
-            Debug.LogError("Renderer does not have a material.", this);
-            enabled = false;
-            return;
-        }
+        _GetReferences();
     }
 
-    protected virtual void OnDestroy()
+    protected virtual void LateUpdate()
     {
-        // 明示的にマテリアルを破棄して、メモリリークを防止
-        if (_material != null)
-        {
-            Destroy(_material);
-            _material = null;
-        }
+        _Apply();
+    }
+
+    protected virtual void SetMaterialProperties(MaterialPropertyBlock materialPropertyBlock)
+    {
+        // Override this method in derived classes to set properties on the material property block.
+    }
+
+    private void _GetReferences()
+    {
+        if (_renderer == null)
+            _renderer = GetComponent<Renderer>();
+        if (_materialPropertyBlock == null)
+            _materialPropertyBlock = new MaterialPropertyBlock();
+    }
+
+    private void _Apply()
+    {
+        _renderer.GetPropertyBlock(_materialPropertyBlock);
+        SetMaterialProperties(_materialPropertyBlock);
+        _renderer.SetPropertyBlock(_materialPropertyBlock);
     }
 }
