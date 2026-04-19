@@ -63,5 +63,8 @@ TagManager:
   - name: StageFront
     uniqueID: 39888881
     locked: 0
+  - name: Weather
+    uniqueID: 1291735765
+    locked: 0
   m_RenderingLayers:
   - Default
