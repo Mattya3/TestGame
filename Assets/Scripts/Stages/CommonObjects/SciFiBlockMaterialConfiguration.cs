@@ -2,7 +2,7 @@
 
 [RequireComponent(typeof(Renderer))]
 [ExecuteInEditMode]
-public class SciFiBlockMaterialConfiguration : MonoBehaviour
+public class SciFiBlockMaterialConfiguration : MonoMaterialAccessBehaviour
 {
     [SerializeField]
     private Color _maskColor = Color.white;
@@ -29,28 +29,13 @@ public class SciFiBlockMaterialConfiguration : MonoBehaviour
     private const string ILLUMINATION_INTENSITY_PROPERTY_NAME = "_IlluminationIntensity";
     private const string ILLUMINATION_OFFSET_VECTOR_PROPERTY_NAME = "_IlluminationOffsetVector";
 
-    private void OnValidate()
+    protected override void SetMaterialProperties(MaterialPropertyBlock materialPropertyBlock)
     {
-        Apply();
-    }
-
-    private void Awake()
-    {
-        Apply();
-    }
-
-    private void Apply()
-    {
-        var renderer = GetComponent<Renderer>();
-        var materialPropertyBlock = new MaterialPropertyBlock();
-
-        renderer.GetPropertyBlock(materialPropertyBlock);
         materialPropertyBlock.SetColor(MASK_COLOR_PROPERTY_NAME, _maskColor);
         materialPropertyBlock.SetColor(ILLUMINATION_COLOR1_PROPERTY_NAME, _illuminationColor1);
         materialPropertyBlock.SetColor(ILLUMINATION_COLOR2_PROPERTY_NAME, _illuminationColor2);
         materialPropertyBlock.SetColor(ILLUMINATION_COLOR3_PROPERTY_NAME, _illuminationColor3);
         materialPropertyBlock.SetFloat(ILLUMINATION_INTENSITY_PROPERTY_NAME, _illuminationIntensity);
         materialPropertyBlock.SetVector(ILLUMINATION_OFFSET_VECTOR_PROPERTY_NAME, _illuminationOffsetVector);
-        renderer.SetPropertyBlock(materialPropertyBlock);
     }
 }
