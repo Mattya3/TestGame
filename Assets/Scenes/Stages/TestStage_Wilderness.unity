@@ -900,7 +900,7 @@ TilemapRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 2066615391
   m_SortingLayer: 3
-  m_SortingOrder: -15
+  m_SortingOrder: 10
   m_MaskInteraction: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
@@ -2763,7 +2763,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -206005065
   m_SortingLayer: 1
-  m_SortingOrder: -100
+  m_SortingOrder: 20
   m_MaskInteraction: 0
   m_Sprite: {fileID: 4926896881259985544, guid: 32a54838811dddf4aafd5991a152d0f6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -2842,7 +2842,7 @@ MonoBehaviour:
   m_Intensity: 1
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
-  m_ApplyToSortingLayers: 0000000027e29887b79cb8f3091ade655f0c2e7bf1a76002c174a576
+  m_ApplyToSortingLayers: 0000000027e29887b79cb8f3091ade655f0c2e7bf1a76002c174a576d552fe4c
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -2952,7 +2952,7 @@ VFXRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 1990554817
   m_SortingLayer: 4
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_MaskInteraction: 0
 --- !u!2083052967 &493493891
 VisualEffect:
@@ -3184,9 +3184,9 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 39888881
-  m_SortingLayer: 6
-  m_SortingOrder: 50
+  m_SortingLayerID: 1291735765
+  m_SortingLayer: 7
+  m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: -1931146939, guid: 8cff604d9c86de64e839fe919fea1d80, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 0.2}
@@ -3599,7 +3599,7 @@ TilemapRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 1709054473
   m_SortingLayer: 2
-  m_SortingOrder: -40
+  m_SortingOrder: 10
   m_MaskInteraction: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
@@ -4300,7 +4300,7 @@ TilemapRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 1709054473
   m_SortingLayer: 2
-  m_SortingOrder: -50
+  m_SortingOrder: -10
   m_MaskInteraction: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
@@ -5130,7 +5130,7 @@ MonoBehaviour:
   m_Intensity: 1
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
-  m_ApplyToSortingLayers: 0000000027e29887b79cb8f3091ade655f0c2e7bf1a76002c174a576
+  m_ApplyToSortingLayers: 0000000027e29887b79cb8f3091ade655f0c2e7bf1a76002c174a576d552fe4c
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -5271,7 +5271,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -206005065
   m_SortingLayer: 1
-  m_SortingOrder: -110
+  m_SortingOrder: 10
   m_MaskInteraction: 0
   m_Sprite: {fileID: -9033068750158811977, guid: 58bc7aeba01cb6940938e20cd9f18579, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -5611,7 +5611,7 @@ TilemapRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 1709054473
   m_SortingLayer: 2
-  m_SortingOrder: -60
+  m_SortingOrder: -20
   m_MaskInteraction: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
@@ -6205,7 +6205,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 1990554817
   m_SortingLayer: 4
-  m_SortingOrder: -10
+  m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: -7585599488068199254, guid: fb89109a9cc42a34ea1041017ffe066e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -6462,7 +6462,7 @@ TilemapRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 2066615391
   m_SortingLayer: 3
-  m_SortingOrder: -5
+  m_SortingOrder: 10
   m_MaskInteraction: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
@@ -7147,7 +7147,7 @@ TilemapRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 1709054473
   m_SortingLayer: 2
-  m_SortingOrder: -45
+  m_SortingOrder: 0
   m_MaskInteraction: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
@@ -8100,7 +8100,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -206005065
   m_SortingLayer: 1
-  m_SortingOrder: -120
+  m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: -4790290041195955121, guid: 75e27de27cb4c574ca14edef2a13dd22, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -8355,7 +8355,7 @@ TilemapRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 2066615391
   m_SortingLayer: 3
-  m_SortingOrder: -8
+  m_SortingOrder: 10
   m_MaskInteraction: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
@@ -9050,7 +9050,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 1990554817
   m_SortingLayer: 4
-  m_SortingOrder: -15
+  m_SortingOrder: -10
   m_MaskInteraction: 0
   m_Sprite: {fileID: 1530442934609431519, guid: 6b1514007cf06394191cb3e24fc7d0c0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -9229,7 +9229,7 @@ TilemapRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 39888881
   m_SortingLayer: 6
-  m_SortingOrder: 10
+  m_SortingOrder: 0
   m_MaskInteraction: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
@@ -9652,7 +9652,7 @@ TilemapRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 2066615391
   m_SortingLayer: 3
-  m_SortingOrder: -10
+  m_SortingOrder: 0
   m_MaskInteraction: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
@@ -13193,9 +13193,9 @@ VFXRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 39888881
-  m_SortingLayer: 6
-  m_SortingOrder: 40
+  m_SortingLayerID: 1291735765
+  m_SortingLayer: 7
+  m_SortingOrder: -10
   m_MaskInteraction: 0
 --- !u!2083052967 &1745397837
 VisualEffect:
@@ -13864,7 +13864,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 1990554817
   m_SortingLayer: 4
-  m_SortingOrder: 50
+  m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: -3347871516781289849, guid: cc29d2680de9799438060d37ba89e45e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -13995,7 +13995,7 @@ MonoBehaviour:
   m_Intensity: 5
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
-  m_ApplyToSortingLayers: 0000000027e29887b79cb8f3091ade655f0c2e7bf1a76002c174a576
+  m_ApplyToSortingLayers: 0000000027e29887b79cb8f3091ade655f0c2e7bf1a76002c174a576d552fe4c
   m_LightCookieSprite: {fileID: -7788445657145265069, guid: 986c03b4eb01e1e4e977d8c74d564003, type: 3}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
