@@ -2681,7 +2681,7 @@ GameObject:
   - component: {fileID: 277532475}
   - component: {fileID: 277532474}
   m_Layer: 0
-  m_Name: Background_Front
+  m_Name: ParallaxFront
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5189,7 +5189,7 @@ GameObject:
   - component: {fileID: 777684019}
   - component: {fileID: 777684018}
   m_Layer: 0
-  m_Name: Background_Mid
+  m_Name: ParallaxMid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7527,7 +7527,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1323272643}
   m_Layer: 0
-  m_Name: BackgroundImages
+  m_Name: Parallax
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8018,7 +8018,7 @@ GameObject:
   - component: {fileID: 1506976599}
   - component: {fileID: 1506976598}
   m_Layer: 0
-  m_Name: Background_Back
+  m_Name: ParallaxBack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
