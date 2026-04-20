@@ -2744,7 +2744,7 @@ GameObject:
   - component: {fileID: 277532473}
   - component: {fileID: 277532475}
   - component: {fileID: 277532474}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ParallaxFront
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3123,7 +3123,7 @@ GameObject:
   m_Component:
   - component: {fileID: 506218203}
   - component: {fileID: 506218204}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ActionSource
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3253,7 +3253,7 @@ GameObject:
   - component: {fileID: 507242865}
   - component: {fileID: 507242864}
   - component: {fileID: 507242866}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SandstormDust
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3707,7 +3707,7 @@ GameObject:
   m_Component:
   - component: {fileID: 657724729}
   - component: {fileID: 657724730}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: EnvironmentSource
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4892,7 +4892,7 @@ GameObject:
   - component: {fileID: 777684017}
   - component: {fileID: 777684019}
   - component: {fileID: 777684018}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ParallaxMid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5059,7 +5059,7 @@ GameObject:
   m_Component:
   - component: {fileID: 798238769}
   - component: {fileID: 798238770}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: EnvironmentSource
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5415,7 +5415,7 @@ GameObject:
   - component: {fileID: 882462481}
   - component: {fileID: 882462483}
   - component: {fileID: 882462482}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RocksBack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6808,7 +6808,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1093922457}
   - component: {fileID: 1093922458}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ActionSource
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7898,7 +7898,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1323272643}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Parallax
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7933,7 +7933,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1334626300}
   - component: {fileID: 1334626299}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: FeedbackSource
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8451,7 +8451,7 @@ GameObject:
   - component: {fileID: 1506976597}
   - component: {fileID: 1506976599}
   - component: {fileID: 1506976598}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ParallaxBack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8555,7 +8555,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1527323605}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: PlayerSoundSources
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8590,7 +8590,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1532133920}
   - component: {fileID: 1532133919}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: FeedbackSource
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8780,7 +8780,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1636524744}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: TreesBack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9690,7 +9690,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1684261143}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Sandstorm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13418,7 +13418,7 @@ GameObject:
   - component: {fileID: 1745397837}
   - component: {fileID: 1745397836}
   - component: {fileID: 1745397835}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SandstormItems
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14997,7 +14997,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2090028617}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: PlayerSoundSources
   m_TagString: Untagged
   m_Icon: {fileID: 0}
