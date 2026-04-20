@@ -2780,6 +2780,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BackgroundScroller
   _cameraTransform: {fileID: 1113217129}
   _followFactor: {x: 0.5, y: 0.5, z: 0}
+  _loopX: 1
+  _loopY: 0
 --- !u!212 &277532475
 SpriteRenderer:
   serializedVersion: 2
@@ -4928,6 +4930,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BackgroundScroller
   _cameraTransform: {fileID: 1113217129}
   _followFactor: {x: 0.7, y: 0.7, z: 0}
+  _loopX: 1
+  _loopY: 0
 --- !u!212 &777684019
 SpriteRenderer:
   serializedVersion: 2
@@ -8487,6 +8491,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   _cameraTransform: {fileID: 1113217129}
   _followFactor: {x: 1, y: 1, z: 0}
+  _loopX: 1
+  _loopY: 0
 --- !u!212 &1506976599
 SpriteRenderer:
   serializedVersion: 2
