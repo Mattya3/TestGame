@@ -1,13 +1,10 @@
 ###############################################################################
 # Default behavior
 ###############################################################################
-
 * text=auto
-
 ###############################################################################
 # Unity YAML text serialization files (force LF)
 ###############################################################################
-
 *.asset        text eol=lf
 *.meta         text eol=lf
 *.unity        text eol=lf
@@ -24,11 +21,9 @@
 *.physicsMaterial2D text eol=lf
 *.spriteatlas  text eol=lf
 *.renderTexture text eol=lf
-
 ###############################################################################
 # Code
 ###############################################################################
-
 *.cs           text eol=lf
 *.js           text eol=lf
 *.boo          text eol=lf
@@ -40,11 +35,9 @@
 *.xml          text eol=lf
 *.yaml         text eol=lf
 *.yml          text eol=lf
-
 ###############################################################################
 # Binary files (no diff, no conversion)
 ###############################################################################
-
 *.png          binary
 *.jpg          binary
 *.jpeg         binary
@@ -52,31 +45,25 @@
 *.tga          binary
 *.psd          binary
 *.exr          binary
-
 *.fbx          binary
 *.obj          binary
 *.blend        binary
-
 *.wav          binary
 *.mp3          binary
 *.ogg          binary
-
 *.mp4          binary
 *.mov          binary
 *.avi          binary
-
 *.ttf          binary
 *.otf          binary
-
 *.dll          binary
 *.exe          binary
 *.zip          binary
 *.rar          binary
 *.7z           binary
-
 ###############################################################################
 # Prevent CRLF normalization issues explicitly
 ###############################################################################
-
 *.bat          text eol=crlf
 *.cmd          text eol=crlf
+LabelFont_001.asset filter=lfs diff=lfs merge=lfs -text
