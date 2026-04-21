@@ -3492,7 +3492,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7fe494deb39a49188f26597f2d46182, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScreenManager
-  _screenEffectsController: {fileID: 875144713}
 --- !u!4 &554078609
 Transform:
   m_ObjectHideFlags: 0

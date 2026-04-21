@@ -2,7 +2,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Animator))]
-public class ScreenEffectsController : MonoBehaviour
+public class ScreenEffectsController : MonoBehaviour, IScreenEffects
 {
     [SerializeField]
     private Animator _animator;
@@ -12,6 +12,15 @@ public class ScreenEffectsController : MonoBehaviour
     private void Awake()
     {
         _animator = GetComponent<Animator>();
+
+        // シーン開始時にLocatorに登録
+        ScreenEffectsLocator.Provide(this);
+    }
+
+    private void OnDestroy()
+    {
+        // シーン終了時にLocatorから登録解除
+        ScreenEffectsLocator.Clear();
     }
 
     public void PlayOpeningEffect(Action onComplete)

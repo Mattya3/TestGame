@@ -16,6 +16,8 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private PlayersManager _playersManager;
 
+    private IScreenEffects _screenEffects;
+
     public static GameManager Instance { get; private set; }
 
     private void Awake()
@@ -26,21 +28,24 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        _screenEffects = ScreenEffectsLocator.Get();
         _movementRuleManager.Initialize(_playersManager.Players);
+
+        _screenEffects?.PlayOpeningEffect(() => { });
     }
 
     public void HandleFailure()
     {
         GameEventTrigger.TriggerEvent(GameEvent.Failure);
         GameEventTrigger.ResetEvents();
-        _sceneTransitionManager.RestartStage();
+        _screenEffects?.PlayFailureEffect(() => _sceneTransitionManager.RestartStage());
     }
 
     public void HandleSuccess()
     {
         GameEventTrigger.TriggerEvent(GameEvent.Success);
         GameEventTrigger.ResetEvents();
-        _sceneTransitionManager.CompleteStage();
+        _screenEffects?.PlaySuccessEffect(() => _sceneTransitionManager.CompleteStage());
     }
 
     public IReadOnlyList<Player> Players => _playersManager.Players;
