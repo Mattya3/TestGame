@@ -28,6 +28,11 @@ public class ScreenEffectsController : MonoBehaviour, IScreenEffects
         _PlayEffect(Constants.AnimationTrigger.OPENING, onComplete);
     }
 
+    public void PlayRestartEffect(Action onComplete)
+    {
+        _PlayEffect(Constants.AnimationTrigger.RESTART, onComplete);
+    }
+
     /// <summary>
     /// 指定されたアニメーション演出（トリガー）を実行します。
     /// </summary>

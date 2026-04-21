@@ -14,6 +14,7 @@
     public static class AnimationTrigger
     {
         public const string OPENING = "Opening";
+        public const string RESTART = "Restart";
         public const string FAILURE = "Failure";
         public const string SUCCESS = "Success";
     }
