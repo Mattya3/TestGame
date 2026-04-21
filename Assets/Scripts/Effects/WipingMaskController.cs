@@ -7,6 +7,7 @@ public class WipingMaskController : MonoBehaviour
     [SerializeField]
     private float _maskThreshold = 0.0f;
 
+    // Sprite Rendererと違い、Imageコンポーネントのマテリアルは取得してもコピーされないため、直接参照して使用
     private Material _material;
 
     private static readonly int MaskThresholdID = Shader.PropertyToID("_MaskThreshold");
@@ -18,15 +19,6 @@ public class WipingMaskController : MonoBehaviour
         {
             Debug.LogError("WipingMaskController requires an Image component with a material.");
             enabled = false;
-        }
-    }
-
-    private void OnDestroy()
-    {
-        if (_material != null)
-        {
-            Destroy(_material);
-            _material = null;
         }
     }
 
