@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using static TMPro.SpriteAssetUtilities.TexturePacker_JsonArray;
 
 [RequireComponent(typeof(SpriteRenderer))]
 public class BackgroundScroller : MonoBehaviour
@@ -24,6 +23,12 @@ public class BackgroundScroller : MonoBehaviour
 
         SpriteRenderer sr = GetComponent<SpriteRenderer>();
         Sprite sprite = sr.sprite;
+        if (sprite == null)
+        {
+            Debug.LogError("SpriteRenderer does not have a sprite assigned.", this);
+            enabled = false;
+            return;
+        }
 
         _spriteSize = new Vector2(
             sprite.rect.width / sprite.pixelsPerUnit * transform.lossyScale.x,
