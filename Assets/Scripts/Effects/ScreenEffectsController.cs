@@ -14,6 +14,11 @@ public class ScreenEffectsController : MonoBehaviour
         _animator = GetComponent<Animator>();
     }
 
+    public void PlayOpeningEffect(Action onComplete)
+    {
+        _PlayEffect(Constants.AnimationTrigger.OPENING, onComplete);
+    }
+
     /// <summary>
     /// 指定されたアニメーション演出（トリガー）を実行します。
     /// </summary>
