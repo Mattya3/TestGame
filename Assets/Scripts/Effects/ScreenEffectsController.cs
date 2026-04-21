@@ -13,14 +13,14 @@ public class ScreenEffectsController : MonoBehaviour, IScreenEffects
     {
         _animator = GetComponent<Animator>();
 
-        // シーン開始時にLocatorに登録
-        ScreenEffectsLocator.Provide(this);
+        // シーン開始時に参照を登録
+        ScreenEffectsAccess.Register(this);
     }
 
     private void OnDestroy()
     {
-        // シーン終了時にLocatorから登録解除
-        ScreenEffectsLocator.Clear();
+        // シーン終了時に参照を登録解除
+        ScreenEffectsAccess.Unregister(this);
     }
 
     public void PlayOpeningEffect(Action onComplete)

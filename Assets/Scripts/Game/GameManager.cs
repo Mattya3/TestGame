@@ -16,7 +16,10 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private PlayersManager _playersManager;
 
-    private IScreenEffects _screenEffects;
+    [SerializeField]
+    private GameObject _screenEffectsAccessPrefab;
+
+    private ScreenEffectsAccess _screenEffects;
 
     public static GameManager Instance { get; private set; }
 
@@ -24,11 +27,24 @@ public class GameManager : MonoBehaviour
     {
         if (Instance == null)
             Instance = this;
+
+        if (_screenEffectsAccessPrefab == null)
+        {
+            Debug.LogError("ScreenEffectsAccess Prefab is not assigned.", this);
+            enabled = false;
+            return;
+        }
+        _screenEffects = Instantiate(_screenEffectsAccessPrefab).GetComponent<ScreenEffectsAccess>();
+        if (_screenEffects == null)
+        {
+            Debug.LogError("ScreenEffectsAccess component is missing in the prefab.", this);
+            enabled = false;
+            return;
+        }
     }
 
     private void Start()
     {
-        _screenEffects = ScreenEffectsLocator.Get();
         _movementRuleManager.Initialize(_playersManager.Players);
 
         _screenEffects?.PlayOpeningEffect(() => { });

@@ -8156,6 +8156,7 @@ MonoBehaviour:
   _sceneTransitionManager: {fileID: 554078608}
   _movementRuleManager: {fileID: 845628946}
   _playersManager: {fileID: 1825111104}
+  _screenEffectsAccessPrefab: {fileID: 6511850507505105339, guid: 184a43b232a45b64598dc23cef72d633, type: 3}
 --- !u!4 &1422380077
 Transform:
   m_ObjectHideFlags: 0
