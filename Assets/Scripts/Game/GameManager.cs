@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using static Constants;
 
+[RequireComponent(typeof(ScreenEffectsAccess))]
 public class GameManager : MonoBehaviour
 {
     [SerializeField]
@@ -16,9 +17,6 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private PlayersManager _playersManager;
 
-    [SerializeField]
-    private GameObject _screenEffectsAccessPrefab;
-
     private ScreenEffectsAccess _screenEffects;
 
     public static GameManager Instance { get; private set; }
@@ -28,19 +26,7 @@ public class GameManager : MonoBehaviour
         if (Instance == null)
             Instance = this;
 
-        if (_screenEffectsAccessPrefab == null)
-        {
-            Debug.LogError("ScreenEffectsAccess Prefab is not assigned.", this);
-            enabled = false;
-            return;
-        }
-        _screenEffects = Instantiate(_screenEffectsAccessPrefab).GetComponent<ScreenEffectsAccess>();
-        if (_screenEffects == null)
-        {
-            Debug.LogError("ScreenEffectsAccess component is missing in the prefab.", this);
-            enabled = false;
-            return;
-        }
+        _screenEffects = GetComponent<ScreenEffectsAccess>();
     }
 
     private void Start()

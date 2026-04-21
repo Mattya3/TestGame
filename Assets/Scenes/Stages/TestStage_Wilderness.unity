@@ -8134,6 +8134,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1422380077}
   - component: {fileID: 1422380076}
+  - component: {fileID: 1422380078}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: GameController
@@ -8156,7 +8157,6 @@ MonoBehaviour:
   _sceneTransitionManager: {fileID: 554078608}
   _movementRuleManager: {fileID: 845628946}
   _playersManager: {fileID: 1825111104}
-  _screenEffectsAccessPrefab: {fileID: 6511850507505105339, guid: 184a43b232a45b64598dc23cef72d633, type: 3}
 --- !u!4 &1422380077
 Transform:
   m_ObjectHideFlags: 0
@@ -8175,6 +8175,18 @@ Transform:
   - {fileID: 1825111103}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1422380078
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1422380075}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b173a2aefea6e94694a5a9fa9ab1e41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ScreenEffectsAccess
 --- !u!1 &1435100471
 GameObject:
   m_ObjectHideFlags: 0
