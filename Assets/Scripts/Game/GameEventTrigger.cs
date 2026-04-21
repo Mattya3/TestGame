@@ -1,7 +1,5 @@
-using System;
-using System.Collections.Generic;
+﻿using System;
 using UnityEngine;
-using UnityEngine.Events;
 using static Constants;
 
 public static class GameEventTrigger
