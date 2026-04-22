@@ -289,6 +289,8 @@ GameObject:
   - component: {fileID: 124127345}
   - component: {fileID: 124127344}
   - component: {fileID: 124127343}
+  - component: {fileID: 124127348}
+  - component: {fileID: 124127349}
   m_Layer: 3
   m_Name: SciFiBlocks
   m_TagString: Untagged
@@ -647,7 +649,7 @@ TilemapRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 5f469ccd146b5a8449eeced790364716, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1259,6 +1261,33 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!114 &124127348
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 124127341}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 726d6c3388e7e3d4f83d99636bc42499, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  _loopDuration: 4
+--- !u!114 &124127349
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 124127341}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df9af37c254e64449ba3ea943e7f9e85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  _maskColor: {fileID: 11400000, guid: 4d90c49b84f71b44281daecac789ac25, type: 2}
+  _illumination: {fileID: 11400000, guid: c48a55ad6811b5c4da6a8ea7ad776fec, type: 2}
 --- !u!1 &161220174
 GameObject:
   m_ObjectHideFlags: 0
@@ -4065,6 +4094,8 @@ GameObject:
   - component: {fileID: 1023410642}
   - component: {fileID: 1023410644}
   - component: {fileID: 1023410643}
+  - component: {fileID: 1023410645}
+  - component: {fileID: 1023410646}
   m_Layer: 8
   m_Name: SciFiPavements
   m_TagString: Untagged
@@ -4113,7 +4144,7 @@ TilemapRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 5f469ccd146b5a8449eeced790364716, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4697,6 +4728,33 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!114 &1023410645
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1023410641}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 726d6c3388e7e3d4f83d99636bc42499, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CustomTimeLooper
+  _loopDuration: 4
+--- !u!114 &1023410646
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1023410641}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df9af37c254e64449ba3ea943e7f9e85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  _maskColor: {fileID: 11400000, guid: 4d90c49b84f71b44281daecac789ac25, type: 2}
+  _illumination: {fileID: 11400000, guid: c48a55ad6811b5c4da6a8ea7ad776fec, type: 2}
 --- !u!1 &1093922456
 GameObject:
   m_ObjectHideFlags: 0
@@ -4974,6 +5032,8 @@ GameObject:
   - component: {fileID: 1235522550}
   - component: {fileID: 1235522552}
   - component: {fileID: 1235522551}
+  - component: {fileID: 1235522553}
+  - component: {fileID: 1235522554}
   m_Layer: 8
   m_Name: SciFiScraps
   m_TagString: Untagged
@@ -5022,7 +5082,7 @@ TilemapRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 5f469ccd146b5a8449eeced790364716, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5306,6 +5366,33 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!114 &1235522553
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1235522549}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 726d6c3388e7e3d4f83d99636bc42499, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CustomTimeLooper
+  _loopDuration: 4
+--- !u!114 &1235522554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1235522549}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df9af37c254e64449ba3ea943e7f9e85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  _maskColor: {fileID: 11400000, guid: 4d90c49b84f71b44281daecac789ac25, type: 2}
+  _illumination: {fileID: 11400000, guid: c48a55ad6811b5c4da6a8ea7ad776fec, type: 2}
 --- !u!1 &1271411053
 GameObject:
   m_ObjectHideFlags: 0
