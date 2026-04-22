@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 
 [RequireComponent(typeof(Image))]
+[ExecuteInEditMode]
 public class WipingMaskController : MonoBehaviour
 {
     [SerializeField]
@@ -12,9 +13,15 @@ public class WipingMaskController : MonoBehaviour
 
     private static readonly int MaskThresholdID = Shader.PropertyToID("_MaskThreshold");
 
+    private void OnValidate()
+    {
+        _GetReferences();
+        _Apply();
+    }
+
     private void Awake()
     {
-        _material = GetComponent<Image>().material;
+        _GetReferences();
         if (_material == null)
         {
             Debug.LogError("WipingMaskController requires an Image component with a material.");
@@ -24,6 +31,17 @@ public class WipingMaskController : MonoBehaviour
 
     private void Update()
     {
-        _material.SetFloat(MaskThresholdID, _maskThreshold);
+        _Apply();
+    }
+
+    private void _GetReferences()
+    {
+        if (_material == null)
+            _material = GetComponent<Image>().material;
+    }
+
+    private void _Apply()
+    {
+        _material?.SetFloat(MaskThresholdID, _maskThreshold);
     }
 }
