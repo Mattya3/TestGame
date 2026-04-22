@@ -6994,7 +6994,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df9af37c254e64449ba3ea943e7f9e85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  _maskColor: {fileID: 11400000, guid: 4d90c49b84f71b44281daecac789ac25, type: 2}
+  _maskColor: {fileID: 11400000, guid: 8ae5fcaaf7153764faaf72adf5661888, type: 2}
   _illumination: {fileID: 11400000, guid: c48a55ad6811b5c4da6a8ea7ad776fec, type: 2}
 --- !u!1 &1271411053
 GameObject:
