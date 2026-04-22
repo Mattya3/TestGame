@@ -30,7 +30,10 @@ public class SciFiBlockMaterialConfiguration : MonoBehaviour
     {
         if (_maskColor == null || _illumination == null)
         {
-            Debug.LogWarning("SciFiBlockMaterialConfiguration: MaskColor or Illumination is not assigned.", this);
+            Debug.LogWarning(
+                "SciFiBlockMaterialConfiguration: MaskColor or Illumination is not assigned.",
+                this
+            );
             return;
         }
 
