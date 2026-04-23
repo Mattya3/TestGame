@@ -21,28 +21,21 @@ public class PlayersManager : MonoBehaviour, IPlayersCollection
         PlayersCollectionReadonlyAccess.Unregister(this);
     }
 
-    private void OnEnable()
-    {
-        Player.OnCreated += RegisterPlayer;
-    }
-
     public void RegisterPlayer(Player player)
     {
         if (!_players.Contains(player))
             _players.Add(player);
         player.OnDied += (reason) =>
         {
-            if (ArePlayersAlive)
-                HandlePlayerDeath(player, reason);
+            HandlePlayerDeath(player, reason);
         };
         player.OnGoal += (player) =>
         {
-            if (ArePlayersAlive)
-                HandlePlayerGoal(player);
+            HandlePlayerGoal(player);
         };
     }
 
-    public void HandlePlayerDeath(Player deadPlayer, DeathReason deathReason)
+    private void HandlePlayerDeath(Player deadPlayer, DeathReason deathReason)
     {
         if (!ArePlayersAlive)
             return;
@@ -53,8 +46,11 @@ public class PlayersManager : MonoBehaviour, IPlayersCollection
         GameManager.Instance.HandleFailure();
     }
 
-    public void HandlePlayerGoal(Player player)
+    private void HandlePlayerGoal(Player player)
     {
+        if (!ArePlayersAlive)
+            return;
+
         player.Freeze();
 
         if (!AllPlayersReachedGoal())
@@ -63,12 +59,12 @@ public class PlayersManager : MonoBehaviour, IPlayersCollection
         GameManager.Instance.HandleSuccess();
     }
 
-    public void SetPlayersDead()
+    private void SetPlayersDead()
     {
         ArePlayersAlive = false;
     }
 
-    public void FreezeAllPlayers()
+    private void FreezeAllPlayers()
     {
         foreach (var player in _players)
         {
@@ -76,7 +72,7 @@ public class PlayersManager : MonoBehaviour, IPlayersCollection
         }
     }
 
-    public bool AllPlayersReachedGoal()
+    private bool AllPlayersReachedGoal()
     {
         return _players.Count > 0 && _players.All(p => p.HasReachedGoal);
     }
