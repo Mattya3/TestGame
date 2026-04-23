@@ -1,15 +1,27 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using static Constants;
 
-public class PlayersManager : MonoBehaviour
+public class PlayersManager : MonoBehaviour, IPlayersCollection
 {
     private List<Player> _players = new List<Player>();
 
     public bool ArePlayersAlive { get; private set; } = true;
 
     public IReadOnlyList<Player> Players => _players;
+
+    private void Awake()
+    {
+        PlayersCollectionAccess.Register(this);
+        PlayersCollectionReadonlyAccess.Register(this);
+    }
+
+    private void OnDestroy()
+    {
+        PlayersCollectionAccess.Unregister(this);
+        PlayersCollectionReadonlyAccess.Unregister(this);
+    }
 
     private void OnEnable()
     {
