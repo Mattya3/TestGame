@@ -1,9 +1,9 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using static Constants;
 
 public static class MoveControllerFactory
 {
-    public static IMoveController Create(MovementRuleEffect rule, IReadOnlyList<Player> players)
+    public static IMoveController Create(MovementRuleEffect rule, PlayersCollectionReadonlyAccess players)
     {
         switch (rule)
         {

@@ -1,12 +1,12 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class ReverseMoveController : IMoveController
 {
-    private readonly IReadOnlyList<Player> _players;
+    private PlayersCollectionReadonlyAccess _players;
     private readonly int _requiredCount;
 
-    public ReverseMoveController(IReadOnlyList<Player> players)
+    public ReverseMoveController(PlayersCollectionReadonlyAccess players)
     {
         _players = players;
         _requiredCount = players.Count;
@@ -19,10 +19,12 @@ public class ReverseMoveController : IMoveController
 
     private bool _ShouldReverseInput()
     {
+        var inputDirections = _players.InputDirections;
+
         int movingCount = 0;
-        for (int i = 0; i < _players.Count; i++)
+        for (int i = 0; i < inputDirections.Count; i++)
         {
-            if (_players[i].InputDirection.x != 0)
+            if (inputDirections[i].x != 0)
                 movingCount++;
         }
         return movingCount >= _requiredCount;

@@ -9,8 +9,6 @@ public class PlayersManager : MonoBehaviour, IPlayersCollection
 
     public bool ArePlayersAlive { get; private set; } = true;
 
-    public IReadOnlyList<Player> Players => _players;
-
     private void Awake()
     {
         PlayersCollectionAccess.Register(this);
@@ -88,4 +86,14 @@ public class PlayersManager : MonoBehaviour, IPlayersCollection
     public List<Vector3> Positions => _players.Select(p => p.transform.position).ToList();
 
     public List<Bounds> BoundsList => _players.Select(p => p.Bounds).ToList();
+
+    public List<Vector2> InputDirections => _players.Select(p => p.InputDirection).ToList();
+
+    public void SetMoveController(IMoveController moveController)
+    {
+        foreach (var player in _players)
+        {
+            player.MoveController = moveController;
+        }
+    }
 }

@@ -18,9 +18,8 @@ public class PlayersCollectionAccess : MonoBehaviour
         _reference = null;
     }
 
-    public int Count => _reference?.Count ?? 0;
-
-    public List<Vector3> Positions => _reference?.Positions ?? new List<Vector3>();
-
-    public List<Bounds> BoundsList => _reference?.BoundsList ?? new List<Bounds>();
+    public void SetMoveController(IMoveController moveController)
+    {
+        _reference?.SetMoveController(moveController);
+    }
 }

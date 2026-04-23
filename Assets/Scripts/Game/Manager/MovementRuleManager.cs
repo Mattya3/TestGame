@@ -1,8 +1,9 @@
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using static Constants;
 
+[RequireComponent(typeof(PlayersCollectionAccess))]
+[RequireComponent(typeof(PlayersCollectionReadonlyAccess))]
 public class MovementRuleManager : MonoBehaviour
 {
     [SerializeField]
@@ -10,17 +11,18 @@ public class MovementRuleManager : MonoBehaviour
 
     private IMoveController _moveController;
 
-    public void Initialize(IReadOnlyList<Player> players)
+    private PlayersCollectionAccess _players;
+    private PlayersCollectionReadonlyAccess _readonlyPlayers;
+
+    private void Awake()
     {
-        _moveController = MoveControllerFactory.Create(_movementRuleEffect, players);
-        foreach (var player in players)
-        {
-            _ApplyNewRule(player);
-        }
+        _players = GetComponent<PlayersCollectionAccess>(); 
+        _readonlyPlayers = GetComponent<PlayersCollectionReadonlyAccess>();
     }
 
-    private void _ApplyNewRule(Player player)
+    public void Initialize()
     {
-        player.MoveController = _moveController;
+        _moveController = MoveControllerFactory.Create(_movementRuleEffect, _readonlyPlayers);
+        _players.SetMoveController(_moveController);
     }
 }

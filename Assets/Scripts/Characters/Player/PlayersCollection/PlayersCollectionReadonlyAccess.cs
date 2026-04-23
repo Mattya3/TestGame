@@ -23,4 +23,6 @@ public class PlayersCollectionReadonlyAccess : MonoBehaviour
     public List<Vector3> Positions => _reference?.Positions ?? new List<Vector3>();
 
     public List<Bounds> BoundsList => _reference?.BoundsList ?? new List<Bounds>();
+
+    public List<Vector2> InputDirections => _reference?.InputDirections ?? new List<Vector2>();
 }

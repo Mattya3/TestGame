@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        _movementRuleManager.Initialize(_playersManager.Players);
+        _movementRuleManager.Initialize();
 
         if (_stageSceneContext.AfterRestart)
             _screenEffects.PlayRestartEffect(() => { });
