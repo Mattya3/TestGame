@@ -10,8 +10,8 @@ public class LightSourcesPool : MonoBehaviour
     private int _poolSize;
 
     private GameObject[] _pool;
-    private int[] _spawnIndices;
-    private int _spawnCount = 0;
+    private Coroutine[] _activeCoroutines;
+    private int _lastUsedIndex = -1; // 最後に使用したインデックス
 
     private void Awake()
     {
@@ -23,34 +23,54 @@ public class LightSourcesPool : MonoBehaviour
         }
 
         _pool = new GameObject[_poolSize];
-        _spawnIndices = new int[_poolSize];
+        _activeCoroutines = new Coroutine[_poolSize];
         for (int i = 0; i < _poolSize; i++)
         {
             _pool[i] = Instantiate(_lightPrefab);
             _pool[i].SetActive(false);
-            _pool[i].transform.parent = transform; // プールオブジェクトの子にする
-            _spawnIndices[i] = -1;
+            _pool[i].transform.parent = transform;
+            _activeCoroutines[i] = null;
         }
     }
 
     public void Spawn(Vector3 position, float duration)
     {
-        var nextLocation = _spawnCount % _poolSize;
-
-        var light = _pool[nextLocation];
+        int index = FindInactiveIndex();
+        
+        var light = _pool[index];
         light.transform.position = position;
         light.SetActive(true);
-        _spawnIndices[nextLocation] = _spawnCount;
-        StartCoroutine(_CoKillInstance(light, duration, _spawnCount));
-        
-        _spawnCount++;
+
+        // 既存のコルーチンがあれば停止
+        if (_activeCoroutines[index] != null)
+        {
+            StopCoroutine(_activeCoroutines[index]);
+        }
+
+        _activeCoroutines[index] = StartCoroutine(CoKillInstance(index, duration));
+        _lastUsedIndex = index; // 使用したインデックスを記録
     }
 
-    private IEnumerator _CoKillInstance(GameObject light, float duration, int index)
+    private int FindInactiveIndex()
+    {
+        // 前回使用したインデックスの次から探索開始
+        int startIndex = (_lastUsedIndex + 1) % _poolSize;
+        
+        for (int i = 0; i < _poolSize; i++)
+        {
+            int currentIndex = (startIndex + i) % _poolSize;
+            if (!_pool[currentIndex].activeSelf)
+                return currentIndex;
+        }
+        
+        // 全てアクティブな場合は次のインデックスを返す（ラウンドロビン方式）
+        return startIndex;
+    }
+
+    private IEnumerator CoKillInstance(int index, float duration)
     {
         yield return new WaitForSeconds(duration);
-        if (_spawnIndices[index % _poolSize] != index)
-            yield break; // すでに別のインスタンスが上書きされている場合は何もしない
-        light.SetActive(false);
+        _pool[index].SetActive(false);
+        _activeCoroutines[index] = null;
     }
 }
