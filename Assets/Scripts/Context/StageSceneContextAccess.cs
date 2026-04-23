@@ -17,6 +17,24 @@ public class StageSceneContextAccess : MonoBehaviour
         _reference = null;
     }
 
+    private static StageSceneContextAccess _instance;
+
+    private void Awake()
+    {
+        if (_instance != null)
+        {
+            Debug.LogError("Multiple instances of StageSceneContextAccess detected. This is not allowed.");
+            return;
+        }
+        _instance = this;
+    }
+
+    private void OnDestroy()
+    {
+        if (_instance == this)
+            _instance = null;
+    }
+
     public bool AfterRestart => _reference != null ? _reference.AfterRestart : false;
 
     public void OnStageRestarted()

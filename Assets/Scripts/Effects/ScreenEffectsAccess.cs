@@ -17,6 +17,24 @@ public class ScreenEffectsAccess : MonoBehaviour
         _reference = null;
     }
 
+    static private ScreenEffectsAccess _instance;
+
+    private void Awake()
+    {
+        if (_instance != null)
+        {
+            Debug.LogError("Multiple instances of ScreenEffectsAccess detected. This is not allowed.");
+            return;
+        }
+        _instance = this;
+    }
+
+    private void OnDestroy()
+    {
+        if (_instance == this)
+            _instance = null;
+    }
+
     public void PlayOpeningEffect(System.Action onComplete)
     {
         _reference?.PlayOpeningEffect(onComplete);
