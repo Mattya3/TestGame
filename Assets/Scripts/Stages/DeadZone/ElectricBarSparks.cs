@@ -36,7 +36,9 @@ public class ElectricBarSparks : MonoBehaviour
 
         if (!_eventAttribute.HasFloat(_positionAttribute))
         {
-            Debug.LogError("The Visual Effect does not have the required 'SparkPosition' attribute.");
+            Debug.LogError(
+                "The Visual Effect does not have the required 'SparkPosition' attribute."
+            );
             enabled = false;
         }
         if (_lightPrefab == null)
@@ -73,7 +75,12 @@ public class ElectricBarSparks : MonoBehaviour
         _visualEffect.SendEvent(_spawnEventName, _eventAttribute);
 
         // light
-        var light = Instantiate(_lightPrefab, transform.position + transform.up * randomPos, Quaternion.identity, transform);
+        var light = Instantiate(
+            _lightPrefab,
+            transform.position + transform.up * randomPos,
+            Quaternion.identity,
+            transform
+        );
         Destroy(light, _lightDuration);
     }
 }
