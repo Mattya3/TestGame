@@ -3991,6 +3991,7 @@ GameObject:
   - component: {fileID: 740941444}
   - component: {fileID: 740941443}
   - component: {fileID: 740941442}
+  - component: {fileID: 740941448}
   m_Layer: 7
   m_Name: Player2
   m_TagString: Player
@@ -4253,6 +4254,18 @@ Transform:
   - {fileID: 1663018032}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &740941448
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 740941441}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd7644077ba2bab408e049f0e4ea08bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayersCollectionAccess
 --- !u!1 &743438944
 GameObject:
   m_ObjectHideFlags: 0
@@ -5403,6 +5416,8 @@ GameObject:
   m_Component:
   - component: {fileID: 845628947}
   - component: {fileID: 845628946}
+  - component: {fileID: 845628949}
+  - component: {fileID: 845628948}
   m_Layer: 0
   m_Name: MovementRuleManager
   m_TagString: Untagged
@@ -5438,6 +5453,30 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1422380077}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &845628948
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 845628945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd7644077ba2bab408e049f0e4ea08bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayersCollectionAccess
+--- !u!114 &845628949
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 845628945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 333410d4b612fa7458b40018c2ef1f12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayersCollectionReadonlyAccess
 --- !u!1 &847357502
 GameObject:
   m_ObjectHideFlags: 0
@@ -8629,6 +8668,7 @@ GameObject:
   - component: {fileID: 1435100474}
   - component: {fileID: 1435100473}
   - component: {fileID: 1435100472}
+  - component: {fileID: 1435100478}
   m_Layer: 7
   m_Name: Player1
   m_TagString: Player
@@ -8891,6 +8931,18 @@ Transform:
   - {fileID: 952535231}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1435100478
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1435100471}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd7644077ba2bab408e049f0e4ea08bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayersCollectionAccess
 --- !u!1001 &1492986252
 PrefabInstance:
   m_ObjectHideFlags: 0
