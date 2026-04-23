@@ -1,0 +1,475 @@
+fileFormatVersion: 2
+guid: 99489c9a3f4cd6549b1783317f59ebb3
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -6681739940744594920
+    second: SciFiPillars001_0
+  - first:
+      213: -4099112521354164270
+    second: SciFiPillars001_1
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 128
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: SciFiPillars001_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 640
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: -64, y: 38}
+        - {x: -43, y: 37.949158}
+        - {x: -43, y: -64}
+        - {x: 43, y: -64}
+        - {x: 43, y: 37.949097}
+        - {x: 64, y: 38}
+        - {x: 64, y: 64}
+        - {x: -64, y: 64}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 81af06edce0b543a0800000000000000
+      internalID: -6681739940744594920
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SciFiPillars001_1
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 640
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: -64, y: 38}
+        - {x: -43, y: 37.949158}
+        - {x: -43, y: -64}
+        - {x: 43, y: -64}
+        - {x: 43, y: 37.949097}
+        - {x: 64, y: 38}
+        - {x: 64, y: 64}
+        - {x: -64, y: 64}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2d7445e31e60d17c0800000000000000
+      internalID: -4099112521354164270
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SciFiPillars001_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 512
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: -64, y: 38}
+        - {x: -43, y: 37.949158}
+        - {x: -43, y: -64}
+        - {x: 43, y: -64}
+        - {x: 43, y: 37.949097}
+        - {x: 64, y: 38}
+        - {x: 64, y: 64}
+        - {x: -64, y: 64}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 953ec2fa6a6e46f4f9a6098a6e922e3a
+      internalID: -1822476130
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SciFiPillars001_3
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 512
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: -64, y: 38}
+        - {x: -43, y: 37.949158}
+        - {x: -43, y: -64}
+        - {x: 43, y: -64}
+        - {x: 43, y: 37.949097}
+        - {x: 64, y: 38}
+        - {x: 64, y: 64}
+        - {x: -64, y: 64}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5e515f3e64c9f244ca49ad0525cc633b
+      internalID: 1294251769
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SciFiPillars001_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 384
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: -43, y: -64}
+        - {x: 43, y: -64}
+        - {x: 43, y: 64}
+        - {x: -43, y: 64}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7444ca8910b19b74fb2b9461d489c4cb
+      internalID: 122387140
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SciFiPillars001_5
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 384
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: -43, y: -64}
+        - {x: 43, y: -64}
+        - {x: 43, y: 64}
+        - {x: -43, y: 64}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1647f285dc4f7ae46b772dad23eecf56
+      internalID: -555678804
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SciFiPillars001_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 256
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: -64, y: 38}
+        - {x: -43, y: 37.949158}
+        - {x: -43, y: -64}
+        - {x: 43, y: -64}
+        - {x: 43, y: 37.949097}
+        - {x: 64, y: 38}
+        - {x: 64, y: 64}
+        - {x: -64, y: 64}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8bc9c4df2d8a05145a5fe9fcc257e652
+      internalID: -1119783465
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SciFiPillars001_7
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 256
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: -64, y: 38}
+        - {x: -43, y: 37.949158}
+        - {x: -43, y: -64}
+        - {x: 43, y: -64}
+        - {x: 43, y: 37.949097}
+        - {x: 64, y: 38}
+        - {x: 64, y: 64}
+        - {x: -64, y: 64}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7b079a73e57c7a1418db7713c7435a8e
+      internalID: -422301396
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SciFiPillars001_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 128
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: -43, y: -64}
+        - {x: 43, y: -64}
+        - {x: 43, y: 64}
+        - {x: -43, y: 64}
+      tessellationDetail: 0
+      bones: []
+      spriteID: acda2a7487a690c4181cb2d68109ffe3
+      internalID: 607289935
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SciFiPillars001_9
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 128
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: -43, y: -64}
+        - {x: 43, y: -64}
+        - {x: 43, y: 64}
+        - {x: -43, y: 64}
+      tessellationDetail: 0
+      bones: []
+      spriteID: b1cf033d80104a04c95c335fbea151f2
+      internalID: 1665563104
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SciFiPillars001_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: -43, y: -64}
+        - {x: 43, y: -64}
+        - {x: 43, y: 64}
+        - {x: -43, y: 64}
+      tessellationDetail: 0
+      bones: []
+      spriteID: fc5d1a13becf277488b52a1af03025ab
+      internalID: 1763103311
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SciFiPillars001_11
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: -43, y: -64}
+        - {x: 43, y: -64}
+        - {x: 43, y: 64}
+        - {x: -43, y: 64}
+      tessellationDetail: 0
+      bones: []
+      spriteID: e7e2dae4dd68f4849b0b0252c2f53a92
+      internalID: 2069692322
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 4fde24610be444246987cd45ab3b756f
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures:
+    - texture: {fileID: 2800000, guid: f9ad04323b1362440a5e58b516679b2a, type: 3}
+      name: _IlluminationMask
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":2.0,"y":6.0},"gridSpriteSize":{"x":128.0,"y":128.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      SciFiPillars001_0: -6681739940744594920
+      SciFiPillars001_1: -4099112521354164270
+      SciFiPillars001_10: 1763103311
+      SciFiPillars001_11: 2069692322
+      SciFiPillars001_2: -1822476130
+      SciFiPillars001_3: 1294251769
+      SciFiPillars001_4: 122387140
+      SciFiPillars001_5: -555678804
+      SciFiPillars001_6: -1119783465
+      SciFiPillars001_7: -422301396
+      SciFiPillars001_8: 607289935
+      SciFiPillars001_9: 1665563104
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
