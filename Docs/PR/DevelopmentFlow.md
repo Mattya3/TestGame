@@ -85,7 +85,8 @@ PR を出す前に，少なくとも以下を確認します．
    - レビュアーに特に見てほしい点
 5. レビュアーを 1 人以上指定します．
 
-> テンプレートは [sub_issue.md](../../.github/PULL_REQUEST_TEMPLATE/sub_issue.md)，[main_issue.md](../../.github/PULL_REQUEST_TEMPLATE/main_issue.md)，[pull_request_template.md](../../.github/pull_request_template.md) を参照してください．
+> GitHub は base branch に応じて PR テンプレートを自動切り替えできません．
+> そのため，通常は共通テンプレート [pull_request_template.md](../../.github/pull_request_template.md) を使い，必要なら個別テンプレート [sub_issue.md](../../.github/PULL_REQUEST_TEMPLATE/sub_issue.md) / [main_issue.md](../../.github/PULL_REQUEST_TEMPLATE/main_issue.md) を手動で参照してください．
 
 ### Step 6. 自動整形の反映を取り込む
 
