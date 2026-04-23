@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
+[RequireComponent(typeof(PlayersCollectionReadonlyAccess))]
 public class PlayersCameraTarget : MonoBehaviour, ICameraTarget
 {
     [SerializeField]
@@ -12,7 +12,7 @@ public class PlayersCameraTarget : MonoBehaviour, ICameraTarget
     [SerializeField]
     private CameraTargetShiftDamp _shiftDamp = new CameraTargetShiftDamp();
 
-    private IReadOnlyList<Player> _players;
+    private PlayersCollectionReadonlyAccess _players;
     private Vector3 _position = Vector3.zero;
 
     void Awake()
@@ -24,12 +24,12 @@ public class PlayersCameraTarget : MonoBehaviour, ICameraTarget
             return;
         }
         _shift.Awake();
+
+        _players = GetComponent<PlayersCollectionReadonlyAccess>();
     }
 
     void Start()
     {
-        _players = GameManager.Instance.Players;
-
         var center = _CalculateCenter();
         _shift.Start(center);
         _position = center + _offset + _shift.Get();
@@ -37,9 +37,6 @@ public class PlayersCameraTarget : MonoBehaviour, ICameraTarget
 
     void FixedUpdate()
     {
-        if (_players == null)
-            return;
-
         var center = _CalculateCenter();
         var damp = _shiftDamp.CalculateDamp(_players);
 
@@ -49,15 +46,17 @@ public class PlayersCameraTarget : MonoBehaviour, ICameraTarget
 
     private Vector3 _CalculateCenter()
     {
-        if (_players.Count == 0)
+        var playerPositions = _players.Positions;
+
+        if (playerPositions == null || playerPositions.Count == 0)
             return Vector3.zero;
 
         var sum = Vector3.zero;
-        for (int i = 0; i < _players.Count; i++)
+        for (int i = 0; i < playerPositions.Count; i++)
         {
-            sum += _players[i].transform.position;
+            sum += playerPositions[i];
         }
-        return sum / _players.Count;
+        return sum / playerPositions.Count;
     }
 
     public Vector3 Position => _position;

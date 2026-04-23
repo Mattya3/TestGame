@@ -53,6 +53,4 @@ public class GameManager : MonoBehaviour
         GameEventTrigger.ResetEvents();
         _screenEffects.PlaySuccessEffect(() => _sceneTransitionManager.CompleteStage());
     }
-
-    public IReadOnlyList<Player> Players => _playersManager.Players;
 }

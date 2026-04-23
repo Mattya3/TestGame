@@ -13,7 +13,7 @@ public class CameraTargetShiftDamp
     private const float MARGIN = 1e-2f;
     private const float EPSILON = 1e-3f;
 
-    public Vector2 CalculateDamp(IReadOnlyList<Player> players)
+    public Vector2 CalculateDamp(PlayersCollectionReadonlyAccess players)
     {
         var distanceLimits = _CalculateDistanceLimits();
 
@@ -31,7 +31,7 @@ public class CameraTargetShiftDamp
     }
 
     // プレイヤーの位置とカメラの左右のコライダーとのスペースを計算する。スペースが十分にあるほど1に近づき、スペースがないほど0に近づく。
-    private Vector2 _SpaceXY(IReadOnlyList<Player> players)
+    private Vector2 _SpaceXY(PlayersCollectionReadonlyAccess players)
     {
         if (players.Count == 0)
             return Vector2.zero;
@@ -39,11 +39,12 @@ public class CameraTargetShiftDamp
         if (_leftCollider == null || _rightCollider == null)
             return float.PositiveInfinity * Vector2.one;
 
+        var boundsList = players.BoundsList;
         var minPos = new Vector2(float.MaxValue, float.MaxValue);
         var maxPos = new Vector2(float.MinValue, float.MinValue);
-        for (int i = 0; i < players.Count; i++)
+        for (int i = 0; i < boundsList.Count; i++)
         {
-            var bounds = players[i].Bounds;
+            var bounds = boundsList[i];
             minPos = Vector2.Min(minPos, bounds.center - bounds.extents);
             maxPos = Vector2.Max(maxPos, bounds.center + bounds.extents);
         }

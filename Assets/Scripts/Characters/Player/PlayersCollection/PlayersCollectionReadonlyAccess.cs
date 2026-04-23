@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class PlayersCollectionReadonlyAccess : MonoBehaviour
 {
@@ -16,4 +17,10 @@ public class PlayersCollectionReadonlyAccess : MonoBehaviour
 
         _reference = null;
     }
+
+    public int Count => _reference?.Count ?? 0;
+
+    public List<Vector3> Positions => _reference?.Positions ?? new List<Vector3>();
+
+    public List<Bounds> BoundsList => _reference?.BoundsList ?? new List<Bounds>();
 }

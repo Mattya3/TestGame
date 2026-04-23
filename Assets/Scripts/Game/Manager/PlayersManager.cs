@@ -82,4 +82,10 @@ public class PlayersManager : MonoBehaviour, IPlayersCollection
     {
         return _players.Count > 0 && _players.All(p => p.HasReachedGoal);
     }
+
+    public int Count => _players.Count;
+
+    public List<Vector3> Positions => _players.Select(p => p.transform.position).ToList();
+
+    public List<Bounds> BoundsList => _players.Select(p => p.Bounds).ToList();
 }
