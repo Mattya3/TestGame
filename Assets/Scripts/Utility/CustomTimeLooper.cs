@@ -3,7 +3,7 @@
 [RequireComponent(typeof(Renderer))]
 public class CustomTimeLooper : MonoBehaviour
 {
-    [SerializeField, Min(0.0f)]
+    [SerializeField, Min(1e-3f)]
     private float _loopDuration = 1f;
 
     private Material _material;
