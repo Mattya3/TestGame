@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using static Constants;
+﻿using static Constants;
 
 public static class MoveControllerFactory
 {
