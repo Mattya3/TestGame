@@ -36,7 +36,7 @@ public class LightSourcesPool : MonoBehaviour
     public void Spawn(Vector3 position, float duration)
     {
         int index = FindInactiveIndex();
-        
+
         var light = _pool[index];
         light.transform.position = position;
         light.SetActive(true);
@@ -55,14 +55,14 @@ public class LightSourcesPool : MonoBehaviour
     {
         // 前回使用したインデックスの次から探索開始
         int startIndex = (_lastUsedIndex + 1) % _poolSize;
-        
+
         for (int i = 0; i < _poolSize; i++)
         {
             int currentIndex = (startIndex + i) % _poolSize;
             if (!_pool[currentIndex].activeSelf)
                 return currentIndex;
         }
-        
+
         // 全てアクティブな場合は次のインデックスを返す（ラウンドロビン方式）
         return startIndex;
     }
