@@ -13,8 +13,9 @@ public class EventMusicPlayer : MonoEventReactingBehaviour
 
     private AudioSource _audioSource;
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         _audioSource = GetComponent<AudioSource>();
     }
 

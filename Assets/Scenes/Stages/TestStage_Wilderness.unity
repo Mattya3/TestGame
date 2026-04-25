@@ -2600,6 +2600,7 @@ GameObject:
   - component: {fileID: 161220175}
   - component: {fileID: 161220177}
   - component: {fileID: 161220176}
+  - component: {fileID: 161220178}
   m_Layer: 0
   m_Name: FailureMusic
   m_TagString: Untagged
@@ -2733,6 +2734,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &161220178
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 161220174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 350ef0f6403c0f04b914a103f74b1680, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameEventRegistrationAccess
 --- !u!1 &277532472
 GameObject:
   m_ObjectHideFlags: 0
@@ -3252,6 +3265,50 @@ VisualEffect:
       m_Array: []
     m_Bool:
       m_Array: []
+--- !u!1 &504439419
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 504439420}
+  - component: {fileID: 504439421}
+  m_Layer: 0
+  m_Name: GameEventHub
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &504439420
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 504439419}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1422380077}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &504439421
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 504439419}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f267fed0211902749b4058d8d103d607, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameEventHub
 --- !u!1 &506218202
 GameObject:
   m_ObjectHideFlags: 0
@@ -3992,6 +4049,7 @@ GameObject:
   - component: {fileID: 740941443}
   - component: {fileID: 740941442}
   - component: {fileID: 740941448}
+  - component: {fileID: 740941449}
   m_Layer: 7
   m_Name: Player2
   m_TagString: Player
@@ -4266,6 +4324,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd7644077ba2bab408e049f0e4ea08bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayersCollectionAccess
+--- !u!114 &740941449
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 740941441}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 350ef0f6403c0f04b914a103f74b1680, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameEventRegistrationAccess
 --- !u!1 &743438944
 GameObject:
   m_ObjectHideFlags: 0
@@ -8590,6 +8660,7 @@ GameObject:
   - component: {fileID: 1422380076}
   - component: {fileID: 1422380079}
   - component: {fileID: 1422380078}
+  - component: {fileID: 1422380080}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: GameController
@@ -8628,6 +8699,7 @@ Transform:
   - {fileID: 554078609}
   - {fileID: 845628947}
   - {fileID: 1825111103}
+  - {fileID: 504439420}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1422380078
@@ -8654,6 +8726,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0edbeb03e2096d4984825a4adfbdc96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StageSceneContextAccess
+--- !u!114 &1422380080
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1422380075}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07f60424fce6fd34e90191a426a17260, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameEventTriggerAccess
 --- !u!1 &1435100471
 GameObject:
   m_ObjectHideFlags: 0
@@ -8669,6 +8753,7 @@ GameObject:
   - component: {fileID: 1435100473}
   - component: {fileID: 1435100472}
   - component: {fileID: 1435100478}
+  - component: {fileID: 1435100479}
   m_Layer: 7
   m_Name: Player1
   m_TagString: Player
@@ -8943,6 +9028,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd7644077ba2bab408e049f0e4ea08bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayersCollectionAccess
+--- !u!114 &1435100479
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1435100471}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 350ef0f6403c0f04b914a103f74b1680, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameEventRegistrationAccess
 --- !u!1001 &1492986252
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14385,6 +14482,7 @@ GameObject:
   - component: {fileID: 1837054320}
   - component: {fileID: 1837054322}
   - component: {fileID: 1837054321}
+  - component: {fileID: 1837054323}
   m_Layer: 0
   m_Name: SuccessMusic
   m_TagString: Untagged
@@ -14518,6 +14616,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1837054323
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1837054319}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 350ef0f6403c0f04b914a103f74b1680, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameEventRegistrationAccess
 --- !u!1 &1845946230
 GameObject:
   m_ObjectHideFlags: 0
@@ -14958,6 +15068,7 @@ GameObject:
   - component: {fileID: 1981519074}
   - component: {fileID: 1981519073}
   - component: {fileID: 1981519072}
+  - component: {fileID: 1981519075}
   m_Layer: 0
   m_Name: BGM
   m_TagString: Untagged
@@ -15106,6 +15217,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1981519075
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1981519070}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 350ef0f6403c0f04b914a103f74b1680, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameEventRegistrationAccess
 --- !u!1001 &2009803079
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15231,6 +15354,7 @@ GameObject:
   - component: {fileID: 2067377653}
   - component: {fileID: 2067377656}
   - component: {fileID: 2067377657}
+  - component: {fileID: 2067377659}
   m_Layer: 0
   m_Name: ElectricBar
   m_TagString: ElectricBar
@@ -15409,6 +15533,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &2067377659
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2067377652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 350ef0f6403c0f04b914a103f74b1680, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameEventRegistrationAccess
 --- !u!1 &2072564274
 GameObject:
   m_ObjectHideFlags: 0

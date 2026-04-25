@@ -1,19 +1,27 @@
-using System.Reflection;
+﻿using System.Reflection;
 using UnityEngine;
 using static Constants;
 
+[RequireComponent(typeof(GameEventRegistrationAccess))]
 public abstract class MonoEventReactingBehaviour : MonoBehaviour
 {
+    private GameEventRegistrationAccess _eventRegistration;
+
+    protected virtual void Awake()
+    {
+        _eventRegistration = GetComponent<GameEventRegistrationAccess>();
+    }
+
     protected virtual void OnEnable()
     {
         if (_IsOverridden(nameof(OnSuccess)) && _ShouldSubscribe(GameEvent.Success))
         {
-            GameEventTrigger.RegisterEventAction(GameEvent.Success, OnSuccess);
+            _eventRegistration.RegisterEventAction(GameEvent.Success, OnSuccess);
         }
 
         if (_IsOverridden(nameof(OnFailure)) && _ShouldSubscribe(GameEvent.Failure))
         {
-            GameEventTrigger.RegisterEventAction(GameEvent.Failure, OnFailure);
+            _eventRegistration.RegisterEventAction(GameEvent.Failure, OnFailure);
         }
     }
 

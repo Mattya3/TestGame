@@ -18,8 +18,9 @@ public abstract class Character : MonoEventReactingBehaviour
     private Rigidbody2D _rigidBody;
     private Collider2D _collider;
 
-    protected virtual void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         _rigidBody = GetComponent<Rigidbody2D>();
         _collider = GetComponent<Collider2D>();
     }

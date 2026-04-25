@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using static Constants;
 
+[RequireComponent(typeof(GameEventTriggerAccess))]
 [RequireComponent(typeof(StageSceneContextAccess))]
 [RequireComponent(typeof(ScreenEffectsAccess))]
 public class GameManager : MonoBehaviour
@@ -14,6 +15,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private PlayersManager _playersManager;
 
+    private GameEventTriggerAccess _gameEventTrigger;
     private StageSceneContextAccess _stageSceneContext;
     private ScreenEffectsAccess _screenEffects;
 
@@ -24,6 +26,7 @@ public class GameManager : MonoBehaviour
         if (Instance == null)
             Instance = this;
 
+        _gameEventTrigger = GetComponent<GameEventTriggerAccess>();
         _stageSceneContext = GetComponent<StageSceneContextAccess>();
         _screenEffects = GetComponent<ScreenEffectsAccess>();
     }
@@ -40,16 +43,14 @@ public class GameManager : MonoBehaviour
 
     public void HandleFailure()
     {
-        GameEventTrigger.TriggerEvent(GameEvent.Failure);
-        GameEventTrigger.ResetEvents();
+        _gameEventTrigger.TriggerEventActions(GameEvent.Failure);
         _stageSceneContext.OnStageRestarted();
         _screenEffects.PlayFailureEffect(() => _sceneTransitionManager.RestartStage());
     }
 
     public void HandleSuccess()
     {
-        GameEventTrigger.TriggerEvent(GameEvent.Success);
-        GameEventTrigger.ResetEvents();
+        _gameEventTrigger.TriggerEventActions(GameEvent.Success);
         _screenEffects.PlaySuccessEffect(() => _sceneTransitionManager.CompleteStage());
     }
 }
