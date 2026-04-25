@@ -35,10 +35,7 @@ public class BackgroundScroller : MonoBehaviour
             sprite.rect.width / sprite.pixelsPerUnit * transform.lossyScale.x,
             sprite.rect.height / sprite.pixelsPerUnit * transform.lossyScale.y
         );
-    }
 
-    void Start()
-    {
         _previousPosition = _cameraTransform.position;
     }
 

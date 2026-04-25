@@ -28,8 +28,10 @@ public class PlayersCameraTarget : MonoBehaviour, ICameraTarget
         _players = GetComponent<PlayersCollectionReadonlyAccess>();
     }
 
-    void Start()
+    public void OnStart()
     {
+        enabled = true;
+
         var center = _CalculateCenter();
         _shift.Start(center);
         _position = center + _offset + _shift.Get();
