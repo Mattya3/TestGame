@@ -3,9 +3,11 @@ using System.Linq;
 using UnityEngine;
 using static Constants;
 
+[RequireComponent(typeof(GameManagerAccess))]
 public class PlayersManager : MonoBehaviour, IPlayersCollection
 {
     private List<Player> _players = new List<Player>();
+    private GameManagerAccess _gameManager;
 
     public bool ArePlayersAlive { get; private set; } = true;
 
@@ -13,6 +15,8 @@ public class PlayersManager : MonoBehaviour, IPlayersCollection
     {
         PlayersCollectionAccess.Register(this);
         PlayersCollectionReadonlyAccess.Register(this);
+
+        _gameManager = GetComponent<GameManagerAccess>();
     }
 
     private void OnDestroy()
@@ -43,7 +47,7 @@ public class PlayersManager : MonoBehaviour, IPlayersCollection
         SetPlayersDead();
         FreezeAllPlayers();
 
-        GameManager.Instance.HandleFailure();
+        _gameManager.OnFailure();
     }
 
     private void HandlePlayerGoal(Player player)
@@ -56,7 +60,7 @@ public class PlayersManager : MonoBehaviour, IPlayersCollection
         if (!AllPlayersReachedGoal())
             return;
 
-        GameManager.Instance.HandleSuccess();
+        _gameManager.OnSuccess();
     }
 
     private void SetPlayersDead()

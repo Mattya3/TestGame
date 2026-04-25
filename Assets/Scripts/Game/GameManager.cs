@@ -4,7 +4,7 @@ using static Constants;
 [RequireComponent(typeof(GameEventTriggerAccess))]
 [RequireComponent(typeof(StageSceneContextAccess))]
 [RequireComponent(typeof(ScreenEffectsAccess))]
-public class GameManager : MonoBehaviour
+public class GameManager : MonoBehaviour, IGameManager
 {
     [SerializeField]
     private SceneTransitionManager _sceneTransitionManager;
@@ -19,16 +19,18 @@ public class GameManager : MonoBehaviour
     private StageSceneContextAccess _stageSceneContext;
     private ScreenEffectsAccess _screenEffects;
 
-    public static GameManager Instance { get; private set; }
-
     private void Awake()
     {
-        if (Instance == null)
-            Instance = this;
+        GameManagerAccess.Register(this);
 
         _gameEventTrigger = GetComponent<GameEventTriggerAccess>();
         _stageSceneContext = GetComponent<StageSceneContextAccess>();
         _screenEffects = GetComponent<ScreenEffectsAccess>();
+    }
+
+    private void OnDestroy()
+    {
+        GameManagerAccess.Unregister(this);
     }
 
     private void Start()
@@ -41,14 +43,14 @@ public class GameManager : MonoBehaviour
             _screenEffects.PlayOpeningEffect(() => { });
     }
 
-    public void HandleFailure()
+    public void OnFailure()
     {
         _gameEventTrigger.TriggerEventActions(GameEvent.Failure);
         _stageSceneContext.OnStageRestarted();
         _screenEffects.PlayFailureEffect(() => _sceneTransitionManager.RestartStage());
     }
 
-    public void HandleSuccess()
+    public void OnSuccess()
     {
         _gameEventTrigger.TriggerEventActions(GameEvent.Success);
         _screenEffects.PlaySuccessEffect(() => _sceneTransitionManager.CompleteStage());
