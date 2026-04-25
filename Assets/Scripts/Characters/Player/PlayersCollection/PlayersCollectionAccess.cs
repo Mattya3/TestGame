@@ -17,11 +17,6 @@ public class PlayersCollectionAccess : MonoBehaviour
         _reference = null;
     }
 
-    public void RegisterPlayer(Player player)
-    {
-        _reference?.RegisterPlayer(player);
-    }
-
     public void SetMoveController(IMoveController moveController)
     {
         _reference?.SetMoveController(moveController);

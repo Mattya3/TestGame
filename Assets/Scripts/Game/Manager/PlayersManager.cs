@@ -17,6 +17,9 @@ public class PlayersManager : MonoBehaviour, IPlayersCollection
         PlayersCollectionReadonlyAccess.Register(this);
 
         _gameManager = GetComponent<GameManagerAccess>();
+
+        // Findによってプレイヤを取得。プレイヤを動的に生成するようになったら、Findはやめる
+        FindObjectsByType<Player>(FindObjectsSortMode.InstanceID).ToList().ForEach(player => _RegisterPlayer(player));
     }
 
     private void OnDestroy()
@@ -25,50 +28,50 @@ public class PlayersManager : MonoBehaviour, IPlayersCollection
         PlayersCollectionReadonlyAccess.Unregister(this);
     }
 
-    public void RegisterPlayer(Player player)
+    private void _RegisterPlayer(Player player)
     {
         if (!_players.Contains(player))
             _players.Add(player);
         player.OnDied += (reason) =>
         {
-            HandlePlayerDeath(player, reason);
+            _HandlePlayerDeath(player, reason);
         };
         player.OnGoal += (player) =>
         {
-            HandlePlayerGoal(player);
+            _HandlePlayerGoal(player);
         };
     }
 
-    private void HandlePlayerDeath(Player deadPlayer, DeathReason deathReason)
+    private void _HandlePlayerDeath(Player deadPlayer, DeathReason deathReason)
     {
         if (!ArePlayersAlive)
             return;
 
-        SetPlayersDead();
-        FreezeAllPlayers();
+        _SetPlayersDead();
+        _FreezeAllPlayers();
 
         _gameManager.OnFailure();
     }
 
-    private void HandlePlayerGoal(Player player)
+    private void _HandlePlayerGoal(Player player)
     {
         if (!ArePlayersAlive)
             return;
 
         player.Freeze();
 
-        if (!AllPlayersReachedGoal())
+        if (!_AllPlayersReachedGoal())
             return;
 
         _gameManager.OnSuccess();
     }
 
-    private void SetPlayersDead()
+    private void _SetPlayersDead()
     {
         ArePlayersAlive = false;
     }
 
-    private void FreezeAllPlayers()
+    private void _FreezeAllPlayers()
     {
         foreach (var player in _players)
         {
@@ -76,7 +79,7 @@ public class PlayersManager : MonoBehaviour, IPlayersCollection
         }
     }
 
-    private bool AllPlayersReachedGoal()
+    private bool _AllPlayersReachedGoal()
     {
         return _players.Count > 0 && _players.All(p => p.HasReachedGoal);
     }

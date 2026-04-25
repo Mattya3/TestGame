@@ -16,9 +16,6 @@ public class Player : Character
 
     private Vector2 _inputDirection;
 
-    // 後でPlayersManagerがPlayerをInstantiateするようになったら、ここでPlayersCollectionAccessを取得するのはやめる (RegisterPlayerも要らなくなる)
-    private PlayersCollectionAccess _playersCollection;
-
     public Vector2 InputDirection => _inputDirection;
 
     protected override void Awake()
@@ -30,13 +27,6 @@ public class Player : Character
             Debug.LogError("PlayerSounds is not properly set up.");
             enabled = false;
         }
-
-        _playersCollection = GetComponent<PlayersCollectionAccess>();
-    }
-
-    private void Start()
-    {
-        _playersCollection?.RegisterPlayer(this);
     }
 
     public void OnMove(InputAction.CallbackContext context)

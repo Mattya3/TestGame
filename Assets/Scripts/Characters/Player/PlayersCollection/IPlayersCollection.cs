@@ -9,7 +9,5 @@ public interface IPlayersCollection
     List<Bounds> BoundsList { get; }
     List<Vector2> InputDirections { get; }
 
-    void RegisterPlayer(Player player);
-
     void SetMoveController(IMoveController moveController);
 }
