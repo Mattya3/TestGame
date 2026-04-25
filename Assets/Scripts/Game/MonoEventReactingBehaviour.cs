@@ -1,4 +1,6 @@
-﻿using System.Reflection;
+﻿using System;
+using System.Reflection;
+using System.Collections.Generic;
 using UnityEngine;
 using static Constants;
 
@@ -7,6 +9,17 @@ public abstract class MonoEventReactingBehaviour : MonoBehaviour
 {
     private GameEventRegistrationAccess _eventRegistration;
 
+    private readonly Dictionary<GameEvent, (string MethodName, Action Handler)> _eventHandlers;
+
+    protected MonoEventReactingBehaviour()
+    {
+        _eventHandlers = new Dictionary<GameEvent, (string, Action)>
+        {
+            { GameEvent.Success, (nameof(OnSuccess), OnSuccess) },
+            { GameEvent.Failure, (nameof(OnFailure), OnFailure) }
+        };
+    }
+
     protected virtual void Awake()
     {
         _eventRegistration = GetComponent<GameEventRegistrationAccess>();
@@ -14,26 +27,25 @@ public abstract class MonoEventReactingBehaviour : MonoBehaviour
 
     protected virtual void OnEnable()
     {
-        if (_IsOverridden(nameof(OnSuccess)) && _ShouldSubscribe(GameEvent.Success))
+        foreach (var kvp in _eventHandlers)
         {
-            _eventRegistration.RegisterEventAction(GameEvent.Success, OnSuccess);
-        }
+            var gameEvent = kvp.Key;
+            var (methodName, handler) = kvp.Value;
 
-        if (_IsOverridden(nameof(OnFailure)) && _ShouldSubscribe(GameEvent.Failure))
-        {
-            _eventRegistration.RegisterEventAction(GameEvent.Failure, OnFailure);
+            if (_IsOverridden(methodName) && _ShouldSubscribe(gameEvent))
+                _eventRegistration.RegisterEventAction(gameEvent, handler);
         }
     }
 
     protected virtual void OnDisable()
     {
-        if (_IsOverridden(nameof(OnSuccess)) && _ShouldSubscribe(GameEvent.Success))
+        foreach (var kvp in _eventHandlers)
         {
-            _eventRegistration.UnregisterEventAction(GameEvent.Success, OnSuccess);
-        }
-        if (_IsOverridden(nameof(OnFailure)) && _ShouldSubscribe(GameEvent.Failure))
-        {
-            _eventRegistration.UnregisterEventAction(GameEvent.Failure, OnFailure);
+            var gameEvent = kvp.Key;
+            var (methodName, handler) = kvp.Value;
+
+            if (_IsOverridden(methodName) && _ShouldSubscribe(gameEvent))
+                _eventRegistration.UnregisterEventAction(gameEvent, handler);
         }
     }
 

@@ -1,11 +1,15 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using static Constants;
 
 public class GameEventHub : MonoBehaviour
 {
-    private event Action _onSuccess;
-    private event Action _onFailure;
+    private readonly Dictionary<GameEvent, Action> _eventActions = new Dictionary<GameEvent, Action>
+    {
+        { GameEvent.Failure, null },
+        { GameEvent.Success, null }
+    };
 
     private void Awake()
     {
@@ -21,25 +25,31 @@ public class GameEventHub : MonoBehaviour
 
     public void RegisterEventAction(GameEvent gameEvent, Action eventAction)
     {
-        switch (gameEvent)
+        if (!_eventActions.ContainsKey(gameEvent))
         {
-            case GameEvent.Failure:
-                _onFailure += eventAction;
-                break;
-            case GameEvent.Success:
-                _onSuccess += eventAction;
-                break;
-            default:
-                Debug.LogError($"Unhandled GameEvent value in RegisterEventAction: {gameEvent}");
-                throw new ArgumentOutOfRangeException(nameof(gameEvent), gameEvent, null);
+            Debug.LogError($"Unhandled GameEvent value in RegisterEventAction: {gameEvent}");
+            throw new ArgumentOutOfRangeException(nameof(gameEvent), gameEvent, null);
         }
+        
+        _eventActions[gameEvent] += eventAction;
+    }
+
+    public void UnregisterEventAction(GameEvent gameEvent, Action eventAction)
+    {
+        if (!_eventActions.ContainsKey(gameEvent))
+        {
+            Debug.LogError($"Unhandled GameEvent value in UnregisterEventAction: {gameEvent}");
+            throw new ArgumentOutOfRangeException(nameof(gameEvent), gameEvent, null);
+        }
+        
+        _eventActions[gameEvent] -= eventAction;
     }
 
     public void TriggerEventActions(GameEvent gameEvent)
     {
-        if (gameEvent == GameEvent.Success)
-            _onSuccess?.Invoke();
-        else if (gameEvent == GameEvent.Failure)
-            _onFailure?.Invoke();
+        if (_eventActions.TryGetValue(gameEvent, out var action))
+        {
+            action?.Invoke();
+        }
     }
 }
