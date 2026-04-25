@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 
-[RequireComponent(typeof(Renderer))]
 public class CustomTimeLooper : MonoMaterialAccessBehaviour
 {
     [SerializeField, Min(1e-3f)]

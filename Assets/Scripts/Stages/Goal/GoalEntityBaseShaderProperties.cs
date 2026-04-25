@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 
-[RequireComponent(typeof(Renderer))]
 public class GoalEntityBaseShaderProperties : MonoMaterialAccessBehaviour
 {
     [SerializeField]
