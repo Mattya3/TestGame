@@ -18,15 +18,15 @@ public class SciFiBlockMaterialConfiguration : MonoBehaviour
 
     private void OnValidate()
     {
-        Apply();
+        _Apply();
     }
 
     private void Awake()
     {
-        Apply();
+        _Apply();
     }
 
-    private void Apply()
+    private void _Apply()
     {
         if (_maskColor == null || _illumination == null)
         {
