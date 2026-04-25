@@ -25,6 +25,18 @@ public abstract class MonoEventReactingBehaviour : MonoBehaviour
         }
     }
 
+    protected virtual void OnDisable()
+    {
+        if (_IsOverridden(nameof(OnSuccess)) && _ShouldSubscribe(GameEvent.Success))
+        {
+            _eventRegistration.UnregisterEventAction(GameEvent.Success, OnSuccess);
+        }
+        if (_IsOverridden(nameof(OnFailure)) && _ShouldSubscribe(GameEvent.Failure))
+        {
+            _eventRegistration.UnregisterEventAction(GameEvent.Failure, OnFailure);
+        }
+    }
+
     protected virtual void OnSuccess() { }
 
     protected virtual void OnFailure() { }

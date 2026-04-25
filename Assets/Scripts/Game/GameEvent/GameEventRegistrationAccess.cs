@@ -21,4 +21,9 @@ public class GameEventRegistrationAccess : MonoBehaviour
     {
         _gameEventHub?.RegisterEventAction(gameEvent, eventAction);
     }
+
+    public void UnregisterEventAction(GameEvent gameEvent, Action eventAction)
+    {
+        _gameEventHub?.UnregisterEventAction(gameEvent, eventAction);
+    }
 }
