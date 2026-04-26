@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using static TMPro.SpriteAssetUtilities.TexturePacker_JsonArray;
 
 [RequireComponent(typeof(SpriteRenderer))]
 public class BackgroundScroller : MonoBehaviour
@@ -8,7 +7,7 @@ public class BackgroundScroller : MonoBehaviour
     private Transform _cameraTransform;
 
     [SerializeField]
-    private Vector3  _followFactor = new Vector3(0.5f, 0.5f, 0);
+    private Vector3 _followFactor = new Vector3(0.5f, 0.5f, 0);
 
     private Vector2 _spriteSize;
     private Vector3 _previousPosition;
@@ -24,6 +23,12 @@ public class BackgroundScroller : MonoBehaviour
 
         SpriteRenderer sr = GetComponent<SpriteRenderer>();
         Sprite sprite = sr.sprite;
+        if (sprite == null)
+        {
+            Debug.LogError("SpriteRenderer does not have a sprite assigned.", this);
+            enabled = false;
+            return;
+        }
 
         _spriteSize = new Vector2(
             sprite.rect.width / sprite.pixelsPerUnit * transform.lossyScale.x,
@@ -45,12 +50,20 @@ public class BackgroundScroller : MonoBehaviour
         if (Mathf.Abs(transform.position.x - _cameraTransform.position.x) >= _spriteSize.x)
         {
             float offsetX = (transform.position.x - _cameraTransform.position.x) % _spriteSize.x;
-            transform.position = new Vector3(_cameraTransform.position.x + offsetX, transform.position.y, transform.position.z);
+            transform.position = new Vector3(
+                _cameraTransform.position.x + offsetX,
+                transform.position.y,
+                transform.position.z
+            );
         }
         if (Mathf.Abs(transform.position.y - _cameraTransform.position.y) >= _spriteSize.y)
         {
             float offsetY = (transform.position.y - _cameraTransform.position.y) % _spriteSize.y;
-            transform.position = new Vector3(transform.position.x, _cameraTransform.position.y + offsetY, transform.position.z);
+            transform.position = new Vector3(
+                transform.position.x,
+                _cameraTransform.position.y + offsetY,
+                transform.position.z
+            );
         }
     }
 }
