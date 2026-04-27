@@ -2520,11 +2520,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df9af37c254e64449ba3ea943e7f9e85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  _maskColor: {r: 1, g: 0.8763446, b: 0.759434, a: 0.8784314}
-  _illuminationColor1: {r: 0.8313726, g: 0.69411767, b: 0.61960787, a: 1}
-  _illuminationColor2: {r: 1, g: 1, b: 1, a: 1}
-  _illuminationColor3: {r: 1, g: 0.9294118, b: 0.5058824, a: 1}
-  _illuminationOffsetVector: {x: -0.1, y: -0.02, z: 0}
+  _maskColor: {fileID: 11400000, guid: 4d90c49b84f71b44281daecac789ac25, type: 2}
+  _illumination: {fileID: 11400000, guid: c48a55ad6811b5c4da6a8ea7ad776fec, type: 2}
 --- !u!1 &161220174
 GameObject:
   m_ObjectHideFlags: 0
@@ -6331,11 +6328,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df9af37c254e64449ba3ea943e7f9e85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  _maskColor: {r: 1, g: 0.8763446, b: 0.759434, a: 0.8784314}
-  _illuminationColor1: {r: 0.8313726, g: 0.69411767, b: 0.61960787, a: 1}
-  _illuminationColor2: {r: 1, g: 1, b: 1, a: 1}
-  _illuminationColor3: {r: 1, g: 0.9294118, b: 0.5058824, a: 1}
-  _illuminationOffsetVector: {x: -0.1, y: -0.02, z: 0}
+  _maskColor: {fileID: 11400000, guid: 4d90c49b84f71b44281daecac789ac25, type: 2}
+  _illumination: {fileID: 11400000, guid: c48a55ad6811b5c4da6a8ea7ad776fec, type: 2}
 --- !u!1 &952535229
 GameObject:
   m_ObjectHideFlags: 0
@@ -6794,11 +6788,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df9af37c254e64449ba3ea943e7f9e85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  _maskColor: {r: 1, g: 0.8784314, b: 0.7607843, a: 1}
-  _illuminationColor1: {r: 0.8313726, g: 0.69411767, b: 0.61960787, a: 1}
-  _illuminationColor2: {r: 1, g: 1, b: 1, a: 1}
-  _illuminationColor3: {r: 1, g: 0.9294118, b: 0.5058824, a: 1}
-  _illuminationOffsetVector: {x: -0.1, y: -0.02, z: 0}
+  _maskColor: {fileID: 11400000, guid: 4d90c49b84f71b44281daecac789ac25, type: 2}
+  _illumination: {fileID: 11400000, guid: c48a55ad6811b5c4da6a8ea7ad776fec, type: 2}
 --- !u!1 &1093922456
 GameObject:
   m_ObjectHideFlags: 0
@@ -7455,11 +7446,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df9af37c254e64449ba3ea943e7f9e85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  _maskColor: {r: 0.70199996, g: 0.41100717, b: 0.23250951, a: 0.7490196}
-  _illuminationColor1: {r: 0.8313726, g: 0.69411767, b: 0.61960787, a: 1}
-  _illuminationColor2: {r: 1, g: 1, b: 1, a: 1}
-  _illuminationColor3: {r: 1, g: 0.9294118, b: 0.5058824, a: 1}
-  _illuminationOffsetVector: {x: -0.1, y: -0.02, z: 0}
+  _maskColor: {fileID: 11400000, guid: 8ae5fcaaf7153764faaf72adf5661888, type: 2}
+  _illumination: {fileID: 11400000, guid: c48a55ad6811b5c4da6a8ea7ad776fec, type: 2}
 --- !u!1 &1271411053
 GameObject:
   m_ObjectHideFlags: 0
@@ -9100,11 +9088,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df9af37c254e64449ba3ea943e7f9e85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  _maskColor: {r: 1, g: 0.8763446, b: 0.759434, a: 0.8784314}
-  _illuminationColor1: {r: 0.8313726, g: 0.69411767, b: 0.61960787, a: 1}
-  _illuminationColor2: {r: 1, g: 1, b: 1, a: 1}
-  _illuminationColor3: {r: 1, g: 0.9294118, b: 0.5058824, a: 1}
-  _illuminationOffsetVector: {x: -0.1, y: -0.02, z: 0}
+  _maskColor: {fileID: 11400000, guid: 4d90c49b84f71b44281daecac789ac25, type: 2}
+  _illumination: {fileID: 11400000, guid: c48a55ad6811b5c4da6a8ea7ad776fec, type: 2}
 --- !u!1 &1663018030
 GameObject:
   m_ObjectHideFlags: 0
@@ -14053,6 +14038,7 @@ GameObject:
   - component: {fileID: 2075847340}
   - component: {fileID: 2075847339}
   - component: {fileID: 2075847341}
+  - component: {fileID: 2075847342}
   m_Layer: 0
   m_Name: ElectricBarSparks
   m_TagString: Untagged
@@ -14188,8 +14174,21 @@ MonoBehaviour:
   _spawnPositionMax: 20
   _spawnIntervalMin: 0.1
   _spawnIntervalMax: 0.2
-  _lightPrefab: {fileID: 5395702280908055769, guid: 8a0072913b3cee24e81ba9c68fc3e1e4, type: 3}
   _lightDuration: 0.04
+--- !u!114 &2075847342
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2075847337}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de2080f3da907c0449b60a29e318de42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LightSourcesPool
+  _lightPrefab: {fileID: 5395702280908055769, guid: 8a0072913b3cee24e81ba9c68fc3e1e4, type: 3}
+  _poolSize: 5
 --- !u!1 &2090028616
 GameObject:
   m_ObjectHideFlags: 0
