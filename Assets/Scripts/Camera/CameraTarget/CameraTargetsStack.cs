@@ -43,4 +43,14 @@ public class CameraTargetsStack
                 return Vector3.zero; // スタックが空の場合は原点を返す
         }
     }
+
+    public bool EnableCollider {
+        get
+        {
+            if (_stack.Count > 0)
+                return _stack.Peek().EnableCollider;
+            else
+                return false; // スタックが空の場合はコライダーを無効にする
+        }
+    }
 }

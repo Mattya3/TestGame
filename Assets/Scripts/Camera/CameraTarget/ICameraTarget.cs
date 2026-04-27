@@ -4,5 +4,7 @@ public interface ICameraTarget
 {
     Vector3 Position { get; }
 
+    bool EnableCollider { get; }
+
     void OnStart();
 }

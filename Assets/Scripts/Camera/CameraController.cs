@@ -19,6 +19,7 @@ public class CameraController : MonoBehaviour
 
     private Camera _camera; // カメラコンポーネントへの参照
     private CameraTargetsStack _targetsStack; // カメラターゲットのスタック
+    private Collider2D[] _colliders; // カメラのコライダーへの参照
     private Vector3 _velocity = Vector3.zero; // カメラの現在の速度
 
     void Awake()
@@ -31,6 +32,8 @@ public class CameraController : MonoBehaviour
             enabled = false;
             return;
         }
+
+        _colliders = _colliderRoot.GetComponentsInChildren<Collider2D>();
     }
 
     private bool _IsConfigurationValid()
@@ -69,6 +72,7 @@ public class CameraController : MonoBehaviour
     void Start()
     {
         _targetsStack.Start();
+        _EnableColliders(_targetsStack.EnableCollider);
 
         // カメラの初期位置を設定
         var destination = _CalculateDestination();
@@ -117,6 +121,12 @@ public class CameraController : MonoBehaviour
     private Vector3 _Bound(Vector3 pos)
     {
         return _bounds.Bound(pos, _camera.transform.position);
+    }
+
+    private void _EnableColliders(bool enable)
+    {
+        for (int i = 0; i < _colliders.Length; i++)
+            _colliders[i].enabled = enable;
     }
 
     // エディタ上でカメラの移動範囲を視覚化するためのGizmosを描画
