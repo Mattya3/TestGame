@@ -15,6 +15,24 @@ public class CameraAccess : MonoBehaviour
             _reference = null;
     }
 
+    static CameraAccess _instance;
+
+    private void Awake()
+    {
+        if (_instance != null)
+        {
+            Debug.LogError("Multiple CameraAccess instances detected. This is not allowed.");
+            return;
+        }
+        _instance = this;
+    }
+
+    private void OnDestroy()
+    {
+        if (_instance == this)
+            _instance = null;
+    }
+
     public void PushTarget(ICameraTarget target)
     {
         _reference?.PushTarget(target);
