@@ -5,22 +5,13 @@
 public class SciFiBlockMaterialConfiguration : MonoBehaviour
 {
     [SerializeField]
-    private Color _maskColor = Color.white;
-
-    [SerializeField]
-    private Color _illuminationColor1 = Color.white;
-
-    [SerializeField]
-    private Color _illuminationColor2 = Color.white;
-
-    [SerializeField]
-    private Color _illuminationColor3 = Color.white;
+    private SciFiBlockMaskColor _maskColor = null;
 
     [SerializeField]
     private float _illuminationIntensity = 1f;
 
     [SerializeField]
-    private Vector3 _illuminationOffsetVector = Vector3.right;
+    private SciFiBlockIllumination _illumination = null;
 
     private const string MASK_COLOR_PROPERTY_NAME = "_MaskColor";
     private const string ILLUMINATION_COLOR1_PROPERTY_NAME = "_IlluminationColor1";
@@ -31,26 +22,38 @@ public class SciFiBlockMaterialConfiguration : MonoBehaviour
 
     private void OnValidate()
     {
-        Apply();
+        _Apply();
     }
 
     private void Awake()
     {
-        Apply();
+        _Apply();
     }
 
-    private void Apply()
+    private void _Apply()
     {
+        if (_maskColor == null || _illumination == null)
+        {
+            Debug.LogWarning(
+                "SciFiBlockMaterialConfiguration: MaskColor or Illumination is not assigned.",
+                this
+            );
+            return;
+        }
+
         var renderer = GetComponent<Renderer>();
         var materialPropertyBlock = new MaterialPropertyBlock();
 
         renderer.GetPropertyBlock(materialPropertyBlock);
-        materialPropertyBlock.SetColor(MASK_COLOR_PROPERTY_NAME, _maskColor);
-        materialPropertyBlock.SetColor(ILLUMINATION_COLOR1_PROPERTY_NAME, _illuminationColor1);
-        materialPropertyBlock.SetColor(ILLUMINATION_COLOR2_PROPERTY_NAME, _illuminationColor2);
-        materialPropertyBlock.SetColor(ILLUMINATION_COLOR3_PROPERTY_NAME, _illuminationColor3);
+        materialPropertyBlock.SetColor(MASK_COLOR_PROPERTY_NAME, _maskColor.color);
+        materialPropertyBlock.SetColor(ILLUMINATION_COLOR1_PROPERTY_NAME, _illumination.color1);
+        materialPropertyBlock.SetColor(ILLUMINATION_COLOR2_PROPERTY_NAME, _illumination.color2);
+        materialPropertyBlock.SetColor(ILLUMINATION_COLOR3_PROPERTY_NAME, _illumination.color3);
+        materialPropertyBlock.SetVector(
+            ILLUMINATION_OFFSET_VECTOR_PROPERTY_NAME,
+            _illumination.offsetVector
+        );
         materialPropertyBlock.SetFloat(ILLUMINATION_INTENSITY_PROPERTY_NAME, _illuminationIntensity);
-        materialPropertyBlock.SetVector(ILLUMINATION_OFFSET_VECTOR_PROPERTY_NAME, _illuminationOffsetVector);
         renderer.SetPropertyBlock(materialPropertyBlock);
     }
 }
