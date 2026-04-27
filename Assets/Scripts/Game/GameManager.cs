@@ -4,6 +4,7 @@ using static Constants;
 [RequireComponent(typeof(GameEventTriggerAccess))]
 [RequireComponent(typeof(StageSceneContextAccess))]
 [RequireComponent(typeof(ScreenEffectsAccess))]
+[RequireComponent(typeof(CameraAccess))]
 public class GameManager : MonoBehaviour, IGameManager
 {
     [SerializeField]
@@ -18,6 +19,7 @@ public class GameManager : MonoBehaviour, IGameManager
     private GameEventTriggerAccess _gameEventTrigger;
     private StageSceneContextAccess _stageSceneContext;
     private ScreenEffectsAccess _screenEffects;
+    private CameraAccess _camera;
 
     private void Awake()
     {
@@ -26,6 +28,7 @@ public class GameManager : MonoBehaviour, IGameManager
         _gameEventTrigger = GetComponent<GameEventTriggerAccess>();
         _stageSceneContext = GetComponent<StageSceneContextAccess>();
         _screenEffects = GetComponent<ScreenEffectsAccess>();
+        _camera = GetComponent<CameraAccess>();
     }
 
     private void OnDestroy()
@@ -38,9 +41,9 @@ public class GameManager : MonoBehaviour, IGameManager
         _movementRuleManager.Initialize();
 
         if (_stageSceneContext.AfterRestart)
-            _screenEffects.PlayRestartEffect(() => { });
+            _screenEffects.PlayRestartEffect(() => _camera.PopTarget());
         else
-            _screenEffects.PlayOpeningEffect(() => { });
+            _screenEffects.PlayOpeningEffect(() => _camera.PopTarget());
     }
 
     public void OnFailure()

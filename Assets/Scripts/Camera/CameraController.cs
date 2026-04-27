@@ -24,6 +24,8 @@ public class CameraController : MonoBehaviour
 
     void Awake()
     {
+        CameraAccess.Register(this);
+
         _camera = GetComponentInChildren<Camera>();
         _targetsStack = new CameraTargetsStack(GetComponentsInChildren<ICameraTarget>());
 
@@ -34,6 +36,11 @@ public class CameraController : MonoBehaviour
         }
 
         _colliders = _colliderRoot.GetComponentsInChildren<Collider2D>();
+    }
+
+    void OnDestroy()
+    {
+        CameraAccess.Unregister(this);
     }
 
     private bool _IsConfigurationValid()
@@ -80,6 +87,18 @@ public class CameraController : MonoBehaviour
 
         _colliderRoot.transform.position = boundedDestination;
         _camera.transform.position = boundedDestination;
+    }
+
+    public void PushTarget(ICameraTarget target)
+    {
+        _targetsStack.Push(target);
+        _EnableColliders(_targetsStack.EnableCollider);
+    }
+
+    public void PopTarget()
+    {
+        _targetsStack.Pop();
+        _EnableColliders(_targetsStack.EnableCollider);
     }
 
     private void FixedUpdate()

@@ -16,6 +16,8 @@ public class OpeningCameraTarget : MonoBehaviour, ICameraTarget
     {
     }
 
+    public bool IsActive => true; // 常にアクティブ
+
     public Vector3 Position
     {
         get

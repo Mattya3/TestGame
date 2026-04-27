@@ -26,6 +26,9 @@ public class CameraTargetsStack
     {
         if (_stack.Count > 0)
             _stack.Pop();
+
+        if (_stack.Count > 0)
+            _stack.Peek().OnStart();
     }
 
     public void Start()

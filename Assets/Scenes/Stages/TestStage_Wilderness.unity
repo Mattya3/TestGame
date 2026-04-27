@@ -8681,6 +8681,7 @@ GameObject:
   - component: {fileID: 1422380079}
   - component: {fileID: 1422380078}
   - component: {fileID: 1422380080}
+  - component: {fileID: 1422380081}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: GameController
@@ -8758,6 +8759,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07f60424fce6fd34e90191a426a17260, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameEventTriggerAccess
+--- !u!114 &1422380081
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1422380075}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b591ffef9ac7ac41a9ab43b2decd044, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CameraAccess
 --- !u!1 &1435100471
 GameObject:
   m_ObjectHideFlags: 0
