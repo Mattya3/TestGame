@@ -18,10 +18,12 @@ public class StageSceneContext : MonoBehaviour, IStageSceneContext
         DontDestroyOnLoad(gameObject);
 
         StageSceneContextAccess.Register(this);
+        StageSceneContextReadonlyAccess.Register(this);
     }
 
     private void OnDestroy()
     {
+        StageSceneContextReadonlyAccess.Unregister(this);
         StageSceneContextAccess.Unregister(this);
     }
 

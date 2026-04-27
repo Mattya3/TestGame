@@ -24,17 +24,26 @@ public class CameraTargetsStack
 
     public void Pop()
     {
-        if (_stack.Count > 0)
-            _stack.Pop();
+        // スタックが空になる場合はポップしない
+        if (_stack.Count <= 1)
+            return;
 
-        if (_stack.Count > 0)
-            _stack.Peek().OnStart();
+        _stack.Pop();
+        Start();
     }
 
     public void Start()
     {
         if (_stack.Count > 0)
             _stack.Peek().OnStart();
+
+        // スタックの最上位のターゲットがアクティブでない場合は、スタックから削除して次のターゲットを確認する
+        while (_stack.Count > 1 && !_stack.Peek().IsActive)
+        {
+            _stack.Pop();
+            if (_stack.Count > 0)
+                _stack.Peek().OnStart();
+        }
     }
 
     public Vector3 Position {

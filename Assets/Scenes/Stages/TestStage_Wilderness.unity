@@ -14453,6 +14453,7 @@ GameObject:
   - component: {fileID: 1791297485}
   - component: {fileID: 1791297487}
   - component: {fileID: 1791297486}
+  - component: {fileID: 1791297488}
   m_Layer: 6
   m_Name: OpeningCameraTarget
   m_TagString: Untagged
@@ -14512,6 +14513,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1791297488
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1791297484}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a88a632316ad2ea41ab37c2b58c7e326, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StageSceneContextReadonlyAccess
 --- !u!4 &1807773778 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7451114193451556193, guid: c287efca7872bf849ad2a218bd068631, type: 3}
