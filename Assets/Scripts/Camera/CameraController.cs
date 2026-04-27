@@ -18,13 +18,13 @@ public class CameraController : MonoBehaviour
     private CameraBounds _bounds = new CameraBounds(); // カメラの移動制約
 
     private Camera _camera; // カメラコンポーネントへの参照
-    private ICameraTarget _cameraTarget;
+    private CameraTargetsStack _targetsStack; // カメラターゲットのスタック
     private Vector3 _velocity = Vector3.zero; // カメラの現在の速度
 
     void Awake()
     {
         _camera = GetComponentInChildren<Camera>();
-        _cameraTarget = GetComponentInChildren<ICameraTarget>();
+        _targetsStack = new CameraTargetsStack(GetComponentsInChildren<ICameraTarget>());
 
         if (!_IsConfigurationValid())
         {
@@ -45,10 +45,10 @@ public class CameraController : MonoBehaviour
             Debug.LogError("CameraControllerにはCameraコンポーネントが必要です", this);
             return false;
         }
-        if (_cameraTarget == null)
+        if (_targetsStack.IsEmpty)
         {
             Debug.LogError(
-                "CameraControllerにはICameraTargetを実装したコンポーネントが必要です",
+                "CameraControllerには少なくとも1つのICameraTargetを実装したコンポーネントが必要です",
                 this
             );
             return false;
@@ -68,7 +68,7 @@ public class CameraController : MonoBehaviour
 
     void Start()
     {
-        _cameraTarget.OnStart();
+        _targetsStack.Start();
 
         // カメラの初期位置を設定
         var destination = _CalculateDestination();
@@ -111,7 +111,7 @@ public class CameraController : MonoBehaviour
 
     private Vector3 _CalculateDestination()
     {
-        return _cameraTarget.Position;
+        return _targetsStack.Position;
     }
 
     private Vector3 _Bound(Vector3 pos)

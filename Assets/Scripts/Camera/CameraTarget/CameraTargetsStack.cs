@@ -9,21 +9,12 @@ public class CameraTargetsStack
 
     public CameraTargetsStack(ICameraTarget[] targetsArray)
     {
-        if (targetsArray == null)
-        {
-            Debug.LogError("CameraTargetsStackのコンストラクタにはICameraTargetの配列が必要です");
-            return;
-        }
-        if (targetsArray.Length == 0)
-        {
-            Debug.LogError("CameraTargetsStackのコンストラクタには少なくとも1つのICameraTargetが必要です");
-            return;
-        }
-
         // 配列の順序を逆にしてスタックに積む
         for (int i = targetsArray.Length - 1; i >= 0; i--)
             _stack.Push(targetsArray[i]);
     }
+
+    public bool IsEmpty => _stack.Count == 0;
 
     public void Push(ICameraTarget target)
     {
