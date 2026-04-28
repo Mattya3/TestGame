@@ -46,7 +46,10 @@ public class SciFiBlockMaterialConfiguration : MonoBehaviour
         materialPropertyBlock.SetColor(ILLUMINATION_COLOR1_PROPERTY_NAME, _illumination.color1);
         materialPropertyBlock.SetColor(ILLUMINATION_COLOR2_PROPERTY_NAME, _illumination.color2);
         materialPropertyBlock.SetColor(ILLUMINATION_COLOR3_PROPERTY_NAME, _illumination.color3);
-        materialPropertyBlock.SetFloat(ILLUMINATION_INTENSITY_PROPERTY_NAME, _illumination.intensity);
+        materialPropertyBlock.SetFloat(
+            ILLUMINATION_INTENSITY_PROPERTY_NAME,
+            _illumination.intensity
+        );
         materialPropertyBlock.SetVector(
             ILLUMINATION_OFFSET_VECTOR_PROPERTY_NAME,
             _illumination.offsetVector
