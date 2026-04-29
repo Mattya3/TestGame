@@ -13,10 +13,10 @@ public class Player : Character
     private IPlayerState _previousState;
     // private List<IExternalState> _externalStates;
 
-    public bool HasReachedGoal { get; private set; } = false;
     public IMoveController MoveController { get; set; }
     public IPlayerState CurrentState => _currentState;
     public IPlayerState PreviousState => _previousState;
+    public bool IsInGoalState => _currentState is GoalState;
 
     [SerializeField]
     private PlayerSounds _sounds;
@@ -119,7 +119,6 @@ public class Player : Character
 
     public void NotifyGoalReached()
     {
-        HasReachedGoal = true;
         OnGoal?.Invoke(this);
     }
 

@@ -69,6 +69,6 @@ public class PlayersManager : MonoBehaviour
 
     public bool AllPlayersReachedGoal()
     {
-        return _players.Count > 0 && _players.All(p => p.HasReachedGoal);
+        return _players.Count > 0 && _players.All(p => p.IsInGoalState);
     }
 }
