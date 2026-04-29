@@ -11,6 +11,7 @@ public partial class Player : Character
 
     private IPlayerState _currentState;
     private IPlayerState _previousState;
+
     // private List<IExternalState> _externalStates;
 
     [SerializeField]
