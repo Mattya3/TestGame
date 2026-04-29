@@ -11,11 +11,7 @@ public partial class Player : Character
 
     private IPlayerState _currentState;
     private IPlayerState _previousState;
-
     // private List<IExternalState> _externalStates;
-
-    public IMoveController MoveController { get; set; }
-    public bool IsInGoalState => _currentState is GoalState;
 
     [SerializeField]
     private PlayerSounds _sounds;
@@ -23,6 +19,8 @@ public partial class Player : Character
     private Vector2 _inputDirection;
     private IPlayerStateContext _stateContext;
 
+    public IMoveController MoveController { get; set; }
+    public bool IsInGoalState => _currentState is GoalState;
     public Vector2 InputDirection => _inputDirection;
 
     private void Start()
@@ -35,8 +33,16 @@ public partial class Player : Character
         }
 
         _stateContext = new StateContext(this);
-        ChangeStateInternal(CreateInitialState());
+        _ChangeState(_CreateInitialState());
         OnCreated?.Invoke(this);
+    }
+
+    protected override void _Move()
+    {
+        if (_currentState == null)
+            return;
+
+        _currentState.OnMove(_inputDirection);
     }
 
     public void OnMove(InputAction.CallbackContext context)
@@ -70,15 +76,17 @@ public partial class Player : Character
         _currentState.Goal();
     }
 
-    protected override void _Move()
+    public void EnterFrozenState()
     {
         if (_currentState == null)
             return;
+        if (_currentState is UnplayableState)
+            return;
 
-        _currentState.OnMove(_inputDirection);
+        _ChangeState(new FrozenState(_stateContext, _sounds));
     }
 
-    private void ChangeStateInternal(IPlayerState nextState)
+    private void _ChangeState(IPlayerState nextState)
     {
         if (nextState == null)
         {
@@ -93,47 +101,37 @@ public partial class Player : Character
         _currentState.OnEnabled();
     }
 
-    private void MoveByInputInternal(Vector2 inputDirection)
+    private void _MoveByInput(Vector2 inputDirection)
     {
         Vector2 convertedDirection = MoveController.ConvertInputDirection(inputDirection);
         _ApplyMovement(convertedDirection);
     }
 
-    private bool IsGroundedInternal()
+    private bool _IsGrounded()
     {
         return _groundDetector.IsGrounded();
     }
 
-    private bool TryJumpInternal()
+    private bool _TryJump()
     {
-        if (!IsGroundedInternal())
+        if (!_IsGrounded())
             return false;
 
         _ApplyJump();
         return true;
     }
 
-    private void NotifyDiedInternal(DeathReason deathReason)
+    private void _NotifyDied(DeathReason deathReason)
     {
         OnDied?.Invoke(deathReason);
     }
 
-    private void NotifyGoalReachedInternal()
+    private void _NotifyGoalReached()
     {
         OnGoal?.Invoke(this);
     }
 
-    public void EnterFrozenState()
-    {
-        if (_currentState == null)
-            return;
-        if (_currentState is UnplayableState)
-            return;
-
-        ChangeStateInternal(new FrozenState(_stateContext, _sounds));
-    }
-
-    private IPlayerState CreateInitialState()
+    private IPlayerState _CreateInitialState()
     {
         return _groundDetector.IsGrounded()
             ? new GroundState(_stateContext, _sounds)

@@ -18,22 +18,22 @@ public partial class Player
 
         void IPlayerStateContext.ChangeState(IPlayerState nextState)
         {
-            _player.ChangeStateInternal(nextState);
+            _player._ChangeState(nextState);
         }
 
         void IPlayerStateContext.MoveByInput(Vector2 inputDirection)
         {
-            _player.MoveByInputInternal(inputDirection);
+            _player._MoveByInput(inputDirection);
         }
 
         bool IPlayerStateContext.IsGrounded()
         {
-            return _player.IsGroundedInternal();
+            return _player._IsGrounded();
         }
 
         bool IPlayerStateContext.TryJump()
         {
-            return _player.TryJumpInternal();
+            return _player._TryJump();
         }
 
         void IPlayerStateContext.Freeze()
@@ -43,12 +43,12 @@ public partial class Player
 
         void IPlayerStateContext.NotifyDied(DeathReason deathReason)
         {
-            _player.NotifyDiedInternal(deathReason);
+            _player._NotifyDied(deathReason);
         }
 
         void IPlayerStateContext.NotifyGoalReached()
         {
-            _player.NotifyGoalReachedInternal();
+            _player._NotifyGoalReached();
         }
     }
 }
