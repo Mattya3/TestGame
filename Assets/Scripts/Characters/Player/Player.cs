@@ -55,16 +55,18 @@ public class Player : Character
 
     public void Die(DeathReason deathReason)
     {
-        _sounds.OnDeath();
-        OnDied?.Invoke(deathReason);
+        if (_currentState == null)
+            return;
+
+        _currentState.Die(deathReason);
     }
 
     public void Goal()
     {
-        _sounds.OnGoal();
-        HasReachedGoal = true;
+        if (_currentState == null)
+            return;
 
-        OnGoal?.Invoke(this);
+        _currentState.Goal();
     }
 
     protected override void _Move()
@@ -118,6 +120,27 @@ public class Player : Character
     public void PlayLandSound()
     {
         _sounds.OnLand();
+    }
+
+    public void PlayDeathSound()
+    {
+        _sounds.OnDeath();
+    }
+
+    public void PlayGoalSound()
+    {
+        _sounds.OnGoal();
+    }
+
+    public void NotifyDied(DeathReason deathReason)
+    {
+        OnDied?.Invoke(deathReason);
+    }
+
+    public void NotifyGoalReached()
+    {
+        HasReachedGoal = true;
+        OnGoal?.Invoke(this);
     }
 
     private IPlayerState CreateInitialState()
