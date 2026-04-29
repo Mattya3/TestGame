@@ -11,6 +11,7 @@ public partial class Player : Character
 
     private IPlayerState _currentState;
     private IPlayerState _previousState;
+
     // private List<IExternalState> _externalStates;
 
     public IMoveController MoveController { get; set; }
@@ -138,5 +139,4 @@ public partial class Player : Character
             ? new GroundState(_stateContext, _sounds)
             : new AirState(_stateContext, _sounds);
     }
-
 }
