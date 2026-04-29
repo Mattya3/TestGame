@@ -10,11 +10,13 @@ public class Player : Character
     public event Action<DeathReason> OnDied;
 
     private IPlayerState _currentState;
+    private IPlayerState _previousState;
     // private List<IExternalState> _externalStates;
 
     public bool HasReachedGoal { get; private set; } = false;
     public IMoveController MoveController { get; set; }
     public IPlayerState CurrentState => _currentState;
+    public IPlayerState PreviousState => _previousState;
 
     [SerializeField]
     private PlayerSounds _sounds;
@@ -45,9 +47,10 @@ public class Player : Character
     {
         if (!context.performed)
             return;
+        if (_currentState == null)
+            return;
 
-        _ApplyJump();
-        _sounds.OnJump();
+        _currentState.OnJump();
     }
 
     public void Die(DeathReason deathReason)
@@ -66,8 +69,10 @@ public class Player : Character
 
     protected override void _Move()
     {
-        Vector2 convertedDirection = MoveController.ConvertInputDirection(_inputDirection);
-        _ApplyMovement(convertedDirection);
+        if (_currentState == null)
+            return;
+
+        _currentState.OnMove(_inputDirection);
     }
 
     public void ChangeState(IPlayerState nextState)
@@ -78,19 +83,40 @@ public class Player : Character
             return;
         }
 
-        _currentState?.OnDisabled();
+        IPlayerState previousState = _currentState;
+        previousState?.OnDisabled();
+        _previousState = previousState;
         _currentState = nextState;
         _currentState.OnEnabled();
     }
 
-    // TODO: ここではない気がするが，GroundDetectorは変更されると思うのでこのまま
-    private void OnCollisionEnter2D(Collision2D collision)
+    public void MoveByInput(Vector2 inputDirection)
     {
-        if (collision.gameObject.layer != LayerMask.NameToLayer(Layers.SOLID))
-            return;
-        if (!_groundDetector.IsGrounded())
-            return; // 接触時に着地しているかで判定
+        Vector2 convertedDirection = MoveController.ConvertInputDirection(inputDirection);
+        _ApplyMovement(convertedDirection);
+    }
 
+    public bool IsGrounded()
+    {
+        return _groundDetector.IsGrounded();
+    }
+
+    public bool TryJump()
+    {
+        if (!IsGrounded())
+            return false;
+
+        _ApplyJump();
+        return true;
+    }
+
+    public void PlayJumpSound()
+    {
+        _sounds.OnJump();
+    }
+
+    public void PlayLandSound()
+    {
         _sounds.OnLand();
     }
 
