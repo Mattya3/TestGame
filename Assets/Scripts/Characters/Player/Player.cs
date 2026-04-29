@@ -143,6 +143,16 @@ public class Player : Character
         OnGoal?.Invoke(this);
     }
 
+    public void EnterFrozenState()
+    {
+        if (_currentState == null)
+            return;
+        if (_currentState is UnplayableState)
+            return;
+
+        ChangeState(new FrozenState(this));
+    }
+
     private IPlayerState CreateInitialState()
     {
         return _groundDetector.IsGrounded() ? new GroundState(this) : new AirState(this);
