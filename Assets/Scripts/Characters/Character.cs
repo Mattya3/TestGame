@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using UnityEngine;
 using static Constants;
 
@@ -13,10 +13,12 @@ public abstract class Character : MonoEventReactingBehaviour
     protected GroundDetector _groundDetector;
 
     private Rigidbody2D _rigidBody;
+    private Collider2D _collider;
 
     protected virtual void Awake()
     {
         _rigidBody = GetComponent<Rigidbody2D>();
+        _collider = GetComponent<Collider2D>();
     }
 
     protected virtual void Update()
@@ -62,4 +64,6 @@ public abstract class Character : MonoEventReactingBehaviour
         _rigidBody.linearVelocity = Vector2.zero;
         _rigidBody.bodyType = RigidbodyType2D.Static;
     }
+
+    public Bounds Bounds => _collider.bounds;
 }

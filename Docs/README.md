@@ -11,5 +11,5 @@
 - [レビュープロセス (ReviewProcess.md)](./PR/ReviewProcess.md) - コードレビューのやり方とマージのルール
 
 ### 📂 CodingStandards (コードの書き方・Unityの作法)
-- [C# コーディング規約 (CSharp.md)](./CodingStandards/CSharp.md) - C#スクリプトの命名規則や基本的な書き方
-- [Unity開発ルール (UnityRules.md)](./CodingStandards/UnityRules.md) - Unity特有の注意点（Scene競合，.metaファイル，Prefab等）
+- [C# コーディング規約 (CSharp.md)](./CodingStandards/CSharp.md) - 命名，責務分割，ライフサイクル，Inspector設計を含む Unity 向け C# 規約
+- [Unity開発ルール (UnityRules.md)](./CodingStandards/UnityRules.md) - Scene / Prefab / `.meta` / アセット運用など，Unity特有のチーム開発ルール
