@@ -15,10 +15,10 @@ public abstract class PlayerStateBase : IPlayerState
 {
     protected PlayerStateBase(Player player)
     {
-        _player = player;
+        Player = player;
     }
 
-    protected Player _player;
+    protected Player Player { get; }
 
     public virtual void OnMove(Vector2 inputDirection) { }
 
