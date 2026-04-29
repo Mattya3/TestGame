@@ -3,13 +3,13 @@ using static Constants;
 
 public class GoalState : UnplayableState
 {
-    public GoalState(Player player)
-        : base(player) { }
+    public GoalState(Player player, PlayerSounds sounds)
+        : base(player, sounds) { }
 
     public override void OnEnabled()
     {
         Player.Freeze();
-        Player.PlayGoalSound();
+        Sounds.OnGoal();
     }
 
     public override void Die(DeathReason deathReason)

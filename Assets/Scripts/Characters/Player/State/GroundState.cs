@@ -2,14 +2,14 @@ using UnityEngine;
 
 public class GroundState : PlayableState
 {
-    public GroundState(Player player)
-        : base(player) { }
+    public GroundState(Player player, PlayerSounds sounds)
+        : base(player, sounds) { }
 
     public override void OnMove(Vector2 inputDirection)
     {
         if (!Player.IsGrounded())
         {
-            Player.ChangeState(new AirState(Player));
+            Player.ChangeState(new AirState(Player, Sounds));
             return;
         }
 
@@ -21,13 +21,13 @@ public class GroundState : PlayableState
         if (!Player.TryJump())
             return;
 
-        Player.PlayJumpSound();
-        Player.ChangeState(new AirState(Player));
+        Sounds.OnJump();
+        Player.ChangeState(new AirState(Player, Sounds));
     }
 
     public override void OnEnabled()
     {
         if (Player.PreviousState is AirState)
-            Player.PlayLandSound();
+            Sounds.OnLand();
     }
 }

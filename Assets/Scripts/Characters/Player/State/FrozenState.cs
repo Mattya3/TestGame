@@ -3,8 +3,8 @@ using static Constants;
 
 public class FrozenState : UnplayableState
 {
-    public FrozenState(Player player)
-        : base(player) { }
+    public FrozenState(Player player, PlayerSounds sounds)
+        : base(player, sounds) { }
 
     public override void OnEnabled()
     {

@@ -112,26 +112,6 @@ public class Player : Character
         return true;
     }
 
-    public void PlayJumpSound()
-    {
-        _sounds.OnJump();
-    }
-
-    public void PlayLandSound()
-    {
-        _sounds.OnLand();
-    }
-
-    public void PlayDeathSound()
-    {
-        _sounds.OnDeath();
-    }
-
-    public void PlayGoalSound()
-    {
-        _sounds.OnGoal();
-    }
-
     public void NotifyDied(DeathReason deathReason)
     {
         OnDied?.Invoke(deathReason);
@@ -150,11 +130,13 @@ public class Player : Character
         if (_currentState is UnplayableState)
             return;
 
-        ChangeState(new FrozenState(this));
+        ChangeState(new FrozenState(this, _sounds));
     }
 
     private IPlayerState CreateInitialState()
     {
-        return _groundDetector.IsGrounded() ? new GroundState(this) : new AirState(this);
+        return _groundDetector.IsGrounded()
+            ? new GroundState(this, _sounds)
+            : new AirState(this, _sounds);
     }
 }
