@@ -2,32 +2,32 @@ using UnityEngine;
 
 public class GroundState : PlayableState
 {
-    public GroundState(Player player, PlayerSounds sounds)
-        : base(player, sounds) { }
+    public GroundState(IPlayerStateContext context, PlayerSounds sounds)
+        : base(context, sounds) { }
 
     public override void OnMove(Vector2 inputDirection)
     {
-        if (!Player.IsGrounded())
+        if (!Context.IsGrounded())
         {
-            Player.ChangeState(new AirState(Player, Sounds));
+            Context.ChangeState(new AirState(Context, Sounds));
             return;
         }
 
-        Player.MoveByInput(inputDirection);
+        Context.MoveByInput(inputDirection);
     }
 
     public override void OnJump()
     {
-        if (!Player.TryJump())
+        if (!Context.TryJump())
             return;
 
         Sounds.OnJump();
-        Player.ChangeState(new AirState(Player, Sounds));
+        Context.ChangeState(new AirState(Context, Sounds));
     }
 
     public override void OnEnabled()
     {
-        if (Player.PreviousState is AirState)
+        if (Context.PreviousStateIsAirState)
             Sounds.OnLand();
     }
 }

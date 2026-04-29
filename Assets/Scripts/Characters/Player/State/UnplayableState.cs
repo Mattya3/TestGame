@@ -1,5 +1,5 @@
 public abstract class UnplayableState : PlayerStateBase
 {
-    protected UnplayableState(Player player, PlayerSounds sounds)
-        : base(player, sounds) { }
+    protected UnplayableState(IPlayerStateContext context, PlayerSounds sounds)
+        : base(context, sounds) { }
 }

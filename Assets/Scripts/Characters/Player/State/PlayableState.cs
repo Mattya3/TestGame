@@ -2,18 +2,18 @@ using static Constants;
 
 public abstract class PlayableState : PlayerStateBase
 {
-    protected PlayableState(Player player, PlayerSounds sounds)
-        : base(player, sounds) { }
+    protected PlayableState(IPlayerStateContext context, PlayerSounds sounds)
+        : base(context, sounds) { }
 
     public override void Die(DeathReason deathReason)
     {
-        Player.ChangeState(new DeadState(Player, Sounds));
-        Player.NotifyDied(deathReason);
+        Context.ChangeState(new DeadState(Context, Sounds));
+        Context.NotifyDied(deathReason);
     }
 
     public override void Goal()
     {
-        Player.ChangeState(new GoalState(Player, Sounds));
-        Player.NotifyGoalReached();
+        Context.ChangeState(new GoalState(Context, Sounds));
+        Context.NotifyGoalReached();
     }
 }

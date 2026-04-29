@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using static Constants;
 
-public class Player : Character
+public partial class Player : Character
 {
     public static event Action<Player> OnCreated;
     public event Action<Player> OnGoal;
@@ -14,14 +14,13 @@ public class Player : Character
     // private List<IExternalState> _externalStates;
 
     public IMoveController MoveController { get; set; }
-    public IPlayerState CurrentState => _currentState;
-    public IPlayerState PreviousState => _previousState;
     public bool IsInGoalState => _currentState is GoalState;
 
     [SerializeField]
     private PlayerSounds _sounds;
 
     private Vector2 _inputDirection;
+    private IPlayerStateContext _stateContext;
 
     public Vector2 InputDirection => _inputDirection;
 
@@ -34,7 +33,8 @@ public class Player : Character
             return;
         }
 
-        ChangeState(CreateInitialState());
+        _stateContext = new StateContext(this);
+        ChangeStateInternal(CreateInitialState());
         OnCreated?.Invoke(this);
     }
 
@@ -77,7 +77,7 @@ public class Player : Character
         _currentState.OnMove(_inputDirection);
     }
 
-    public void ChangeState(IPlayerState nextState)
+    private void ChangeStateInternal(IPlayerState nextState)
     {
         if (nextState == null)
         {
@@ -92,32 +92,32 @@ public class Player : Character
         _currentState.OnEnabled();
     }
 
-    public void MoveByInput(Vector2 inputDirection)
+    private void MoveByInputInternal(Vector2 inputDirection)
     {
         Vector2 convertedDirection = MoveController.ConvertInputDirection(inputDirection);
         _ApplyMovement(convertedDirection);
     }
 
-    public bool IsGrounded()
+    private bool IsGroundedInternal()
     {
         return _groundDetector.IsGrounded();
     }
 
-    public bool TryJump()
+    private bool TryJumpInternal()
     {
-        if (!IsGrounded())
+        if (!IsGroundedInternal())
             return false;
 
         _ApplyJump();
         return true;
     }
 
-    public void NotifyDied(DeathReason deathReason)
+    private void NotifyDiedInternal(DeathReason deathReason)
     {
         OnDied?.Invoke(deathReason);
     }
 
-    public void NotifyGoalReached()
+    private void NotifyGoalReachedInternal()
     {
         OnGoal?.Invoke(this);
     }
@@ -129,13 +129,14 @@ public class Player : Character
         if (_currentState is UnplayableState)
             return;
 
-        ChangeState(new FrozenState(this, _sounds));
+        ChangeStateInternal(new FrozenState(_stateContext, _sounds));
     }
 
     private IPlayerState CreateInitialState()
     {
         return _groundDetector.IsGrounded()
-            ? new GroundState(this, _sounds)
-            : new AirState(this, _sounds);
+            ? new GroundState(_stateContext, _sounds)
+            : new AirState(_stateContext, _sounds);
     }
+
 }

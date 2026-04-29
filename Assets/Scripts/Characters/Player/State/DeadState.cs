@@ -3,22 +3,22 @@ using static Constants;
 
 public class DeadState : UnplayableState
 {
-    public DeadState(Player player, PlayerSounds sounds)
-        : base(player, sounds) { }
+    public DeadState(IPlayerStateContext context, PlayerSounds sounds)
+        : base(context, sounds) { }
 
     public override void OnEnabled()
     {
-        Player.Freeze();
+        Context.Freeze();
         Sounds.OnDeath();
     }
 
     public override void Die(DeathReason deathReason)
     {
-        Debug.LogWarning("Die() was called while in DeadState.", Player);
+        Debug.LogWarning("Die() was called while in DeadState.", Context.LogContext);
     }
 
     public override void Goal()
     {
-        Debug.LogWarning("Goal() was called while in DeadState.", Player);
+        Debug.LogWarning("Goal() was called while in DeadState.", Context.LogContext);
     }
 }
