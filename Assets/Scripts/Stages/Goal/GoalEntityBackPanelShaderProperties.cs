@@ -9,6 +9,9 @@ public class GoalEntityBackPanelShaderProperties : MonoMaterialAccessBehaviour
 
     protected override void SetMaterialProperties(MaterialPropertyBlock materialPropertyBlock)
     {
-        materialPropertyBlock.SetFloat(ILLUMINATION_THRESHOLD_PROPERTY_NAME, _illuminationThreshold);
+        materialPropertyBlock.SetFloat(
+            ILLUMINATION_THRESHOLD_PROPERTY_NAME,
+            _illuminationThreshold
+        );
     }
 }

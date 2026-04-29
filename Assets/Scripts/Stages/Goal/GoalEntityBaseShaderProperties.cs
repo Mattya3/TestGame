@@ -9,6 +9,9 @@ public class GoalEntityBaseShaderProperties : MonoMaterialAccessBehaviour
 
     protected override void SetMaterialProperties(MaterialPropertyBlock materialPropertyBlock)
     {
-        materialPropertyBlock.SetVector(ILLUMINATION_THRESHOLDS_PROPERTY_NAME, _illuminationThresholds);
+        materialPropertyBlock.SetVector(
+            ILLUMINATION_THRESHOLDS_PROPERTY_NAME,
+            _illuminationThresholds
+        );
     }
 }
