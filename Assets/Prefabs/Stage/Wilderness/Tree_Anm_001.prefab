@@ -106,6 +106,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FlipAnimatedSpriteConfiguration
   _numSlices: {x: 4, y: 4}
+  _patternIndexOffset: 0
 --- !u!114 &1248636852098811045
 MonoBehaviour:
   m_ObjectHideFlags: 0
