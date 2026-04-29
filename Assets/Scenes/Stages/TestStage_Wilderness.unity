@@ -6329,7 +6329,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   _maskColor: {fileID: 11400000, guid: 4d90c49b84f71b44281daecac789ac25, type: 2}
-  _illumination: {fileID: 11400000, guid: c48a55ad6811b5c4da6a8ea7ad776fec, type: 2}
+  _illumination: {fileID: 11400000, guid: 35d5f0ad107018644b1a36891b70dae6, type: 2}
 --- !u!1 &952535229
 GameObject:
   m_ObjectHideFlags: 0
@@ -6789,7 +6789,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   _maskColor: {fileID: 11400000, guid: 4d90c49b84f71b44281daecac789ac25, type: 2}
-  _illumination: {fileID: 11400000, guid: c48a55ad6811b5c4da6a8ea7ad776fec, type: 2}
+  _illumination: {fileID: 11400000, guid: 6eaa86266de9e7746a933749f08eaa54, type: 2}
 --- !u!1 &1093922456
 GameObject:
   m_ObjectHideFlags: 0
@@ -6955,7 +6955,7 @@ Camera:
   m_GameObject: {fileID: 1113217126}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
+  m_ClearFlags: 2
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
@@ -7032,10 +7032,10 @@ MonoBehaviour:
   m_RendererIndex: -1
   m_VolumeLayerMask:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 65536
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 0
+  m_RenderPostProcessing: 1
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0
@@ -7447,7 +7447,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   _maskColor: {fileID: 11400000, guid: 8ae5fcaaf7153764faaf72adf5661888, type: 2}
-  _illumination: {fileID: 11400000, guid: c48a55ad6811b5c4da6a8ea7ad776fec, type: 2}
+  _illumination: {fileID: 11400000, guid: 6eaa86266de9e7746a933749f08eaa54, type: 2}
 --- !u!1 &1271411053
 GameObject:
   m_ObjectHideFlags: 0
@@ -9089,7 +9089,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   _maskColor: {fileID: 11400000, guid: 4d90c49b84f71b44281daecac789ac25, type: 2}
-  _illumination: {fileID: 11400000, guid: c48a55ad6811b5c4da6a8ea7ad776fec, type: 2}
+  _illumination: {fileID: 11400000, guid: 7c7562163bc936d458624a26e04a77fc, type: 2}
 --- !u!1 &1663018030
 GameObject:
   m_ObjectHideFlags: 0
@@ -13735,6 +13735,55 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &2057038819
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2057038821}
+  - component: {fileID: 2057038820}
+  m_Layer: 16
+  m_Name: PostProcessVolume
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2057038820
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2057038819}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.RenderPipelines.Core.Runtime::UnityEngine.Rendering.Volume
+  m_IsGlobal: 1
+  priority: 0
+  blendDistance: 0
+  weight: 1
+  sharedProfile: {fileID: 11400000, guid: 22b61fa3ddd5ed247894efc43688a979, type: 2}
+--- !u!4 &2057038821
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2057038819}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2067377652
 GameObject:
   m_ObjectHideFlags: 0
@@ -14240,3 +14289,4 @@ SceneRoots:
   - {fileID: 1323272643}
   - {fileID: 770251658}
   - {fileID: 1684261143}
+  - {fileID: 2057038821}

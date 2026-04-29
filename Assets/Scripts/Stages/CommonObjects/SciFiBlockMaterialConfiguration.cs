@@ -14,6 +14,7 @@ public class SciFiBlockMaterialConfiguration : MonoBehaviour
     private const string ILLUMINATION_COLOR1_PROPERTY_NAME = "_IlluminationColor1";
     private const string ILLUMINATION_COLOR2_PROPERTY_NAME = "_IlluminationColor2";
     private const string ILLUMINATION_COLOR3_PROPERTY_NAME = "_IlluminationColor3";
+    private const string ILLUMINATION_INTENSITY_PROPERTY_NAME = "_IlluminationIntensity";
     private const string ILLUMINATION_OFFSET_VECTOR_PROPERTY_NAME = "_IlluminationOffsetVector";
 
     private void OnValidate()
@@ -45,6 +46,10 @@ public class SciFiBlockMaterialConfiguration : MonoBehaviour
         materialPropertyBlock.SetColor(ILLUMINATION_COLOR1_PROPERTY_NAME, _illumination.color1);
         materialPropertyBlock.SetColor(ILLUMINATION_COLOR2_PROPERTY_NAME, _illumination.color2);
         materialPropertyBlock.SetColor(ILLUMINATION_COLOR3_PROPERTY_NAME, _illumination.color3);
+        materialPropertyBlock.SetFloat(
+            ILLUMINATION_INTENSITY_PROPERTY_NAME,
+            _illumination.intensity
+        );
         materialPropertyBlock.SetVector(
             ILLUMINATION_OFFSET_VECTOR_PROPERTY_NAME,
             _illumination.offsetVector
