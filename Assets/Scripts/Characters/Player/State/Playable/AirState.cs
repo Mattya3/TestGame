@@ -10,6 +10,9 @@ public class AirState : PlayableState
         Context.MoveByInput(inputDirection);
 
         if (Context.IsGrounded())
+        {
+            Sounds.OnLand();
             Context.ChangeState(new GroundState(Context, Sounds));
+        }
     }
 }

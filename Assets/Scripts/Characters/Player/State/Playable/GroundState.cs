@@ -24,10 +24,4 @@ public class GroundState : PlayableState
         Sounds.OnJump();
         Context.ChangeState(new AirState(Context, Sounds));
     }
-
-    public override void OnEnabled()
-    {
-        if (Context.PreviousStateIsAirState)
-            Sounds.OnLand();
-    }
 }

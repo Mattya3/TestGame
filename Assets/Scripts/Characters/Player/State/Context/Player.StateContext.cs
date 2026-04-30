@@ -12,8 +12,6 @@ public partial class Player
             _player = player;
         }
 
-        bool IPlayerStateContext.PreviousStateIsAirState => _player._previousState is AirState;
-
         Object IPlayerStateContext.LogContext => _player;
 
         void IPlayerStateContext.ChangeState(IPlayerState nextState)

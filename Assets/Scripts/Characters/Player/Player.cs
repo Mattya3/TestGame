@@ -10,7 +10,6 @@ public partial class Player : Character
     public event Action<DeathReason> OnDied;
 
     private IPlayerState _currentState;
-    private IPlayerState _previousState;
 
     // private List<IExternalState> _externalStates;
 
@@ -95,9 +94,7 @@ public partial class Player : Character
             return;
         }
 
-        IPlayerState previousState = _currentState;
-        previousState?.OnDisabled();
-        _previousState = previousState;
+        _currentState?.OnDisabled();
         _currentState = nextState;
         _currentState.OnEnabled();
     }
