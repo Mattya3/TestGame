@@ -6,9 +6,10 @@ public class DeadState : UnplayableState
     private readonly DeathReason _deathReason;
 
     public DeadState(IPlayerStateContext context, PlayerSounds sounds, DeathReason deathReason)
-        : base(context, sounds) {
-            _deathReason = deathReason;
-        }
+        : base(context, sounds)
+    {
+        _deathReason = deathReason;
+    }
 
     public override void OnEnabled()
     {
