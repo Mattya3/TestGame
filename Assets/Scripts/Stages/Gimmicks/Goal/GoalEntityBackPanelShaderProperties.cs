@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 
-[RequireComponent(typeof(Renderer))]
 public class GoalEntityBackPanelShaderProperties : MonoMaterialAccessBehaviour
 {
     [SerializeField]
@@ -10,6 +9,14 @@ public class GoalEntityBackPanelShaderProperties : MonoMaterialAccessBehaviour
 
     protected override void SetMaterialProperties(MaterialPropertyBlock materialPropertyBlock)
     {
-        materialPropertyBlock.SetFloat(ILLUMINATION_THRESHOLD_PROPERTY_NAME, _illuminationThreshold);
+        materialPropertyBlock.SetFloat(
+            ILLUMINATION_THRESHOLD_PROPERTY_NAME,
+            _illuminationThreshold
+        );
+    }
+
+    protected override bool IsDirty
+    {
+        get { return false; }
     }
 }

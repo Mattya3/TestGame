@@ -1,26 +1,12 @@
 ﻿using UnityEngine;
 
-[RequireComponent(typeof(Renderer))]
-[ExecuteInEditMode]
 public class SciFiBlockMaterialConfiguration : MonoMaterialAccessBehaviour
 {
     [SerializeField]
-    private Color _maskColor = Color.white;
+    private SciFiBlockMaskColor _maskColor = null;
 
     [SerializeField]
-    private Color _illuminationColor1 = Color.white;
-
-    [SerializeField]
-    private Color _illuminationColor2 = Color.white;
-
-    [SerializeField]
-    private Color _illuminationColor3 = Color.white;
-
-    [SerializeField]
-    private float _illuminationIntensity = 1f;
-
-    [SerializeField]
-    private Vector3 _illuminationOffsetVector = Vector3.right;
+    private SciFiBlockIllumination _illumination = null;
 
     private const string MASK_COLOR_PROPERTY_NAME = "_MaskColor";
     private const string ILLUMINATION_COLOR1_PROPERTY_NAME = "_IlluminationColor1";
@@ -31,11 +17,22 @@ public class SciFiBlockMaterialConfiguration : MonoMaterialAccessBehaviour
 
     protected override void SetMaterialProperties(MaterialPropertyBlock materialPropertyBlock)
     {
-        materialPropertyBlock.SetColor(MASK_COLOR_PROPERTY_NAME, _maskColor);
-        materialPropertyBlock.SetColor(ILLUMINATION_COLOR1_PROPERTY_NAME, _illuminationColor1);
-        materialPropertyBlock.SetColor(ILLUMINATION_COLOR2_PROPERTY_NAME, _illuminationColor2);
-        materialPropertyBlock.SetColor(ILLUMINATION_COLOR3_PROPERTY_NAME, _illuminationColor3);
-        materialPropertyBlock.SetFloat(ILLUMINATION_INTENSITY_PROPERTY_NAME, _illuminationIntensity);
-        materialPropertyBlock.SetVector(ILLUMINATION_OFFSET_VECTOR_PROPERTY_NAME, _illuminationOffsetVector);
+        materialPropertyBlock.SetColor(MASK_COLOR_PROPERTY_NAME, _maskColor.color);
+        materialPropertyBlock.SetColor(ILLUMINATION_COLOR1_PROPERTY_NAME, _illumination.color1);
+        materialPropertyBlock.SetColor(ILLUMINATION_COLOR2_PROPERTY_NAME, _illumination.color2);
+        materialPropertyBlock.SetColor(ILLUMINATION_COLOR3_PROPERTY_NAME, _illumination.color3);
+        materialPropertyBlock.SetFloat(
+            ILLUMINATION_INTENSITY_PROPERTY_NAME,
+            _illumination.intensity
+        );
+        materialPropertyBlock.SetVector(
+            ILLUMINATION_OFFSET_VECTOR_PROPERTY_NAME,
+            _illumination.offsetVector
+        );
+    }
+
+    protected override bool IsDirty
+    {
+        get { return false; }
     }
 }

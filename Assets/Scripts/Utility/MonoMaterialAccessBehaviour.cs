@@ -16,16 +16,23 @@ public class MonoMaterialAccessBehaviour : MonoBehaviour
     protected virtual void Awake()
     {
         _GetReferences();
+        _Apply();
     }
 
     protected virtual void LateUpdate()
     {
-        _Apply();
+        if (IsDirty)
+            _Apply();
     }
 
     protected virtual void SetMaterialProperties(MaterialPropertyBlock materialPropertyBlock)
     {
         // Override this method in derived classes to set properties on the material property block.
+    }
+
+    protected virtual bool IsDirty
+    {
+        get { return true; }
     }
 
     private void _GetReferences()

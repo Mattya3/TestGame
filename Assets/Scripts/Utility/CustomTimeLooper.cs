@@ -1,9 +1,8 @@
 ﻿using UnityEngine;
 
-[RequireComponent(typeof(Renderer))]
 public class CustomTimeLooper : MonoMaterialAccessBehaviour
 {
-    [SerializeField, Min(0.0f)]
+    [SerializeField, Min(1e-3f)]
     private float _loopDuration = 1f;
 
     private float _time = 0f;
@@ -20,5 +19,10 @@ public class CustomTimeLooper : MonoMaterialAccessBehaviour
     protected override void SetMaterialProperties(MaterialPropertyBlock materialPropertyBlock)
     {
         materialPropertyBlock.SetFloat(TIME_PROPERTY_NAME, _time / _loopDuration);
+    }
+
+    protected override bool IsDirty
+    {
+        get { return true; }
     }
 }
