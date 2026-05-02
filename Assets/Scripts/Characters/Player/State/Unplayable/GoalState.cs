@@ -8,6 +8,7 @@ public class GoalState : UnplayableState
 
     public override void OnEnabled()
     {
+        Context.NotifyGoalReached();
         Context.Freeze();
         Sounds.OnGoal();
     }

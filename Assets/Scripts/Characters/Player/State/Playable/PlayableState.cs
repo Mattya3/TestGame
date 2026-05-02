@@ -8,12 +8,10 @@ public abstract class PlayableState : PlayerStateBase
     public override void Die(DeathReason deathReason)
     {
         Context.ChangeState(new DeadState(Context, Sounds));
-        Context.NotifyDied(deathReason);
     }
 
     public override void Goal()
     {
         Context.ChangeState(new GoalState(Context, Sounds));
-        Context.NotifyGoalReached();
     }
 }

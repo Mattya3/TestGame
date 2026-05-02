@@ -8,6 +8,7 @@ public class DeadState : UnplayableState
 
     public override void OnEnabled()
     {
+        Context.NotifyDied(deathReason);
         Context.Freeze();
         Sounds.OnDeath();
     }
