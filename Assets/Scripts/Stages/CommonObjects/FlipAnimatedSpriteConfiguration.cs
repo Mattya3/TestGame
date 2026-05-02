@@ -25,4 +25,6 @@ public class FlipAnimatedSpriteConfiguration : MonoMaterialAccessBehaviour
         materialPropertyBlock.SetVector(NUM_SLICES_PROPERTY_NAME, floatNumSlices);
         materialPropertyBlock.SetFloat(PATTERN_INDEX_OFFSET_PROPERTY_NAME, _patternIndexOffset);
     }
+
+    protected override bool IsDirty {  get { return false; } }
 }

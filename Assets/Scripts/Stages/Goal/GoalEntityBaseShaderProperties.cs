@@ -14,4 +14,6 @@ public class GoalEntityBaseShaderProperties : MonoMaterialAccessBehaviour
             _illuminationThresholds
         );
     }
+
+    protected override bool IsDirty { get { return false; } }
 }

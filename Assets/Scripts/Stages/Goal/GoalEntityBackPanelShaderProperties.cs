@@ -14,4 +14,6 @@ public class GoalEntityBackPanelShaderProperties : MonoMaterialAccessBehaviour
             _illuminationThreshold
         );
     }
+
+    protected override bool IsDirty { get { return false; } }
 }

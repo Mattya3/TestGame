@@ -30,4 +30,6 @@ public class SciFiBlockMaterialConfiguration : MonoMaterialAccessBehaviour
             _illumination.offsetVector
         );
     }
+
+    protected override bool IsDirty { get { return false; } }
 }
