@@ -7,7 +7,7 @@ public abstract class PlayableState : PlayerStateBase
 
     public override void Die(DeathReason deathReason)
     {
-        Context.ChangeState(new DeadState(Context, Sounds));
+        Context.ChangeState(new DeadState(Context, Sounds, deathReason));
     }
 
     public override void Goal()

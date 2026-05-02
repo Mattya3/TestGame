@@ -3,12 +3,16 @@ using static Constants;
 
 public class DeadState : UnplayableState
 {
-    public DeadState(IPlayerStateContext context, PlayerSounds sounds)
-        : base(context, sounds) { }
+    private readonly DeathReason _deathReason;
+
+    public DeadState(IPlayerStateContext context, PlayerSounds sounds, DeathReason deathReason)
+        : base(context, sounds) {
+            _deathReason = deathReason;
+        }
 
     public override void OnEnabled()
     {
-        Context.NotifyDied(deathReason);
+        Context.NotifyDied(_deathReason);
         Context.Freeze();
         Sounds.OnDeath();
     }
