@@ -21,5 +21,8 @@ public class CustomTimeLooper : MonoMaterialAccessBehaviour
         materialPropertyBlock.SetFloat(TIME_PROPERTY_NAME, _time / _loopDuration);
     }
 
-    protected override bool IsDirty { get { return true; } }
+    protected override bool IsDirty
+    {
+        get { return true; }
+    }
 }

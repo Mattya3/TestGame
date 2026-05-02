@@ -15,5 +15,8 @@ public class GoalEntityBackPanelShaderProperties : MonoMaterialAccessBehaviour
         );
     }
 
-    protected override bool IsDirty { get { return false; } }
+    protected override bool IsDirty
+    {
+        get { return false; }
+    }
 }

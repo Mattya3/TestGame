@@ -30,7 +30,10 @@ public class MonoMaterialAccessBehaviour : MonoBehaviour
         // Override this method in derived classes to set properties on the material property block.
     }
 
-    protected virtual bool IsDirty { get { return true; } }
+    protected virtual bool IsDirty
+    {
+        get { return true; }
+    }
 
     private void _GetReferences()
     {
