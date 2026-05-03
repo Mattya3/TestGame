@@ -7,7 +7,7 @@ public class CustomTimeLooper : MonoMaterialAccessBehaviour
 
     private float _time = 0f;
 
-    private const string TIME_PROPERTY_NAME = "_CustomTime";
+    private readonly int TIME_PROPERTY_ID = Shader.PropertyToID("_CustomTime");
 
     private void Update()
     {
@@ -18,7 +18,7 @@ public class CustomTimeLooper : MonoMaterialAccessBehaviour
 
     protected override void SetMaterialProperties(MaterialPropertyBlock materialPropertyBlock)
     {
-        materialPropertyBlock.SetFloat(TIME_PROPERTY_NAME, _time / _loopDuration);
+        materialPropertyBlock.SetFloat(TIME_PROPERTY_ID, _time / _loopDuration);
     }
 
     protected override bool IsDirty

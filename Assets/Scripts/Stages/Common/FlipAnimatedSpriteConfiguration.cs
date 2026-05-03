@@ -8,8 +8,8 @@ public class FlipAnimatedSpriteConfiguration : MonoMaterialAccessBehaviour
     [SerializeField, Range(0, 16)]
     private int _patternIndexOffset = 0;
 
-    private const string NUM_SLICES_PROPERTY_NAME = "_NumSlices";
-    private const string PATTERN_INDEX_OFFSET_PROPERTY_NAME = "_PatternIndexOffset";
+    private readonly int NUM_SLICES_PROPERTY_ID = Shader.PropertyToID("_NumSlices");
+    private readonly int PATTERN_INDEX_OFFSET_PROPERTY_ID = Shader.PropertyToID("_PatternIndexOffset");
 
     protected override void OnValidate()
     {
@@ -22,8 +22,8 @@ public class FlipAnimatedSpriteConfiguration : MonoMaterialAccessBehaviour
     protected override void SetMaterialProperties(MaterialPropertyBlock materialPropertyBlock)
     {
         var floatNumSlices = new Vector2(_numSlices.x, _numSlices.y);
-        materialPropertyBlock.SetVector(NUM_SLICES_PROPERTY_NAME, floatNumSlices);
-        materialPropertyBlock.SetFloat(PATTERN_INDEX_OFFSET_PROPERTY_NAME, _patternIndexOffset);
+        materialPropertyBlock.SetVector(NUM_SLICES_PROPERTY_ID, floatNumSlices);
+        materialPropertyBlock.SetFloat(PATTERN_INDEX_OFFSET_PROPERTY_ID, _patternIndexOffset);
     }
 
     protected override bool IsDirty
