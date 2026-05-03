@@ -7,8 +7,16 @@ public class GoalEntityBaseShaderProperties : MonoMaterialAccessBehaviour
 
     private const string ILLUMINATION_THRESHOLDS_PROPERTY_NAME = "_IlluminationThresholds";
 
-    private void Update()
+    protected override void SetMaterialProperties(MaterialPropertyBlock materialPropertyBlock)
     {
-        _material.SetVector(ILLUMINATION_THRESHOLDS_PROPERTY_NAME, _illuminationThresholds);
+        materialPropertyBlock.SetVector(
+            ILLUMINATION_THRESHOLDS_PROPERTY_NAME,
+            _illuminationThresholds
+        );
+    }
+
+    protected override bool IsDirty
+    {
+        get { return false; }
     }
 }

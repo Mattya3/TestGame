@@ -7,8 +7,16 @@ public class GoalEntityBackPanelShaderProperties : MonoMaterialAccessBehaviour
 
     private const string ILLUMINATION_THRESHOLD_PROPERTY_NAME = "_IlluminationThreshold";
 
-    private void Update()
+    protected override void SetMaterialProperties(MaterialPropertyBlock materialPropertyBlock)
     {
-        _material.SetFloat(ILLUMINATION_THRESHOLD_PROPERTY_NAME, _illuminationThreshold);
+        materialPropertyBlock.SetFloat(
+            ILLUMINATION_THRESHOLD_PROPERTY_NAME,
+            _illuminationThreshold
+        );
+    }
+
+    protected override bool IsDirty
+    {
+        get { return false; }
     }
 }

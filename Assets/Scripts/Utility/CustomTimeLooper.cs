@@ -9,12 +9,20 @@ public class CustomTimeLooper : MonoMaterialAccessBehaviour
 
     private const string TIME_PROPERTY_NAME = "_CustomTime";
 
-    void Update()
+    private void Update()
     {
         _time += Time.deltaTime;
         if (_time >= _loopDuration)
             _time -= _loopDuration;
+    }
 
-        _material.SetFloat(TIME_PROPERTY_NAME, _time / _loopDuration);
+    protected override void SetMaterialProperties(MaterialPropertyBlock materialPropertyBlock)
+    {
+        materialPropertyBlock.SetFloat(TIME_PROPERTY_NAME, _time / _loopDuration);
+    }
+
+    protected override bool IsDirty
+    {
+        get { return true; }
     }
 }
