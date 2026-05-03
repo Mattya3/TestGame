@@ -9,11 +9,21 @@ public class SciFiBlockMaterialConfiguration : MonoMaterialAccessBehaviour
     private SciFiBlockIllumination _illumination = null;
 
     private readonly int MASK_COLOR_PROPERTY_ID = Shader.PropertyToID("_MaskColor");
-    private readonly int ILLUMINATION_COLOR1_PROPERTY_ID = Shader.PropertyToID("_IlluminationColor1");
-    private readonly int ILLUMINATION_COLOR2_PROPERTY_ID = Shader.PropertyToID("_IlluminationColor2");
-    private readonly int ILLUMINATION_COLOR3_PROPERTY_ID = Shader.PropertyToID("_IlluminationColor3");
-    private readonly int ILLUMINATION_INTENSITY_PROPERTY_ID = Shader.PropertyToID("_IlluminationIntensity");
-    private readonly int ILLUMINATION_OFFSET_VECTOR_PROPERTY_ID = Shader.PropertyToID("_IlluminationOffsetVector");
+    private readonly int ILLUMINATION_COLOR1_PROPERTY_ID = Shader.PropertyToID(
+        "_IlluminationColor1"
+    );
+    private readonly int ILLUMINATION_COLOR2_PROPERTY_ID = Shader.PropertyToID(
+        "_IlluminationColor2"
+    );
+    private readonly int ILLUMINATION_COLOR3_PROPERTY_ID = Shader.PropertyToID(
+        "_IlluminationColor3"
+    );
+    private readonly int ILLUMINATION_INTENSITY_PROPERTY_ID = Shader.PropertyToID(
+        "_IlluminationIntensity"
+    );
+    private readonly int ILLUMINATION_OFFSET_VECTOR_PROPERTY_ID = Shader.PropertyToID(
+        "_IlluminationOffsetVector"
+    );
 
     protected override void SetMaterialProperties(MaterialPropertyBlock materialPropertyBlock)
     {
@@ -21,10 +31,7 @@ public class SciFiBlockMaterialConfiguration : MonoMaterialAccessBehaviour
         materialPropertyBlock.SetColor(ILLUMINATION_COLOR1_PROPERTY_ID, _illumination.color1);
         materialPropertyBlock.SetColor(ILLUMINATION_COLOR2_PROPERTY_ID, _illumination.color2);
         materialPropertyBlock.SetColor(ILLUMINATION_COLOR3_PROPERTY_ID, _illumination.color3);
-        materialPropertyBlock.SetFloat(
-            ILLUMINATION_INTENSITY_PROPERTY_ID,
-            _illumination.intensity
-        );
+        materialPropertyBlock.SetFloat(ILLUMINATION_INTENSITY_PROPERTY_ID, _illumination.intensity);
         materialPropertyBlock.SetVector(
             ILLUMINATION_OFFSET_VECTOR_PROPERTY_ID,
             _illumination.offsetVector

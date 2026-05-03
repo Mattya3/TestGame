@@ -9,7 +9,9 @@ public class FlipAnimatedSpriteConfiguration : MonoMaterialAccessBehaviour
     private int _patternIndexOffset = 0;
 
     private readonly int NUM_SLICES_PROPERTY_ID = Shader.PropertyToID("_NumSlices");
-    private readonly int PATTERN_INDEX_OFFSET_PROPERTY_ID = Shader.PropertyToID("_PatternIndexOffset");
+    private readonly int PATTERN_INDEX_OFFSET_PROPERTY_ID = Shader.PropertyToID(
+        "_PatternIndexOffset"
+    );
 
     protected override void OnValidate()
     {

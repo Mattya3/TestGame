@@ -53,7 +53,10 @@ public class ParallaxScroller : MonoBehaviour
         transform.position += Vector3.Scale(delta, _followFactor);
         _previousPosition = _cameraTransform.position;
 
-        if (_loopX && Mathf.Abs(transform.position.x - _cameraTransform.position.x) >= _spriteSize.x)
+        if (
+            _loopX
+            && Mathf.Abs(transform.position.x - _cameraTransform.position.x) >= _spriteSize.x
+        )
         {
             float offsetX = (transform.position.x - _cameraTransform.position.x) % _spriteSize.x;
             transform.position = new Vector3(
@@ -62,7 +65,10 @@ public class ParallaxScroller : MonoBehaviour
                 transform.position.z
             );
         }
-        if (_loopY && Mathf.Abs(transform.position.y - _cameraTransform.position.y) >= _spriteSize.y)
+        if (
+            _loopY
+            && Mathf.Abs(transform.position.y - _cameraTransform.position.y) >= _spriteSize.y
+        )
         {
             float offsetY = (transform.position.y - _cameraTransform.position.y) % _spriteSize.y;
             transform.position = new Vector3(

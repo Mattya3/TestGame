@@ -5,7 +5,9 @@ public class GoalEntityBaseShaderProperties : MonoMaterialAccessBehaviour
     [SerializeField]
     private Vector3 _illuminationThresholds = Vector3.one;
 
-    private readonly int ILLUMINATION_THRESHOLDS_PROPERTY_ID = Shader.PropertyToID("_IlluminationThresholds");
+    private readonly int ILLUMINATION_THRESHOLDS_PROPERTY_ID = Shader.PropertyToID(
+        "_IlluminationThresholds"
+    );
 
     protected override void SetMaterialProperties(MaterialPropertyBlock materialPropertyBlock)
     {
