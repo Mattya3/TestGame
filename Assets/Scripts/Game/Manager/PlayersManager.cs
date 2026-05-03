@@ -38,15 +38,13 @@ public class PlayersManager : MonoBehaviour
             return;
 
         SetPlayersDead();
-        FreezeAllPlayers();
+        FreezeAlivePlayers(deadPlayer);
 
         GameManager.Instance.HandleFailure();
     }
 
     public void HandlePlayerGoal(Player player)
     {
-        player.Freeze();
-
         if (!AllPlayersReachedGoal())
             return;
 
@@ -58,16 +56,19 @@ public class PlayersManager : MonoBehaviour
         ArePlayersAlive = false;
     }
 
-    public void FreezeAllPlayers()
+    public void FreezeAlivePlayers(Player deadPlayer)
     {
         foreach (var player in _players)
         {
-            player.Freeze();
+            if (player == deadPlayer)
+                continue;
+
+            player.EnterFrozenState();
         }
     }
 
     public bool AllPlayersReachedGoal()
     {
-        return _players.Count > 0 && _players.All(p => p.HasReachedGoal);
+        return _players.Count > 0 && _players.All(p => p.IsInGoalState);
     }
 }
