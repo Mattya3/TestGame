@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 [RequireComponent(typeof(SpriteRenderer))]
-public class BackgroundScroller : MonoBehaviour
+public class ParallaxScroller : MonoBehaviour
 {
     [SerializeField]
     private Transform _cameraTransform;
