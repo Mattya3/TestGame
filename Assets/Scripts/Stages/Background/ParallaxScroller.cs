@@ -1,13 +1,19 @@
 ﻿using UnityEngine;
 
 [RequireComponent(typeof(SpriteRenderer))]
-public class BackgroundScroller : MonoBehaviour
+public class ParallaxScroller : MonoBehaviour
 {
     [SerializeField]
     private Transform _cameraTransform;
 
     [SerializeField]
     private Vector3 _followFactor = new Vector3(0.5f, 0.5f, 0);
+
+    [SerializeField]
+    private bool _loopX = true;
+
+    [SerializeField]
+    private bool _loopY = true;
 
     private Vector2 _spriteSize;
     private Vector3 _previousPosition;
@@ -47,7 +53,10 @@ public class BackgroundScroller : MonoBehaviour
         transform.position += Vector3.Scale(delta, _followFactor);
         _previousPosition = _cameraTransform.position;
 
-        if (Mathf.Abs(transform.position.x - _cameraTransform.position.x) >= _spriteSize.x)
+        if (
+            _loopX
+            && Mathf.Abs(transform.position.x - _cameraTransform.position.x) >= _spriteSize.x
+        )
         {
             float offsetX = (transform.position.x - _cameraTransform.position.x) % _spriteSize.x;
             transform.position = new Vector3(
@@ -56,7 +65,10 @@ public class BackgroundScroller : MonoBehaviour
                 transform.position.z
             );
         }
-        if (Mathf.Abs(transform.position.y - _cameraTransform.position.y) >= _spriteSize.y)
+        if (
+            _loopY
+            && Mathf.Abs(transform.position.y - _cameraTransform.position.y) >= _spriteSize.y
+        )
         {
             float offsetY = (transform.position.y - _cameraTransform.position.y) % _spriteSize.y;
             transform.position = new Vector3(

@@ -1,15 +1,15 @@
 fileFormatVersion: 2
-guid: 3fe45b4b0b6cea24f8dfab8620ef30a3
+guid: 95e15aeeff664334e9a5b942b13aa499
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6106064508270134133
-    second: GoalEntityParticle_0
+      213: 2856296346857252010
+    second: GoalEntity_Base_Illumination_001_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
     mipMapMode: 0
-    enableMipMap: 0
+    enableMipMap: 1
     sRGBTexture: 1
     linearTexture: 0
     fadeOut: 0
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: GoalEntityParticle_0
+      name: GoalEntity_Base_Illumination_001_0
       rect:
         serializedVersion: 2
-        x: 1
-        y: 1
-        width: 30
-        height: 29
+        x: 0
+        y: 0
+        width: 384
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b8c30f85ea6e24ba0800000000000000
-      internalID: -6106064508270134133
+      spriteID: aa42ca7e46a93a720800000000000000
+      internalID: 2856296346857252010
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      GoalEntityParticle_0: -6106064508270134133
+      GoalEntity_Base_Illumination_001_0: 2856296346857252010
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
