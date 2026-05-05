@@ -15,14 +15,11 @@ public partial class Player
         {
             _originalGravityScale = Player._GetGravityScaleForEffect();
             Player._SetGravityScaleForEffect(-_originalGravityScale);
-            _isApplied = true;
         }
 
         public override void OnDisabled()
         {
-
             Player._SetGravityScaleForEffect(_originalGravityScale);
-            _isApplied = false;
         }
     }
 }
