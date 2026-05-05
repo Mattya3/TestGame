@@ -8,52 +8,30 @@ public class ExternalEffectManager : MonoBehaviour
     private ExternalEffectType _externalEffectType;
 
     private IReadOnlyList<Player> _players;
-    private bool _isDualInputActive;
+    private DualInputTrigger _trigger;
 
     public void Initialize(IReadOnlyList<Player> players)
     {
         _players = players;
-        foreach (var player in players)
-        {
-            player.OnInputDirectionChanged += _HandleDualInputChanged;
-        }
-        _UpdateDualInputState();
+        _trigger = new DualInputTrigger(players);
+
+        _trigger.OnDualInputStateChanged += ApplyEffectToPlayers;
     }
 
-    private void _HandleDualInputChanged(Player _, Vector2 __)
-    {
-        _UpdateDualInputState();
-    }
-
-    private void _UpdateDualInputState()
-    {
-        bool nextState = _HasDualInput();
-        if (nextState == _isDualInputActive)
-            return;
-
-        _isDualInputActive = nextState;
-        _ApplyExternalEffect(_isDualInputActive);
-    }
-
-    private bool _HasDualInput()
-    {
-        return _players[0].InputDirection.x != 0f
-            && _players[1].InputDirection.x != 0f;
-    }
-
-    private void _ApplyExternalEffect(bool isDualInputActive)
+    private void ApplyEffectToPlayers(bool isActive)
     {
         for (int i = 0; i < _players.Count; i++)
         {
             Player player = _players[i];
 
-            if (!isDualInputActive)
+            if (!isActive)
             {
-                player.ResetExternalEffectBehavior();
-                continue;
+                player.ApplyExternalEffectType(ExternalEffectType.None);
             }
-
-            player.ApplyExternalEffectType(_externalEffectType);
+            else
+            {
+                player.ApplyExternalEffectType(_externalEffectType);
+            }
         }
     }
 }
