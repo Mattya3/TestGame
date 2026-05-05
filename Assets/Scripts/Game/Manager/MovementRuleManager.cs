@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 using static Constants;
@@ -8,11 +7,12 @@ public class MovementRuleManager : MonoBehaviour
     [SerializeField]
     private MovementRuleEffect _movementRuleEffect;
 
+    [SerializeField]
+    private ExternalEffectType _externalEffectType;
+
     private IMoveController _moveController;
     private IReadOnlyList<Player> _players;
     private bool _isDualInputActive;
-
-    public event Action<bool> OnDualInputChanged;
 
     public void Initialize(IReadOnlyList<Player> players)
     {
@@ -23,7 +23,6 @@ public class MovementRuleManager : MonoBehaviour
             _ApplyNewRule(player);
             player.OnInputDirectionChanged += _HandleDualInputChanged;
         }
-
         _UpdateDualInputState();
     }
 
@@ -44,13 +43,41 @@ public class MovementRuleManager : MonoBehaviour
             return;
 
         _isDualInputActive = nextState;
-        Debug.Log("同時入力がはっか");
-        OnDualInputChanged?.Invoke(_isDualInputActive);
+        _ApplyExternalEffect(_isDualInputActive);
     }
 
     private bool _HasDualInput()
     {
         return _players[0].InputDirection.x != 0f
             && _players[1].InputDirection.x != 0f;
+    }
+
+    private void _ApplyExternalEffect(bool isDualInputActive)
+    {
+        for (int i = 0; i < _players.Count; i++)
+        {
+            Player player = _players[i];
+
+            if (!isDualInputActive)
+            {
+                player.ResetExternalEffectBehavior();
+                continue;
+            }
+
+            player.SetExternalEffectBehavior(_CreateExternalEffectBehavior(player));
+        }
+    }
+
+    private Player.EffectBehavior _CreateExternalEffectBehavior(Player player)
+    {
+        switch (_externalEffectType)
+        {
+            case ExternalEffectType.ReverseInput:
+                return new Player.ReverseInputBehavior(player);
+            case ExternalEffectType.ReverseGravity:
+                return new Player.ReverseGravityBehavior(player);
+            default:
+                return new Player.EffectBehavior(player);
+        }
     }
 }
