@@ -23,12 +23,6 @@
         DeadZone,
     }
 
-    public enum MovementRuleEffect
-    {
-        Demo, //デモ用, 入力反転が起こらない
-        Reverse, //通常用, 入力反転が起こる
-    }
-
     public enum ExternalEffectType
     {
         None,

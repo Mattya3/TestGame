@@ -18,7 +18,6 @@ public partial class Player : Character
     private Vector2 _inputDirection;
     private PlayerStateContext _stateContext;
 
-    public IMoveController MoveController { get; set; }
     public bool IsInGoalState => _currentState is GoalState;
     public Vector2 InputDirection => _inputDirection;
 
@@ -111,8 +110,7 @@ public partial class Player : Character
 
     private void _MoveByInput(Vector2 inputDirection)
     {
-        Vector2 convertedDirection = MoveController.ConvertInputDirection(inputDirection);
-        _ApplyMovement(convertedDirection);
+        _ApplyMovement(inputDirection);
     }
 
     private float _GetGravityScaleForEffect()

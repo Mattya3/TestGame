@@ -82,27 +82,27 @@ Scene / Prefab / Asset / ProjectSettings / Docs の変更は禁止。
 
 ## 10. コミット戦略（再定義）
 
-### Commit 1: Context 差し替え基盤を導入
-- `Player` 内に「差し替え可能な Context 振る舞い」構造を追加
-- 通常版振る舞い（Default）を実装
-- 既存挙動を維持する（差し替え未使用では完全互換）
+### Commit 1: Game 側で同時左右入力トリガーを実装
+- `MovementRuleManager`（必要なら改名先）で2人同時横入力の on/off 遷移を検知
+- 入力更新イベント起点で再評価し、毎フレーム監視はしない
+- このコミットでは「検知のみ」に絞り、Effect 適用は行わない
 
-### Commit 2: ExternalEffect のメソッド上書きモデルを導入
-- `ExternalEffectBase` に「上書き可能メソッド定義」を追加
-- `ReverseInputEffect` / `ReverseGravityEffect` を追加または整備
-- Effect からメソッド上書き情報を取得できる状態にする
+### Commit 2: Game 側で単数 ExternalEffect を受け取り適用
+- ステージ設定として単数 ExternalEffect を受け取る経路を追加
+- on で外的影響版に切り替え、off で通常版に戻す
+- 既存状態遷移（死亡/ゴール/凍結）への影響がないことを確認
 
-### Commit 3: Manager で on/off 検知と振る舞い差し替えを実装
-- 2人同時横入力の状態遷移検知を追加
-- `on` で Effect 合成版振る舞いを適用
-- `off` で通常版振る舞いへ復帰
+### Commit 3: MovementRules を廃止
+- `IMoveController` / `MoveControllerFactory` / `ReverseMoveController` / `DemoMoveController` を削除
+- `Player.MoveController` 依存を除去し、移動を Context 側へ一本化
+- コンパイルを通し、既存挙動を維持
 
-### Commit 4: 複数 Effect の競合解決を実装
-- メソッド単位で `priority` / 登録順ルールを適用
-- 被るメソッドだけ優先度解決し、被らないメソッドは併用
-- 手動確認で期待通りの採用結果を確認
+### Commit 4: Player 側で複数 ExternalEffect の競合解決
+- 複数 Effect をメソッド単位で合成する仕組みを実装
+- 競合時は `priority` 高優先、同値は登録順で安定決定
+- 被っていないメソッドは併用する
 
-### Commit 5: 旧経路整理と最終確認
-- 不要になった `MovementRules`（`IMoveController` 側の外的影響責務）を削除
-- コンパイル確認
-- 受け入れ条件・動作確認項目を満たすことを最終確認
+### Commit 5: Game 側で複数 ExternalEffect を受け取り可能化 + 最終確認
+- ステージ設定を単数から複数リストへ拡張
+- on 時に複数 Effect を適用、off 時に通常版へ復帰
+- 受け入れ条件・動作確認項目・コンパイル確認を実施

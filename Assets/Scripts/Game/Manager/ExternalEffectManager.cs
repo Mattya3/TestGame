@@ -2,33 +2,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using static Constants;
 
-public class MovementRuleManager : MonoBehaviour
+public class ExternalEffectManager : MonoBehaviour
 {
-    [SerializeField]
-    private MovementRuleEffect _movementRuleEffect;
-
     [SerializeField]
     private ExternalEffectType _externalEffectType;
 
-    private IMoveController _moveController;
     private IReadOnlyList<Player> _players;
     private bool _isDualInputActive;
 
     public void Initialize(IReadOnlyList<Player> players)
     {
         _players = players;
-        _moveController = MoveControllerFactory.Create(_movementRuleEffect, players);
         foreach (var player in players)
         {
-            _ApplyNewRule(player);
             player.OnInputDirectionChanged += _HandleDualInputChanged;
         }
         _UpdateDualInputState();
-    }
-
-    private void _ApplyNewRule(Player player)
-    {
-        player.MoveController = _moveController;
     }
 
     private void _HandleDualInputChanged(Player _, Vector2 __)
