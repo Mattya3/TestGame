@@ -13,13 +13,13 @@ public partial class Player
 
         public override void OnEnabled()
         {
-            _originalGravityScale = Player._GetGravityScaleForEffect();
-            Player._SetGravityScaleForEffect(-_originalGravityScale);
+            _originalGravityScale = Player._GetGravityScale();
+            Player._SetGravityScale(-_originalGravityScale);
         }
 
         public override void OnDisabled()
         {
-            Player._SetGravityScaleForEffect(_originalGravityScale);
+            Player._SetGravityScale(_originalGravityScale);
         }
     }
 }

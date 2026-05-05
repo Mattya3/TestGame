@@ -21,6 +21,12 @@ public partial class Player : Character
     public bool IsInGoalState => _currentState is GoalState;
     public Vector2 InputDirection => _inputDirection;
 
+    protected override void Awake()
+    {
+        base.Awake();
+        _stateContext = new PlayerStateContext(this);
+    }
+
     private void Start()
     {
         if (_sounds == null || !_sounds.IsValid())
@@ -30,7 +36,6 @@ public partial class Player : Character
             return;
         }
 
-        _stateContext = new PlayerStateContext(this);
         _ChangeState(_CreateInitialState());
         OnCreated?.Invoke(this);
     }
@@ -85,14 +90,14 @@ public partial class Player : Character
         _ChangeState(new FrozenState(_stateContext, _sounds));
     }
 
-    public void SetExternalEffectBehavior(EffectBehavior behavior)
+    public void ApplyExternalEffectBehavior(EffectBehavior behavior)
     {
-        _stateContext?.SetExternalEffectBehavior(behavior);
+        _stateContext.SetExternalEffectBehavior(behavior);
     }
 
     public void ResetExternalEffectBehavior()
     {
-        _stateContext?.ResetExternalEffectBehavior();
+        _stateContext.ResetExternalEffectBehavior();
     }
 
     private void _ChangeState(IPlayerState nextState)
@@ -111,16 +116,6 @@ public partial class Player : Character
     private void _MoveByInput(Vector2 inputDirection)
     {
         _ApplyMovement(inputDirection);
-    }
-
-    private float _GetGravityScaleForEffect()
-    {
-        return _GetGravityScale();
-    }
-
-    private void _SetGravityScaleForEffect(float gravityScale)
-    {
-        _SetGravityScale(gravityScale);
     }
 
     private bool _IsGrounded()

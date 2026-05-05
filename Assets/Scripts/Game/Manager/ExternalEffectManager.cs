@@ -53,7 +53,7 @@ public class ExternalEffectManager : MonoBehaviour
                 continue;
             }
 
-            player.SetExternalEffectBehavior(_CreateExternalEffectBehavior(player));
+            player.ApplyExternalEffectBehavior(_CreateExternalEffectBehavior(player));
         }
     }
 
