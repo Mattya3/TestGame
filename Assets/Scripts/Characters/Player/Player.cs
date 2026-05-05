@@ -17,7 +17,7 @@ public partial class Player : Character
     private PlayerSounds _sounds;
 
     private Vector2 _inputDirection;
-    private IPlayerStateContext _stateContext;
+    private PlayerStateContext _stateContext;
 
     public IMoveController MoveController { get; set; }
     public bool IsInGoalState => _currentState is GoalState;
@@ -32,7 +32,7 @@ public partial class Player : Character
             return;
         }
 
-        _stateContext = new StateContext(this);
+        _stateContext = new PlayerStateContext(this);
         _ChangeState(_CreateInitialState());
         OnCreated?.Invoke(this);
     }
@@ -84,6 +84,16 @@ public partial class Player : Character
             return;
 
         _ChangeState(new FrozenState(_stateContext, _sounds));
+    }
+
+    public void SetExternalEffectBehavior(EffectBehavior behavior)
+    {
+        _stateContext?.SetExternalEffectBehavior(behavior);
+    }
+
+    public void ResetExternalEffectBehavior()
+    {
+        _stateContext?.ResetExternalEffectBehavior();
     }
 
     private void _ChangeState(IPlayerState nextState)
