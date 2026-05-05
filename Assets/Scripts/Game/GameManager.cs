@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -12,13 +12,13 @@ public class GameManager : MonoBehaviour
     private SceneTransitionManager _sceneTransitionManager;
 
     [SerializeField]
-    [FormerlySerializedAs("_movementRuleManager")]
     private ExternalEffectManager _externalEffectManager;
 
     [SerializeField]
     private PlayersManager _playersManager;
 
     public static GameManager Instance { get; private set; }
+    public IReadOnlyList<Player> Players => _playersManager.Players;
 
     private void Awake()
     {
@@ -44,6 +44,4 @@ public class GameManager : MonoBehaviour
         GameEventTrigger.ResetEvents();
         _sceneTransitionManager.CompleteStage();
     }
-
-    public IReadOnlyList<Player> Players => _playersManager.Players;
 }

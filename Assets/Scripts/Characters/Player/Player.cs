@@ -40,13 +40,6 @@ public partial class Player : Character
         OnCreated?.Invoke(this);
     }
 
-    protected override void _Move()
-    {
-        if (_currentState == null)
-            return;
-
-        _currentState.OnMove(_inputDirection);
-    }
 
     public void OnMove(InputAction.CallbackContext context)
     {
@@ -99,6 +92,14 @@ public partial class Player : Character
     public void ResetExternalEffectBehavior()
     {
         _stateContext.ResetExternalEffectBehavior();
+    }
+
+    protected override void _Move()
+    {
+        if (_currentState == null)
+            return;
+
+        _currentState.OnMove(_inputDirection);
     }
 
     private EffectBehavior _CreateExternalEffectBehavior(ExternalEffectType type)
