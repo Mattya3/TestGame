@@ -115,6 +115,16 @@ public partial class Player : Character
         _ApplyMovement(convertedDirection);
     }
 
+    private float _GetGravityScaleForEffect()
+    {
+        return _GetGravityScale();
+    }
+
+    private void _SetGravityScaleForEffect(float gravityScale)
+    {
+        _SetGravityScale(gravityScale);
+    }
+
     private bool _IsGrounded()
     {
         return _groundDetector.IsGrounded();

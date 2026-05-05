@@ -20,12 +20,18 @@ public partial class Player
 
         public void SetExternalEffectBehavior(EffectBehavior behavior)
         {
-            _externalEffectBehavior = behavior ?? _defaultExternalEffectBehavior;
+            EffectBehavior nextBehavior = behavior ?? _defaultExternalEffectBehavior;
+            if (ReferenceEquals(nextBehavior, _externalEffectBehavior))
+                return;
+
+            _externalEffectBehavior.OnDisabled();
+            _externalEffectBehavior = nextBehavior;
+            _externalEffectBehavior.OnEnabled();
         }
 
         public void ResetExternalEffectBehavior()
         {
-            _externalEffectBehavior = _defaultExternalEffectBehavior;
+            SetExternalEffectBehavior(_defaultExternalEffectBehavior);
         }
 
         void IPlayerStateContext.ChangeState(IPlayerState nextState)
@@ -37,7 +43,6 @@ public partial class Player
         {
             return _player._IsGrounded();
         }
-
 
         void IPlayerStateContext.Freeze()
         {

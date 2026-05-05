@@ -49,6 +49,16 @@ public abstract class Character : MonoEventReactingBehaviour
         _rigidBody.AddForce(Vector2.up * deltaVy * _rigidBody.mass, ForceMode2D.Impulse);
     }
 
+    protected float _GetGravityScale()
+    {
+        return _rigidBody.gravityScale;
+    }
+
+    protected void _SetGravityScale(float gravityScale)
+    {
+        _rigidBody.gravityScale = gravityScale;
+    }
+
     protected override void OnFailure()
     {
         enabled = false;

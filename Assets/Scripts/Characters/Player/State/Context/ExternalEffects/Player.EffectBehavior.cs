@@ -20,5 +20,13 @@ public partial class Player
         {
             return Player._TryJump();
         }
+
+        public virtual void OnEnabled()
+        {
+        }
+
+        public virtual void OnDisabled()
+        {
+        }
     }
 }
