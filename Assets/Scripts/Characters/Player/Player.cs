@@ -8,10 +8,9 @@ public partial class Player : Character
     public static event Action<Player> OnCreated;
     public event Action<Player> OnGoal;
     public event Action<DeathReason> OnDied;
+    public event Action<Player, Vector2> OnInputDirectionChanged;
 
     private IPlayerState _currentState;
-
-    // private List<IExternalState> _externalStates;
 
     [SerializeField]
     private PlayerSounds _sounds;
@@ -48,6 +47,7 @@ public partial class Player : Character
     public void OnMove(InputAction.CallbackContext context)
     {
         _inputDirection = context.ReadValue<Vector2>();
+        OnInputDirectionChanged?.Invoke(this, _inputDirection);
     }
 
     public void OnJump(InputAction.CallbackContext context)

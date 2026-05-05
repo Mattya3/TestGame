@@ -16,6 +16,11 @@ public class PlayersManager : MonoBehaviour
         Player.OnCreated += RegisterPlayer;
     }
 
+    private void OnDisable()
+    {
+        Player.OnCreated -= RegisterPlayer;
+    }
+
     public void RegisterPlayer(Player player)
     {
         if (!_players.Contains(player))
