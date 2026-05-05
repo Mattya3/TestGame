@@ -2,8 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 using static Constants;
 
 public class GameManager : MonoBehaviour

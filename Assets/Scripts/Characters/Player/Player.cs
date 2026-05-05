@@ -40,7 +40,6 @@ public partial class Player : Character
         OnCreated?.Invoke(this);
     }
 
-
     public void OnMove(InputAction.CallbackContext context)
     {
         _inputDirection = context.ReadValue<Vector2>();

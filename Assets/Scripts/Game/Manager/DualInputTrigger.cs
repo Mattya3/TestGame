@@ -22,7 +22,8 @@ public class DualInputTrigger
     private void _HandleInputChanged(Player _, Vector2 __)
     {
         bool nextState = (_players[0].InputDirection.x != 0f && _players[1].InputDirection.x != 0f);
-        if (nextState == _isDualInputActive) return;
+        if (nextState == _isDualInputActive)
+            return;
 
         _isDualInputActive = nextState;
         OnDualInputStateChanged?.Invoke(_isDualInputActive);

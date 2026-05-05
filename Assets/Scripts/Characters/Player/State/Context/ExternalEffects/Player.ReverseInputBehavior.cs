@@ -5,9 +5,7 @@ public partial class Player
     public sealed class ReverseInputBehavior : EffectBehavior
     {
         public ReverseInputBehavior(Player player)
-            : base(player)
-        {
-        }
+            : base(player) { }
 
         public override void MoveByInput(Vector2 inputDirection)
         {

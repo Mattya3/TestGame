@@ -7,9 +7,7 @@ public partial class Player
         private float _originalGravityScale;
 
         public ReverseGravityBehavior(Player player)
-            : base(player)
-        {
-        }
+            : base(player) { }
 
         public override void OnEnabled()
         {
