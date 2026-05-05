@@ -53,20 +53,7 @@ public class ExternalEffectManager : MonoBehaviour
                 continue;
             }
 
-            player.ApplyExternalEffectBehavior(_CreateExternalEffectBehavior(player));
-        }
-    }
-
-    private Player.EffectBehavior _CreateExternalEffectBehavior(Player player)
-    {
-        switch (_externalEffectType)
-        {
-            case ExternalEffectType.ReverseInput:
-                return new Player.ReverseInputBehavior(player);
-            case ExternalEffectType.ReverseGravity:
-                return new Player.ReverseGravityBehavior(player);
-            default:
-                return new Player.EffectBehavior(player);
+            player.ApplyExternalEffectType(_externalEffectType);
         }
     }
 }

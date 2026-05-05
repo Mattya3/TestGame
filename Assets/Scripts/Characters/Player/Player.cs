@@ -90,14 +90,28 @@ public partial class Player : Character
         _ChangeState(new FrozenState(_stateContext, _sounds));
     }
 
-    public void ApplyExternalEffectBehavior(EffectBehavior behavior)
+    public void ApplyExternalEffectType(ExternalEffectType type)
     {
+        EffectBehavior behavior = _CreateExternalEffectBehavior(type);
         _stateContext.SetExternalEffectBehavior(behavior);
     }
 
     public void ResetExternalEffectBehavior()
     {
         _stateContext.ResetExternalEffectBehavior();
+    }
+
+    private EffectBehavior _CreateExternalEffectBehavior(ExternalEffectType type)
+    {
+        switch (type)
+        {
+            case ExternalEffectType.ReverseInput:
+                return new ReverseInputBehavior(this);
+            case ExternalEffectType.ReverseGravity:
+                return new ReverseGravityBehavior(this);
+            default:
+                return new EffectBehavior(this);
+        }
     }
 
     private void _ChangeState(IPlayerState nextState)
