@@ -29,7 +29,9 @@ public class WipingMaskController : MonoBehaviour
         }
         if (!_material.HasFloat(MaskThresholdID))
         {
-            Debug.LogError("WipingMaskController requires a material with a _MaskThreshold property.");
+            Debug.LogError(
+                "WipingMaskController requires a material with a _MaskThreshold property."
+            );
             enabled = false;
         }
     }
