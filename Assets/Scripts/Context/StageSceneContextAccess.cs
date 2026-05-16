@@ -41,6 +41,17 @@ public class StageSceneContextAccess : MonoBehaviour
 
     public void OnStageRestarted()
     {
+        _ValidateReferences();
         _reference?.OnStageRestarted();
+    }
+
+    private void _ValidateReferences()
+    {
+        if (_reference == null)
+        {
+            Debug.LogError(
+                "No IStageSceneContext reference registered. Please ensure that an IStageSceneContext implementation is registered before using StageSceneContextAccess."
+            );
+        }
     }
 }
