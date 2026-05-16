@@ -2,14 +2,14 @@
 
 public class ScreenEffectsAccess : MonoBehaviour
 {
-    static private IScreenEffects _reference;
+    private static IScreenEffects _reference;
 
-    static public void Register(IScreenEffects reference)
+    public static void Register(IScreenEffects reference)
     {
         _reference = reference;
     }
 
-    static public void Unregister(IScreenEffects reference)
+    public static void Unregister(IScreenEffects reference)
     {
         if (_reference != reference)
             return;
@@ -17,13 +17,15 @@ public class ScreenEffectsAccess : MonoBehaviour
         _reference = null;
     }
 
-    static private ScreenEffectsAccess _instance;
+    private static ScreenEffectsAccess _instance;
 
     private void Awake()
     {
         if (_instance != null)
         {
-            Debug.LogError("Multiple instances of ScreenEffectsAccess detected. This is not allowed.");
+            Debug.LogError(
+                "Multiple instances of ScreenEffectsAccess detected. This is not allowed."
+            );
             return;
         }
         _instance = this;

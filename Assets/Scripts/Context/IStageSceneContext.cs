@@ -1,5 +1,4 @@
-﻿
-public interface IStageSceneContext
+﻿public interface IStageSceneContext
 {
     public bool AfterRestart { get; }
 
