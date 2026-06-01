@@ -5478,6 +5478,7 @@ GameObject:
   - component: {fileID: 875144714}
   - component: {fileID: 875144713}
   - component: {fileID: 875144716}
+  - component: {fileID: 875144717}
   - component: {fileID: 875144715}
   m_Layer: 5
   m_Name: ScreenEffects
@@ -5654,6 +5655,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AnimationSoundPlayer
   _volumeScale: 1
+--- !u!114 &875144717
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 875144711}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0edbeb03e2096d4984825a4adfbdc96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StageSceneContextAccess
 --- !u!1 &882462480
 GameObject:
   m_ObjectHideFlags: 0
@@ -8525,7 +8538,6 @@ GameObject:
   - component: {fileID: 1422380077}
   - component: {fileID: 1422380076}
   - component: {fileID: 1422380079}
-  - component: {fileID: 1422380078}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: GameController
@@ -8545,7 +8557,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e1743204e3654d82b5b1997f90360f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
-  _sceneTransitionManager: {fileID: 554078608}
   _movementRuleManager: {fileID: 845628946}
   _playersManager: {fileID: 1825111104}
 --- !u!4 &1422380077
@@ -8566,18 +8577,6 @@ Transform:
   - {fileID: 1825111103}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1422380078
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1422380075}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b173a2aefea6e94694a5a9fa9ab1e41, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ScreenEffectsAccess
 --- !u!114 &1422380079
 MonoBehaviour:
   m_ObjectHideFlags: 0

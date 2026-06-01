@@ -3,12 +3,8 @@ using UnityEngine;
 using static Constants;
 
 [RequireComponent(typeof(StageSceneContextAccess))]
-[RequireComponent(typeof(ScreenEffectsAccess))]
 public class GameManager : MonoBehaviour
 {
-    [SerializeField]
-    private SceneTransitionManager _sceneTransitionManager;
-
     [SerializeField]
     private MovementRuleManager _movementRuleManager;
 
@@ -16,7 +12,6 @@ public class GameManager : MonoBehaviour
     private PlayersManager _playersManager;
 
     private StageSceneContextAccess _stageSceneContext;
-    private ScreenEffectsAccess _screenEffects;
 
     public static GameManager Instance { get; private set; }
 
@@ -26,32 +21,28 @@ public class GameManager : MonoBehaviour
             Instance = this;
 
         _stageSceneContext = GetComponent<StageSceneContextAccess>();
-        _screenEffects = GetComponent<ScreenEffectsAccess>();
     }
 
     private void Start()
     {
         _movementRuleManager.Initialize(_playersManager.Players);
-
-        if (_stageSceneContext.AfterRestart)
-            _screenEffects.PlayRestartEffect(() => { });
-        else
-            _screenEffects.PlayOpeningEffect(() => { });
     }
 
     public void HandleFailure()
     {
         GameEventTrigger.TriggerEvent(GameEvent.Failure);
-        GameEventTrigger.ResetEvents();
         _stageSceneContext.OnStageRestarted();
-        _screenEffects.PlayFailureEffect(() => _sceneTransitionManager.RestartStage());
     }
 
     public void HandleSuccess()
     {
         GameEventTrigger.TriggerEvent(GameEvent.Success);
+    }
+
+    public void HandleSceneEnd()
+    {
+        GameEventTrigger.TriggerEvent(GameEvent.SceneEnd);
         GameEventTrigger.ResetEvents();
-        _screenEffects.PlaySuccessEffect(() => _sceneTransitionManager.CompleteStage());
     }
 
     public IReadOnlyList<Player> Players => _playersManager.Players;

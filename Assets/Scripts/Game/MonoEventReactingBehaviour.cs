@@ -1,4 +1,4 @@
-using System.Reflection;
+﻿using System.Reflection;
 using UnityEngine;
 using static Constants;
 
@@ -15,11 +15,18 @@ public abstract class MonoEventReactingBehaviour : MonoBehaviour
         {
             GameEventTrigger.RegisterEventAction(GameEvent.Failure, OnFailure);
         }
+
+        if (_IsOverridden(nameof(OnSceneEnd)) && _ShouldSubscribe(GameEvent.SceneEnd))
+        {
+            GameEventTrigger.RegisterEventAction(GameEvent.SceneEnd, OnSceneEnd);
+        }
     }
 
     protected virtual void OnSuccess() { }
 
     protected virtual void OnFailure() { }
+
+    protected virtual void OnSceneEnd() { }
 
     // オーバーライドするが，イベントを登録したくない場合はfalseを返すように実装
     protected virtual bool _ShouldSubscribe(GameEvent gameEvent) => true;
