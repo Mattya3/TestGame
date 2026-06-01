@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class StageSceneContextAccess : MonoBehaviour
+public class StageSceneContextReadonlyAccess : MonoBehaviour
 {
     private static IStageSceneContext _reference;
 
@@ -17,32 +17,13 @@ public class StageSceneContextAccess : MonoBehaviour
         _reference = null;
     }
 
-    private static StageSceneContextAccess _instance;
-
-    private void Awake()
+    public bool AfterRestart
     {
-        if (_instance != null)
+        get
         {
-            Debug.LogError(
-                "Multiple instances of StageSceneContextAccess detected. This is not allowed."
-            );
-            return;
+            _ValidateReferences();
+            return _reference != null ? _reference.AfterRestart : false;
         }
-        _instance = this;
-    }
-
-    private void OnDestroy()
-    {
-        if (_instance == this)
-            _instance = null;
-    }
-
-    public bool AfterRestart => _reference != null ? _reference.AfterRestart : false;
-
-    public void OnStageRestarted()
-    {
-        _ValidateReferences();
-        _reference?.OnStageRestarted();
     }
 
     private void _ValidateReferences()

@@ -2,18 +2,18 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Animator))]
-[RequireComponent(typeof(StageSceneContextAccess))]
+[RequireComponent(typeof(StageSceneContextReadonlyAccess))]
 public class ScreenEffectsController : MonoEventReactingBehaviour
 {
     [SerializeField]
     private Animator _animator;
 
-    private StageSceneContextAccess _stageContext;
+    private StageSceneContextReadonlyAccess _stageContext;
 
     private void Awake()
     {
         _animator = GetComponent<Animator>();
-        _stageContext = GetComponent<StageSceneContextAccess>();
+        _stageContext = GetComponent<StageSceneContextReadonlyAccess>();
     }
 
     private void Start()

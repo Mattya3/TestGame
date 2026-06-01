@@ -6,20 +6,7 @@ public abstract class MonoEventReactingBehaviour : MonoBehaviour
 {
     protected virtual void OnEnable()
     {
-        if (_IsOverridden(nameof(OnSuccess)) && _ShouldSubscribe(GameEvent.Success))
-        {
-            GameEventTrigger.RegisterEventAction(GameEvent.Success, OnSuccess);
-        }
-
-        if (_IsOverridden(nameof(OnFailure)) && _ShouldSubscribe(GameEvent.Failure))
-        {
-            GameEventTrigger.RegisterEventAction(GameEvent.Failure, OnFailure);
-        }
-
-        if (_IsOverridden(nameof(OnSceneEnd)) && _ShouldSubscribe(GameEvent.SceneEnd))
-        {
-            GameEventTrigger.RegisterEventAction(GameEvent.SceneEnd, OnSceneEnd);
-        }
+        RegisterEventActions();
     }
 
     protected virtual void OnSuccess() { }
@@ -30,6 +17,22 @@ public abstract class MonoEventReactingBehaviour : MonoBehaviour
 
     // オーバーライドするが，イベントを登録したくない場合はfalseを返すように実装
     protected virtual bool _ShouldSubscribe(GameEvent gameEvent) => true;
+
+    protected void RegisterEventActions()
+    {
+        if (_IsOverridden(nameof(OnSuccess)) && _ShouldSubscribe(GameEvent.Success))
+        {
+            GameEventTrigger.RegisterEventAction(GameEvent.Success, OnSuccess);
+        }
+        if (_IsOverridden(nameof(OnFailure)) && _ShouldSubscribe(GameEvent.Failure))
+        {
+            GameEventTrigger.RegisterEventAction(GameEvent.Failure, OnFailure);
+        }
+        if (_IsOverridden(nameof(OnSceneEnd)) && _ShouldSubscribe(GameEvent.SceneEnd))
+        {
+            GameEventTrigger.RegisterEventAction(GameEvent.SceneEnd, OnSceneEnd);
+        }
+    }
 
     private bool _IsOverridden(string methodName)
     {

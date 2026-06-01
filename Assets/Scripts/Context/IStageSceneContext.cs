@@ -2,8 +2,6 @@
 {
     public bool AfterRestart { get; }
 
-    public void OnStageRestarted();
-
     /*
         必要に応じて、ステージシーンをまたいで共有されるべきデータや機能をここに追加
         ・現在のステージのIDや名前

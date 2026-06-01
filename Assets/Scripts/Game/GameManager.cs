@@ -2,7 +2,6 @@
 using UnityEngine;
 using static Constants;
 
-[RequireComponent(typeof(StageSceneContextAccess))]
 public class GameManager : MonoBehaviour
 {
     [SerializeField]
@@ -11,16 +10,12 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private PlayersManager _playersManager;
 
-    private StageSceneContextAccess _stageSceneContext;
-
     public static GameManager Instance { get; private set; }
 
     private void Awake()
     {
         if (Instance == null)
             Instance = this;
-
-        _stageSceneContext = GetComponent<StageSceneContextAccess>();
     }
 
     private void Start()
@@ -31,7 +26,6 @@ public class GameManager : MonoBehaviour
     public void HandleFailure()
     {
         GameEventTrigger.TriggerEvent(GameEvent.Failure);
-        _stageSceneContext.OnStageRestarted();
     }
 
     public void HandleSuccess()
