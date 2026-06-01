@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SceneTransitionManager : MonoEventReactingBehaviour
+public class SceneTransitionTrigger : MonoEventReactingBehaviour
 {
     private enum TransitionMode
     {
