@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using static Constants;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField]
-    private SceneTransitionManager _sceneTransitionManager;
-
     [SerializeField]
     private MovementRuleManager _movementRuleManager;
 
@@ -32,15 +26,17 @@ public class GameManager : MonoBehaviour
     public void HandleFailure()
     {
         GameEventTrigger.TriggerEvent(GameEvent.Failure);
-        GameEventTrigger.ResetEvents();
-        _sceneTransitionManager.RestartStage();
     }
 
     public void HandleSuccess()
     {
         GameEventTrigger.TriggerEvent(GameEvent.Success);
+    }
+
+    public void HandleSceneEnd()
+    {
+        GameEventTrigger.TriggerEvent(GameEvent.SceneEnd);
         GameEventTrigger.ResetEvents();
-        _sceneTransitionManager.CompleteStage();
     }
 
     public IReadOnlyList<Player> Players => _playersManager.Players;

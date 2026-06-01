@@ -2,40 +2,70 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Animator))]
-public class ScreenEffectsController : MonoBehaviour
+[RequireComponent(typeof(StageSceneContextReadonlyAccess))]
+public class ScreenEffectsController : MonoEventReactingBehaviour
 {
     [SerializeField]
     private Animator _animator;
 
-    private Action _onEffectComplete;
+    private StageSceneContextReadonlyAccess _stageContext;
 
     private void Awake()
     {
         _animator = GetComponent<Animator>();
+        _stageContext = GetComponent<StageSceneContextReadonlyAccess>();
     }
 
-    /// <summary>
-    /// 指定されたアニメーション演出（トリガー）を実行します。
-    /// </summary>
-    public void PlayFailureEffect(Action onComplete)
+    private void Start()
     {
-        _PlayEffect(Constants.AnimationTrigger.FAILURE, onComplete);
+        if (_stageContext.AfterRestart)
+            _PlayRestartEffect();
+        else
+            _PlayOpeningEffect();
     }
 
-    public void PlaySuccessEffect(Action onComplete)
+    protected override void OnSuccess()
     {
-        _PlayEffect(Constants.AnimationTrigger.SUCCESS, onComplete);
+        _PlaySuccessEffect();
     }
 
-    private void _PlayEffect(string triggerName, Action onComplete)
+    protected override void OnFailure()
     {
-        _onEffectComplete = onComplete;
+        _PlayFailureEffect();
+    }
+
+    private void _PlayOpeningEffect()
+    {
+        _PlayEffect(Constants.AnimationTrigger.OPENING);
+    }
+
+    private void _PlayRestartEffect()
+    {
+        _PlayEffect(Constants.AnimationTrigger.RESTART);
+    }
+
+    private void _PlayFailureEffect()
+    {
+        _PlayEffect(Constants.AnimationTrigger.FAILURE);
+    }
+
+    private void _PlaySuccessEffect()
+    {
+        _PlayEffect(Constants.AnimationTrigger.SUCCESS);
+    }
+
+    private void _PlayEffect(string triggerName)
+    {
         _animator.SetTrigger(triggerName);
     }
 
-    public void OnEffectComplete()
+    public void OnOpeningEffectComplete()
     {
-        _onEffectComplete?.Invoke();
-        _onEffectComplete = null;
+        // TODO: 演出完了後の処理（例: プレイヤーの操作を許可するなど）をここに実装
+    }
+
+    public void OnClosingEffectComplete()
+    {
+        GameManager.Instance.HandleSceneEnd();
     }
 }
