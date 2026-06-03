@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.VFX;
 
+[RequireComponent(typeof(VisualEffect))]
+[RequireComponent(typeof(LightSourcesPool))]
 public class ElectricBarSparks : MonoBehaviour
 {
     [SerializeField]
@@ -16,13 +18,11 @@ public class ElectricBarSparks : MonoBehaviour
     private float _spawnIntervalMax = 0.3f;
 
     [SerializeField]
-    private GameObject _lightPrefab;
-
-    [SerializeField]
     private float _lightDuration = 0.1f;
 
     private VisualEffect _visualEffect;
     private VFXEventAttribute _eventAttribute;
+    private LightSourcesPool _lightPool;
 
     private float _spawnTimer = 0.0f;
 
@@ -33,15 +33,13 @@ public class ElectricBarSparks : MonoBehaviour
     {
         _visualEffect = GetComponent<VisualEffect>();
         _eventAttribute = _visualEffect.CreateVFXEventAttribute();
+        _lightPool = GetComponent<LightSourcesPool>();
 
         if (!_eventAttribute.HasFloat(_positionAttribute))
         {
-            Debug.LogError("The Visual Effect does not have the required 'SparkPosition' attribute.");
-            enabled = false;
-        }
-        if (_lightPrefab == null)
-        {
-            Debug.LogError("Light prefab is not assigned.");
+            Debug.LogError(
+                "The Visual Effect does not have the required 'SparkPosition' attribute."
+            );
             enabled = false;
         }
     }
@@ -71,9 +69,6 @@ public class ElectricBarSparks : MonoBehaviour
         float randomPos = Random.Range(_spawnPositionMin, _spawnPositionMax);
         _eventAttribute.SetFloat(_positionAttribute, randomPos);
         _visualEffect.SendEvent(_spawnEventName, _eventAttribute);
-
-        // light
-        var light = Instantiate(_lightPrefab, transform.position + transform.up * randomPos, Quaternion.identity, transform);
-        Destroy(light, _lightDuration);
+        _lightPool.Spawn(transform.position + transform.up * randomPos, _lightDuration);
     }
 }
