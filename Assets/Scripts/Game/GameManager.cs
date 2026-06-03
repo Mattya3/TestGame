@@ -34,7 +34,7 @@ public class GameManager : MonoBehaviour, IGameManager
         GameEventTrigger.TriggerEvent(GameEvent.Success);
     }
 
-    public void HandleSceneEnd()
+    public void OnSceneEnd()
     {
         GameEventTrigger.TriggerEvent(GameEvent.SceneEnd);
         GameEventTrigger.ResetEvents();

@@ -3,17 +3,20 @@ using UnityEngine;
 
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(StageSceneContextReadonlyAccess))]
+[RequireComponent(typeof(GameManagerAccess))]
 public class ScreenEffectsController : MonoEventReactingBehaviour
 {
     [SerializeField]
     private Animator _animator;
 
     private StageSceneContextReadonlyAccess _stageContext;
+    private GameManagerAccess _gameManagerAccess;
 
     private void Awake()
     {
         _animator = GetComponent<Animator>();
         _stageContext = GetComponent<StageSceneContextReadonlyAccess>();
+        _gameManagerAccess = GetComponent<GameManagerAccess>();
     }
 
     private void Start()
@@ -66,6 +69,6 @@ public class ScreenEffectsController : MonoEventReactingBehaviour
 
     public void OnClosingEffectComplete()
     {
-        GameManager.Instance.HandleSceneEnd();
+        _gameManagerAccess.OnSceneEnd();
     }
 }

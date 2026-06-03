@@ -24,4 +24,9 @@ public class GameManagerAccess : MonoBehaviour
     {
         _reference?.OnSuccess();
     }
+
+    public void OnSceneEnd()
+    {
+        _reference?.OnSceneEnd();
+    }
 }
