@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using static Constants;
 
-[RequireComponent(typeof(PlayersCollectionAccess))]
+[RequireComponent(typeof(PlayersCollectionMutableAccess))]
 [RequireComponent(typeof(PlayersCollectionReadonlyAccess))]
 public class MovementRuleManager : MonoBehaviour
 {
@@ -10,18 +10,18 @@ public class MovementRuleManager : MonoBehaviour
 
     private IMoveController _moveController;
 
-    private PlayersCollectionAccess _players;
+    private PlayersCollectionMutableAccess _mutablePlayers;
     private PlayersCollectionReadonlyAccess _readonlyPlayers;
 
     private void Awake()
     {
-        _players = GetComponent<PlayersCollectionAccess>(); 
+        _mutablePlayers = GetComponent<PlayersCollectionMutableAccess>(); 
         _readonlyPlayers = GetComponent<PlayersCollectionReadonlyAccess>();
     }
 
     public void Initialize()
     {
         _moveController = MoveControllerFactory.Create(_movementRuleEffect, _readonlyPlayers);
-        _players.SetMoveController(_moveController);
+        _mutablePlayers.SetMoveController(_moveController);
     }
 }

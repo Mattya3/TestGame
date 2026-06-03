@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class PlayersCollectionAccess : MonoBehaviour
+public class PlayersCollectionMutableAccess : MonoBehaviour
 {
     private static IPlayersCollection _reference;
 
