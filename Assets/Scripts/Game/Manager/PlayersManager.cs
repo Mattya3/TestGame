@@ -12,10 +12,10 @@ public class PlayersManager : MonoBehaviour, IPlayersCollection
 
     private List<Vector3> _positionsList = new List<Vector3>();
     private ReadOnlyCollection<Vector3> _positionsReadOnly;
-    
+
     private List<Bounds> _boundsList = new List<Bounds>();
     private ReadOnlyCollection<Bounds> _boundsReadOnly;
-    
+
     private List<Vector2> _inputDirectionsList = new List<Vector2>();
     private ReadOnlyCollection<Vector2> _inputDirectionsReadOnly;
 
@@ -27,7 +27,7 @@ public class PlayersManager : MonoBehaviour, IPlayersCollection
         PlayersCollectionReadonlyAccess.Register(this);
 
         _gameManager = GetComponent<GameManagerMutableAccess>();
-        
+
         _positionsReadOnly = new ReadOnlyCollection<Vector3>(_positionsList);
         _boundsReadOnly = new ReadOnlyCollection<Bounds>(_boundsList);
         _inputDirectionsReadOnly = new ReadOnlyCollection<Vector2>(_inputDirectionsList);
@@ -137,7 +137,7 @@ public class PlayersManager : MonoBehaviour, IPlayersCollection
             return _inputDirectionsReadOnly;
         }
     }
-    
+
     public void SetMoveController(IMoveController moveController)
     {
         foreach (var player in _players)
