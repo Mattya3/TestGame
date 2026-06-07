@@ -4,10 +4,10 @@ using UnityEngine;
 public class ExternalEffectManager : MonoBehaviour
 {
     [SerializeField]
-    private Constants.ExternalEffectType _externalEffectType = Constants.ExternalEffectType.None;
+    private Constants.ExternalEffectType _player1ExternalEffectType = Constants.ExternalEffectType.None;
 
     [SerializeField]
-    private List<Constants.ExternalEffectType> _externalEffectTypesByPlayer = new();
+    private Constants.ExternalEffectType _player2ExternalEffectType = Constants.ExternalEffectType.None;
 
     public void Initialize(IReadOnlyList<Player> players, IReadOnlyList<IExternalEffectContext> contexts)
     {
@@ -29,11 +29,11 @@ public class ExternalEffectManager : MonoBehaviour
 
     private Constants.ExternalEffectType GetExternalEffectType(int playerIndex)
     {
-        if (_externalEffectTypesByPlayer == null || playerIndex < 0)
-            return _externalEffectType;
-        if (playerIndex >= _externalEffectTypesByPlayer.Count)
-            return _externalEffectType;
+        if (playerIndex == 0)
+            return _player1ExternalEffectType;
+        if (playerIndex == 1)
+            return _player2ExternalEffectType;
 
-        return _externalEffectTypesByPlayer[playerIndex];
+        return Constants.ExternalEffectType.None;
     }
 }

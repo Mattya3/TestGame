@@ -36,14 +36,14 @@ public class GameManager : MonoBehaviour
 
     public void HandleFailure()
     {
-        GameEventTrigger.TriggerEvent(GameEvent.Failure);
+        GameEventTrigger.TriggerEvent(Constants.GameEvent.Failure);
         GameEventTrigger.ResetEvents();
         _sceneTransitionManager.RestartStage();
     }
 
     public void HandleSuccess()
     {
-        GameEventTrigger.TriggerEvent(GameEvent.Success);
+        GameEventTrigger.TriggerEvent(Constants.GameEvent.Success);
         GameEventTrigger.ResetEvents();
         _sceneTransitionManager.CompleteStage();
     }
