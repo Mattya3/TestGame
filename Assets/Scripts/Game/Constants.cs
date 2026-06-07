@@ -29,6 +29,13 @@
         Reverse, //通常用, 入力反転が起こる
     }
 
+    public enum ExternalEffectType
+    {
+        None,
+        ReverseInput,
+        ReverseGravity,
+    }
+
     public enum GameEvent
     {
         Failure,
