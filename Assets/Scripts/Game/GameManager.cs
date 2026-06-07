@@ -11,12 +11,12 @@ public class GameManager : MonoBehaviour, IGameManager
 
     private void Awake()
     {
-        GameManagerAccess.Register(this);
+        GameManagerMutableAccess.Register(this);
     }
 
     private void OnDestroy()
     {
-        GameManagerAccess.Unregister(this);
+        GameManagerMutableAccess.Unregister(this);
     }
 
     private void Start()
@@ -24,17 +24,17 @@ public class GameManager : MonoBehaviour, IGameManager
         _movementRuleManager.Initialize();
     }
 
-    public void OnFailure()
+    public void HandleFailure()
     {
         GameEventTrigger.TriggerEvent(GameEvent.Failure);
     }
 
-    public void OnSuccess()
+    public void HandleSuccess()
     {
         GameEventTrigger.TriggerEvent(GameEvent.Success);
     }
 
-    public void OnSceneEnd()
+    public void HandleSceneEnd()
     {
         GameEventTrigger.TriggerEvent(GameEvent.SceneEnd);
         GameEventTrigger.ResetEvents();

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class GameManagerAccess : MonoBehaviour
+public class GameManagerMutableAccess : MonoBehaviour
 {
     private static IGameManager _reference;
 
@@ -15,18 +15,18 @@ public class GameManagerAccess : MonoBehaviour
             _reference = null;
     }
 
-    public void OnFailure()
+    public void HandleFailure()
     {
-        _reference?.OnFailure();
+        _reference?.HandleFailure();
     }
 
-    public void OnSuccess()
+    public void HandleSuccess()
     {
-        _reference?.OnSuccess();
+        _reference?.HandleSuccess();
     }
 
-    public void OnSceneEnd()
+    public void HandleSceneEnd()
     {
-        _reference?.OnSceneEnd();
+        _reference?.HandleSceneEnd();
     }
 }
