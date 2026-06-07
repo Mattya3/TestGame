@@ -2,5 +2,5 @@ using UnityEngine;
 
 public interface IInputDirectionEffect
 {
-    Vector2 ConvertInputDirection(Player player, Vector2 inputDirection);
+    Vector2 ConvertInputDirection(Vector2 inputDirection);
 }

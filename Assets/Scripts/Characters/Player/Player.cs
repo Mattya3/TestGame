@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using static Constants;
 
-public partial class Player : Character, IExternalEffectContext
+public partial class Player : Character
 {
     public static event Action<Player> OnCreated;
     public event Action<Player> OnGoal;
@@ -16,14 +16,13 @@ public partial class Player : Character, IExternalEffectContext
     [SerializeField]
     private PlayerSounds _sounds;
 
-    private IExternalEffect _externalEffect;
-
     private PlayerExternalEffectContext _externalEffectContext;
     private Vector2 _inputDirection;
     private IPlayerStateContext _stateContext;
 
     public bool IsInGoalState => _currentState is GoalState;
     public Vector2 InputDirection => _inputDirection;
+    public IExternalEffectContext ExternalEffectContext => _externalEffectContext;
 
     private void Start()
     {
@@ -92,12 +91,6 @@ public partial class Player : Character, IExternalEffectContext
         _ChangeState(new FrozenState(_stateContext, _sounds));
     }
 
-    public void SetExternalEffect(IExternalEffect externalEffect)
-    {
-        _externalEffect?.Reset();
-        _externalEffect = externalEffect;
-    }
-
     private void _ChangeState(IPlayerState nextState)
     {
         if (nextState == null)
@@ -146,5 +139,15 @@ public partial class Player : Character, IExternalEffectContext
         return _groundDetector.IsGrounded()
             ? new GroundState(_stateContext, _sounds)
             : new AirState(_stateContext, _sounds);
+    }
+
+    private void _SetGravityScaleForExternalEffect(float gravityScale)
+    {
+        _SetGravityScale(gravityScale);
+    }
+
+    private float _GetDefaultGravityScaleForExternalEffect()
+    {
+        return _GetDefaultGravityScale();
     }
 }

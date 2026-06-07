@@ -2,9 +2,14 @@ using UnityEngine;
 
 public partial class Player
 {
+    // memo: 全部の外的要因をここで書かないといけないのが違和感
     private sealed class PlayerExternalEffectContext
+        : IExternalEffectContext,
+            IGravityEffectContext,
+            IInputDirectionEffectContext
     {
         private readonly Player _player;
+        private IExternalEffect _externalEffect;
         private bool _isEffectActive;
 
         public PlayerExternalEffectContext(Player player)
@@ -14,21 +19,20 @@ public partial class Player
 
         public void UpdateEffectState()
         {
-            IExternalEffect externalEffect = _player._externalEffect;
-            if (externalEffect == null)
+            if (_externalEffect == null)
             {
                 _isEffectActive = false;
                 return;
             }
 
-            bool shouldApply = externalEffect.ShouldApply();
+            bool shouldApply = _externalEffect.ShouldApply();
             if (!_isEffectActive && shouldApply)
             {
-                externalEffect.Apply();
+                _externalEffect.Apply();
             }
             else if (_isEffectActive && !shouldApply)
             {
-                externalEffect.Reset();
+                _externalEffect.Reset();
             }
 
             _isEffectActive = shouldApply;
@@ -39,13 +43,35 @@ public partial class Player
             if (!_isEffectActive)
                 return inputDirection;
             
-            // memo: この書き方がすごい違和感, 解決策はないか
-            if (_player._externalEffect is IInputDirectionEffect inputDirectionEffect)
+            
+            if (_externalEffect is IInputDirectionEffect inputDirectionEffect)
             {
-                return inputDirectionEffect.ConvertInputDirection(_player, inputDirection);
+                return inputDirectionEffect.ConvertInputDirection(inputDirection);
             }
 
             return inputDirection;
+        }
+
+        public void SetExternalEffect(IExternalEffect externalEffect)
+        {
+            _externalEffect?.Reset();
+            _externalEffect = externalEffect;
+            _isEffectActive = false;
+        }
+
+        public void SetGravityScale(float gravityScale)
+        {
+            _player._SetGravityScaleForExternalEffect(gravityScale);
+        }
+
+        public float GetDefaultGravityScale()
+        {
+            return _player._GetDefaultGravityScaleForExternalEffect();
+        }
+
+        public Vector2 ReverseHorizontalInput(Vector2 inputDirection)
+        {
+            return new Vector2(-inputDirection.x, inputDirection.y);
         }
     }
 }
