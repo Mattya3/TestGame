@@ -1,5 +1,4 @@
-﻿
-public interface IGameManager
+﻿public interface IGameManager
 {
     void HandleFailure();
     void HandleSuccess();
