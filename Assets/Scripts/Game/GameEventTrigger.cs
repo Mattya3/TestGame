@@ -6,6 +6,7 @@ public static class GameEventTrigger
 {
     private static event Action OnSuccess;
     private static event Action OnFailure;
+    private static event Action OnSceneEnd;
 
     public static void RegisterEventAction(GameEvent gameEvent, Action eventAction)
     {
@@ -16,6 +17,9 @@ public static class GameEventTrigger
                 break;
             case GameEvent.Success:
                 OnSuccess += eventAction;
+                break;
+            case GameEvent.SceneEnd:
+                OnSceneEnd += eventAction;
                 break;
             default:
                 Debug.LogError($"Unhandled GameEvent value in RegisterEventAction: {gameEvent}");
@@ -29,11 +33,14 @@ public static class GameEventTrigger
             OnSuccess?.Invoke();
         else if (gameEvent == GameEvent.Failure)
             OnFailure?.Invoke();
+        else if (gameEvent == GameEvent.SceneEnd)
+            OnSceneEnd?.Invoke();
     }
 
     public static void ResetEvents()
     {
         OnSuccess = null;
         OnFailure = null;
+        OnSceneEnd = null;
     }
 }
