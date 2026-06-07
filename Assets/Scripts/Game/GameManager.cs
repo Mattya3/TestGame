@@ -26,10 +26,7 @@ public class GameManager : MonoBehaviour
         List<IExternalEffectContext> contexts = new(players.Count);
         for (int i = 0; i < players.Count; i++)
         {
-            if (players[i] is IExternalEffectContext context)
-            {
-                contexts.Add(context);
-            }
+            contexts.Add(players[i].ExternalEffectContext);
         }
         _externalEffectManager.Initialize(players, contexts);
     }
