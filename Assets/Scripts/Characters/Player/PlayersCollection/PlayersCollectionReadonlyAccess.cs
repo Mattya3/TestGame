@@ -28,7 +28,7 @@ public class PlayersCollectionReadonlyAccess : MonoBehaviour
     }
 
     public List<Vector3> Positions
-    { 
+    {
         get
         {
             _ValidateReferences();

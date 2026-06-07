@@ -2,7 +2,10 @@
 
 public static class MoveControllerFactory
 {
-    public static IMoveController Create(MovementRuleEffect rule, PlayersCollectionReadonlyAccess players)
+    public static IMoveController Create(
+        MovementRuleEffect rule,
+        PlayersCollectionReadonlyAccess players
+    )
     {
         switch (rule)
         {

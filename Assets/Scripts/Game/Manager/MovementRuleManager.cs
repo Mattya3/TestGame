@@ -15,7 +15,7 @@ public class MovementRuleManager : MonoBehaviour
 
     private void Awake()
     {
-        _mutablePlayers = GetComponent<PlayersCollectionMutableAccess>(); 
+        _mutablePlayers = GetComponent<PlayersCollectionMutableAccess>();
         _readonlyPlayers = GetComponent<PlayersCollectionReadonlyAccess>();
     }
 
