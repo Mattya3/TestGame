@@ -17,7 +17,7 @@ public class Player : Character
 
     private Vector2 _inputDirection;
 
-    // 後でPlayersManagerがPlayerをInstantiateするようになったら、ここでPlayersCollectionAccessを取得するのはやめる (RegisterPlayerも要らなくなる)
+    // 後でPlayersManagerがPlayerをInstantiateするようになったら、ここでPlayersCollectionMutableAccessを取得するのはやめる (RegisterPlayerも要らなくなる)
     private PlayersCollectionMutableAccess _playersCollection;
 
     public Vector2 InputDirection => _inputDirection;
