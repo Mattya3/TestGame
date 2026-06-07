@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using static Constants;
 
 public class GameManager : MonoBehaviour
 {
@@ -11,7 +7,7 @@ public class GameManager : MonoBehaviour
     private SceneTransitionManager _sceneTransitionManager;
 
     [SerializeField]
-    private MovementRuleManager _movementRuleManager;
+    private ExternalEffectManager _externalEffectManager;
 
     [SerializeField]
     private PlayersManager _playersManager;
@@ -26,7 +22,16 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        _movementRuleManager.Initialize(_playersManager.Players);
+        IReadOnlyList<Player> players = _playersManager.Players;
+        List<IExternalEffectContext> contexts = new(players.Count);
+        for (int i = 0; i < players.Count; i++)
+        {
+            if (players[i] is IExternalEffectContext context)
+            {
+                contexts.Add(context);
+            }
+        }
+        _externalEffectManager.Initialize(players, contexts);
     }
 
     public void HandleFailure()

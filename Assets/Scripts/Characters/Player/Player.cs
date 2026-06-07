@@ -22,7 +22,6 @@ public partial class Player : Character, IExternalEffectContext
     private Vector2 _inputDirection;
     private IPlayerStateContext _stateContext;
 
-    public IMoveController MoveController { get; set; }
     public bool IsInGoalState => _currentState is GoalState;
     public Vector2 InputDirection => _inputDirection;
 
@@ -95,7 +94,7 @@ public partial class Player : Character, IExternalEffectContext
 
     public void SetExternalEffect(IExternalEffect externalEffect)
     {
-        _externalEffect.Reset();
+        _externalEffect?.Reset();
         _externalEffect = externalEffect;
     }
 
@@ -114,7 +113,6 @@ public partial class Player : Character, IExternalEffectContext
 
     private void _MoveByInput(Vector2 inputDirection)
     {
-        // TODO: 最終的に対応するが現状このままで
         Vector2 direction = _externalEffectContext.GetMoveDirection(inputDirection);
         _ApplyMovement(direction);
     }
