@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using UnityEngine;
 
 public class PlayersCollectionReadonlyAccess : MonoBehaviour
@@ -27,30 +28,30 @@ public class PlayersCollectionReadonlyAccess : MonoBehaviour
         }
     }
 
-    public List<Vector3> Positions
+    public ReadOnlyCollection<Vector3> Positions
     {
         get
         {
             _ValidateReferences();
-            return _reference != null ? _reference.Positions : new List<Vector3>();
+            return _reference != null ? _reference.Positions : new ReadOnlyCollection<Vector3>(new List<Vector3>());
         }
     }
 
-    public List<Bounds> BoundsList
+    public ReadOnlyCollection<Bounds> BoundsList
     {
         get
         {
             _ValidateReferences();
-            return _reference != null ? _reference.BoundsList : new List<Bounds>();
+            return _reference != null ? _reference.BoundsList : new ReadOnlyCollection<Bounds>(new List<Bounds>());
         }
     }
 
-    public List<Vector2> InputDirections
+    public ReadOnlyCollection<Vector2> InputDirections
     {
         get
         {
             _ValidateReferences();
-            return _reference != null ? _reference.InputDirections : new List<Vector2>();
+            return _reference != null ? _reference.InputDirections : new ReadOnlyCollection<Vector2>(new List<Vector2>());
         }
     }
 
