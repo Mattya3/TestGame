@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using static Constants;
 
+[RequireComponent(typeof(PlayersCollectionMutableAccess))]
 public class Player : Character
 {
     public event Action<Player> OnGoal;
