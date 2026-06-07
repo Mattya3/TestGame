@@ -6,7 +6,10 @@ public sealed class ReverseInputExternalEffect : IExternalEffect, IInputDirectio
     private readonly IReadOnlyList<Player> _players;
     private readonly IInputDirectionEffectContext _context;
 
-    public ReverseInputExternalEffect(IReadOnlyList<Player> players, IInputDirectionEffectContext context)
+    public ReverseInputExternalEffect(
+        IReadOnlyList<Player> players,
+        IInputDirectionEffectContext context
+    )
     {
         _players = players;
         _context = context;
