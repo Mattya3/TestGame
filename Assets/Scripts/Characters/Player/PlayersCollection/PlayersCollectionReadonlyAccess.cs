@@ -18,11 +18,49 @@ public class PlayersCollectionReadonlyAccess : MonoBehaviour
         _reference = null;
     }
 
-    public int Count => _reference?.Count ?? 0;
+    public int Count
+    {
+        get
+        {
+            _ValidateReferences();
+            return _reference != null ? _reference.Count : 0;
+        }
+    }
 
-    public List<Vector3> Positions => _reference?.Positions ?? new List<Vector3>();
+    public List<Vector3> Positions
+    { 
+        get
+        {
+            _ValidateReferences();
+            return _reference != null ? _reference.Positions : new List<Vector3>();
+        }
+    }
 
-    public List<Bounds> BoundsList => _reference?.BoundsList ?? new List<Bounds>();
+    public List<Bounds> BoundsList
+    {
+        get
+        {
+            _ValidateReferences();
+            return _reference != null ? _reference.BoundsList : new List<Bounds>();
+        }
+    }
 
-    public List<Vector2> InputDirections => _reference?.InputDirections ?? new List<Vector2>();
+    public List<Vector2> InputDirections
+    {
+        get
+        {
+            _ValidateReferences();
+            return _reference != null ? _reference.InputDirections : new List<Vector2>();
+        }
+    }
+
+    private void _ValidateReferences()
+    {
+        if (_reference == null)
+        {
+            Debug.LogError(
+                "No IPlayersCollection reference registered. Please ensure that an IPlayersCollection implementation is registered before using PlayersCollectionReadonlyAccess."
+            );
+        }
+    }
 }

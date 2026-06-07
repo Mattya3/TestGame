@@ -19,11 +19,23 @@ public class PlayersCollectionMutableAccess : MonoBehaviour
 
     public void RegisterPlayer(Player player)
     {
+        _ValidateReferences();
         _reference?.RegisterPlayer(player);
     }
 
     public void SetMoveController(IMoveController moveController)
     {
+        _ValidateReferences();
         _reference?.SetMoveController(moveController);
+    }
+
+    private void _ValidateReferences()
+    {
+        if (_reference == null)
+        {
+            Debug.LogError(
+                "No IPlayersCollection reference registered. Please ensure that an IPlayersCollection implementation is registered before using PlayersCollectionMutableAccess."
+            );
+        }
     }
 }

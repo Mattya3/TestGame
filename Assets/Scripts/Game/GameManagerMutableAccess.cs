@@ -17,16 +17,29 @@ public class GameManagerMutableAccess : MonoBehaviour
 
     public void HandleFailure()
     {
+        _ValidateReferences();
         _reference?.HandleFailure();
     }
 
     public void HandleSuccess()
     {
+        _ValidateReferences();
         _reference?.HandleSuccess();
     }
 
     public void HandleSceneEnd()
     {
+        _ValidateReferences();
         _reference?.HandleSceneEnd();
+    }
+
+    private void _ValidateReferences()
+    {
+        if (_reference == null)
+        {
+            Debug.LogError(
+                "No IGameManager reference registered. Please ensure that an IGameManager implementation is registered before using GameManagerMutableAccess."
+            );
+        }
     }
 }
