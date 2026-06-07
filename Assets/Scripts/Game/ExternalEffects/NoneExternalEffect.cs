@@ -1,13 +1,13 @@
-using System.Collections.Generic;
-
 public sealed class NoneExternalEffect : IExternalEffect
 {
-    public bool ShouldApply(IReadOnlyList<Player> players)
+    public NoneExternalEffect(IExternalEffectContext context) { }
+
+    public bool ShouldApply()
     {
         return false;
     }
 
-    public void Apply(IExternalEffectContext context) { }
+    public void Apply() { }
 
-    public void Reset(IExternalEffectContext context) { }
+    public void Reset() { }
 }
