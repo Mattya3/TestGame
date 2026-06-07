@@ -27,8 +27,10 @@ public class PlayersManager : MonoBehaviour, IPlayersCollection
 
     public void RegisterPlayer(Player player)
     {
-        if (!_players.Contains(player))
-            _players.Add(player);
+        if (_players.Contains(player))
+            return;
+
+        _players.Add(player);
         player.OnDied += (reason) =>
         {
             HandlePlayerDeath(player, reason);
