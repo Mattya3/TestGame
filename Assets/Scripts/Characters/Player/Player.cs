@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using static Constants;
 
-public partial class Player : Character
+public partial class Player : Character, IExternalEffectContext
 {
     public static event Action<Player> OnCreated;
     public event Action<Player> OnGoal;
@@ -16,6 +16,9 @@ public partial class Player : Character
     [SerializeField]
     private PlayerSounds _sounds;
 
+    private IExternalEffect _externalEffect;
+
+    private PlayerExternalEffectContext _externalEffectContext;
     private Vector2 _inputDirection;
     private IPlayerStateContext _stateContext;
 
@@ -33,12 +36,16 @@ public partial class Player : Character
         }
 
         _stateContext = new StateContext(this);
+        _externalEffectContext = new PlayerExternalEffectContext(this);
         _ChangeState(_CreateInitialState());
         OnCreated?.Invoke(this);
     }
 
     protected override void _Move()
     {
+        // memo: このメソッドはここではない気がするが(character側にこれを置きたい), 次issueで対応
+        _externalEffectContext.UpdateEffectState();
+
         if (_currentState == null)
             return;
 
@@ -86,6 +93,12 @@ public partial class Player : Character
         _ChangeState(new FrozenState(_stateContext, _sounds));
     }
 
+    public void SetExternalEffect(IExternalEffect externalEffect)
+    {
+        _externalEffect.Reset();
+        _externalEffect = externalEffect;
+    }
+
     private void _ChangeState(IPlayerState nextState)
     {
         if (nextState == null)
@@ -101,8 +114,9 @@ public partial class Player : Character
 
     private void _MoveByInput(Vector2 inputDirection)
     {
-        Vector2 convertedDirection = MoveController.ConvertInputDirection(inputDirection);
-        _ApplyMovement(convertedDirection);
+        // TODO: 最終的に対応するが現状このままで
+        Vector2 direction = _externalEffectContext.GetMoveDirection(inputDirection);
+        _ApplyMovement(direction);
     }
 
     private bool _IsGrounded()
