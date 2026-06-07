@@ -4,17 +4,27 @@ using UnityEngine;
 public class ExternalEffectManager : MonoBehaviour
 {
     [SerializeField]
-    private Constants.ExternalEffectType _player1ExternalEffectType = Constants.ExternalEffectType.None;
+    private Constants.ExternalEffectType _player1ExternalEffectType = Constants
+        .ExternalEffectType
+        .None;
 
     [SerializeField]
-    private Constants.ExternalEffectType _player2ExternalEffectType = Constants.ExternalEffectType.None;
+    private Constants.ExternalEffectType _player2ExternalEffectType = Constants
+        .ExternalEffectType
+        .None;
 
-    public void Initialize(IReadOnlyList<Player> players, IReadOnlyList<IExternalEffectContext> contexts)
+    public void Initialize(
+        IReadOnlyList<Player> players,
+        IReadOnlyList<IExternalEffectContext> contexts
+    )
     {
         InjectExternalEffect(players, contexts);
     }
 
-    private void InjectExternalEffect(IReadOnlyList<Player> players, IReadOnlyList<IExternalEffectContext> contexts)
+    private void InjectExternalEffect(
+        IReadOnlyList<Player> players,
+        IReadOnlyList<IExternalEffectContext> contexts
+    )
     {
         if (contexts == null)
             return;
@@ -22,7 +32,11 @@ public class ExternalEffectManager : MonoBehaviour
         for (int i = 0; i < contexts.Count; i++)
         {
             Constants.ExternalEffectType effectType = GetExternalEffectType(i);
-            IExternalEffect externalEffect = ExternalEffectFactory.Create(effectType, players, contexts[i]);
+            IExternalEffect externalEffect = ExternalEffectFactory.Create(
+                effectType,
+                players,
+                contexts[i]
+            );
             contexts[i].SetExternalEffect(externalEffect);
         }
     }

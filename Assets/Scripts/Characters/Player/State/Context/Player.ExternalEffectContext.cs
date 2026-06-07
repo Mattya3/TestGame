@@ -42,8 +42,7 @@ public partial class Player
         {
             if (!_isEffectActive)
                 return inputDirection;
-            
-            
+
             if (_externalEffect is IInputDirectionEffect inputDirectionEffect)
             {
                 return inputDirectionEffect.ConvertInputDirection(inputDirection);
