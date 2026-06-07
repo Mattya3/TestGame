@@ -4261,7 +4261,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bf816445901f7c642a1c842462570be4, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayersCollectionAccess
+  m_EditorClassIdentifier: Assembly-CSharp::PlayersCollectionMutableAccess
 --- !u!1 &743438944
 GameObject:
   m_ObjectHideFlags: 0
@@ -5719,7 +5719,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b0edbeb03e2096d4984825a4adfbdc96, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::StageSceneContextAccess
+  m_EditorClassIdentifier: Assembly-CSharp::StageSceneContextReadonlyAccess
 --- !u!114 &875144718
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5731,7 +5731,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dd383902712b75847a449af61607c483, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GameManagerAccess
+  m_EditorClassIdentifier: Assembly-CSharp::GameManagerMutableAccess
 --- !u!1 &882462480
 GameObject:
   m_ObjectHideFlags: 0
@@ -8928,7 +8928,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bf816445901f7c642a1c842462570be4, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayersCollectionAccess
+  m_EditorClassIdentifier: Assembly-CSharp::PlayersCollectionMutableAccess
 --- !u!1001 &1492986252
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14368,7 +14368,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dd383902712b75847a449af61607c483, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GameManagerAccess
+  m_EditorClassIdentifier: Assembly-CSharp::GameManagerMutableAccess
 --- !u!1 &1837054319
 GameObject:
   m_ObjectHideFlags: 0
