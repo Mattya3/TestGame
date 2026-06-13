@@ -8622,7 +8622,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   _movementRuleManager: {fileID: 845628946}
-  _playersManager: {fileID: 1825111104}
 --- !u!4 &1422380077
 Transform:
   m_ObjectHideFlags: 0

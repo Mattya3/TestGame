@@ -6,9 +6,6 @@ public class GameManager : MonoBehaviour, IGameManager
     [SerializeField]
     private MovementRuleManager _movementRuleManager;
 
-    [SerializeField]
-    private PlayersManager _playersManager;
-
     private void Awake()
     {
         GameManagerMutableAccess.Register(this);
