@@ -7,8 +7,10 @@ public class StageSceneContext : MonoEventReactingBehaviour, IStageSceneContext
 
     private static StageSceneContext _instance;
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
+
         if (_instance != null && _instance != this)
         {
             // GameEventTriggerに登録されたイベントアクションはシーン終了時にクリアされるため、シーン再読み込み後にイベントアクションを再登録する必要がある。

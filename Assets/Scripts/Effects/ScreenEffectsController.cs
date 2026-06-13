@@ -12,8 +12,10 @@ public class ScreenEffectsController : MonoEventReactingBehaviour
     private StageSceneContextReadonlyAccess _stageContextAccess;
     private GameManagerMutableAccess _gameManagerAccess;
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
+
         _animator = GetComponent<Animator>();
         _stageContextAccess = GetComponent<StageSceneContextReadonlyAccess>();
         _gameManagerAccess = GetComponent<GameManagerMutableAccess>();

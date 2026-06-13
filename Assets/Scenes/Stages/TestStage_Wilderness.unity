@@ -3676,6 +3676,7 @@ GameObject:
   m_Component:
   - component: {fileID: 554078609}
   - component: {fileID: 554078608}
+  - component: {fileID: 554078610}
   m_Layer: 0
   m_Name: SceneTransitionTrigger
   m_TagString: Untagged
@@ -3710,6 +3711,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &554078610
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 554078607}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 350ef0f6403c0f04b914a103f74b1680, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameEventRegistrationAccess
 --- !u!1001 &570265382
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5603,6 +5616,7 @@ GameObject:
   - component: {fileID: 875144717}
   - component: {fileID: 875144718}
   - component: {fileID: 875144715}
+  - component: {fileID: 875144719}
   m_Layer: 5
   m_Name: ScreenEffects
   m_TagString: Untagged
@@ -5802,6 +5816,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd383902712b75847a449af61607c483, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManagerMutableAccess
+--- !u!114 &875144719
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 875144711}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 350ef0f6403c0f04b914a103f74b1680, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameEventRegistrationAccess
 --- !u!1 &882462480
 GameObject:
   m_ObjectHideFlags: 0
@@ -6738,6 +6764,7 @@ GameObject:
   m_Component:
   - component: {fileID: 950878839}
   - component: {fileID: 950878840}
+  - component: {fileID: 950878841}
   m_Layer: 0
   m_Name: SceneContext
   m_TagString: Untagged
@@ -6773,6 +6800,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StageSceneContext
   _restartCount: 0
+--- !u!114 &950878841
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 950878838}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 350ef0f6403c0f04b914a103f74b1680, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameEventRegistrationAccess
 --- !u!1 &952535229
 GameObject:
   m_ObjectHideFlags: 0
