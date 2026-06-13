@@ -18,14 +18,12 @@ public class GameEventHub : MonoBehaviour
 
     private void Awake()
     {
-        GameEventRegistrationAccess.Register(this);
-        GameEventTriggerAccess.Register(this);
+        AccessComponent<GameEventHub>.Register(this);
     }
 
     private void OnDestroy()
     {
-        GameEventTriggerAccess.Unregister(this);
-        GameEventRegistrationAccess.Unregister(this);
+        AccessComponent<GameEventHub>.Unregister(this);
     }
 
     public void RegisterEventAction(GameEvent gameEvent, Action eventAction)

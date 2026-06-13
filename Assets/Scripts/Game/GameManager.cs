@@ -7,12 +7,12 @@ public class GameManager : MonoBehaviour, IGameManager
     [SerializeField]
     private MovementRuleManager _movementRuleManager;
 
-    private GameEventTriggerAccess _gameEventTrigger;
+    private GameEventTriggerAccess _gameEventTriggerAccess;
 
     private void Awake()
     {
         AccessComponent<IGameManager>.Register(this);
-        _gameEventTrigger = GetComponent<GameEventTriggerAccess>();
+        _gameEventTriggerAccess = GetComponent<GameEventTriggerAccess>();
     }
 
     private void OnDestroy()
@@ -27,16 +27,16 @@ public class GameManager : MonoBehaviour, IGameManager
 
     public void HandleFailure()
     {
-        _gameEventTrigger.TriggerEventActions(GameEvent.Failure);
+        _gameEventTriggerAccess.TriggerEventActions(GameEvent.Failure);
     }
 
     public void HandleSuccess()
     {
-        _gameEventTrigger.TriggerEventActions(GameEvent.Success);
+        _gameEventTriggerAccess.TriggerEventActions(GameEvent.Success);
     }
 
     public void HandleSceneEnd()
     {
-        _gameEventTrigger.TriggerEventActions(GameEvent.SceneEnd);
+        _gameEventTriggerAccess.TriggerEventActions(GameEvent.SceneEnd);
     }
 }

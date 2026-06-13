@@ -7,7 +7,7 @@ using static Constants;
 [RequireComponent(typeof(GameEventRegistrationAccess))]
 public abstract class MonoEventReactingBehaviour : MonoBehaviour
 {
-    private GameEventRegistrationAccess _eventRegistration;
+    private GameEventRegistrationAccess _eventRegistrationAccess;
 
     private readonly Dictionary<GameEvent, (string MethodName, Action Handler)> _eventHandlers;
 
@@ -23,7 +23,7 @@ public abstract class MonoEventReactingBehaviour : MonoBehaviour
 
     protected virtual void Awake()
     {
-        _eventRegistration = GetComponent<GameEventRegistrationAccess>();
+        _eventRegistrationAccess = GetComponent<GameEventRegistrationAccess>();
     }
 
     protected virtual void OnEnable()
@@ -52,7 +52,7 @@ public abstract class MonoEventReactingBehaviour : MonoBehaviour
             var gameEvent = kvp.Key;
             var (methodName, handler) = kvp.Value;
             if (_IsOverridden(methodName) && _ShouldSubscribe(gameEvent))
-                _eventRegistration.RegisterEventAction(gameEvent, handler);
+                _eventRegistrationAccess.RegisterEventAction(gameEvent, handler);
         }
     }
 
@@ -63,7 +63,7 @@ public abstract class MonoEventReactingBehaviour : MonoBehaviour
             var gameEvent = kvp.Key;
             var (methodName, handler) = kvp.Value;
             if (_IsOverridden(methodName) && _ShouldSubscribe(gameEvent))
-                _eventRegistration.UnregisterEventAction(gameEvent, handler);
+                _eventRegistrationAccess.UnregisterEventAction(gameEvent, handler);
         }
     }
 
