@@ -18,7 +18,7 @@ public class Player : Character
     private Vector2 _inputDirection;
 
     // 後でPlayersManagerがPlayerをInstantiateするようになったら、ここでPlayersCollectionMutableAccessを取得するのはやめる (RegisterPlayerも要らなくなる)
-    private PlayersCollectionMutableAccess _playersCollection;
+    private PlayersCollectionMutableAccess _playersCollectionAccess;
 
     public Vector2 InputDirection => _inputDirection;
 
@@ -32,12 +32,12 @@ public class Player : Character
             enabled = false;
         }
 
-        _playersCollection = GetComponent<PlayersCollectionMutableAccess>();
+        _playersCollectionAccess = GetComponent<PlayersCollectionMutableAccess>();
     }
 
     private void Start()
     {
-        _playersCollection?.RegisterPlayer(this);
+        _playersCollectionAccess?.RegisterPlayer(this);
     }
 
     public void OnMove(InputAction.CallbackContext context)

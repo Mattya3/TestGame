@@ -4,7 +4,7 @@ public static class MoveControllerFactory
 {
     public static IMoveController Create(
         MovementRuleEffect rule,
-        PlayersCollectionReadonlyAccess players
+        PlayersCollectionReadonlyAccess playersAccess
     )
     {
         switch (rule)
@@ -12,7 +12,7 @@ public static class MoveControllerFactory
             case MovementRuleEffect.Demo:
                 return new DemoMoveController();
             case MovementRuleEffect.Reverse:
-                return new ReverseMoveController(players);
+                return new ReverseMoveController(playersAccess);
             default:
                 return new DemoMoveController();
         }

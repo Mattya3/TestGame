@@ -8,7 +8,7 @@ using static Constants;
 public class PlayersManager : MonoBehaviour, IPlayersCollection
 {
     private List<Player> _players = new List<Player>();
-    private GameManagerMutableAccess _gameManager;
+    private GameManagerMutableAccess _gameManagerAccess;
 
     private List<Vector3> _positionsList = new List<Vector3>();
     private ReadOnlyCollection<Vector3> _positionsReadOnly;
@@ -26,7 +26,7 @@ public class PlayersManager : MonoBehaviour, IPlayersCollection
         PlayersCollectionMutableAccess.Register(this);
         PlayersCollectionReadonlyAccess.Register(this);
 
-        _gameManager = GetComponent<GameManagerMutableAccess>();
+        _gameManagerAccess = GetComponent<GameManagerMutableAccess>();
 
         _positionsReadOnly = new ReadOnlyCollection<Vector3>(_positionsList);
         _boundsReadOnly = new ReadOnlyCollection<Bounds>(_boundsList);
@@ -63,7 +63,7 @@ public class PlayersManager : MonoBehaviour, IPlayersCollection
         SetPlayersDead();
         FreezeAllPlayers();
 
-        _gameManager.HandleFailure();
+        _gameManagerAccess.HandleFailure();
     }
 
     private void HandlePlayerGoal(Player player)
@@ -76,7 +76,7 @@ public class PlayersManager : MonoBehaviour, IPlayersCollection
         if (!AllPlayersReachedGoal())
             return;
 
-        _gameManager.HandleSuccess();
+        _gameManagerAccess.HandleSuccess();
     }
 
     private void SetPlayersDead()
