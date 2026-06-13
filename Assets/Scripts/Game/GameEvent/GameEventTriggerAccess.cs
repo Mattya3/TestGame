@@ -8,7 +8,9 @@ public class GameEventTriggerAccess : AccessComponent<GameEventHub>
     {
         if (_instance != null)
         {
-            Debug.LogError("Multiple instances of GameEventTriggerAccess detected. This is not allowed.");
+            Debug.LogError(
+                "Multiple instances of GameEventTriggerAccess detected. This is not allowed."
+            );
             return;
         }
         _instance = this;

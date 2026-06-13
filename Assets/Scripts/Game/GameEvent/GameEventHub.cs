@@ -33,7 +33,7 @@ public class GameEventHub : MonoBehaviour
             Debug.LogError($"Unhandled GameEvent value in RegisterEventAction: {gameEvent}");
             throw new ArgumentOutOfRangeException(nameof(gameEvent), gameEvent, null);
         }
-        
+
         _eventActions[gameEvent] += eventAction;
     }
 
@@ -44,7 +44,7 @@ public class GameEventHub : MonoBehaviour
             Debug.LogError($"Unhandled GameEvent value in UnregisterEventAction: {gameEvent}");
             throw new ArgumentOutOfRangeException(nameof(gameEvent), gameEvent, null);
         }
-        
+
         _eventActions[gameEvent] -= eventAction;
     }
 
