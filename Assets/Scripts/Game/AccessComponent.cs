@@ -20,12 +20,12 @@ public abstract class AccessComponent<T> : MonoBehaviour
 
     private void _LogMissingReference()
     {
-        if (_privateReference == null)
-        {
-            Debug.LogError(
-                $"No {typeof(T).Name} reference registered. Please ensure that an implementation of {typeof(T).Name} is registered before using {GetType().Name}."
-            );
-        }
+        if (HasReference)
+            return;
+
+        Debug.LogError(
+            $"No {typeof(T).Name} reference registered. Please ensure that an implementation of {typeof(T).Name} is registered before using {GetType().Name}."
+        );
     }
 
     protected T Reference
@@ -36,4 +36,6 @@ public abstract class AccessComponent<T> : MonoBehaviour
             return _privateReference;
         }
     }
+
+    protected bool HasReference => _privateReference != null;
 }
