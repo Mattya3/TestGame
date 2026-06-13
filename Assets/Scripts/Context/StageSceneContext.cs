@@ -20,12 +20,12 @@ public class StageSceneContext : MonoEventReactingBehaviour, IStageSceneContext
         _instance = this;
         DontDestroyOnLoad(gameObject);
 
-        StageSceneContextReadonlyAccess.Register(this);
+        AccessComponent<IStageSceneContext>.Register(this);
     }
 
     private void OnDestroy()
     {
-        StageSceneContextReadonlyAccess.Unregister(this);
+        AccessComponent<IStageSceneContext>.Unregister(this);
     }
 
     public bool AfterRestart => _restartCount > 0;

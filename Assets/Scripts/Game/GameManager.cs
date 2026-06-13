@@ -8,12 +8,12 @@ public class GameManager : MonoBehaviour, IGameManager
 
     private void Awake()
     {
-        GameManagerMutableAccess.Register(this);
+        AccessComponent<IGameManager>.Register(this);
     }
 
     private void OnDestroy()
     {
-        GameManagerMutableAccess.Unregister(this);
+        AccessComponent<IGameManager>.Unregister(this);
     }
 
     private void Start()
