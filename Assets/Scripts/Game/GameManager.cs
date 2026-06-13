@@ -1,26 +1,24 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using static Constants;
 
-public class GameManager : MonoBehaviour
+public class GameManager : MonoBehaviour, IGameManager
 {
     [SerializeField]
     private MovementRuleManager _movementRuleManager;
 
-    [SerializeField]
-    private PlayersManager _playersManager;
-
-    public static GameManager Instance { get; private set; }
-
     private void Awake()
     {
-        if (Instance == null)
-            Instance = this;
+        AccessComponent<IGameManager>.Register(this);
+    }
+
+    private void OnDestroy()
+    {
+        AccessComponent<IGameManager>.Unregister(this);
     }
 
     private void Start()
     {
-        _movementRuleManager.Initialize(_playersManager.Players);
+        _movementRuleManager.Initialize();
     }
 
     public void HandleFailure()
@@ -38,6 +36,4 @@ public class GameManager : MonoBehaviour
         GameEventTrigger.TriggerEvent(GameEvent.SceneEnd);
         GameEventTrigger.ResetEvents();
     }
-
-    public IReadOnlyList<Player> Players => _playersManager.Players;
 }

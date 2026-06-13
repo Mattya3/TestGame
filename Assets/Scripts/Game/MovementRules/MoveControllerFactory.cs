@@ -1,16 +1,18 @@
-using System.Collections.Generic;
-using static Constants;
+﻿using static Constants;
 
 public static class MoveControllerFactory
 {
-    public static IMoveController Create(MovementRuleEffect rule, IReadOnlyList<Player> players)
+    public static IMoveController Create(
+        MovementRuleEffect rule,
+        PlayersCollectionReadonlyAccess playersAccess
+    )
     {
         switch (rule)
         {
             case MovementRuleEffect.Demo:
                 return new DemoMoveController();
             case MovementRuleEffect.Reverse:
-                return new ReverseMoveController(players);
+                return new ReverseMoveController(playersAccess);
             default:
                 return new DemoMoveController();
         }

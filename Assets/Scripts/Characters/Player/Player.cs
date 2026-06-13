@@ -1,11 +1,11 @@
-using System;
+﻿using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using static Constants;
 
+[RequireComponent(typeof(PlayersCollectionMutableAccess))]
 public class Player : Character
 {
-    public static event Action<Player> OnCreated;
     public event Action<Player> OnGoal;
     public event Action<DeathReason> OnDied;
 
@@ -17,16 +17,27 @@ public class Player : Character
 
     private Vector2 _inputDirection;
 
+    // 後でPlayersManagerがPlayerをInstantiateするようになったら、ここでPlayersCollectionMutableAccessを取得するのはやめる (RegisterPlayerも要らなくなる)
+    private PlayersCollectionMutableAccess _playersCollectionAccess;
+
     public Vector2 InputDirection => _inputDirection;
 
-    private void Start()
+    protected override void Awake()
     {
+        base.Awake();
+
         if (_sounds == null || !_sounds.IsValid())
         {
             Debug.LogError("PlayerSounds is not properly set up.");
             enabled = false;
         }
-        OnCreated?.Invoke(this);
+
+        _playersCollectionAccess = GetComponent<PlayersCollectionMutableAccess>();
+    }
+
+    private void Start()
+    {
+        _playersCollectionAccess?.RegisterPlayer(this);
     }
 
     public void OnMove(InputAction.CallbackContext context)
