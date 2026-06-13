@@ -35,5 +35,6 @@
     {
         Failure,
         Success,
+        SceneEnd,
     }
 }

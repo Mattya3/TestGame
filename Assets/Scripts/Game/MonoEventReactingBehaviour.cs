@@ -1,4 +1,4 @@
-﻿using System;
+﻿﻿using System;
 using System.Reflection;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,7 +16,8 @@ public abstract class MonoEventReactingBehaviour : MonoBehaviour
         _eventHandlers = new Dictionary<GameEvent, (string, Action)>
         {
             { GameEvent.Success, (nameof(OnSuccess), OnSuccess) },
-            { GameEvent.Failure, (nameof(OnFailure), OnFailure) }
+            { GameEvent.Failure, (nameof(OnFailure), OnFailure) },
+            { GameEvent.SceneEnd, (nameof(OnSceneEnd), OnSceneEnd) },
         };
     }
 
@@ -52,6 +53,8 @@ public abstract class MonoEventReactingBehaviour : MonoBehaviour
     protected virtual void OnSuccess() { }
 
     protected virtual void OnFailure() { }
+
+    protected virtual void OnSceneEnd() { }
 
     // オーバーライドするが，イベントを登録したくない場合はfalseを返すように実装
     protected virtual bool _ShouldSubscribe(GameEvent gameEvent) => true;

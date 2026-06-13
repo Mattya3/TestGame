@@ -1,6 +1,6 @@
-﻿
-public interface IGameManager
+﻿public interface IGameManager
 {
-    void OnFailure();
-    void OnSuccess();
+    void HandleFailure();
+    void HandleSuccess();
+    void HandleSceneEnd();
 }

@@ -2583,12 +2583,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df9af37c254e64449ba3ea943e7f9e85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  _maskColor: {r: 1, g: 0.8763446, b: 0.759434, a: 0.8784314}
-  _illuminationColor1: {r: 0.8313726, g: 0.69411767, b: 0.61960787, a: 1}
-  _illuminationColor2: {r: 1, g: 1, b: 1, a: 1}
-  _illuminationColor3: {r: 1, g: 0.9294118, b: 0.5058824, a: 1}
-  _illuminationIntensity: 2
-  _illuminationOffsetVector: {x: -0.1, y: -0.02, z: 0}
+  _maskColor: {fileID: 11400000, guid: 4d90c49b84f71b44281daecac789ac25, type: 2}
+  _illumination: {fileID: 11400000, guid: c48a55ad6811b5c4da6a8ea7ad776fec, type: 2}
 --- !u!1 &161220174
 GameObject:
   m_ObjectHideFlags: 0
@@ -3681,7 +3677,7 @@ GameObject:
   - component: {fileID: 554078609}
   - component: {fileID: 554078608}
   m_Layer: 0
-  m_Name: SceneTransitionManager
+  m_Name: SceneTransitionTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3707,12 +3703,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 554078607}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1422380077}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &570265382
 PrefabInstance:
@@ -4321,9 +4317,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 740941441}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd7644077ba2bab408e049f0e4ea08bd, type: 3}
+  m_Script: {fileID: 11500000, guid: bf816445901f7c642a1c842462570be4, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayersCollectionAccess
+  m_EditorClassIdentifier: Assembly-CSharp::PlayersCollectionMutableAccess
 --- !u!114 &740941449
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5487,7 +5483,7 @@ GameObject:
   - component: {fileID: 845628947}
   - component: {fileID: 845628946}
   - component: {fileID: 845628949}
-  - component: {fileID: 845628948}
+  - component: {fileID: 845628950}
   m_Layer: 0
   m_Name: MovementRuleManager
   m_TagString: Untagged
@@ -5523,18 +5519,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1422380077}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &845628948
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 845628945}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd7644077ba2bab408e049f0e4ea08bd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayersCollectionAccess
 --- !u!114 &845628949
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5547,6 +5531,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 333410d4b612fa7458b40018c2ef1f12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayersCollectionReadonlyAccess
+--- !u!114 &845628950
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 845628945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf816445901f7c642a1c842462570be4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayersCollectionMutableAccess
 --- !u!1 &847357502
 GameObject:
   m_ObjectHideFlags: 0
@@ -5604,6 +5600,8 @@ GameObject:
   - component: {fileID: 875144714}
   - component: {fileID: 875144713}
   - component: {fileID: 875144716}
+  - component: {fileID: 875144717}
+  - component: {fileID: 875144718}
   - component: {fileID: 875144715}
   m_Layer: 5
   m_Name: ScreenEffects
@@ -5780,6 +5778,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AnimationSoundPlayer
   _volumeScale: 1
+--- !u!114 &875144717
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 875144711}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0edbeb03e2096d4984825a4adfbdc96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StageSceneContextReadonlyAccess
+--- !u!114 &875144718
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 875144711}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd383902712b75847a449af61607c483, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameManagerMutableAccess
 --- !u!1 &882462480
 GameObject:
   m_ObjectHideFlags: 0
@@ -6580,12 +6602,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df9af37c254e64449ba3ea943e7f9e85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  _maskColor: {r: 1, g: 0.8763446, b: 0.759434, a: 0.8784314}
-  _illuminationColor1: {r: 0.8313726, g: 0.69411767, b: 0.61960787, a: 1}
-  _illuminationColor2: {r: 1, g: 1, b: 1, a: 1}
-  _illuminationColor3: {r: 1, g: 0.9294118, b: 0.5058824, a: 1}
-  _illuminationIntensity: 2
-  _illuminationOffsetVector: {x: -0.1, y: -0.02, z: 0}
+  _maskColor: {fileID: 11400000, guid: 4d90c49b84f71b44281daecac789ac25, type: 2}
+  _illumination: {fileID: 11400000, guid: 35d5f0ad107018644b1a36891b70dae6, type: 2}
 --- !u!1001 &906950630
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6721,7 +6739,7 @@ GameObject:
   - component: {fileID: 950878839}
   - component: {fileID: 950878840}
   m_Layer: 0
-  m_Name: StageSceneContext
+  m_Name: SceneContext
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7213,12 +7231,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df9af37c254e64449ba3ea943e7f9e85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  _maskColor: {r: 1, g: 0.8784314, b: 0.7607843, a: 1}
-  _illuminationColor1: {r: 0.8313726, g: 0.69411767, b: 0.61960787, a: 1}
-  _illuminationColor2: {r: 1, g: 1, b: 1, a: 1}
-  _illuminationColor3: {r: 1, g: 0.9294118, b: 0.5058824, a: 1}
-  _illuminationIntensity: 1
-  _illuminationOffsetVector: {x: -0.1, y: -0.02, z: 0}
+  _maskColor: {fileID: 11400000, guid: 4d90c49b84f71b44281daecac789ac25, type: 2}
+  _illumination: {fileID: 11400000, guid: 6eaa86266de9e7746a933749f08eaa54, type: 2}
 --- !u!1 &1093922456
 GameObject:
   m_ObjectHideFlags: 0
@@ -7446,7 +7460,7 @@ Camera:
   m_GameObject: {fileID: 1113217126}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 4
+  m_ClearFlags: 2
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
@@ -8161,12 +8175,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df9af37c254e64449ba3ea943e7f9e85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  _maskColor: {r: 0.70199996, g: 0.41100717, b: 0.23250951, a: 0.7490196}
-  _illuminationColor1: {r: 0.8313726, g: 0.69411767, b: 0.61960787, a: 1}
-  _illuminationColor2: {r: 1, g: 1, b: 1, a: 1}
-  _illuminationColor3: {r: 1, g: 0.9294118, b: 0.5058824, a: 1}
-  _illuminationIntensity: 1
-  _illuminationOffsetVector: {x: -0.1, y: -0.02, z: 0}
+  _maskColor: {fileID: 11400000, guid: 8ae5fcaaf7153764faaf72adf5661888, type: 2}
+  _illumination: {fileID: 11400000, guid: 6eaa86266de9e7746a933749f08eaa54, type: 2}
 --- !u!1 &1271411053
 GameObject:
   m_ObjectHideFlags: 0
@@ -8369,6 +8379,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1636524744}
     m_Modifications:
+    - target: {fileID: -5942520963121181873, guid: 5ac4369dcf1f20d45b58d5346f68057f, type: 3}
+      propertyPath: _patternIndexOffset
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 1796454098350038086, guid: 5ac4369dcf1f20d45b58d5346f68057f, type: 3}
       propertyPath: m_Name
       value: Tree_Anm_001
@@ -8658,8 +8672,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1422380077}
   - component: {fileID: 1422380076}
-  - component: {fileID: 1422380079}
-  - component: {fileID: 1422380078}
   - component: {fileID: 1422380080}
   m_Layer: 0
   m_Name: GameManager
@@ -8680,9 +8692,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e1743204e3654d82b5b1997f90360f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
-  _sceneTransitionManager: {fileID: 554078608}
   _movementRuleManager: {fileID: 845628946}
-  _playersManager: {fileID: 1825111104}
 --- !u!4 &1422380077
 Transform:
   m_ObjectHideFlags: 0
@@ -8696,36 +8706,11 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 554078609}
   - {fileID: 845628947}
   - {fileID: 1825111103}
   - {fileID: 504439420}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1422380078
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1422380075}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b173a2aefea6e94694a5a9fa9ab1e41, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ScreenEffectsAccess
---- !u!114 &1422380079
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1422380075}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b0edbeb03e2096d4984825a4adfbdc96, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::StageSceneContextAccess
 --- !u!114 &1422380080
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9025,9 +9010,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1435100471}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd7644077ba2bab408e049f0e4ea08bd, type: 3}
+  m_Script: {fileID: 11500000, guid: bf816445901f7c642a1c842462570be4, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayersCollectionAccess
+  m_EditorClassIdentifier: Assembly-CSharp::PlayersCollectionMutableAccess
 --- !u!114 &1435100479
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10384,12 +10369,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df9af37c254e64449ba3ea943e7f9e85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  _maskColor: {r: 1, g: 0.8763446, b: 0.759434, a: 0.8784314}
-  _illuminationColor1: {r: 0.8313726, g: 0.69411767, b: 0.61960787, a: 1}
-  _illuminationColor2: {r: 1, g: 1, b: 1, a: 1}
-  _illuminationColor3: {r: 1, g: 0.9294118, b: 0.5058824, a: 1}
-  _illuminationIntensity: 3
-  _illuminationOffsetVector: {x: -0.1, y: -0.02, z: 0}
+  _maskColor: {fileID: 11400000, guid: 4d90c49b84f71b44281daecac789ac25, type: 2}
+  _illumination: {fileID: 11400000, guid: 7c7562163bc936d458624a26e04a77fc, type: 2}
 --- !u!1 &1663018030
 GameObject:
   m_ObjectHideFlags: 0
@@ -14483,7 +14464,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dd383902712b75847a449af61607c483, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GameManagerAccess
+  m_EditorClassIdentifier: Assembly-CSharp::GameManagerMutableAccess
 --- !u!1 &1837054319
 GameObject:
   m_ObjectHideFlags: 0
@@ -15669,6 +15650,7 @@ GameObject:
   - component: {fileID: 2075847340}
   - component: {fileID: 2075847339}
   - component: {fileID: 2075847341}
+  - component: {fileID: 2075847342}
   m_Layer: 0
   m_Name: ElectricBarSparks
   m_TagString: Untagged
@@ -15804,8 +15786,21 @@ MonoBehaviour:
   _spawnPositionMax: 20
   _spawnIntervalMin: 0.1
   _spawnIntervalMax: 0.2
-  _lightPrefab: {fileID: 5395702280908055769, guid: 8a0072913b3cee24e81ba9c68fc3e1e4, type: 3}
   _lightDuration: 0.04
+--- !u!114 &2075847342
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2075847337}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de2080f3da907c0449b60a29e318de42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LightSourcesPool
+  _lightPrefab: {fileID: 5395702280908055769, guid: 8a0072913b3cee24e81ba9c68fc3e1e4, type: 3}
+  _poolSize: 5
 --- !u!1001 &2088562981
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15982,4 +15977,5 @@ SceneRoots:
   - {fileID: 770251658}
   - {fileID: 1684261143}
   - {fileID: 2057038821}
+  - {fileID: 554078609}
   - {fileID: 950878839}

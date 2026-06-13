@@ -1,28 +1,23 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using UnityEngine;
 
-public class PlayersCollectionReadonlyAccess : MonoBehaviour
+public class PlayersCollectionReadonlyAccess : AccessComponent<IPlayersCollection>
 {
-    private static IPlayersCollection _reference;
+    public int Count => Reference != null ? Reference.Count : 0;
 
-    public static void Register(IPlayersCollection reference)
-    {
-        _reference = reference;
-    }
+    public ReadOnlyCollection<Vector3> Positions =>
+        Reference != null
+            ? Reference.Positions
+            : new ReadOnlyCollection<Vector3>(new List<Vector3>());
 
-    public static void Unregister(IPlayersCollection reference)
-    {
-        if (_reference != reference)
-            return;
+    public ReadOnlyCollection<Bounds> BoundsList =>
+        Reference != null
+            ? Reference.BoundsList
+            : new ReadOnlyCollection<Bounds>(new List<Bounds>());
 
-        _reference = null;
-    }
-
-    public int Count => _reference?.Count ?? 0;
-
-    public List<Vector3> Positions => _reference?.Positions ?? new List<Vector3>();
-
-    public List<Bounds> BoundsList => _reference?.BoundsList ?? new List<Bounds>();
-
-    public List<Vector2> InputDirections => _reference?.InputDirections ?? new List<Vector2>();
+    public ReadOnlyCollection<Vector2> InputDirections =>
+        Reference != null
+            ? Reference.InputDirections
+            : new ReadOnlyCollection<Vector2>(new List<Vector2>());
 }

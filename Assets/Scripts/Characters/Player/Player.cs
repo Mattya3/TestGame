@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using static Constants;
 
+[RequireComponent(typeof(PlayersCollectionMutableAccess))]
 public class Player : Character
 {
     public event Action<Player> OnGoal;
@@ -16,8 +17,8 @@ public class Player : Character
 
     private Vector2 _inputDirection;
 
-    // 後でPlayersManagerがPlayerをInstantiateするようになったら、ここでPlayersCollectionAccessを取得するのはやめる (RegisterPlayerも要らなくなる)
-    private PlayersCollectionAccess _playersCollection;
+    // 後でPlayersManagerがPlayerをInstantiateするようになったら、ここでPlayersCollectionMutableAccessを取得するのはやめる (RegisterPlayerも要らなくなる)
+    private PlayersCollectionMutableAccess _playersCollectionAccess;
 
     public Vector2 InputDirection => _inputDirection;
 
@@ -31,12 +32,12 @@ public class Player : Character
             enabled = false;
         }
 
-        _playersCollection = GetComponent<PlayersCollectionAccess>();
+        _playersCollectionAccess = GetComponent<PlayersCollectionMutableAccess>();
     }
 
     private void Start()
     {
-        _playersCollection?.RegisterPlayer(this);
+        _playersCollectionAccess?.RegisterPlayer(this);
     }
 
     public void OnMove(InputAction.CallbackContext context)
