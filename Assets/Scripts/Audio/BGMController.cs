@@ -13,9 +13,8 @@ public class BGMController : MonoEventReactingBehaviour
 
     private AudioSource _audioSource;
 
-    protected override void Awake()
+    private void Awake()
     {
-        base.Awake();
         _audioSource = GetComponent<AudioSource>();
     }
 

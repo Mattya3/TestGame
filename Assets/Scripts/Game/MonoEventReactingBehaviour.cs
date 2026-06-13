@@ -21,11 +21,6 @@ public abstract class MonoEventReactingBehaviour : MonoBehaviour
         };
     }
 
-    protected virtual void Awake()
-    {
-        _eventRegistrationAccess = GetComponent<GameEventRegistrationAccess>();
-    }
-
     protected virtual void OnEnable()
     {
         RegisterEventActions();
@@ -47,24 +42,34 @@ public abstract class MonoEventReactingBehaviour : MonoBehaviour
 
     protected void RegisterEventActions()
     {
+        _GetEventRegistrationAccess();
+
         foreach (var kvp in _eventHandlers)
         {
             var gameEvent = kvp.Key;
             var (methodName, handler) = kvp.Value;
             if (_IsOverridden(methodName) && _ShouldSubscribe(gameEvent))
-                _eventRegistrationAccess.RegisterEventAction(gameEvent, handler);
+                _eventRegistrationAccess?.RegisterEventAction(gameEvent, handler);
         }
     }
 
     protected void UnregisterEventActions()
     {
+        _GetEventRegistrationAccess();
+
         foreach (var kvp in _eventHandlers)
         {
             var gameEvent = kvp.Key;
             var (methodName, handler) = kvp.Value;
             if (_IsOverridden(methodName) && _ShouldSubscribe(gameEvent))
-                _eventRegistrationAccess.UnregisterEventAction(gameEvent, handler);
+                _eventRegistrationAccess?.UnregisterEventAction(gameEvent, handler);
         }
+    }
+
+    private void _GetEventRegistrationAccess()
+    {
+        if (_eventRegistrationAccess == null)
+            _eventRegistrationAccess = GetComponent<GameEventRegistrationAccess>();
     }
 
     private bool _IsOverridden(string methodName)
