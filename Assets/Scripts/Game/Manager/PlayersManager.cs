@@ -23,7 +23,7 @@ public class PlayersManager : MonoBehaviour, IPlayersCollection
 
     private void Awake()
     {
-        AccessComponent<IPlayersCollection>.Register(this);
+        AccessComponent<IPlayersCollection>.RegisterReference(this);
 
         _gameManagerAccess = GetComponent<GameManagerMutableAccess>();
 
@@ -34,7 +34,7 @@ public class PlayersManager : MonoBehaviour, IPlayersCollection
 
     private void OnDestroy()
     {
-        AccessComponent<IPlayersCollection>.Unregister(this);
+        AccessComponent<IPlayersCollection>.UnregisterReference(this);
     }
 
     public void RegisterPlayer(Player player)

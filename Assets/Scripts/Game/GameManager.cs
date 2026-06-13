@@ -11,13 +11,13 @@ public class GameManager : MonoBehaviour, IGameManager
 
     private void Awake()
     {
-        AccessComponent<IGameManager>.Register(this);
+        AccessComponent<IGameManager>.RegisterReference(this);
         _gameEventTriggerAccess = GetComponent<GameEventTriggerAccess>();
     }
 
     private void OnDestroy()
     {
-        AccessComponent<IGameManager>.Unregister(this);
+        AccessComponent<IGameManager>.UnregisterReference(this);
     }
 
     private void Start()

@@ -5,12 +5,12 @@ public abstract class AccessComponent<T> : MonoBehaviour
 {
     private static T _privateReference;
 
-    public static void Register(T reference)
+    public static void RegisterReference(T reference)
     {
         _privateReference = reference;
     }
 
-    public static void Unregister(T reference)
+    public static void UnregisterReference(T reference)
     {
         if (_privateReference != reference)
             return;
