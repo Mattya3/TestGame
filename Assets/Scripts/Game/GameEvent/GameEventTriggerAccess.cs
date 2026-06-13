@@ -2,7 +2,7 @@
 
 public class GameEventTriggerAccess : AccessComponent<GameEventHub>
 {
-    static private GameEventTriggerAccess _instance;
+    private static GameEventTriggerAccess _instance;
 
     private void Awake()
     {
