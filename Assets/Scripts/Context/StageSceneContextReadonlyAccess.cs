@@ -21,12 +21,12 @@ public class StageSceneContextReadonlyAccess : MonoBehaviour
     {
         get
         {
-            _ValidateReferences();
+            _LogMissingReference();
             return _reference != null ? _reference.AfterRestart : false;
         }
     }
 
-    private void _ValidateReferences()
+    private void _LogMissingReference()
     {
         if (_reference == null)
         {

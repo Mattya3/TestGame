@@ -19,17 +19,17 @@ public class PlayersCollectionMutableAccess : MonoBehaviour
 
     public void RegisterPlayer(Player player)
     {
-        _ValidateReferences();
+        _LogMissingReference();
         _reference?.RegisterPlayer(player);
     }
 
     public void SetMoveController(IMoveController moveController)
     {
-        _ValidateReferences();
+        _LogMissingReference();
         _reference?.SetMoveController(moveController);
     }
 
-    private void _ValidateReferences()
+    private void _LogMissingReference()
     {
         if (_reference == null)
         {

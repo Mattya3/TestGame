@@ -23,7 +23,7 @@ public class PlayersCollectionReadonlyAccess : MonoBehaviour
     {
         get
         {
-            _ValidateReferences();
+            _LogMissingReference();
             return _reference != null ? _reference.Count : 0;
         }
     }
@@ -32,7 +32,7 @@ public class PlayersCollectionReadonlyAccess : MonoBehaviour
     {
         get
         {
-            _ValidateReferences();
+            _LogMissingReference();
             return _reference != null
                 ? _reference.Positions
                 : new ReadOnlyCollection<Vector3>(new List<Vector3>());
@@ -43,7 +43,7 @@ public class PlayersCollectionReadonlyAccess : MonoBehaviour
     {
         get
         {
-            _ValidateReferences();
+            _LogMissingReference();
             return _reference != null
                 ? _reference.BoundsList
                 : new ReadOnlyCollection<Bounds>(new List<Bounds>());
@@ -54,14 +54,14 @@ public class PlayersCollectionReadonlyAccess : MonoBehaviour
     {
         get
         {
-            _ValidateReferences();
+            _LogMissingReference();
             return _reference != null
                 ? _reference.InputDirections
                 : new ReadOnlyCollection<Vector2>(new List<Vector2>());
         }
     }
 
-    private void _ValidateReferences()
+    private void _LogMissingReference()
     {
         if (_reference == null)
         {

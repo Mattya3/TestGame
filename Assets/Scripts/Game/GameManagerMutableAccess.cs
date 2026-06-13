@@ -17,23 +17,23 @@ public class GameManagerMutableAccess : MonoBehaviour
 
     public void HandleFailure()
     {
-        _ValidateReferences();
+        _LogMissingReference();
         _reference?.HandleFailure();
     }
 
     public void HandleSuccess()
     {
-        _ValidateReferences();
+        _LogMissingReference();
         _reference?.HandleSuccess();
     }
 
     public void HandleSceneEnd()
     {
-        _ValidateReferences();
+        _LogMissingReference();
         _reference?.HandleSceneEnd();
     }
 
-    private void _ValidateReferences()
+    private void _LogMissingReference()
     {
         if (_reference == null)
         {
