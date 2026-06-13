@@ -2,72 +2,22 @@
 using System.Collections.ObjectModel;
 using UnityEngine;
 
-public class PlayersCollectionReadonlyAccess : MonoBehaviour
+public class PlayersCollectionReadonlyAccess : AccessComponent<IPlayersCollection>
 {
-    private static IPlayersCollection _reference;
+    public int Count => Reference != null ? Reference.Count : 0;
 
-    public static void Register(IPlayersCollection reference)
-    {
-        _reference = reference;
-    }
+    public ReadOnlyCollection<Vector3> Positions =>
+        Reference != null
+            ? Reference.Positions
+            : new ReadOnlyCollection<Vector3>(new List<Vector3>());
 
-    public static void Unregister(IPlayersCollection reference)
-    {
-        if (_reference != reference)
-            return;
+    public ReadOnlyCollection<Bounds> BoundsList =>
+        Reference != null
+            ? Reference.BoundsList
+            : new ReadOnlyCollection<Bounds>(new List<Bounds>());
 
-        _reference = null;
-    }
-
-    public int Count
-    {
-        get
-        {
-            _LogMissingReference();
-            return _reference != null ? _reference.Count : 0;
-        }
-    }
-
-    public ReadOnlyCollection<Vector3> Positions
-    {
-        get
-        {
-            _LogMissingReference();
-            return _reference != null
-                ? _reference.Positions
-                : new ReadOnlyCollection<Vector3>(new List<Vector3>());
-        }
-    }
-
-    public ReadOnlyCollection<Bounds> BoundsList
-    {
-        get
-        {
-            _LogMissingReference();
-            return _reference != null
-                ? _reference.BoundsList
-                : new ReadOnlyCollection<Bounds>(new List<Bounds>());
-        }
-    }
-
-    public ReadOnlyCollection<Vector2> InputDirections
-    {
-        get
-        {
-            _LogMissingReference();
-            return _reference != null
-                ? _reference.InputDirections
-                : new ReadOnlyCollection<Vector2>(new List<Vector2>());
-        }
-    }
-
-    private void _LogMissingReference()
-    {
-        if (_reference == null)
-        {
-            Debug.LogError(
-                "No IPlayersCollection reference registered. Please ensure that an IPlayersCollection implementation is registered before using PlayersCollectionReadonlyAccess."
-            );
-        }
-    }
+    public ReadOnlyCollection<Vector2> InputDirections =>
+        Reference != null
+            ? Reference.InputDirections
+            : new ReadOnlyCollection<Vector2>(new List<Vector2>());
 }
