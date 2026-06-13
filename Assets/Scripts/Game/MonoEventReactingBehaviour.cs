@@ -28,26 +28,12 @@ public abstract class MonoEventReactingBehaviour : MonoBehaviour
 
     protected virtual void OnEnable()
     {
-        foreach (var kvp in _eventHandlers)
-        {
-            var gameEvent = kvp.Key;
-            var (methodName, handler) = kvp.Value;
-
-            if (_IsOverridden(methodName) && _ShouldSubscribe(gameEvent))
-                _eventRegistration.RegisterEventAction(gameEvent, handler);
-        }
+        RegisterEventActions();
     }
 
     protected virtual void OnDisable()
     {
-        foreach (var kvp in _eventHandlers)
-        {
-            var gameEvent = kvp.Key;
-            var (methodName, handler) = kvp.Value;
-
-            if (_IsOverridden(methodName) && _ShouldSubscribe(gameEvent))
-                _eventRegistration.UnregisterEventAction(gameEvent, handler);
-        }
+        UnregisterEventActions();
     }
 
     protected virtual void OnSuccess() { }
@@ -58,6 +44,28 @@ public abstract class MonoEventReactingBehaviour : MonoBehaviour
 
     // オーバーライドするが，イベントを登録したくない場合はfalseを返すように実装
     protected virtual bool _ShouldSubscribe(GameEvent gameEvent) => true;
+
+    protected void RegisterEventActions()
+    {
+        foreach (var kvp in _eventHandlers)
+        {
+            var gameEvent = kvp.Key;
+            var (methodName, handler) = kvp.Value;
+            if (_IsOverridden(methodName) && _ShouldSubscribe(gameEvent))
+                _eventRegistration.RegisterEventAction(gameEvent, handler);
+        }
+    }
+
+    protected void UnregisterEventActions()
+    {
+        foreach (var kvp in _eventHandlers)
+        {
+            var gameEvent = kvp.Key;
+            var (methodName, handler) = kvp.Value;
+            if (_IsOverridden(methodName) && _ShouldSubscribe(gameEvent))
+                _eventRegistration.UnregisterEventAction(gameEvent, handler);
+        }
+    }
 
     private bool _IsOverridden(string methodName)
     {

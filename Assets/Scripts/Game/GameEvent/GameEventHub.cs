@@ -5,11 +5,16 @@ using static Constants;
 
 public class GameEventHub : MonoBehaviour
 {
-    private readonly Dictionary<GameEvent, Action> _eventActions = new Dictionary<GameEvent, Action>
+    private readonly Dictionary<GameEvent, Action> _eventActions;
+
+    public GameEventHub()
     {
-        { GameEvent.Failure, null },
-        { GameEvent.Success, null }
-    };
+        _eventActions = new Dictionary<GameEvent, Action>();
+        foreach (GameEvent gameEvent in Enum.GetValues(typeof(GameEvent)))
+        {
+            _eventActions[gameEvent] = null;
+        }
+    }
 
     private void Awake()
     {
