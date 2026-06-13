@@ -24,7 +24,8 @@ public abstract class AccessComponent<T> : MonoBehaviour
             return;
 
         Debug.LogError(
-            $"No {typeof(T).Name} reference registered. Please ensure that an implementation of {typeof(T).Name} is registered before using {GetType().Name}."
+            $"No {typeof(T).Name} reference registered. Please ensure that an implementation of {typeof(T).Name} is registered before using {GetType().Name}.",
+            this
         );
     }
 
