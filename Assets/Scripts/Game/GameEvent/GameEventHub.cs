@@ -5,22 +5,25 @@ using static Constants;
 
 public class GameEventHub : MonoBehaviour
 {
-    private readonly Dictionary<GameEvent, Action> _eventActions = new Dictionary<GameEvent, Action>
+    private readonly Dictionary<GameEvent, Action> _eventActions;
+
+    public GameEventHub()
     {
-        { GameEvent.Failure, null },
-        { GameEvent.Success, null }
-    };
+        _eventActions = new Dictionary<GameEvent, Action>();
+        foreach (GameEvent gameEvent in Enum.GetValues(typeof(GameEvent)))
+        {
+            _eventActions[gameEvent] = null;
+        }
+    }
 
     private void Awake()
     {
-        GameEventRegistrationAccess.Register(this);
-        GameEventTriggerAccess.Register(this);
+        AccessComponent<GameEventHub>.RegisterReference(this);
     }
 
     private void OnDestroy()
     {
-        GameEventTriggerAccess.Unregister(this);
-        GameEventRegistrationAccess.Unregister(this);
+        AccessComponent<GameEventHub>.UnregisterReference(this);
     }
 
     public void RegisterEventAction(GameEvent gameEvent, Action eventAction)
@@ -30,7 +33,7 @@ public class GameEventHub : MonoBehaviour
             Debug.LogError($"Unhandled GameEvent value in RegisterEventAction: {gameEvent}");
             throw new ArgumentOutOfRangeException(nameof(gameEvent), gameEvent, null);
         }
-        
+
         _eventActions[gameEvent] += eventAction;
     }
 
@@ -41,7 +44,7 @@ public class GameEventHub : MonoBehaviour
             Debug.LogError($"Unhandled GameEvent value in UnregisterEventAction: {gameEvent}");
             throw new ArgumentOutOfRangeException(nameof(gameEvent), gameEvent, null);
         }
-        
+
         _eventActions[gameEvent] -= eventAction;
     }
 

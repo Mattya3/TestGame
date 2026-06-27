@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class StageSceneContext : MonoBehaviour, IStageSceneContext
+public class StageSceneContext : MonoEventReactingBehaviour, IStageSceneContext
 {
     [SerializeField]
     private uint _restartCount = 0;
@@ -11,23 +11,26 @@ public class StageSceneContext : MonoBehaviour, IStageSceneContext
     {
         if (_instance != null && _instance != this)
         {
+            // GameEventTriggerに登録されたイベントアクションはシーン終了時にクリアされるため、シーン再読み込み後にイベントアクションを再登録する必要がある。
+            _instance.RegisterEventActions();
+
             Destroy(gameObject);
             return;
         }
         _instance = this;
         DontDestroyOnLoad(gameObject);
 
-        StageSceneContextAccess.Register(this);
+        AccessComponent<IStageSceneContext>.RegisterReference(this);
     }
 
     private void OnDestroy()
     {
-        StageSceneContextAccess.Unregister(this);
+        AccessComponent<IStageSceneContext>.UnregisterReference(this);
     }
 
     public bool AfterRestart => _restartCount > 0;
 
-    public void OnStageRestarted()
+    protected override void OnFailure()
     {
         _restartCount++;
     }

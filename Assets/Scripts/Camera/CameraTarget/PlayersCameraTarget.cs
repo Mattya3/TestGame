@@ -12,7 +12,7 @@ public class PlayersCameraTarget : MonoBehaviour, ICameraTarget
     [SerializeField]
     private CameraTargetShiftDamp _shiftDamp = new CameraTargetShiftDamp();
 
-    private PlayersCollectionReadonlyAccess _players;
+    private PlayersCollectionReadonlyAccess _playersAccess;
     private Vector3 _position = Vector3.zero;
 
     void Awake()
@@ -25,7 +25,7 @@ public class PlayersCameraTarget : MonoBehaviour, ICameraTarget
         }
         _shift.Awake();
 
-        _players = GetComponent<PlayersCollectionReadonlyAccess>();
+        _playersAccess = GetComponent<PlayersCollectionReadonlyAccess>();
     }
 
     public void OnStart()
@@ -40,7 +40,7 @@ public class PlayersCameraTarget : MonoBehaviour, ICameraTarget
     void FixedUpdate()
     {
         var center = _CalculateCenter();
-        var damp = _shiftDamp.CalculateDamp(_players);
+        var damp = _shiftDamp.CalculateDamp(_playersAccess);
 
         _shift.FixedUpdate(center, damp);
         _position = center + _offset + _shift.Get();
@@ -48,7 +48,7 @@ public class PlayersCameraTarget : MonoBehaviour, ICameraTarget
 
     private Vector3 _CalculateCenter()
     {
-        var playerPositions = _players.Positions;
+        var playerPositions = _playersAccess.Positions;
 
         if (playerPositions == null || playerPositions.Count == 0)
             return Vector3.zero;

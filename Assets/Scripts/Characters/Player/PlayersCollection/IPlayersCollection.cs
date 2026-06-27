@@ -1,13 +1,13 @@
-﻿
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using UnityEngine;
 
 public interface IPlayersCollection
 {
     int Count { get; }
-    List<Vector3> Positions { get; }
-    List<Bounds> BoundsList { get; }
-    List<Vector2> InputDirections { get; }
+    ReadOnlyCollection<Vector3> Positions { get; }
+    ReadOnlyCollection<Bounds> BoundsList { get; }
+    ReadOnlyCollection<Vector2> InputDirections { get; }
 
     void SetMoveController(IMoveController moveController);
 }
