@@ -26,7 +26,9 @@ public class PlayersManager : MonoBehaviour, IPlayersCollection
         AccessComponent<IPlayersCollection>.RegisterReference(this);
 
         // Findによってプレイヤを取得。プレイヤを動的に生成するようになったら、Findはやめる
-        FindObjectsByType<Player>(FindObjectsSortMode.InstanceID).ToList().ForEach(player => _RegisterPlayer(player));
+        FindObjectsByType<Player>(FindObjectsSortMode.InstanceID)
+            .ToList()
+            .ForEach(player => _RegisterPlayer(player));
 
         _gameManagerAccess = GetComponent<GameManagerMutableAccess>();
 
