@@ -12,6 +12,7 @@ public class PlayersCameraTarget : MonoBehaviour, ICameraTarget
     [SerializeField]
     private CameraTargetShiftDamp _shiftDamp = new CameraTargetShiftDamp();
 
+    private bool _isValidConfiguration = true;
     private PlayersCollectionReadonlyAccess _playersAccess;
     private Vector3 _position = Vector3.zero;
 
@@ -21,6 +22,7 @@ public class PlayersCameraTarget : MonoBehaviour, ICameraTarget
         {
             Debug.LogError("カメラのoffset.zは負の値でなければなりません", this);
             enabled = false;
+            _isValidConfiguration = false;
             return;
         }
         _shift.Awake();
@@ -30,6 +32,9 @@ public class PlayersCameraTarget : MonoBehaviour, ICameraTarget
 
     public void OnStart()
     {
+        if (!_isValidConfiguration)
+            return;
+
         enabled = true;
 
         var center = _CalculateCenter();
