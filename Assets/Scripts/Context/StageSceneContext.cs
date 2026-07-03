@@ -26,6 +26,9 @@ public class StageSceneContext : MonoEventReactingBehaviour, IStageSceneContext
     private void OnDestroy()
     {
         AccessComponent<IStageSceneContext>.UnregisterReference(this);
+
+        if (_instance == this)
+            _instance = null;
     }
 
     public bool AfterRestart => _restartCount > 0;
