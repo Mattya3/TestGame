@@ -13,7 +13,9 @@ public class WipingMaskController : MonoUIImageMaterialAccessBehaviour
     {
         if (!material.HasProperty(MaskThresholdID))
         {
-            Debug.LogError($"Material {material.name} does not have a property named '_MaskThreshold'.");
+            Debug.LogError(
+                $"Material {material.name} does not have a property named '_MaskThreshold'."
+            );
             return false;
         }
         return true;
