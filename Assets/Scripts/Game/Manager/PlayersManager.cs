@@ -25,6 +25,10 @@ public class PlayersManager : MonoBehaviour, IPlayersCollection
     {
         AccessComponent<IPlayersCollection>.RegisterReference(this);
 
+        // Findによってプレイヤを取得。プレイヤを動的に生成するようになったら、Findはやめる
+        foreach (var player in FindObjectsByType<Player>(FindObjectsSortMode.InstanceID))
+            _RegisterPlayer(player);
+
         _gameManagerAccess = GetComponent<GameManagerMutableAccess>();
 
         _positionsReadOnly = new ReadOnlyCollection<Vector3>(_positionsList);
@@ -37,7 +41,7 @@ public class PlayersManager : MonoBehaviour, IPlayersCollection
         AccessComponent<IPlayersCollection>.UnregisterReference(this);
     }
 
-    public void RegisterPlayer(Player player)
+    private void _RegisterPlayer(Player player)
     {
         if (_players.Contains(player))
             return;
@@ -45,44 +49,44 @@ public class PlayersManager : MonoBehaviour, IPlayersCollection
         _players.Add(player);
         player.OnDied += (reason) =>
         {
-            HandlePlayerDeath(player, reason);
+            _HandlePlayerDeath(player, reason);
         };
         player.OnGoal += (player) =>
         {
-            HandlePlayerGoal(player);
+            _HandlePlayerGoal(player);
         };
     }
 
-    private void HandlePlayerDeath(Player deadPlayer, DeathReason deathReason)
+    private void _HandlePlayerDeath(Player deadPlayer, DeathReason deathReason)
     {
         if (!ArePlayersAlive)
             return;
 
-        SetPlayersDead();
-        FreezeAllPlayers();
+        _SetPlayersDead();
+        _FreezeAllPlayers();
 
         _gameManagerAccess.HandleFailure();
     }
 
-    private void HandlePlayerGoal(Player player)
+    private void _HandlePlayerGoal(Player player)
     {
         if (!ArePlayersAlive)
             return;
 
         player.Freeze();
 
-        if (!AllPlayersReachedGoal())
+        if (!_AllPlayersReachedGoal())
             return;
 
         _gameManagerAccess.HandleSuccess();
     }
 
-    private void SetPlayersDead()
+    private void _SetPlayersDead()
     {
         ArePlayersAlive = false;
     }
 
-    private void FreezeAllPlayers()
+    private void _FreezeAllPlayers()
     {
         foreach (var player in _players)
         {
@@ -90,7 +94,7 @@ public class PlayersManager : MonoBehaviour, IPlayersCollection
         }
     }
 
-    private bool AllPlayersReachedGoal()
+    private bool _AllPlayersReachedGoal()
     {
         return _players.Count > 0 && _players.All(p => p.HasReachedGoal);
     }

@@ -3,7 +3,6 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using static Constants;
 
-[RequireComponent(typeof(PlayersCollectionMutableAccess))]
 public class Player : Character
 {
     public event Action<Player> OnGoal;
@@ -17,9 +16,6 @@ public class Player : Character
 
     private Vector2 _inputDirection;
 
-    // 後でPlayersManagerがPlayerをInstantiateするようになったら、ここでPlayersCollectionMutableAccessを取得するのはやめる (RegisterPlayerも要らなくなる)
-    private PlayersCollectionMutableAccess _playersCollectionAccess;
-
     public Vector2 InputDirection => _inputDirection;
 
     protected override void Awake()
@@ -31,13 +27,6 @@ public class Player : Character
             Debug.LogError("PlayerSounds is not properly set up.");
             enabled = false;
         }
-
-        _playersCollectionAccess = GetComponent<PlayersCollectionMutableAccess>();
-    }
-
-    private void Start()
-    {
-        _playersCollectionAccess?.RegisterPlayer(this);
     }
 
     public void OnMove(InputAction.CallbackContext context)

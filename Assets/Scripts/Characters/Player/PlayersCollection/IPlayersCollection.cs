@@ -9,7 +9,5 @@ public interface IPlayersCollection
     ReadOnlyCollection<Bounds> BoundsList { get; }
     ReadOnlyCollection<Vector2> InputDirections { get; }
 
-    void RegisterPlayer(Player player);
-
     void SetMoveController(IMoveController moveController);
 }

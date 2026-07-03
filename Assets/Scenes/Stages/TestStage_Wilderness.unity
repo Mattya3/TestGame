@@ -4057,7 +4057,6 @@ GameObject:
   - component: {fileID: 740941444}
   - component: {fileID: 740941443}
   - component: {fileID: 740941442}
-  - component: {fileID: 740941448}
   - component: {fileID: 740941449}
   m_Layer: 7
   m_Name: Player2
@@ -4321,18 +4320,6 @@ Transform:
   - {fileID: 1663018032}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &740941448
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 740941441}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf816445901f7c642a1c842462570be4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayersCollectionMutableAccess
 --- !u!114 &740941449
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8776,7 +8763,6 @@ GameObject:
   - component: {fileID: 1435100474}
   - component: {fileID: 1435100473}
   - component: {fileID: 1435100472}
-  - component: {fileID: 1435100478}
   - component: {fileID: 1435100479}
   m_Layer: 7
   m_Name: Player1
@@ -9040,18 +9026,6 @@ Transform:
   - {fileID: 952535231}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1435100478
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1435100471}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf816445901f7c642a1c842462570be4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayersCollectionMutableAccess
 --- !u!114 &1435100479
 MonoBehaviour:
   m_ObjectHideFlags: 0
