@@ -40,6 +40,12 @@ public class MonoUIImageMaterialAccessBehaviour : MonoBehaviour, IMaterialModifi
         _CleanupMaterial();
     }
 
+    protected virtual bool IsMaterialValid(Material material)
+    {
+        // Override this method in derived classes to validate the material.
+        return true;
+    }
+
     protected virtual void SetMaterialProperties(Material material)
     {
         // Override this method in derived classes to set properties on the material.
@@ -81,6 +87,9 @@ public class MonoUIImageMaterialAccessBehaviour : MonoBehaviour, IMaterialModifi
     {
         if (baseMaterial == null)
             return null;
+
+        if (!IsMaterialValid(baseMaterial))
+            return baseMaterial;
 
         if (_instancedMaterial == null)
         {

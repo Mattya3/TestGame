@@ -9,6 +9,16 @@ public class WipingMaskController : MonoUIImageMaterialAccessBehaviour
 
     private static readonly int MaskThresholdID = Shader.PropertyToID("_MaskThreshold");
 
+    protected override bool IsMaterialValid(Material material)
+    {
+        if (!material.HasProperty(MaskThresholdID))
+        {
+            Debug.LogError($"Material {material.name} does not have a property named '_MaskThreshold'.");
+            return false;
+        }
+        return true;
+    }
+
     protected override void SetMaterialProperties(Material material)
     {
         material.SetFloat(MaskThresholdID, _maskThreshold);
