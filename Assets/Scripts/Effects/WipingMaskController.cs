@@ -26,6 +26,7 @@ public class WipingMaskController : MonoBehaviour
         {
             Debug.LogError("WipingMaskController requires an Image component with a material.");
             enabled = false;
+            return;
         }
         if (!_material.HasFloat(MaskThresholdID))
         {
@@ -33,6 +34,7 @@ public class WipingMaskController : MonoBehaviour
                 "WipingMaskController requires a material with a _MaskThreshold property."
             );
             enabled = false;
+            return;
         }
     }
 
