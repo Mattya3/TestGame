@@ -29,12 +29,12 @@ public class SceneTransitionTrigger : MonoEventReactingBehaviour
             _CompleteStage();
     }
 
-    public void _RestartStage()
+    private void _RestartStage()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
-    public void _CompleteStage()
+    private void _CompleteStage()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
