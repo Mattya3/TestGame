@@ -7,6 +7,7 @@ public class MonoUIImageMaterialAccessBehaviour : MonoBehaviour, IMaterialModifi
 {
     private Image _image;
     private Material _instancedMaterial;
+    private bool _hasInvalidMaterial = false;
 
     protected virtual void OnValidate()
     {
@@ -67,6 +68,9 @@ public class MonoUIImageMaterialAccessBehaviour : MonoBehaviour, IMaterialModifi
         if (_image == null)
             return;
 
+        if (_hasInvalidMaterial)
+            return;
+
         _image.SetMaterialDirty();
     }
 
@@ -88,8 +92,14 @@ public class MonoUIImageMaterialAccessBehaviour : MonoBehaviour, IMaterialModifi
         if (baseMaterial == null)
             return null;
 
-        if (!IsMaterialValid(baseMaterial))
+        if (_hasInvalidMaterial)
             return baseMaterial;
+
+        if (!IsMaterialValid(baseMaterial))
+        {
+            _hasInvalidMaterial = true;
+            return baseMaterial;
+        }
 
         if (_instancedMaterial == null)
         {
