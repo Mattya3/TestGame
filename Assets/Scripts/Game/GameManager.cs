@@ -25,6 +25,11 @@ public class GameManager : MonoBehaviour, IGameManager
         _movementRuleManager.Initialize();
     }
 
+    public void HandlePlayStart()
+    {
+        _gameEventTriggerAccess.TriggerEventActions(GameEvent.PlayStart);
+    }
+
     public void HandleFailure()
     {
         _gameEventTriggerAccess.TriggerEventActions(GameEvent.Failure);

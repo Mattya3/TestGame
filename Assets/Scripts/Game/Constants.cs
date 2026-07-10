@@ -33,6 +33,7 @@
 
     public enum GameEvent
     {
+        PlayStart,
         Failure,
         Success,
         SceneEnd,

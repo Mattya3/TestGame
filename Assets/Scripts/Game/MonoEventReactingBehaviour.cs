@@ -15,6 +15,7 @@ public abstract class MonoEventReactingBehaviour : MonoBehaviour
     {
         _eventHandlers = new Dictionary<GameEvent, (string, Action)>
         {
+            { GameEvent.PlayStart, (nameof(OnPlayStart), OnPlayStart) },
             { GameEvent.Success, (nameof(OnSuccess), OnSuccess) },
             { GameEvent.Failure, (nameof(OnFailure), OnFailure) },
             { GameEvent.SceneEnd, (nameof(OnSceneEnd), OnSceneEnd) },
@@ -30,6 +31,8 @@ public abstract class MonoEventReactingBehaviour : MonoBehaviour
     {
         UnregisterEventActions();
     }
+
+    protected virtual void OnPlayStart() { }
 
     protected virtual void OnSuccess() { }
 
