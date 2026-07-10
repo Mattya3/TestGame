@@ -13,18 +13,18 @@ public class OpeningCameraTarget : MonoBehaviour, ICameraTarget
     [SerializeField]
     private float _progressFactor = 0f; // 0から1の範囲で、Animatorを使って進行度を制御するための値
 
-    private StageSceneContextReadonlyAccess _stageSceneContext;
+    private StageSceneContextReadonlyAccess _stageSceneContextAccess;
 
     private void Awake()
     {
-        _stageSceneContext = GetComponent<StageSceneContextReadonlyAccess>();
+        _stageSceneContextAccess = GetComponent<StageSceneContextReadonlyAccess>();
     }
 
     public void OnStart()
     {
     }
 
-    public bool IsActive => !_stageSceneContext.AfterRestart; // ステージがリスタートされた後は非アクティブにする
+    public bool IsActive => !_stageSceneContextAccess.AfterRestart; // ステージがリスタートされた後は非アクティブにする
 
     public Vector3 Position
     {
