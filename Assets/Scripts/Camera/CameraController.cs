@@ -24,7 +24,7 @@ public class CameraController : MonoBehaviour
 
     void Awake()
     {
-        CameraAccess.Register(this);
+        AccessComponent<CameraController>.RegisterReference(this);
 
         _camera = GetComponentInChildren<Camera>();
         _targetsStack = new CameraTargetsStack(GetComponentsInChildren<ICameraTarget>());
@@ -40,7 +40,7 @@ public class CameraController : MonoBehaviour
 
     void OnDestroy()
     {
-        CameraAccess.Unregister(this);
+        AccessComponent<CameraController>.UnregisterReference(this);
     }
 
     private bool _IsConfigurationValid()

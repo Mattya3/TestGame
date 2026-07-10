@@ -1,21 +1,8 @@
 ﻿using UnityEngine;
 
-public class CameraAccess : MonoBehaviour
+public class CameraMutableAccess : AccessComponent<CameraController>
 {
-    static private CameraController _reference;
-
-    static public void Register(CameraController reference)
-    {
-        _reference = reference;
-    }
-
-    static public void Unregister(CameraController reference)
-    {
-        if (_reference == reference)
-            _reference = null;
-    }
-
-    static CameraAccess _instance;
+    static CameraMutableAccess _instance;
 
     private void Awake()
     {
@@ -35,11 +22,11 @@ public class CameraAccess : MonoBehaviour
 
     public void PushTarget(ICameraTarget target)
     {
-        _reference?.PushTarget(target);
+        Reference?.PushTarget(target);
     }
 
     public void PopTarget()
     {
-        _reference?.PopTarget();
+        Reference?.PopTarget();
     }
 }
