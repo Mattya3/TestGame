@@ -2,60 +2,41 @@
 using static Constants;
 
 [RequireComponent(typeof(GameEventTriggerAccess))]
-[RequireComponent(typeof(StageSceneContextAccess))]
-[RequireComponent(typeof(ScreenEffectsAccess))]
-[RequireComponent(typeof(CameraAccess))]
 public class GameManager : MonoBehaviour, IGameManager
 {
     [SerializeField]
-    private SceneTransitionManager _sceneTransitionManager;
-
-    [SerializeField]
     private MovementRuleManager _movementRuleManager;
 
-    [SerializeField]
-    private PlayersManager _playersManager;
-
-    private GameEventTriggerAccess _gameEventTrigger;
-    private StageSceneContextAccess _stageSceneContext;
-    private ScreenEffectsAccess _screenEffects;
-    private CameraAccess _camera;
+    private GameEventTriggerAccess _gameEventTriggerAccess;
 
     private void Awake()
     {
-        GameManagerAccess.Register(this);
-
-        _gameEventTrigger = GetComponent<GameEventTriggerAccess>();
-        _stageSceneContext = GetComponent<StageSceneContextAccess>();
-        _screenEffects = GetComponent<ScreenEffectsAccess>();
-        _camera = GetComponent<CameraAccess>();
+        AccessComponent<IGameManager>.RegisterReference(this);
+        _gameEventTriggerAccess = GetComponent<GameEventTriggerAccess>();
     }
 
     private void OnDestroy()
     {
-        GameManagerAccess.Unregister(this);
+        AccessComponent<IGameManager>.UnregisterReference(this);
     }
 
     private void Start()
     {
         _movementRuleManager.Initialize();
-
-        if (_stageSceneContext.AfterRestart)
-            _screenEffects.PlayRestartEffect(() => _camera.PopTarget());
-        else
-            _screenEffects.PlayOpeningEffect(() => _camera.PopTarget());
     }
 
-    public void OnFailure()
+    public void HandleFailure()
     {
-        _gameEventTrigger.TriggerEventActions(GameEvent.Failure);
-        _stageSceneContext.OnStageRestarted();
-        _screenEffects.PlayFailureEffect(() => _sceneTransitionManager.RestartStage());
+        _gameEventTriggerAccess.TriggerEventActions(GameEvent.Failure);
     }
 
-    public void OnSuccess()
+    public void HandleSuccess()
     {
-        _gameEventTrigger.TriggerEventActions(GameEvent.Success);
-        _screenEffects.PlaySuccessEffect(() => _sceneTransitionManager.CompleteStage());
+        _gameEventTriggerAccess.TriggerEventActions(GameEvent.Success);
+    }
+
+    public void HandleSceneEnd()
+    {
+        _gameEventTriggerAccess.TriggerEventActions(GameEvent.SceneEnd);
     }
 }

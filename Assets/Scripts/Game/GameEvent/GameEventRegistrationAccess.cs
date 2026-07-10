@@ -2,28 +2,19 @@
 using UnityEngine;
 using static Constants;
 
-public class GameEventRegistrationAccess : MonoBehaviour
+public class GameEventRegistrationAccess : AccessComponent<GameEventHub>
 {
-    private static GameEventHub _gameEventHub;
-
-    public static void Register(GameEventHub gameEventHub)
-    {
-        _gameEventHub = gameEventHub;
-    }
-
-    public static void Unregister(GameEventHub gameEventHub)
-    {
-        if (_gameEventHub == gameEventHub)
-            _gameEventHub = null;
-    }
-
     public void RegisterEventAction(GameEvent gameEvent, Action eventAction)
     {
-        _gameEventHub?.RegisterEventAction(gameEvent, eventAction);
+        Reference?.RegisterEventAction(gameEvent, eventAction);
     }
 
     public void UnregisterEventAction(GameEvent gameEvent, Action eventAction)
     {
-        _gameEventHub?.UnregisterEventAction(gameEvent, eventAction);
+        // シーン終了時、登録先のGameEventHubが既に破棄されている可能性があるため、参照の有無を確認してから処理を行う
+        if (!HasReference)
+            return;
+
+        Reference?.UnregisterEventAction(gameEvent, eventAction);
     }
 }

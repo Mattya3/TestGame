@@ -1,37 +1,52 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using UnityEngine;
 using static Constants;
 
-[RequireComponent(typeof(GameManagerAccess))]
+[RequireComponent(typeof(GameManagerMutableAccess))]
 public class PlayersManager : MonoBehaviour, IPlayersCollection
 {
     private List<Player> _players = new List<Player>();
-    private GameManagerAccess _gameManager;
+    private GameManagerMutableAccess _gameManagerAccess;
+
+    private List<Vector3> _positionsList = new List<Vector3>();
+    private ReadOnlyCollection<Vector3> _positionsReadOnly;
+
+    private List<Bounds> _boundsList = new List<Bounds>();
+    private ReadOnlyCollection<Bounds> _boundsReadOnly;
+
+    private List<Vector2> _inputDirectionsList = new List<Vector2>();
+    private ReadOnlyCollection<Vector2> _inputDirectionsReadOnly;
 
     public bool ArePlayersAlive { get; private set; } = true;
 
     private void Awake()
     {
-        PlayersCollectionAccess.Register(this);
-        PlayersCollectionReadonlyAccess.Register(this);
-
-        _gameManager = GetComponent<GameManagerAccess>();
+        AccessComponent<IPlayersCollection>.RegisterReference(this);
 
         // Findによってプレイヤを取得。プレイヤを動的に生成するようになったら、Findはやめる
-        FindObjectsByType<Player>(FindObjectsSortMode.InstanceID).ToList().ForEach(player => _RegisterPlayer(player));
+        foreach (var player in FindObjectsByType<Player>(FindObjectsSortMode.InstanceID))
+            _RegisterPlayer(player);
+
+        _gameManagerAccess = GetComponent<GameManagerMutableAccess>();
+
+        _positionsReadOnly = new ReadOnlyCollection<Vector3>(_positionsList);
+        _boundsReadOnly = new ReadOnlyCollection<Bounds>(_boundsList);
+        _inputDirectionsReadOnly = new ReadOnlyCollection<Vector2>(_inputDirectionsList);
     }
 
     private void OnDestroy()
     {
-        PlayersCollectionAccess.Unregister(this);
-        PlayersCollectionReadonlyAccess.Unregister(this);
+        AccessComponent<IPlayersCollection>.UnregisterReference(this);
     }
 
     private void _RegisterPlayer(Player player)
     {
-        if (!_players.Contains(player))
-            _players.Add(player);
+        if (_players.Contains(player))
+            return;
+
+        _players.Add(player);
         player.OnDied += (reason) =>
         {
             _HandlePlayerDeath(player, reason);
@@ -50,7 +65,7 @@ public class PlayersManager : MonoBehaviour, IPlayersCollection
         _SetPlayersDead();
         _FreezeAllPlayers();
 
-        _gameManager.OnFailure();
+        _gameManagerAccess.HandleFailure();
     }
 
     private void _HandlePlayerGoal(Player player)
@@ -63,7 +78,7 @@ public class PlayersManager : MonoBehaviour, IPlayersCollection
         if (!_AllPlayersReachedGoal())
             return;
 
-        _gameManager.OnSuccess();
+        _gameManagerAccess.HandleSuccess();
     }
 
     private void _SetPlayersDead()
@@ -86,11 +101,44 @@ public class PlayersManager : MonoBehaviour, IPlayersCollection
 
     public int Count => _players.Count;
 
-    public List<Vector3> Positions => _players.Select(p => p.transform.position).ToList();
+    public ReadOnlyCollection<Vector3> Positions
+    {
+        get
+        {
+            _positionsList.Clear();
+            foreach (var player in _players)
+            {
+                _positionsList.Add(player.transform.position);
+            }
+            return _positionsReadOnly;
+        }
+    }
 
-    public List<Bounds> BoundsList => _players.Select(p => p.Bounds).ToList();
+    public ReadOnlyCollection<Bounds> BoundsList
+    {
+        get
+        {
+            _boundsList.Clear();
+            foreach (var player in _players)
+            {
+                _boundsList.Add(player.Bounds);
+            }
+            return _boundsReadOnly;
+        }
+    }
 
-    public List<Vector2> InputDirections => _players.Select(p => p.InputDirection).ToList();
+    public ReadOnlyCollection<Vector2> InputDirections
+    {
+        get
+        {
+            _inputDirectionsList.Clear();
+            foreach (var player in _players)
+            {
+                _inputDirectionsList.Add(player.InputDirection);
+            }
+            return _inputDirectionsReadOnly;
+        }
+    }
 
     public void SetMoveController(IMoveController moveController)
     {

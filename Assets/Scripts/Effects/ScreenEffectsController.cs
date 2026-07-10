@@ -2,59 +2,73 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Animator))]
-public class ScreenEffectsController : MonoBehaviour, IScreenEffects
+[RequireComponent(typeof(StageSceneContextReadonlyAccess))]
+[RequireComponent(typeof(GameManagerMutableAccess))]
+public class ScreenEffectsController : MonoEventReactingBehaviour
 {
     [SerializeField]
     private Animator _animator;
 
-    private Action _onEffectComplete;
+    private StageSceneContextReadonlyAccess _stageContextAccess;
+    private GameManagerMutableAccess _gameManagerAccess;
 
     private void Awake()
     {
         _animator = GetComponent<Animator>();
-
-        // シーン開始時に参照を登録
-        ScreenEffectsAccess.Register(this);
+        _stageContextAccess = GetComponent<StageSceneContextReadonlyAccess>();
+        _gameManagerAccess = GetComponent<GameManagerMutableAccess>();
     }
 
-    private void OnDestroy()
+    private void Start()
     {
-        // シーン終了時に参照を登録解除
-        ScreenEffectsAccess.Unregister(this);
+        if (_stageContextAccess.AfterRestart)
+            _PlayRestartEffect();
+        else
+            _PlayOpeningEffect();
     }
 
-    public void PlayOpeningEffect(Action onComplete)
+    protected override void OnSuccess()
     {
-        _PlayEffect(Constants.AnimationTrigger.OPENING, onComplete);
+        _PlaySuccessEffect();
     }
 
-    public void PlayRestartEffect(Action onComplete)
+    protected override void OnFailure()
     {
-        _PlayEffect(Constants.AnimationTrigger.RESTART, onComplete);
+        _PlayFailureEffect();
     }
 
-    /// <summary>
-    /// 指定されたアニメーション演出（トリガー）を実行します。
-    /// </summary>
-    public void PlayFailureEffect(Action onComplete)
+    private void _PlayOpeningEffect()
     {
-        _PlayEffect(Constants.AnimationTrigger.FAILURE, onComplete);
+        _PlayEffect(Constants.AnimationTrigger.OPENING);
     }
 
-    public void PlaySuccessEffect(Action onComplete)
+    private void _PlayRestartEffect()
     {
-        _PlayEffect(Constants.AnimationTrigger.SUCCESS, onComplete);
+        _PlayEffect(Constants.AnimationTrigger.RESTART);
     }
 
-    private void _PlayEffect(string triggerName, Action onComplete)
+    private void _PlayFailureEffect()
     {
-        _onEffectComplete = onComplete;
+        _PlayEffect(Constants.AnimationTrigger.FAILURE);
+    }
+
+    private void _PlaySuccessEffect()
+    {
+        _PlayEffect(Constants.AnimationTrigger.SUCCESS);
+    }
+
+    private void _PlayEffect(string triggerName)
+    {
         _animator.SetTrigger(triggerName);
     }
 
-    public void OnEffectComplete()
+    public void OnOpeningEffectComplete()
     {
-        _onEffectComplete?.Invoke();
-        _onEffectComplete = null;
+        // TODO: 演出完了後の処理（例: プレイヤーの操作を許可するなど）をここに実装
+    }
+
+    public void OnClosingEffectComplete()
+    {
+        _gameManagerAccess.HandleSceneEnd();
     }
 }

@@ -682,8 +682,8 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 3
-    functionName: OnEffectComplete
+  - time: 2.5
+    functionName: OnOpeningEffectComplete
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
