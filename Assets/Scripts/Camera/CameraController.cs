@@ -103,6 +103,8 @@ public class CameraController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        _targetsStack.Update();
+
         var destination = _CalculateDestination();
         var boundedDestination = _Bound(destination);
 

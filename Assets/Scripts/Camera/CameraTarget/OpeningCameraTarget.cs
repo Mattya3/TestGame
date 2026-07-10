@@ -2,7 +2,7 @@
 
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(StageSceneContextReadonlyAccess))]
-public class OpeningCameraTarget : MonoBehaviour, ICameraTarget
+public class OpeningCameraTarget : MonoEventReactingBehaviour, ICameraTarget
 {
     [SerializeField]
     private Vector3 _positionBegin;
@@ -14,6 +14,7 @@ public class OpeningCameraTarget : MonoBehaviour, ICameraTarget
     private float _progressFactor = 0f; // 0から1の範囲で、Animatorを使って進行度を制御するための値
 
     private StageSceneContextReadonlyAccess _stageSceneContextAccess;
+    private bool _stillInOpeningAnimation = true;
 
     private void Awake()
     {
@@ -24,7 +25,16 @@ public class OpeningCameraTarget : MonoBehaviour, ICameraTarget
     {
     }
 
-    public bool IsActive => !_stageSceneContextAccess.AfterRestart; // ステージがリスタートされた後は非アクティブにする
+    public bool IsActive
+    {
+        get
+        {
+            if (_stageSceneContextAccess.AfterRestart)
+                return false; // 再スタート後はこのカメラターゲットは無効
+
+            return _stillInOpeningAnimation; // 開始アニメーション終了後は無効
+        }
+    }
 
     public Vector3 Position
     {
@@ -37,4 +47,10 @@ public class OpeningCameraTarget : MonoBehaviour, ICameraTarget
     }
 
     public bool EnableCollider => false; // カメラのコライダーは無効
+
+    protected override void OnPlayStart()
+    {
+        // ステージ開始時にカメラターゲットを終了
+        _stillInOpeningAnimation = false;
+    }
 }

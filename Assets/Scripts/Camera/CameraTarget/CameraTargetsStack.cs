@@ -37,13 +37,13 @@ public class CameraTargetsStack
         if (_stack.Count > 0)
             _stack.Peek().OnStart();
 
-        // スタックの最上位のターゲットがアクティブでない場合は、スタックから削除して次のターゲットを確認する
-        while (_stack.Count > 1 && !_stack.Peek().IsActive)
-        {
-            _stack.Pop();
-            if (_stack.Count > 0)
-                _stack.Peek().OnStart();
-        }
+        _CheckAndPopInactiveTargets();
+    }
+
+    public void Update()
+    {
+        // 毎フレームの更新で、最上位のターゲットがアクティブでない場合はスタックから削除する
+        _CheckAndPopInactiveTargets();
     }
 
     public Vector3 Position {
@@ -63,6 +63,17 @@ public class CameraTargetsStack
                 return _stack.Peek().EnableCollider;
             else
                 return false; // スタックが空の場合はコライダーを無効にする
+        }
+    }
+
+    private void _CheckAndPopInactiveTargets()
+    {
+        // スタックの最上位のターゲットがアクティブでない場合は、スタックから削除して次のターゲットを確認する
+        while (_stack.Count > 1 && !_stack.Peek().IsActive)
+        {
+            _stack.Pop();
+            if (_stack.Count > 0)
+                _stack.Peek().OnStart();
         }
     }
 }
