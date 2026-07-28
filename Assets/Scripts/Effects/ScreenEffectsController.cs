@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Animator))]
@@ -6,8 +7,46 @@ using UnityEngine;
 [RequireComponent(typeof(GameManagerMutableAccess))]
 public class ScreenEffectsController : MonoEventReactingBehaviour
 {
+    [Serializable]
+    private struct EffectSettings
+    {
+        [HideInInspector]
+        public readonly string _triggerName;
+        public AnimatorUpdateMode _updateMode;
+
+        public EffectSettings(string triggerName, AnimatorUpdateMode updateMode)
+        {
+            _triggerName = triggerName;
+            _updateMode = updateMode;
+        }
+    }
+
     [SerializeField]
     private Animator _animator;
+
+    [SerializeField]
+    private EffectSettings _openingEffect = new EffectSettings(
+        Constants.AnimationTrigger.OPENING,
+        AnimatorUpdateMode.Normal
+    );
+
+    [SerializeField]
+    private EffectSettings _restartEffect = new EffectSettings(
+        Constants.AnimationTrigger.RESTART,
+        AnimatorUpdateMode.Normal
+    );
+
+    [SerializeField]
+    private EffectSettings _failureEffect = new EffectSettings(
+        Constants.AnimationTrigger.FAILURE,
+        AnimatorUpdateMode.UnscaledTime
+    );
+
+    [SerializeField]
+    private EffectSettings _successEffect = new EffectSettings(
+        Constants.AnimationTrigger.SUCCESS,
+        AnimatorUpdateMode.UnscaledTime
+    );
 
     private StageSceneContextReadonlyAccess _stageContextAccess;
     private GameManagerMutableAccess _gameManagerAccess;
@@ -22,44 +61,25 @@ public class ScreenEffectsController : MonoEventReactingBehaviour
     private void Start()
     {
         if (_stageContextAccess.AfterRestart)
-            _PlayRestartEffect();
+            _PlayEffect(_restartEffect);
         else
-            _PlayOpeningEffect();
+            _PlayEffect(_openingEffect);
     }
 
     protected override void OnSuccess()
     {
-        _PlaySuccessEffect();
+        _PlayEffect(_successEffect);
     }
 
     protected override void OnFailure()
     {
-        _PlayFailureEffect();
+        _PlayEffect(_failureEffect);
     }
 
-    private void _PlayOpeningEffect()
+    private void _PlayEffect(EffectSettings settings)
     {
-        _PlayEffect(Constants.AnimationTrigger.OPENING);
-    }
-
-    private void _PlayRestartEffect()
-    {
-        _PlayEffect(Constants.AnimationTrigger.RESTART);
-    }
-
-    private void _PlayFailureEffect()
-    {
-        _PlayEffect(Constants.AnimationTrigger.FAILURE);
-    }
-
-    private void _PlaySuccessEffect()
-    {
-        _PlayEffect(Constants.AnimationTrigger.SUCCESS);
-    }
-
-    private void _PlayEffect(string triggerName)
-    {
-        _animator.SetTrigger(triggerName);
+        _animator.updateMode = settings._updateMode;
+        _animator.SetTrigger(settings._triggerName);
     }
 
     public void OnOpeningEffectComplete()
