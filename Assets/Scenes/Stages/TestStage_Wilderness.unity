@@ -5605,6 +5605,7 @@ GameObject:
   - component: {fileID: 875144717}
   - component: {fileID: 875144718}
   - component: {fileID: 875144719}
+  - component: {fileID: 875144721}
   m_Layer: 5
   m_Name: ScreenEffects
   m_TagString: Untagged
@@ -5650,12 +5651,16 @@ MonoBehaviour:
   _animator: {fileID: 875144714}
   _openingEffect:
     _updateMode: 0
+    _shakeEffect: {fileID: 0}
   _restartEffect:
     _updateMode: 0
+    _shakeEffect: {fileID: 0}
   _failureEffect:
     _updateMode: 2
+    _shakeEffect: {fileID: 0}
   _successEffect:
     _updateMode: 2
+    _shakeEffect: {fileID: 0}
 --- !u!95 &875144714
 Animator:
   serializedVersion: 7
@@ -5836,6 +5841,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38b12e3fe2044b54e869a20bd1dc2a5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TimeScaleController
+--- !u!114 &875144721
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 875144711}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b591ffef9ac7ac41a9ab43b2decd044, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CameraMutableAccess
 --- !u!1 &882462480
 GameObject:
   m_ObjectHideFlags: 0
@@ -8234,6 +8251,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1271411055}
   - component: {fileID: 1271411054}
+  - component: {fileID: 1271411056}
   m_Layer: 6
   m_Name: CameraController
   m_TagString: Untagged
@@ -8281,6 +8299,18 @@ Transform:
   - {fileID: 1362465714}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1271411056
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1271411053}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4032ccd99bdb0db41ab7e1769270c75d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ShakeEffectsPlayer
 --- !u!1 &1276124609
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 
+[RequireComponent(typeof(ShakeEffectsPlayer))]
 public class CameraController : MonoBehaviour
 {
     [Header("Reference")]
@@ -21,6 +22,7 @@ public class CameraController : MonoBehaviour
     private CameraTargetsStack _targetsStack; // カメラターゲットのスタック
     private Collider2D[] _colliders; // カメラのコライダーへの参照
     private Vector3 _velocity = Vector3.zero; // カメラの現在の速度
+    private ShakeEffectsPlayer _shakeEffectsPlayer; // カメラの揺れ効果を管理するコンポーネント
 
     void Awake()
     {
@@ -28,14 +30,13 @@ public class CameraController : MonoBehaviour
 
         _camera = GetComponentInChildren<Camera>();
         _targetsStack = new CameraTargetsStack(GetComponentsInChildren<ICameraTarget>());
-
         if (!_IsConfigurationValid())
         {
             enabled = false;
             return;
         }
-
         _colliders = _colliderRoot.GetComponentsInChildren<Collider2D>();
+        _shakeEffectsPlayer = GetComponent<ShakeEffectsPlayer>();
     }
 
     void OnDestroy()
@@ -101,6 +102,11 @@ public class CameraController : MonoBehaviour
         _EnableColliders(_targetsStack.EnableCollider);
     }
 
+    public void PlayShake(ShakeEffect shakeEffect)
+    {
+        _shakeEffectsPlayer.Play(shakeEffect);
+    }
+
     private void FixedUpdate()
     {
         _targetsStack.Update();
@@ -119,19 +125,22 @@ public class CameraController : MonoBehaviour
     {
         var destination = _colliderRoot.transform.position;
 
-        var newPosX = Mathf.SmoothDamp(
+        var smoothedPosX = Mathf.SmoothDamp(
             _camera.transform.position.x,
             destination.x,
             ref _velocity.x,
             _smoothTimeX
         );
-        var newPosY = Mathf.SmoothDamp(
+        var smoothedPosY = Mathf.SmoothDamp(
             _camera.transform.position.y,
             destination.y,
             ref _velocity.y,
             _smoothTimeY
         );
-        _camera.transform.position = new Vector3(newPosX, newPosY, destination.z);
+
+        var shakeOffset = _shakeEffectsPlayer.CurrentShakeOffset;
+
+        _camera.transform.position = new Vector3(smoothedPosX + shakeOffset.x, smoothedPosY + shakeOffset.y, destination.z);
     }
 
     private Vector3 _CalculateDestination()

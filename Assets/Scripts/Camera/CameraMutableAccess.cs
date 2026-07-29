@@ -29,4 +29,9 @@ public class CameraMutableAccess : AccessComponent<CameraController>
     {
         Reference?.PopTarget();
     }
+
+    public void PlayShake(ShakeEffect shakeEffect)
+    {
+        Reference?.PlayShake(shakeEffect);
+    }
 }
