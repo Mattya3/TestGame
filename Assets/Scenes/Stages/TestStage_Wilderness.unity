@@ -5657,7 +5657,7 @@ MonoBehaviour:
     _shakeEffect: {fileID: 0}
   _failureEffect:
     _updateMode: 2
-    _shakeEffect: {fileID: 0}
+    _shakeEffect: {fileID: 11400000, guid: 88da2f5115bb88c4e916768df01a3999, type: 2}
   _successEffect:
     _updateMode: 2
     _shakeEffect: {fileID: 0}
