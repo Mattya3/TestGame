@@ -109,7 +109,7 @@ public static class VisualEffectsPool
 
         public override void Play(MonoBehaviour owner)
         {
-            GameObject instance = Object.Instantiate(_prefab, _position, Quaternion.identity, _parent);
+            GameObject instance = Object.Instantiate(_prefab, _position + _parent.transform.position, Quaternion.identity, _parent);
             _activeInstances.Add(instance);
             PlayAudio();
 
@@ -174,7 +174,7 @@ public static class VisualEffectsPool
 
         private void _Initialize()
         {
-            _instance = Object.Instantiate(_prefab, _position, Quaternion.identity, _parent);
+            _instance = Object.Instantiate(_prefab, _position + _parent.transform.position, Quaternion.identity, _parent);
             _visualEffect = _instance.GetComponent<VisualEffect>();
 
             if (_visualEffect == null)

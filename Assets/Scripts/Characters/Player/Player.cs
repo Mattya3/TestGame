@@ -46,6 +46,7 @@ public class Player : Character
     public void Die(DeathReason deathReason)
     {
         _sounds.OnDeath();
+        EffectsPlayer.PlayDeathEffect(deathReason);
         OnDied?.Invoke(deathReason);
     }
 
