@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ShakeEffect
   _shakeType: 0
   _updateMode: 1
-  _duration: 0.25
-  _magnitude: {x: 0.05, y: 0.05}
+  _duration: 0.3
+  _magnitude: {x: 0.6, y: 0.6}
   _frequency: {x: 17, y: 16}

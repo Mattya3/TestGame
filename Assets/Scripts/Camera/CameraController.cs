@@ -21,6 +21,7 @@ public class CameraController : MonoBehaviour
     private Camera _camera; // カメラコンポーネントへの参照
     private CameraTargetsStack _targetsStack; // カメラターゲットのスタック
     private Collider2D[] _colliders; // カメラのコライダーへの参照
+    private Vector3 _smoothedPosition; // スムージングされたカメラの位置
     private Vector3 _velocity = Vector3.zero; // カメラの現在の速度
     private ShakeEffectsPlayer _shakeEffectsPlayer; // カメラの揺れ効果を管理するコンポーネント
 
@@ -87,6 +88,7 @@ public class CameraController : MonoBehaviour
         var boundedDestination = _Bound(destination);
 
         _colliderRoot.transform.position = boundedDestination;
+        _smoothedPosition = boundedDestination;
         _camera.transform.position = boundedDestination;
     }
 
@@ -126,21 +128,22 @@ public class CameraController : MonoBehaviour
         var destination = _colliderRoot.transform.position;
 
         var smoothedPosX = Mathf.SmoothDamp(
-            _camera.transform.position.x,
+            _smoothedPosition.x,
             destination.x,
             ref _velocity.x,
             _smoothTimeX
         );
         var smoothedPosY = Mathf.SmoothDamp(
-            _camera.transform.position.y,
+            _smoothedPosition.y,
             destination.y,
             ref _velocity.y,
             _smoothTimeY
         );
+        _smoothedPosition = new Vector3(smoothedPosX, smoothedPosY, destination.z);
 
         var shakeOffset = _shakeEffectsPlayer.CurrentShakeOffset;
 
-        _camera.transform.position = new Vector3(smoothedPosX + shakeOffset.x, smoothedPosY + shakeOffset.y, destination.z);
+        _camera.transform.position = new Vector3(_smoothedPosition.x + shakeOffset.x, _smoothedPosition.y + shakeOffset.y, destination.z);
     }
 
     private Vector3 _CalculateDestination()
