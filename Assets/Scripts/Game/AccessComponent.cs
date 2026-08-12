@@ -18,15 +18,23 @@ public abstract class AccessComponent<T> : MonoBehaviour
         _privateReference = null;
     }
 
+    private bool _loggedAlready = false;
+
     private void _LogMissingReference()
     {
         if (HasReference)
+        {
+            _loggedAlready = false;
+            return;
+        }
+        if (_loggedAlready)
             return;
 
         Debug.LogError(
             $"No {typeof(T).Name} reference registered. Please ensure that an implementation of {typeof(T).Name} is registered before using {GetType().Name}.",
             this
         );
+        _loggedAlready = true;
     }
 
     protected T Reference
