@@ -27,6 +27,9 @@ public class MonoUIImageMaterialAccessBehaviour : MonoBehaviour, IMaterialModifi
 
     protected virtual void LateUpdate()
     {
+        if (_hasInvalidMaterial)
+            return;
+
         if (IsDirty)
             _Apply();
     }
