@@ -104,6 +104,7 @@ public class CameraController : MonoBehaviour
     private void FixedUpdate()
     {
         _targetsStack.Update();
+        _EnableColliders(_targetsStack.EnableCollider);
 
         var destination = _CalculateDestination();
         var boundedDestination = _Bound(destination);
