@@ -68,6 +68,8 @@ public class CameraController : MonoBehaviour
 
     void Start()
     {
+        _cameraTarget.OnStart();
+
         // カメラの初期位置を設定
         var destination = _CalculateDestination();
         var boundedDestination = _Bound(destination);

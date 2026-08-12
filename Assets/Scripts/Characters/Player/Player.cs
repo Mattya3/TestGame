@@ -1,11 +1,10 @@
-using System;
+﻿using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using static Constants;
 
 public class Player : Character
 {
-    public static event Action<Player> OnCreated;
     public event Action<Player> OnGoal;
     public event Action<DeathReason> OnDied;
 
@@ -19,14 +18,15 @@ public class Player : Character
 
     public Vector2 InputDirection => _inputDirection;
 
-    private void Start()
+    protected override void Awake()
     {
+        base.Awake();
+
         if (_sounds == null || !_sounds.IsValid())
         {
             Debug.LogError("PlayerSounds is not properly set up.");
             enabled = false;
         }
-        OnCreated?.Invoke(this);
     }
 
     public void OnMove(InputAction.CallbackContext context)

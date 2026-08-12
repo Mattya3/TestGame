@@ -1,47 +1,42 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using UnityEngine;
-using UnityEngine.SceneManagement;
+﻿using UnityEngine;
 using static Constants;
 
-public class GameManager : MonoBehaviour
+[RequireComponent(typeof(GameEventTriggerAccess))]
+public class GameManager : MonoBehaviour, IGameManager
 {
-    [SerializeField]
-    private SceneTransitionManager _sceneTransitionManager;
-
     [SerializeField]
     private MovementRuleManager _movementRuleManager;
 
-    [SerializeField]
-    private PlayersManager _playersManager;
-
-    public static GameManager Instance { get; private set; }
+    private GameEventTriggerAccess _gameEventTriggerAccess;
 
     private void Awake()
     {
-        if (Instance == null)
-            Instance = this;
+        AccessComponent<IGameManager>.RegisterReference(this);
+        _gameEventTriggerAccess = GetComponent<GameEventTriggerAccess>();
+    }
+
+    private void OnDestroy()
+    {
+        AccessComponent<IGameManager>.UnregisterReference(this);
     }
 
     private void Start()
     {
-        _movementRuleManager.Initialize(_playersManager.Players);
+        _movementRuleManager.Initialize();
     }
 
     public void HandleFailure()
     {
-        GameEventTrigger.TriggerEvent(GameEvent.Failure);
-        GameEventTrigger.ResetEvents();
-        _sceneTransitionManager.RestartStage();
+        _gameEventTriggerAccess.TriggerEventActions(GameEvent.Failure);
     }
 
     public void HandleSuccess()
     {
-        GameEventTrigger.TriggerEvent(GameEvent.Success);
-        GameEventTrigger.ResetEvents();
-        _sceneTransitionManager.CompleteStage();
+        _gameEventTriggerAccess.TriggerEventActions(GameEvent.Success);
     }
 
-    public IReadOnlyList<Player> Players => _playersManager.Players;
+    public void HandleSceneEnd()
+    {
+        _gameEventTriggerAccess.TriggerEventActions(GameEvent.SceneEnd);
+    }
 }
