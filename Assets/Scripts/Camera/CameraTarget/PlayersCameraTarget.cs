@@ -13,6 +13,7 @@ public class PlayersCameraTarget : MonoBehaviour, ICameraTarget
     private CameraTargetShiftDamp _shiftDamp = new CameraTargetShiftDamp();
 
     private bool _isValidConfiguration = true;
+    private bool _isStarted = false;
     private PlayersCollectionReadonlyAccess _playersAccess;
     private Vector3 _position = Vector3.zero;
 
@@ -40,10 +41,15 @@ public class PlayersCameraTarget : MonoBehaviour, ICameraTarget
         var center = _CalculateCenter();
         _shift.Start(center);
         _position = center + _offset + _shift.Get();
+
+        _isStarted = true;
     }
 
     void FixedUpdate()
     {
+        if (!_isStarted)
+            return;
+
         var center = _CalculateCenter();
         var damp = _shiftDamp.CalculateDamp(_playersAccess);
 
