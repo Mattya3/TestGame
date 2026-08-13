@@ -29,6 +29,7 @@ public class HoleMaskController : MonoUIImageMaterialAccessBehaviour
     protected override void Awake()
     {
         base.Awake();
+
         _cameraAccess = GetComponent<CameraReadonlyAccess>();
         _target = GetComponent<IHoleMaskTarget>();
 
@@ -64,6 +65,11 @@ public class HoleMaskController : MonoUIImageMaterialAccessBehaviour
     {
         material.SetFloat(MaskThresholdID, _maskThreshold);
         material.SetFloat(CameraAspectID, _cameraAccess?.AspectRatio ?? DEFAULT_ASPECT_RATIO);
+        _lastMaskThreshold = _maskThreshold;
+
+        // エディタ状ではtargetを使用せずデフォルトの値を設定
+        if (_target == null)
+            return;
 
         var enabledList = _target.AreEnabled;
         var screenPositionsList = _target.ScreenPositions;
@@ -76,7 +82,6 @@ public class HoleMaskController : MonoUIImageMaterialAccessBehaviour
             material.SetFloat(TargetEnabledIDs[i], enabled);
         }
 
-        _lastMaskThreshold = _maskThreshold;
     }
 
     protected override bool IsDirty => !Mathf.Approximately(_maskThreshold, _lastMaskThreshold);
