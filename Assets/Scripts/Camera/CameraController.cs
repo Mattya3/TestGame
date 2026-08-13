@@ -109,6 +109,8 @@ public class CameraController : MonoBehaviour
         _shakeEffectsPlayer.Play(shakeEffect);
     }
 
+    public float AspectRatio => _camera.aspect;
+
     private void FixedUpdate()
     {
         _targetsStack.Update();

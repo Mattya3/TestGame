@@ -14201,7 +14201,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d708f015d9c1e54d85259960c300e23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HoleMaskController
-  _maskThreshold: 0
+  _maskThreshold: 0.17
 --- !u!1001 &1728101209
 PrefabInstance:
   m_ObjectHideFlags: 0

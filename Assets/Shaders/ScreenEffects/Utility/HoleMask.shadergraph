@@ -708,7 +708,7 @@
     "m_Hidden": false,
     "m_PerRendererData": false,
     "m_customAttributes": [],
-    "m_Value": 0.20000000298023225,
+    "m_Value": 0.5,
     "m_FloatType": 0,
     "m_LiteralFloatMode": false,
     "m_RangeValues": {
@@ -1858,7 +1858,7 @@
         "m_Position": {
             "serializedVersion": "2",
             "x": -2748.999755859375,
-            "y": -112.99996185302735,
+            "y": -110.00000762939453,
             "width": 188.0,
             "height": 34.00000762939453
         }
