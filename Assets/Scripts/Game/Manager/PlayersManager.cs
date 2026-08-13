@@ -51,6 +51,7 @@ public class PlayersManager : MonoBehaviour, IPlayersCollection
             return;
 
         _players.Add(player);
+        _aliveFlagsList.Add(true);
         player.OnDied += (reason) =>
         {
             _HandlePlayerDeath(player, reason);
