@@ -856,7 +856,7 @@
     "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
     "m_ObjectId": "16b0759b30514c33beee2a2e02ae6ac9",
     "m_Id": 0,
-    "m_DisplayName": "CameraAspect",
+    "m_DisplayName": "_CameraAspect",
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",
@@ -1303,18 +1303,18 @@
     "promotedFromAssetID": "",
     "promotedFromCategoryName": "",
     "promotedOrdering": -1,
-    "m_Name": "CameraAspect",
+    "m_Name": "_CameraAspect",
     "m_DefaultRefNameVersion": 1,
-    "m_RefNameGeneratedByDisplayName": "CameraAspect",
+    "m_RefNameGeneratedByDisplayName": "_CameraAspect",
     "m_DefaultReferenceName": "_CameraAspect",
     "m_OverrideReferenceName": "",
-    "m_GeneratePropertyBlock": true,
+    "m_GeneratePropertyBlock": false,
     "m_UseCustomSlotLabel": false,
     "m_CustomSlotLabel": "",
     "m_DismissedVersion": 0,
     "m_Precision": 0,
-    "overrideHLSLDeclaration": false,
-    "hlslDeclarationOverride": 0,
+    "overrideHLSLDeclaration": true,
+    "hlslDeclarationOverride": 2,
     "m_Hidden": false,
     "m_PerRendererData": false,
     "m_customAttributes": [],
@@ -2337,10 +2337,10 @@
             "m_Id": "fdadb6d2780344c59b538147f820b5f0"
         },
         {
-            "m_Id": "3e075d1b25ef4089ab405a1832964dbf"
+            "m_Id": "102a25bce60940e7bf61f2825236a10c"
         },
         {
-            "m_Id": "102a25bce60940e7bf61f2825236a10c"
+            "m_Id": "3e075d1b25ef4089ab405a1832964dbf"
         },
         {
             "m_Id": "15aff91aa36e402ca400b50bf89560d1"
