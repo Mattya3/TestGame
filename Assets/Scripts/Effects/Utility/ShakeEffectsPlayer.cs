@@ -22,8 +22,8 @@ public class ShakeEffectsPlayer : MonoBehaviour
         {
             _effect = effect;
             _elapsedTime = 0f;
-            _phaseX = Random.Range(0f, Mathf.PI * 2f);
-            _phaseY = Random.Range(0f, Mathf.PI * 2f);
+            _phaseX = effect.PhaseOffsets.x;
+            _phaseY = effect.PhaseOffsets.y;
         }
 
         public void UpdateTime()
