@@ -39,7 +39,7 @@ public class DeadPlayersHoleMaskTarget : MonoBehaviour, IHoleMaskTarget
         }
     }
 
-    public ReadOnlyCollection<Vector3> ScreenPositions
+    public ReadOnlyCollection<Vector3> ViewportPositions
     {
         get
         {
@@ -49,7 +49,7 @@ public class DeadPlayersHoleMaskTarget : MonoBehaviour, IHoleMaskTarget
             for (int i = 0; i < numPlayers; i++)
             {
                 var worldPosition = positions[i];
-                var screenPosition = _cameraAccess.WorldToScreenPoint(worldPosition);
+                var screenPosition = _cameraAccess.WorldToViewportPoint(worldPosition);
                 _screenPositionsList.Add(screenPosition);
             }
             return _screenPositionsReadOnly;

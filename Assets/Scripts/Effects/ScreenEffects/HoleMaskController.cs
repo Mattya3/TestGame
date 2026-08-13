@@ -3,7 +3,6 @@
 [RequireComponent(typeof(CameraReadonlyAccess))]
 public class HoleMaskController : MonoUIImageMaterialAccessBehaviour
 {
-    private const float DEFAULT_ASPECT_RATIO = 1.78f;
     private const int MAX_NUM_TARGETS = 2;
 
     [SerializeField]
@@ -15,10 +14,10 @@ public class HoleMaskController : MonoUIImageMaterialAccessBehaviour
 
     private static readonly int MaskThresholdID = Shader.PropertyToID("_MaskThreshold");
     private static readonly int CameraAspectID = Shader.PropertyToID("_CameraAspect");
-    private static readonly int[] TargetScreenPositionIDs = new int[MAX_NUM_TARGETS]
+    private static readonly int[] TargetViewportPositionIDs = new int[MAX_NUM_TARGETS]
     {
-        Shader.PropertyToID("_TargetScreenPosition1"),
-        Shader.PropertyToID("_TargetScreenPosition2")
+        Shader.PropertyToID("_TargetViewportPosition1"),
+        Shader.PropertyToID("_TargetViewportPosition2")
     };
     private static readonly int[] TargetEnabledIDs = new int[MAX_NUM_TARGETS]
     {
@@ -69,10 +68,10 @@ public class HoleMaskController : MonoUIImageMaterialAccessBehaviour
         }
         for (int i = 0; i < MAX_NUM_TARGETS; i++)
         {
-            if (!material.HasProperty(TargetScreenPositionIDs[i]))
+            if (!material.HasProperty(TargetViewportPositionIDs[i]))
             {
                 Debug.LogError(
-                    $"Material {material.name} does not have a property named '{TargetScreenPositionIDs[i]}'."
+                    $"Material {material.name} does not have a property named '{TargetViewportPositionIDs[i]}'."
                 );
                 return false;
             }
@@ -90,24 +89,24 @@ public class HoleMaskController : MonoUIImageMaterialAccessBehaviour
     protected override void SetMaterialProperties(Material material)
     {
         material.SetFloat(MaskThresholdID, _maskThreshold);
-        material.SetFloat(CameraAspectID, _cameraAccess?.AspectRatio ?? DEFAULT_ASPECT_RATIO);
         _lastMaskThreshold = _maskThreshold;
 
-        // エディタ状ではtargetを使用せずデフォルトの値を設定
-        if (_target == null)
+        // エディタ上ではオブジェクトを参照せずデフォルトの値を設定
+        if (!Application.isPlaying)
             return;
 
+        material.SetFloat(CameraAspectID, _cameraAccess.AspectRatio);
+
         var enabledList = _target.AreEnabled;
-        var screenPositionsList = _target.ScreenPositions;
+        var screenPositionsList = _target.ViewportPositions;
         var numTargets = Mathf.Min(enabledList.Count, screenPositionsList.Count, MAX_NUM_TARGETS);
         for (int i = 0; i < MAX_NUM_TARGETS; i++)
         {
             var position = i < numTargets ? screenPositionsList[i] : Vector3.zero;
             var enabled = i < numTargets ? (enabledList[i] ? 1.0f : 0.0f) : 0.0f;
-            material.SetVector(TargetScreenPositionIDs[i], position);
+            material.SetVector(TargetViewportPositionIDs[i], position);
             material.SetFloat(TargetEnabledIDs[i], enabled);
         }
-
     }
 
     protected override bool IsDirty => !Mathf.Approximately(_maskThreshold, _lastMaskThreshold);

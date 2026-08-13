@@ -311,7 +311,7 @@
     "m_Type": "UnityEditor.ShaderGraph.Vector3MaterialSlot",
     "m_ObjectId": "2216a579905648c7a77aa0344f634c53",
     "m_Id": 0,
-    "m_DisplayName": "TargetScreenPosition",
+    "m_DisplayName": "TargetViewportPosition",
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",
@@ -423,10 +423,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -582.0,
-            "y": -11.999996185302735,
-            "width": 198.0,
-            "height": 34.000022888183597
+            "x": -581.0,
+            "y": -11.999999046325684,
+            "width": 189.0,
+            "height": 34.00000762939453
         }
     },
     "m_Slots": [
@@ -498,10 +498,10 @@
     "promotedFromAssetID": "",
     "promotedFromCategoryName": "",
     "promotedOrdering": -1,
-    "m_Name": "TargetScreenPosition",
+    "m_Name": "TargetViewportPosition",
     "m_DefaultRefNameVersion": 1,
-    "m_RefNameGeneratedByDisplayName": "TargetScreenPosition",
-    "m_DefaultReferenceName": "_TargetScreenPosition",
+    "m_RefNameGeneratedByDisplayName": "TargetViewportPosition",
+    "m_DefaultReferenceName": "_TargetViewportPosition",
     "m_OverrideReferenceName": "",
     "m_GeneratePropertyBlock": true,
     "m_UseCustomSlotLabel": false,

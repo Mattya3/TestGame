@@ -111,7 +111,7 @@ public class CameraController : MonoBehaviour
 
     public float AspectRatio => _camera.aspect;
 
-    public Vector3 WorldToScreenPoint(Vector3 worldPosition)
+    public Vector3 WorldToViewportPoint(Vector3 worldPosition)
     {
         return _camera.WorldToViewportPoint(worldPosition);
     }
