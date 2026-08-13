@@ -61,7 +61,7 @@ Material:
     - _EnableTarget2: 1
     - _MaskSoftness: 0.01
     - _MaskThreshold: 1
-    - _SciFiNoiseStrength: 0.5
+    - _SciFiNoiseStrength: 0.3
     - _Stencil: 0
     - _StencilComp: 8
     - _StencilOp: 0

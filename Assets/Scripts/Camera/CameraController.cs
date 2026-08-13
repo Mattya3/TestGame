@@ -113,7 +113,7 @@ public class CameraController : MonoBehaviour
 
     public Vector3 WorldToScreenPoint(Vector3 worldPosition)
     {
-        return _camera.WorldToScreenPoint(worldPosition);
+        return _camera.WorldToViewportPoint(worldPosition);
     }
 
     private void FixedUpdate()

@@ -26,6 +26,15 @@ public class HoleMaskController : MonoUIImageMaterialAccessBehaviour
         Shader.PropertyToID("_TargetEnabled2")
     };
 
+    protected override void OnValidate()
+    {
+        base.OnValidate();
+
+        // エディタ上ではターゲットを使用せず、デフォルトの値を設定
+        _cameraAccess = null;
+        _target = null;
+    }
+
     protected override void Awake()
     {
         base.Awake();
@@ -57,6 +66,23 @@ public class HoleMaskController : MonoUIImageMaterialAccessBehaviour
                 $"Material {material.name} does not have a property named '_CameraAspect'."
             );
             return false;
+        }
+        for (int i = 0; i < MAX_NUM_TARGETS; i++)
+        {
+            if (!material.HasProperty(TargetScreenPositionIDs[i]))
+            {
+                Debug.LogError(
+                    $"Material {material.name} does not have a property named '{TargetScreenPositionIDs[i]}'."
+                );
+                return false;
+            }
+            if (!material.HasProperty(TargetEnabledIDs[i]))
+            {
+                Debug.LogError(
+                    $"Material {material.name} does not have a property named '{TargetEnabledIDs[i]}'."
+                );
+                return false;
+            }
         }
         return true;
     }
