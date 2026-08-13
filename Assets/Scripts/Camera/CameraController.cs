@@ -111,6 +111,11 @@ public class CameraController : MonoBehaviour
 
     public float AspectRatio => _camera.aspect;
 
+    public Vector3 WorldToScreenPoint(Vector3 worldPosition)
+    {
+        return _camera.WorldToScreenPoint(worldPosition);
+    }
+
     private void FixedUpdate()
     {
         _targetsStack.Update();
