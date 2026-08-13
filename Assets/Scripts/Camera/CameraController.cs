@@ -109,6 +109,13 @@ public class CameraController : MonoBehaviour
         _shakeEffectsPlayer.Play(shakeEffect);
     }
 
+    public float AspectRatio => _camera.aspect;
+
+    public Vector3 WorldToViewportPoint(Vector3 worldPosition)
+    {
+        return _camera.WorldToViewportPoint(worldPosition);
+    }
+
     private void FixedUpdate()
     {
         _targetsStack.Update();

@@ -19,7 +19,10 @@ public class PlayersManager : MonoBehaviour, IPlayersCollection
     private List<Vector2> _inputDirectionsList = new List<Vector2>();
     private ReadOnlyCollection<Vector2> _inputDirectionsReadOnly;
 
-    public bool ArePlayersAlive { get; private set; } = true;
+    private List<bool> _aliveFlagsList = new List<bool>();
+    private ReadOnlyCollection<bool> _aliveFlagsReadOnly;
+
+    public bool AreAllPlayersAlive { get; private set; } = true;
 
     private void Awake()
     {
@@ -34,6 +37,7 @@ public class PlayersManager : MonoBehaviour, IPlayersCollection
         _positionsReadOnly = new ReadOnlyCollection<Vector3>(_positionsList);
         _boundsReadOnly = new ReadOnlyCollection<Bounds>(_boundsList);
         _inputDirectionsReadOnly = new ReadOnlyCollection<Vector2>(_inputDirectionsList);
+        _aliveFlagsReadOnly = new ReadOnlyCollection<bool>(_aliveFlagsList);
     }
 
     private void OnDestroy()
@@ -47,6 +51,7 @@ public class PlayersManager : MonoBehaviour, IPlayersCollection
             return;
 
         _players.Add(player);
+        _aliveFlagsList.Add(true);
         player.OnDied += (reason) =>
         {
             _HandlePlayerDeath(player, reason);
@@ -59,9 +64,10 @@ public class PlayersManager : MonoBehaviour, IPlayersCollection
 
     private void _HandlePlayerDeath(Player deadPlayer, DeathReason deathReason)
     {
-        if (!ArePlayersAlive)
+        if (!AreAllPlayersAlive)
             return;
 
+        _SetPlayerAliveFlag(deadPlayer, false);
         _SetPlayersDead();
         _FreezeAllPlayers();
 
@@ -70,7 +76,7 @@ public class PlayersManager : MonoBehaviour, IPlayersCollection
 
     private void _HandlePlayerGoal(Player player)
     {
-        if (!ArePlayersAlive)
+        if (!AreAllPlayersAlive)
             return;
 
         player.Freeze();
@@ -81,9 +87,18 @@ public class PlayersManager : MonoBehaviour, IPlayersCollection
         _gameManagerAccess.HandleSuccess();
     }
 
+    private void _SetPlayerAliveFlag(Player player, bool isAlive)
+    {
+        int index = _players.IndexOf(player);
+        if (index >= 0)
+        {
+            _aliveFlagsList[index] = isAlive;
+        }
+    }
+
     private void _SetPlayersDead()
     {
-        ArePlayersAlive = false;
+        AreAllPlayersAlive = false;
     }
 
     private void _FreezeAllPlayers()
@@ -139,6 +154,8 @@ public class PlayersManager : MonoBehaviour, IPlayersCollection
             return _inputDirectionsReadOnly;
         }
     }
+
+    public ReadOnlyCollection<bool> AliveFlags => _aliveFlagsReadOnly;
 
     public void SetMoveController(IMoveController moveController)
     {
