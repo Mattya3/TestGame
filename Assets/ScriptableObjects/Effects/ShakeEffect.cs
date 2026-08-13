@@ -30,9 +30,13 @@ public class ShakeEffect : ScriptableObject
     [SerializeField]
     private Vector2 _frequency = new Vector2(1.0f, 1.0f);
 
+    [SerializeField]
+    private Vector2 _phaseOffsets = new Vector2(0.0f, 0.0f);
+
     public ShakeType Type => _shakeType;
     public ShakeUpdateMode UpdateMode => _updateMode;
     public float Duration => _duration;
     public Vector2 Magnitude => _magnitude;
     public Vector2 Frequency => _frequency;
+    public Vector2 PhaseOffsets => _phaseOffsets;
 }

@@ -17,3 +17,4 @@ MonoBehaviour:
   _duration: 0.3
   _magnitude: {x: 0.6, y: 0.6}
   _frequency: {x: 17, y: 16}
+  _phaseOffsets: {x: 0, y: 2}
