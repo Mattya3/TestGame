@@ -24,8 +24,6 @@ public class CameraController : MonoBehaviour
 
     void Awake()
     {
-        AccessComponent<CameraController>.RegisterReference(this);
-
         _camera = GetComponentInChildren<Camera>();
         _targetsStack = new CameraTargetsStack(GetComponentsInChildren<ICameraTarget>());
 
@@ -36,6 +34,8 @@ public class CameraController : MonoBehaviour
         }
 
         _colliders = _colliderRoot.GetComponentsInChildren<Collider2D>();
+
+        AccessComponent<CameraController>.RegisterReference(this);
     }
 
     void OnDestroy()

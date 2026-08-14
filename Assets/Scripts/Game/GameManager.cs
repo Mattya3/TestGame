@@ -11,8 +11,8 @@ public class GameManager : MonoBehaviour, IGameManager
 
     private void Awake()
     {
-        AccessComponent<IGameManager>.RegisterReference(this);
         _gameEventTriggerAccess = GetComponent<GameEventTriggerAccess>();
+        AccessComponent<IGameManager>.RegisterReference(this);
     }
 
     private void OnDestroy()
