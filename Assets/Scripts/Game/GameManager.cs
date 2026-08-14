@@ -1,43 +1,42 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using static Constants;
 
-public class GameManager : MonoBehaviour
+[RequireComponent(typeof(GameEventTriggerAccess))]
+public class GameManager : MonoBehaviour, IGameManager
 {
     [SerializeField]
     private MovementRuleManager _movementRuleManager;
 
-    [SerializeField]
-    private PlayersManager _playersManager;
-
-    public static GameManager Instance { get; private set; }
+    private GameEventTriggerAccess _gameEventTriggerAccess;
 
     private void Awake()
     {
-        if (Instance == null)
-            Instance = this;
+        AccessComponent<IGameManager>.RegisterReference(this);
+        _gameEventTriggerAccess = GetComponent<GameEventTriggerAccess>();
+    }
+
+    private void OnDestroy()
+    {
+        AccessComponent<IGameManager>.UnregisterReference(this);
     }
 
     private void Start()
     {
-        _movementRuleManager.Initialize(_playersManager.Players);
+        _movementRuleManager.Initialize();
     }
 
     public void HandleFailure()
     {
-        GameEventTrigger.TriggerEvent(GameEvent.Failure);
+        _gameEventTriggerAccess.TriggerEventActions(GameEvent.Failure);
     }
 
     public void HandleSuccess()
     {
-        GameEventTrigger.TriggerEvent(GameEvent.Success);
+        _gameEventTriggerAccess.TriggerEventActions(GameEvent.Success);
     }
 
     public void HandleSceneEnd()
     {
-        GameEventTrigger.TriggerEvent(GameEvent.SceneEnd);
-        GameEventTrigger.ResetEvents();
+        _gameEventTriggerAccess.TriggerEventActions(GameEvent.SceneEnd);
     }
-
-    public IReadOnlyList<Player> Players => _playersManager.Players;
 }

@@ -1,54 +1,31 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
 
-[RequireComponent(typeof(Image))]
-[ExecuteInEditMode]
-public class WipingMaskController : MonoBehaviour
+public class WipingMaskController : MonoUIImageMaterialAccessBehaviour
 {
     [SerializeField]
     private float _maskThreshold = 0.0f;
 
-    // Sprite Rendererと違い、Imageコンポーネントのマテリアルは取得してもコピーされないため、直接参照して使用
-    private Material _material;
+    private float _lastMaskThreshold = float.MaxValue;
 
     private static readonly int MaskThresholdID = Shader.PropertyToID("_MaskThreshold");
 
-    private void OnValidate()
+    protected override bool IsMaterialValid(Material material)
     {
-        _GetReferences();
-        _Apply();
-    }
-
-    private void Awake()
-    {
-        _GetReferences();
-        if (_material == null)
-        {
-            Debug.LogError("WipingMaskController requires an Image component with a material.");
-            enabled = false;
-        }
-        if (!_material.HasFloat(MaskThresholdID))
+        if (!material.HasProperty(MaskThresholdID))
         {
             Debug.LogError(
-                "WipingMaskController requires a material with a _MaskThreshold property."
+                $"Material {material.name} does not have a property named '_MaskThreshold'."
             );
-            enabled = false;
+            return false;
         }
+        return true;
     }
 
-    private void Update()
+    protected override void SetMaterialProperties(Material material)
     {
-        _Apply();
+        material.SetFloat(MaskThresholdID, _maskThreshold);
+        _lastMaskThreshold = _maskThreshold;
     }
 
-    private void _GetReferences()
-    {
-        if (_material == null)
-            _material = GetComponent<Image>().material;
-    }
-
-    private void _Apply()
-    {
-        _material?.SetFloat(MaskThresholdID, _maskThreshold);
-    }
+    protected override bool IsDirty => !Mathf.Approximately(_maskThreshold, _lastMaskThreshold);
 }

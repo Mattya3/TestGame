@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
+[RequireComponent(typeof(PlayersCollectionReadonlyAccess))]
 public class PlayersCameraTarget : MonoBehaviour, ICameraTarget
 {
     [SerializeField]
@@ -12,7 +12,9 @@ public class PlayersCameraTarget : MonoBehaviour, ICameraTarget
     [SerializeField]
     private CameraTargetShiftDamp _shiftDamp = new CameraTargetShiftDamp();
 
-    private IReadOnlyList<Player> _players;
+    private bool _isValidConfiguration = true;
+    private bool _isStarted = false;
+    private PlayersCollectionReadonlyAccess _playersAccess;
     private Vector3 _position = Vector3.zero;
 
     void Awake()
@@ -21,27 +23,35 @@ public class PlayersCameraTarget : MonoBehaviour, ICameraTarget
         {
             Debug.LogError("カメラのoffset.zは負の値でなければなりません", this);
             enabled = false;
+            _isValidConfiguration = false;
             return;
         }
         _shift.Awake();
+
+        _playersAccess = GetComponent<PlayersCollectionReadonlyAccess>();
     }
 
-    void Start()
+    public void OnStart()
     {
-        _players = GameManager.Instance.Players;
+        if (!_isValidConfiguration)
+            return;
+
+        enabled = true;
 
         var center = _CalculateCenter();
         _shift.Start(center);
         _position = center + _offset + _shift.Get();
+
+        _isStarted = true;
     }
 
     void FixedUpdate()
     {
-        if (_players == null)
+        if (!_isStarted)
             return;
 
         var center = _CalculateCenter();
-        var damp = _shiftDamp.CalculateDamp(_players);
+        var damp = _shiftDamp.CalculateDamp(_playersAccess);
 
         _shift.FixedUpdate(center, damp);
         _position = center + _offset + _shift.Get();
@@ -49,15 +59,17 @@ public class PlayersCameraTarget : MonoBehaviour, ICameraTarget
 
     private Vector3 _CalculateCenter()
     {
-        if (_players.Count == 0)
+        var playerPositions = _playersAccess.Positions;
+
+        if (playerPositions == null || playerPositions.Count == 0)
             return Vector3.zero;
 
         var sum = Vector3.zero;
-        for (int i = 0; i < _players.Count; i++)
+        for (int i = 0; i < playerPositions.Count; i++)
         {
-            sum += _players[i].transform.position;
+            sum += playerPositions[i];
         }
-        return sum / _players.Count;
+        return sum / playerPositions.Count;
     }
 
     public Vector3 Position => _position;

@@ -1,12 +1,34 @@
-﻿using System.Reflection;
+﻿using System;
+using System.Collections.Generic;
+using System.Reflection;
 using UnityEngine;
 using static Constants;
 
+[RequireComponent(typeof(GameEventRegistrationAccess))]
 public abstract class MonoEventReactingBehaviour : MonoBehaviour
 {
+    private GameEventRegistrationAccess _eventRegistrationAccess;
+
+    private readonly Dictionary<GameEvent, (string MethodName, Action Handler)> _eventHandlers;
+
+    protected MonoEventReactingBehaviour()
+    {
+        _eventHandlers = new Dictionary<GameEvent, (string, Action)>
+        {
+            { GameEvent.Success, (nameof(OnSuccess), OnSuccess) },
+            { GameEvent.Failure, (nameof(OnFailure), OnFailure) },
+            { GameEvent.SceneEnd, (nameof(OnSceneEnd), OnSceneEnd) },
+        };
+    }
+
     protected virtual void OnEnable()
     {
         RegisterEventActions();
+    }
+
+    protected virtual void OnDisable()
+    {
+        UnregisterEventActions();
     }
 
     protected virtual void OnSuccess() { }
@@ -20,18 +42,34 @@ public abstract class MonoEventReactingBehaviour : MonoBehaviour
 
     protected void RegisterEventActions()
     {
-        if (_IsOverridden(nameof(OnSuccess)) && _ShouldSubscribe(GameEvent.Success))
+        _GetEventRegistrationAccess();
+
+        foreach (var kvp in _eventHandlers)
         {
-            GameEventTrigger.RegisterEventAction(GameEvent.Success, OnSuccess);
+            var gameEvent = kvp.Key;
+            var (methodName, handler) = kvp.Value;
+            if (_IsOverridden(methodName) && _ShouldSubscribe(gameEvent))
+                _eventRegistrationAccess?.RegisterEventAction(gameEvent, handler);
         }
-        if (_IsOverridden(nameof(OnFailure)) && _ShouldSubscribe(GameEvent.Failure))
+    }
+
+    protected void UnregisterEventActions()
+    {
+        _GetEventRegistrationAccess();
+
+        foreach (var kvp in _eventHandlers)
         {
-            GameEventTrigger.RegisterEventAction(GameEvent.Failure, OnFailure);
+            var gameEvent = kvp.Key;
+            var (methodName, handler) = kvp.Value;
+            if (_IsOverridden(methodName) && _ShouldSubscribe(gameEvent))
+                _eventRegistrationAccess?.UnregisterEventAction(gameEvent, handler);
         }
-        if (_IsOverridden(nameof(OnSceneEnd)) && _ShouldSubscribe(GameEvent.SceneEnd))
-        {
-            GameEventTrigger.RegisterEventAction(GameEvent.SceneEnd, OnSceneEnd);
-        }
+    }
+
+    private void _GetEventRegistrationAccess()
+    {
+        if (_eventRegistrationAccess == null)
+            _eventRegistrationAccess = GetComponent<GameEventRegistrationAccess>();
     }
 
     private bool _IsOverridden(string methodName)

@@ -1,15 +1,14 @@
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class ReverseMoveController : IMoveController
 {
-    private readonly IReadOnlyList<Player> _players;
+    private PlayersCollectionReadonlyAccess _playersAccess;
     private readonly int _requiredCount;
 
-    public ReverseMoveController(IReadOnlyList<Player> players)
+    public ReverseMoveController(PlayersCollectionReadonlyAccess playersAccess)
     {
-        _players = players;
-        _requiredCount = players.Count;
+        _playersAccess = playersAccess;
+        _requiredCount = playersAccess.Count;
     }
 
     public Vector2 ConvertInputDirection(Vector2 rawInput)
@@ -19,10 +18,12 @@ public class ReverseMoveController : IMoveController
 
     private bool _ShouldReverseInput()
     {
+        var inputDirections = _playersAccess.InputDirections;
+
         int movingCount = 0;
-        for (int i = 0; i < _players.Count; i++)
+        for (int i = 0; i < inputDirections.Count; i++)
         {
-            if (_players[i].InputDirection.x != 0)
+            if (inputDirections[i].x != 0)
                 movingCount++;
         }
         return movingCount >= _requiredCount;
