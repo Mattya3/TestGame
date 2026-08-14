@@ -2631,7 +2631,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3582371656211cc4f89cd7dfefbd22e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EventMusicPlayer
-  _gameEvent: 0
+  _gameEvent: 1
   _delayBeforePlaying: 0.2
 --- !u!82 &161220177
 AudioSource:
@@ -14666,7 +14666,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3582371656211cc4f89cd7dfefbd22e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EventMusicPlayer
-  _gameEvent: 1
+  _gameEvent: 2
   _delayBeforePlaying: 1
 --- !u!82 &1837054322
 AudioSource:
