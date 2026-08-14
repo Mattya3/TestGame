@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 // カメラターゲットのスタック
 // 最上位のターゲットが現在のカメラターゲットとなる
@@ -46,7 +46,8 @@ public class CameraTargetsStack
         _CheckAndPopInactiveTargets();
     }
 
-    public Vector3 Position {
+    public Vector3 Position
+    {
         get
         {
             if (_stack.Count > 0)
@@ -56,7 +57,8 @@ public class CameraTargetsStack
         }
     }
 
-    public bool EnableCollider {
+    public bool EnableCollider
+    {
         get
         {
             if (_stack.Count > 0)
