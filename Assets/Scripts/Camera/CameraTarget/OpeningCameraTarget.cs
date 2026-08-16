@@ -44,7 +44,7 @@ public class OpeningCameraTarget : MonoEventReactingBehaviour, ICameraTarget
         }
     }
 
-    public bool EnableCollider => false; // カメラのコライダーは無効
+    public bool AreCollidersEnabled => false; // カメラのコライダーは無効
 
     protected override void OnGamePlayStart()
     {

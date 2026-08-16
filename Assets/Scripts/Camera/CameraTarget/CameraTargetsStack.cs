@@ -62,7 +62,7 @@ public class CameraTargetsStack
         get
         {
             if (_stack.Count > 0)
-                return _stack.Peek().EnableCollider;
+                return _stack.Peek().AreCollidersEnabled;
             else
                 return false; // スタックが空の場合はコライダーを無効にする
         }

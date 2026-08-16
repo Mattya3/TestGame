@@ -6,7 +6,7 @@ public interface ICameraTarget
 
     Vector3 Position { get; }
 
-    bool EnableCollider { get; }
+    bool AreCollidersEnabled { get; }
 
     void OnStart();
 }
