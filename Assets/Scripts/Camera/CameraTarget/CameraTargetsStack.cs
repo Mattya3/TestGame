@@ -10,8 +10,9 @@ public class CameraTargetsStack
     public CameraTargetsStack(ICameraTarget[] targetsArray)
     {
         // 配列の順序を逆にしてスタックに積む
-        for (int i = targetsArray.Length - 1; i >= 0; i--)
-            _stack.Push(targetsArray[i]);
+        System.Array.Reverse(targetsArray);
+        foreach (var target in targetsArray)
+            _stack.Push(target);
     }
 
     public bool IsEmpty => _stack.Count == 0;
