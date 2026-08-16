@@ -35,7 +35,7 @@ public class CameraTargetsStack
 
     public void Start()
     {
-        if (_stack.Count > 0)
+        if (_HasTargets)
             _stack.Peek().OnStart();
 
         _CheckAndPopInactiveTargets();
@@ -51,7 +51,7 @@ public class CameraTargetsStack
     {
         get
         {
-            if (_stack.Count > 0)
+            if (_HasTargets)
                 return _stack.Peek().Position;
             else
                 return Vector3.zero; // スタックが空の場合は原点を返す
@@ -62,7 +62,7 @@ public class CameraTargetsStack
     {
         get
         {
-            if (_stack.Count > 0)
+            if (_HasTargets)
                 return _stack.Peek().AreCollidersEnabled;
             else
                 return false; // スタックが空の場合はコライダーを無効にする
@@ -75,8 +75,10 @@ public class CameraTargetsStack
         while (_stack.Count > 1 && !_stack.Peek().IsActive)
         {
             _stack.Pop();
-            if (_stack.Count > 0)
+            if (_HasTargets)
                 _stack.Peek().OnStart();
         }
     }
+
+    private bool _HasTargets => _stack.Count > 0;
 }
