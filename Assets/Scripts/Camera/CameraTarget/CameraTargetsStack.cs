@@ -75,8 +75,7 @@ public class CameraTargetsStack
         while (_stack.Count > 1 && !_stack.Peek().IsActive)
         {
             _stack.Pop();
-            if (_HasTargets)
-                _stack.Peek().OnStart();
+            _stack.Peek().OnStart();
         }
     }
 
