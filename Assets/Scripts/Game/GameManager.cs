@@ -11,8 +11,8 @@ public class GameManager : MonoBehaviour, IGameManager
 
     private void Awake()
     {
-        AccessComponent<IGameManager>.RegisterReference(this);
         _gameEventTriggerAccess = GetComponent<GameEventTriggerAccess>();
+        AccessComponent<IGameManager>.RegisterReference(this);
     }
 
     private void OnDestroy()
@@ -23,6 +23,11 @@ public class GameManager : MonoBehaviour, IGameManager
     private void Start()
     {
         _movementRuleManager.Initialize();
+    }
+
+    public void HandlePlayStart()
+    {
+        _gameEventTriggerAccess.TriggerEventActions(GameEvent.GamePlayStart);
     }
 
     public void HandleFailure()

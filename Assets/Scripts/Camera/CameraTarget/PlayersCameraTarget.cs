@@ -72,5 +72,9 @@ public class PlayersCameraTarget : MonoBehaviour, ICameraTarget
         return sum / playerPositions.Count;
     }
 
+    public bool IsActive => true;
+
     public Vector3 Position => _position;
+
+    public bool AreCollidersEnabled => true;
 }
