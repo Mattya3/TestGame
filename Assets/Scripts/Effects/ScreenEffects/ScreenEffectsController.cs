@@ -17,19 +17,14 @@ public class ScreenEffectsController : MonoEventReactingBehaviour
         [SerializeField]
         private AnimatorUpdateMode _updateMode;
 
-        [SerializeField]
-        private ShakeEffect _shakeEffect;
-
         public EffectSettings(string triggerName, AnimatorUpdateMode updateMode)
         {
             _triggerName = triggerName;
             _updateMode = updateMode;
-            _shakeEffect = null;
         }
 
         public string TriggerName => _triggerName;
         public AnimatorUpdateMode UpdateMode => _updateMode;
-        public ShakeEffect ShakeEffect => _shakeEffect;
     }
 
     [SerializeField]
@@ -61,14 +56,12 @@ public class ScreenEffectsController : MonoEventReactingBehaviour
 
     private StageSceneContextReadonlyAccess _stageContextAccess;
     private GameManagerMutableAccess _gameManagerAccess;
-    private CameraMutableAccess _cameraAccess;
 
     private void Awake()
     {
         _animator = GetComponent<Animator>();
         _stageContextAccess = GetComponent<StageSceneContextReadonlyAccess>();
         _gameManagerAccess = GetComponent<GameManagerMutableAccess>();
-        _cameraAccess = GetComponent<CameraMutableAccess>();
     }
 
     private void Start()
@@ -91,10 +84,6 @@ public class ScreenEffectsController : MonoEventReactingBehaviour
 
     private void _PlayEffect(EffectSettings settings)
     {
-        if (settings.ShakeEffect != null)
-        {
-            _cameraAccess.PlayShake(settings.ShakeEffect);
-        }
         _animator.updateMode = settings.UpdateMode;
         _animator.SetTrigger(settings.TriggerName);
     }
