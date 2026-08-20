@@ -11,8 +11,8 @@ public class ScreenEffectsController : MonoEventReactingBehaviour
     [Serializable]
     private struct EffectSettings
     {
-        [HideInInspector]
-        private readonly string _triggerName;
+        [SerializeField, HideInInspector]
+        private string _triggerName;
 
         [SerializeField]
         private AnimatorUpdateMode _updateMode;

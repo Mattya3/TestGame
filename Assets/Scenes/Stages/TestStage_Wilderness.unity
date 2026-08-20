@@ -5650,12 +5650,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ScreenEffectsController
   _animator: {fileID: 875144714}
   _openingEffect:
+    _triggerName: Opening
     _updateMode: 0
   _restartEffect:
+    _triggerName: Restart
     _updateMode: 0
   _failureEffect:
+    _triggerName: Failure
     _updateMode: 2
   _successEffect:
+    _triggerName: Success
     _updateMode: 2
 --- !u!95 &875144714
 Animator:
