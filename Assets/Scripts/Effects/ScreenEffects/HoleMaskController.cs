@@ -25,15 +25,6 @@ public class HoleMaskController : MonoUIImageMaterialAccessBehaviour
         Shader.PropertyToID("_TargetEnabled2"),
     };
 
-    protected override void OnValidate()
-    {
-        base.OnValidate();
-
-        // エディタ上ではターゲットを使用せず、デフォルトの値を設定
-        _cameraAccess = null;
-        _target = null;
-    }
-
     protected override void Awake()
     {
         base.Awake();
