@@ -150,7 +150,11 @@ public class CameraController : MonoBehaviour
 
         var shakeOffset = _shakeEffectsPlayer.CurrentShakeOffset;
 
-        _camera.transform.position = new Vector3(_smoothedPosition.x + shakeOffset.x, _smoothedPosition.y + shakeOffset.y, destination.z);
+        _camera.transform.position = new Vector3(
+            _smoothedPosition.x + shakeOffset.x,
+            _smoothedPosition.y + shakeOffset.y,
+            destination.z
+        );
     }
 
     private Vector3 _CalculateDestination()

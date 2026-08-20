@@ -21,9 +21,7 @@ public class OpeningCameraTarget : MonoEventReactingBehaviour, ICameraTarget
         _stageSceneContextAccess = GetComponent<StageSceneContextReadonlyAccess>();
     }
 
-    public void OnStart()
-    {
-    }
+    public void OnStart() { }
 
     public bool IsActive
     {

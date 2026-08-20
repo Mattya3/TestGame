@@ -17,12 +17,12 @@ public class HoleMaskController : MonoUIImageMaterialAccessBehaviour
     private static readonly int[] TargetViewportPositionIDs = new int[MAX_NUM_TARGETS]
     {
         Shader.PropertyToID("_TargetViewportPosition1"),
-        Shader.PropertyToID("_TargetViewportPosition2")
+        Shader.PropertyToID("_TargetViewportPosition2"),
     };
     private static readonly int[] TargetEnabledIDs = new int[MAX_NUM_TARGETS]
     {
         Shader.PropertyToID("_TargetEnabled1"),
-        Shader.PropertyToID("_TargetEnabled2")
+        Shader.PropertyToID("_TargetEnabled2"),
     };
 
     protected override void OnValidate()
