@@ -62,14 +62,14 @@ public class HoleMaskController : MonoUIImageMaterialAccessBehaviour
             if (!material.HasProperty(TargetViewportPositionIDs[i]))
             {
                 Debug.LogError(
-                    $"Material {material.name} does not have a property named '{TargetViewportPositionIDs[i]}'."
+                    $"Material {material.name} does not have a property named 'TargetViewportPosition{i + 1}'."
                 );
                 return false;
             }
             if (!material.HasProperty(TargetEnabledIDs[i]))
             {
                 Debug.LogError(
-                    $"Material {material.name} does not have a property named '{TargetEnabledIDs[i]}'."
+                    $"Material {material.name} does not have a property named 'TargetEnabled{i + 1}'."
                 );
                 return false;
             }
