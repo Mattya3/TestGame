@@ -21,7 +21,7 @@ public class ShakeEffect : ScriptableObject
     [SerializeField]
     private ShakeUpdateMode _updateMode = ShakeUpdateMode.Normal;
 
-    [SerializeField]
+    [SerializeField, Min(1e-6f)]
     private float _duration = 1.0f;
 
     [SerializeField]
