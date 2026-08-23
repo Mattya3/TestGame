@@ -22,13 +22,7 @@ public class PlayersManager : MonoBehaviour, IPlayersCollection
     private List<bool> _aliveFlagsList = new List<bool>();
     private ReadOnlyCollection<bool> _aliveFlagsReadOnly;
 
-    public bool AreAllPlayersAlive
-    {
-        get
-        {
-            return AliveFlags.All(flag => flag);
-        }
-    }
+    public bool AreAllPlayersAlive { get; private set; } = true;
 
     private void Awake()
     {
@@ -70,6 +64,10 @@ public class PlayersManager : MonoBehaviour, IPlayersCollection
 
     private void _HandlePlayerDeath(Player deadPlayer, DeathReason deathReason)
     {
+        if (!AreAllPlayersAlive)
+            return;
+
+        _SetPlayersDead();
         _FreezeAllPlayers();
 
         _gameManagerAccess.HandleFailure();
@@ -86,6 +84,11 @@ public class PlayersManager : MonoBehaviour, IPlayersCollection
             return;
 
         _gameManagerAccess.HandleSuccess();
+    }
+
+    private void _SetPlayersDead()
+    {
+        AreAllPlayersAlive = false;
     }
 
     private void _FreezeAllPlayers()
