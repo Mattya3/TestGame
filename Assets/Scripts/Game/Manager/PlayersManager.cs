@@ -19,7 +19,10 @@ public class PlayersManager : MonoBehaviour, IPlayersCollection
     private List<Vector2> _inputDirectionsList = new List<Vector2>();
     private ReadOnlyCollection<Vector2> _inputDirectionsReadOnly;
 
-    public bool ArePlayersAlive { get; private set; } = true;
+    private List<bool> _aliveFlagsList = new List<bool>();
+    private ReadOnlyCollection<bool> _aliveFlagsReadOnly;
+
+    public bool AreAllPlayersAlive { get; private set; } = true;
 
     private void Awake()
     {
@@ -34,6 +37,7 @@ public class PlayersManager : MonoBehaviour, IPlayersCollection
         _positionsReadOnly = new ReadOnlyCollection<Vector3>(_positionsList);
         _boundsReadOnly = new ReadOnlyCollection<Bounds>(_boundsList);
         _inputDirectionsReadOnly = new ReadOnlyCollection<Vector2>(_inputDirectionsList);
+        _aliveFlagsReadOnly = new ReadOnlyCollection<bool>(_aliveFlagsList);
     }
 
     private void OnDestroy()
@@ -47,6 +51,7 @@ public class PlayersManager : MonoBehaviour, IPlayersCollection
             return;
 
         _players.Add(player);
+        _aliveFlagsList.Add(true);
         player.OnDied += (reason) =>
         {
             _HandlePlayerDeath(player, reason);
@@ -59,7 +64,7 @@ public class PlayersManager : MonoBehaviour, IPlayersCollection
 
     private void _HandlePlayerDeath(Player deadPlayer, DeathReason deathReason)
     {
-        if (!ArePlayersAlive)
+        if (!AreAllPlayersAlive)
             return;
 
         _SetPlayersDead();
@@ -70,7 +75,7 @@ public class PlayersManager : MonoBehaviour, IPlayersCollection
 
     private void _HandlePlayerGoal(Player player)
     {
-        if (!ArePlayersAlive)
+        if (!AreAllPlayersAlive)
             return;
 
         player.Freeze();
@@ -83,7 +88,7 @@ public class PlayersManager : MonoBehaviour, IPlayersCollection
 
     private void _SetPlayersDead()
     {
-        ArePlayersAlive = false;
+        AreAllPlayersAlive = false;
     }
 
     private void _FreezeAllPlayers()
@@ -137,6 +142,19 @@ public class PlayersManager : MonoBehaviour, IPlayersCollection
                 _inputDirectionsList.Add(player.InputDirection);
             }
             return _inputDirectionsReadOnly;
+        }
+    }
+
+    public ReadOnlyCollection<bool> AliveFlags
+    {
+        get
+        {
+            _aliveFlagsList.Clear();
+            foreach (var player in _players)
+            {
+                _aliveFlagsList.Add(player.IsAlive);
+            }
+            return _aliveFlagsReadOnly;
         }
     }
 

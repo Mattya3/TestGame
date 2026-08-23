@@ -14,7 +14,10 @@ public class Player : Character
     [SerializeField]
     private PlayerSounds _sounds;
 
+    private bool _isAlive = true;
     private Vector2 _inputDirection;
+
+    public bool IsAlive => _isAlive;
 
     public Vector2 InputDirection => _inputDirection;
 
@@ -45,6 +48,8 @@ public class Player : Character
 
     public void Die(DeathReason deathReason)
     {
+        _isAlive = false;
+
         _sounds.OnDeath();
         OnDied?.Invoke(deathReason);
     }
