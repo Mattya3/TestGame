@@ -24,10 +24,7 @@ public class PlayersManager : MonoBehaviour, IPlayersCollection
 
     public bool AreAllPlayersAlive
     {
-        get
-        {
-            return AliveFlags.All(flag => flag);
-        }
+        get { return AliveFlags.All(flag => flag); }
     }
 
     private void Awake()
