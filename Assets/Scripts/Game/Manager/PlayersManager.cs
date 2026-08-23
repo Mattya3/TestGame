@@ -22,7 +22,13 @@ public class PlayersManager : MonoBehaviour, IPlayersCollection
     private List<bool> _aliveFlagsList = new List<bool>();
     private ReadOnlyCollection<bool> _aliveFlagsReadOnly;
 
-    public bool AreAllPlayersAlive { get; private set; } = true;
+    public bool AreAllPlayersAlive
+    {
+        get
+        {
+            return AliveFlags.All(flag => flag);
+        }
+    }
 
     private void Awake()
     {
@@ -64,11 +70,6 @@ public class PlayersManager : MonoBehaviour, IPlayersCollection
 
     private void _HandlePlayerDeath(Player deadPlayer, DeathReason deathReason)
     {
-        if (!AreAllPlayersAlive)
-            return;
-
-        _SetPlayerAliveFlag(deadPlayer, false);
-        _SetPlayersDead();
         _FreezeAllPlayers();
 
         _gameManagerAccess.HandleFailure();
@@ -85,20 +86,6 @@ public class PlayersManager : MonoBehaviour, IPlayersCollection
             return;
 
         _gameManagerAccess.HandleSuccess();
-    }
-
-    private void _SetPlayerAliveFlag(Player player, bool isAlive)
-    {
-        int index = _players.IndexOf(player);
-        if (index >= 0)
-        {
-            _aliveFlagsList[index] = isAlive;
-        }
-    }
-
-    private void _SetPlayersDead()
-    {
-        AreAllPlayersAlive = false;
     }
 
     private void _FreezeAllPlayers()
@@ -155,7 +142,18 @@ public class PlayersManager : MonoBehaviour, IPlayersCollection
         }
     }
 
-    public ReadOnlyCollection<bool> AliveFlags => _aliveFlagsReadOnly;
+    public ReadOnlyCollection<bool> AliveFlags
+    {
+        get
+        {
+            _aliveFlagsList.Clear();
+            foreach (var player in _players)
+            {
+                _aliveFlagsList.Add(player.IsAlive);
+            }
+            return _aliveFlagsReadOnly;
+        }
+    }
 
     public void SetMoveController(IMoveController moveController)
     {
