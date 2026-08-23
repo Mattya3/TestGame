@@ -17,22 +17,13 @@ public class HoleMaskController : MonoUIImageMaterialAccessBehaviour
     private static readonly int[] TargetViewportPositionIDs = new int[MAX_NUM_TARGETS]
     {
         Shader.PropertyToID("_TargetViewportPosition1"),
-        Shader.PropertyToID("_TargetViewportPosition2")
+        Shader.PropertyToID("_TargetViewportPosition2"),
     };
     private static readonly int[] TargetEnabledIDs = new int[MAX_NUM_TARGETS]
     {
         Shader.PropertyToID("_TargetEnabled1"),
-        Shader.PropertyToID("_TargetEnabled2")
+        Shader.PropertyToID("_TargetEnabled2"),
     };
-
-    protected override void OnValidate()
-    {
-        base.OnValidate();
-
-        // エディタ上ではターゲットを使用せず、デフォルトの値を設定
-        _cameraAccess = null;
-        _target = null;
-    }
 
     protected override void Awake()
     {
@@ -71,14 +62,14 @@ public class HoleMaskController : MonoUIImageMaterialAccessBehaviour
             if (!material.HasProperty(TargetViewportPositionIDs[i]))
             {
                 Debug.LogError(
-                    $"Material {material.name} does not have a property named '{TargetViewportPositionIDs[i]}'."
+                    $"Material {material.name} does not have a property named 'TargetViewportPosition{i + 1}'."
                 );
                 return false;
             }
             if (!material.HasProperty(TargetEnabledIDs[i]))
             {
                 Debug.LogError(
-                    $"Material {material.name} does not have a property named '{TargetEnabledIDs[i]}'."
+                    $"Material {material.name} does not have a property named 'TargetEnabled{i + 1}'."
                 );
                 return false;
             }

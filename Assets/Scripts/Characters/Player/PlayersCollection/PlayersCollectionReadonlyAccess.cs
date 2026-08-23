@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class PlayersCollectionReadonlyAccess : AccessComponent<IPlayersCollection>
 {
-    private ReadOnlyCollection<bool> _emptyAliveFlags = new ReadOnlyCollection<bool>(new List<bool>());
+    private ReadOnlyCollection<bool> _emptyAliveFlags = new ReadOnlyCollection<bool>(
+        new List<bool>()
+    );
 
     public int Count => Reference != null ? Reference.Count : 0;
 
@@ -24,7 +26,5 @@ public class PlayersCollectionReadonlyAccess : AccessComponent<IPlayersCollectio
             : new ReadOnlyCollection<Vector2>(new List<Vector2>());
 
     public ReadOnlyCollection<bool> AliveFlags =>
-        Reference != null
-            ? Reference.AliveFlags
-            : _emptyAliveFlags;
+        Reference != null ? Reference.AliveFlags : _emptyAliveFlags;
 }
