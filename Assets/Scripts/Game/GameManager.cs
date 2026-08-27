@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -20,8 +21,15 @@ public class GameManager : MonoBehaviour
             Instance = this;
     }
 
-    private void Start()
+    private IEnumerator Start()
     {
+        if (_playersManager == null || _externalEffectManager == null)
+        {
+            Debug.LogError("GameManager dependencies are not properly set up.", this);
+            yield break;
+        }
+
+        yield return new WaitUntil(() => _playersManager.Players.Count == Constants.PLAYER_COUNT);
         _externalEffectManager.Initialize(_playersManager.Players);
     }
 

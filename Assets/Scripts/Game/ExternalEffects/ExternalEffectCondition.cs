@@ -5,7 +5,7 @@ public static class ExternalEffectCondition
 {
     public static bool AreAllPlayersInputtingHorizontal(IReadOnlyList<Player> players)
     {
-        if (players == null || players.Count != 2)
+        if (players == null || players.Count != Constants.PLAYER_COUNT)
             return false;
 
         for (int i = 0; i < players.Count; i++)

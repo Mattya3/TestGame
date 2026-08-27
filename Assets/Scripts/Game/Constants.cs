@@ -11,6 +11,8 @@
         public const string PLAYER = "Player";
     }
 
+    public const int PLAYER_COUNT = 2;
+
     public static class AnimationTrigger
     {
         public const string FAILURE = "Failure";
