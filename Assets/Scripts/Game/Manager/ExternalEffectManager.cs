@@ -13,11 +13,11 @@ public class ExternalEffectManager : MonoBehaviour
         .ExternalEffectType
         .None;
 
-    public void Initialize(IReadOnlyList<Player> players)
-    {
         if (players == null)
+        {
+            Debug.LogError("players が null です。", this);
             return;
-
+        }
         for (int i = 0; i < players.Count; i++)
         {
             Player player = players[i];
