@@ -13,31 +13,25 @@ public class ExternalEffectManager : MonoBehaviour
         .ExternalEffectType
         .None;
 
-    public void Initialize(
-        IReadOnlyList<Player> players,
-        IReadOnlyList<IExternalEffectContext> contexts
-    )
+    public void Initialize(IReadOnlyList<Player> players)
     {
-        InjectExternalEffect(players, contexts);
-    }
-
-    private void InjectExternalEffect(
-        IReadOnlyList<Player> players,
-        IReadOnlyList<IExternalEffectContext> contexts
-    )
-    {
-        if (contexts == null)
+        if (players == null)
             return;
 
-        for (int i = 0; i < contexts.Count; i++)
+        for (int i = 0; i < players.Count; i++)
         {
+            Player player = players[i];
+            if (player == null)
+                continue;
+
+            IExternalEffectContext context = player.ExternalEffectContext;
             Constants.ExternalEffectType effectType = GetExternalEffectType(i);
             IExternalEffect externalEffect = ExternalEffectFactory.Create(
                 effectType,
                 players,
-                contexts[i]
+                context
             );
-            contexts[i].SetExternalEffect(externalEffect);
+            context.SetExternalEffect(externalEffect);
         }
     }
 

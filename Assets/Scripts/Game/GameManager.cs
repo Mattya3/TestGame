@@ -22,13 +22,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        IReadOnlyList<Player> players = _playersManager.Players;
-        List<IExternalEffectContext> contexts = new(players.Count);
-        for (int i = 0; i < players.Count; i++)
-        {
-            contexts.Add(players[i].ExternalEffectContext);
-        }
-        _externalEffectManager.Initialize(players, contexts);
+        _externalEffectManager.Initialize(_playersManager.Players);
     }
 
     public void HandleFailure()
