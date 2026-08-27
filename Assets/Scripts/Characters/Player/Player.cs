@@ -140,5 +140,4 @@ public partial class Player : Character
             ? new GroundState(_stateContext, _sounds)
             : new AirState(_stateContext, _sounds);
     }
-
 }
