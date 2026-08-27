@@ -11,6 +11,8 @@
         public const string PLAYER = "Player";
     }
 
+    public const int PLAYER_COUNT = 2;
+
     public static class AnimationTrigger
     {
         public const string FAILURE = "Failure";
@@ -23,10 +25,12 @@
         DeadZone,
     }
 
-    public enum MovementRuleEffect
+    public enum ExternalEffectType
     {
-        Demo, //デモ用, 入力反転が起こらない
-        Reverse, //通常用, 入力反転が起こる
+        None,
+        ReverseInput,
+        ReverseGravity,
+        StopVerticalMovement,
     }
 
     public enum GameEvent

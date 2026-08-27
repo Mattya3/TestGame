@@ -14,11 +14,13 @@ public abstract class Character : MonoEventReactingBehaviour
 
     private Rigidbody2D _rigidBody;
     private Collider2D _collider;
+    private float _defaultGravityScale;
 
     protected virtual void Awake()
     {
         _rigidBody = GetComponent<Rigidbody2D>();
         _collider = GetComponent<Collider2D>();
+        _defaultGravityScale = _rigidBody.gravityScale;
     }
 
     protected virtual void Update()
@@ -66,4 +68,14 @@ public abstract class Character : MonoEventReactingBehaviour
     }
 
     public Bounds Bounds => _collider.bounds;
+
+    protected void _SetGravityScale(float gravityScale)
+    {
+        _rigidBody.gravityScale = gravityScale;
+    }
+
+    protected float _GetDefaultGravityScale()
+    {
+        return _defaultGravityScale;
+    }
 }
