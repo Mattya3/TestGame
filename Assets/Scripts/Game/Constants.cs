@@ -28,6 +28,7 @@
         None,
         ReverseInput,
         ReverseGravity,
+        StopVerticalMovement,
     }
 
     public enum GameEvent

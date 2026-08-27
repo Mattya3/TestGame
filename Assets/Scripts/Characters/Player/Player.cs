@@ -34,7 +34,7 @@ public partial class Player : Character
         }
 
         _stateContext = new StateContext(this);
-        _externalEffectContext = new PlayerExternalEffectContext(this);
+        _externalEffectContext = new PlayerExternalEffectContext();
         _ChangeState(_CreateInitialState());
         OnCreated?.Invoke(this);
     }
@@ -141,13 +141,4 @@ public partial class Player : Character
             : new AirState(_stateContext, _sounds);
     }
 
-    private void _SetGravityScaleForExternalEffect(float gravityScale)
-    {
-        _SetGravityScale(gravityScale);
-    }
-
-    private float _GetDefaultGravityScaleForExternalEffect()
-    {
-        return _GetDefaultGravityScale();
-    }
 }

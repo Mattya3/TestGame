@@ -29,6 +29,7 @@ public class ExternalEffectManager : MonoBehaviour
             IExternalEffect externalEffect = ExternalEffectFactory.Create(
                 effectType,
                 players,
+                i,
                 context
             );
             context.SetExternalEffect(externalEffect);
