@@ -4057,6 +4057,7 @@ GameObject:
   - component: {fileID: 740941444}
   - component: {fileID: 740941443}
   - component: {fileID: 740941442}
+  - component: {fileID: 740941450}
   - component: {fileID: 740941449}
   m_Layer: 7
   m_Name: Player2
@@ -4332,6 +4333,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 350ef0f6403c0f04b914a103f74b1680, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameEventRegistrationAccess
+--- !u!114 &740941450
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 740941441}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d67ca81f9e0c05e40a286db330f7f8a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CharacterEffectsPlayer
+  _deadZoneDeathEffect:
+    _playMode: 1
+    _effectPrefab: {fileID: 8555158167546874534, guid: d43b716f007c3bf4682da4f58aa8513b, type: 3}
+    _position: {x: 0, y: 0, z: 0}
+    _duration: 1
+    _vfxEventName: OnPlay
+    _audioClip: {fileID: 0}
+    _audioSource: {fileID: 0}
+    _audioVolume: 0
+  _fallDeathEffect:
+    _playMode: 1
+    _effectPrefab: {fileID: 8555158167546874534, guid: d286d829fee8ae34fa587ef8fda79bd4, type: 3}
+    _position: {x: 0, y: 0, z: 0}
+    _duration: 1
+    _vfxEventName: OnPlay
+    _audioClip: {fileID: 0}
+    _audioSource: {fileID: 0}
+    _audioVolume: 0
 --- !u!1 &743438944
 GameObject:
   m_ObjectHideFlags: 0
@@ -8860,6 +8891,7 @@ GameObject:
   - component: {fileID: 1435100474}
   - component: {fileID: 1435100473}
   - component: {fileID: 1435100472}
+  - component: {fileID: 1435100480}
   - component: {fileID: 1435100479}
   m_Layer: 7
   m_Name: Player1
@@ -9135,6 +9167,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 350ef0f6403c0f04b914a103f74b1680, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameEventRegistrationAccess
+--- !u!114 &1435100480
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1435100471}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d67ca81f9e0c05e40a286db330f7f8a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CharacterEffectsPlayer
+  _deadZoneDeathEffect:
+    _playMode: 1
+    _effectPrefab: {fileID: 8555158167546874534, guid: d43b716f007c3bf4682da4f58aa8513b, type: 3}
+    _position: {x: 0, y: 0, z: 0}
+    _duration: 1
+    _vfxEventName: OnPlay
+    _audioClip: {fileID: 0}
+    _audioSource: {fileID: 0}
+    _audioVolume: 0
+  _fallDeathEffect:
+    _playMode: 1
+    _effectPrefab: {fileID: 8555158167546874534, guid: d286d829fee8ae34fa587ef8fda79bd4, type: 3}
+    _position: {x: 0, y: 0, z: 0}
+    _duration: 1
+    _vfxEventName: OnPlay
+    _audioClip: {fileID: 0}
+    _audioSource: {fileID: 0}
+    _audioVolume: 0
 --- !u!1001 &1492986252
 PrefabInstance:
   m_ObjectHideFlags: 0

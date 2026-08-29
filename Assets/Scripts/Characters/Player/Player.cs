@@ -51,6 +51,7 @@ public class Player : Character
         _isAlive = false;
 
         _sounds.OnDeath();
+        EffectsPlayer.PlayDeathEffect(deathReason);
         OnDied?.Invoke(deathReason);
     }
 
