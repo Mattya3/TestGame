@@ -5,7 +5,6 @@ using UnityEngine.VFX;
 
 public class CharacterEffectsPlayer : MonoBehaviour
 {
-
     [SerializeField]
     private VisualEffectsPool.EffectConfig _deadZoneDeathEffect;
 

@@ -52,9 +52,25 @@ public static class VisualEffectsPool
             switch (_playMode)
             {
                 case EffectPlayMode.Instantiate:
-                    return new InstantiateEffectPlayer(_effectPrefab, _position, _duration, _audioClip, _audioSource, _audioVolume, parent);
+                    return new InstantiateEffectPlayer(
+                        _effectPrefab,
+                        _position,
+                        _duration,
+                        _audioClip,
+                        _audioSource,
+                        _audioVolume,
+                        parent
+                    );
                 case EffectPlayMode.Persistent:
-                    return new PersistentEffectPlayer(_effectPrefab, _position, _vfxEventName, _audioClip, _audioSource, _audioVolume, parent);
+                    return new PersistentEffectPlayer(
+                        _effectPrefab,
+                        _position,
+                        _vfxEventName,
+                        _audioClip,
+                        _audioSource,
+                        _audioVolume,
+                        parent
+                    );
                 default:
                     Debug.LogError($"Unhandled EffectPlayMode value: {_playMode}");
                     return null;
@@ -71,7 +87,14 @@ public static class VisualEffectsPool
         protected readonly AudioSource _audioSource;
         protected readonly float _audioVolume;
 
-        protected EffectPlayerBase(GameObject prefab, Vector3 position, AudioClip audioClip, AudioSource audioSource, float audioVolume, Transform parent)
+        protected EffectPlayerBase(
+            GameObject prefab,
+            Vector3 position,
+            AudioClip audioClip,
+            AudioSource audioSource,
+            float audioVolume,
+            Transform parent
+        )
         {
             _prefab = prefab;
             _position = position;
@@ -99,7 +122,15 @@ public static class VisualEffectsPool
         private readonly List<GameObject> _activeInstances;
         private readonly List<Coroutine> _activeCoroutines;
 
-        public InstantiateEffectPlayer(GameObject prefab, Vector3 position, float duration, AudioClip audioClip, AudioSource audioSource, float audioVolume, Transform parent)
+        public InstantiateEffectPlayer(
+            GameObject prefab,
+            Vector3 position,
+            float duration,
+            AudioClip audioClip,
+            AudioSource audioSource,
+            float audioVolume,
+            Transform parent
+        )
             : base(prefab, position, audioClip, audioSource, audioVolume, parent)
         {
             _duration = duration;
@@ -109,7 +140,12 @@ public static class VisualEffectsPool
 
         public override void Play(MonoBehaviour owner)
         {
-            GameObject instance = Object.Instantiate(_prefab, _position + _parent.transform.position, Quaternion.identity, _parent);
+            GameObject instance = Object.Instantiate(
+                _prefab,
+                _position + _parent.transform.position,
+                Quaternion.identity,
+                _parent
+            );
             _activeInstances.Add(instance);
             PlayAudio();
 
@@ -165,7 +201,15 @@ public static class VisualEffectsPool
         private VisualEffect _visualEffect;
         private VFXEventAttribute _eventAttribute;
 
-        public PersistentEffectPlayer(GameObject prefab, Vector3 position, string vfxEventName, AudioClip audioClip, AudioSource audioSource, float audioVolume, Transform parent)
+        public PersistentEffectPlayer(
+            GameObject prefab,
+            Vector3 position,
+            string vfxEventName,
+            AudioClip audioClip,
+            AudioSource audioSource,
+            float audioVolume,
+            Transform parent
+        )
             : base(prefab, position, audioClip, audioSource, audioVolume, parent)
         {
             _vfxEventName = vfxEventName;
@@ -174,7 +218,12 @@ public static class VisualEffectsPool
 
         private void _Initialize()
         {
-            _instance = Object.Instantiate(_prefab, _position + _parent.transform.position, Quaternion.identity, _parent);
+            _instance = Object.Instantiate(
+                _prefab,
+                _position + _parent.transform.position,
+                Quaternion.identity,
+                _parent
+            );
             _visualEffect = _instance.GetComponent<VisualEffect>();
 
             if (_visualEffect == null)
