@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9c7369578e59f94bb63f91795fdb30d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EffectsCompositor
-  _duration: 1
+  _duration: 2
   _delayTime: 0
 --- !u!2083052967 &2434224364400919743
 VisualEffect:

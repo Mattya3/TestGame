@@ -1,6 +1,7 @@
 ﻿using EffectsCompositeComponent;
 using UnityEngine;
 using UnityEngine.VFX;
+using System.Collections;
 
 public class EffectsCompositor : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class EffectsCompositor : MonoBehaviour
 
     private VisualEffect _visualEffect;
     private ISoundEffect[] _soundEffects;
+    private Coroutine _deactivateCoroutine;
 
     private void Awake()
     {
@@ -25,10 +27,28 @@ public class EffectsCompositor : MonoBehaviour
         {
             soundEffect.Initialize(audioSource);
         }
+
+        // 初期化時点では非アクティブにする
+        gameObject.SetActive(false);
     }
 
     public void PlayEffects()
     {
+        gameObject.SetActive(true);
+
+        if (_deactivateCoroutine != null)
+        {
+            StopCoroutine(_deactivateCoroutine);
+        }
+        _deactivateCoroutine = StartCoroutine(_CoDeactivateAfterDuration());
+
+        StartCoroutine(_CoPlayEffects());
+    }
+
+    private IEnumerator _CoPlayEffects()
+    {
+        yield return new WaitForSeconds(_delayTime);
+
         _visualEffect.Play();
         foreach (var soundEffect in _soundEffects)
         {
@@ -36,8 +56,10 @@ public class EffectsCompositor : MonoBehaviour
         }
     }
 
-    private void Update()
+    private IEnumerator _CoDeactivateAfterDuration()
     {
-        
+        yield return new WaitForSeconds(_duration);
+        gameObject.SetActive(false);
+        _deactivateCoroutine = null;
     }
 }
