@@ -17,6 +17,9 @@ namespace EffectsCompositeComponent
         [SerializeField, Range(0.0f, 1.0f)]
         private float _modulationAmplitude = 0f;
 
+        [SerializeField]
+        private bool _playInUnscaledTime = false;
+
         private Light2D _light;
         private float _initialIntensity = 1f;
         private float _time = 0f;
@@ -34,9 +37,9 @@ namespace EffectsCompositeComponent
             _time = 0f;
         }
 
-        void Update()
+        private void Update()
         {
-            _time += Time.deltaTime;
+            _time += _playInUnscaledTime ? Time.unscaledDeltaTime : Time.deltaTime;
 
             float curveTime = Mathf.Clamp01(_time / _curveDuration);
             float curveValue = _intensityCurve.Evaluate(curveTime);
