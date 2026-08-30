@@ -3,6 +3,7 @@ using UnityEngine.Rendering.Universal;
 
 namespace EffectsCompositeComponent
 {
+    [RequireComponent(typeof(Light2D))]
     public class LightColorController : MonoBehaviour, ILightSourceController
     {
         [SerializeField]
@@ -19,6 +20,12 @@ namespace EffectsCompositeComponent
         public void Initialize(Light2D light, bool playInUnscaledTime)
         {
             _light = light;
+            if (_light == null)
+            {
+                Debug.LogWarning("Light2D component is missing. LightColorController will not function properly.");
+                return;
+            }
+
             _initialColor = _light.color;
             _playInUnscaledTime = playInUnscaledTime;
             _light.color = Color.black; // 初期化時点では光源を消灯しておく
@@ -31,6 +38,9 @@ namespace EffectsCompositeComponent
 
         private void Update()
         {
+            if (_light == null)
+                return;
+
             _time += _playInUnscaledTime ? Time.unscaledDeltaTime : Time.deltaTime;
 
             float gradientTime = Mathf.Clamp01(_time / _gradientDuration);

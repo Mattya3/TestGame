@@ -3,6 +3,7 @@ using UnityEngine.Rendering.Universal;
 
 namespace EffectsCompositeComponent
 {
+    [RequireComponent(typeof(Light2D))]
     public class LightIntensityController : MonoBehaviour, ILightSourceController
     {
         [SerializeField]
@@ -25,6 +26,12 @@ namespace EffectsCompositeComponent
         public void Initialize(Light2D light, bool playInUnscaledTime)
         {
             _light = light;
+            if (_light == null)
+            {
+                Debug.LogWarning("Light2D component is missing. LightIntensityController will not function properly.");
+                return;
+            }
+
             _initialIntensity = _light.intensity;
             _playInUnscaledTime = playInUnscaledTime;
 
@@ -38,6 +45,9 @@ namespace EffectsCompositeComponent
 
         private void Update()
         {
+            if (_light == null)
+                return;
+
             _time += _playInUnscaledTime ? Time.unscaledDeltaTime : Time.deltaTime;
 
             float curveTime = Mathf.Clamp01(_time / _curveDuration);
