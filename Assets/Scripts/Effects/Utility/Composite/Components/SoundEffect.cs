@@ -25,7 +25,7 @@ namespace EffectsCompositeComponent
             _audioSource = audioSource;
         }
 
-        public void PlaySound()
+        public void Play()
         {
             if (_audioClip == null || _audioSource == null)
             {

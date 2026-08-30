@@ -32,7 +32,7 @@ namespace EffectsCompositeComponent
             _audioSource = audioSource;
         }
 
-        public void PlaySound()
+        public void Play()
         {
             if (_audioClips.Length == 0 || _audioSource == null)
             {
