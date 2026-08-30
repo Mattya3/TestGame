@@ -4,7 +4,7 @@ using UnityEngine.Rendering.Universal;
 namespace EffectsCompositeComponent
 {
     [RequireComponent(typeof(Light2D))]
-    public class LightColorController : MonoBehaviour, ILightSourceController
+    public class LightColorEffect : MonoBehaviour, ILightSourceEffect
     {
         [SerializeField]
         private Gradient _colorGradient = new Gradient();

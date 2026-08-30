@@ -4,7 +4,7 @@ using UnityEngine.Rendering.Universal;
 namespace EffectsCompositeComponent
 {
     [RequireComponent(typeof(Light2D))]
-    public class LightIntensityController : MonoBehaviour, ILightSourceController
+    public class LightIntensityEffect : MonoBehaviour, ILightSourceEffect
     {
         [SerializeField]
         private AnimationCurve _intensityCurve = AnimationCurve.Linear(0f, 1f, 1f, 1f);

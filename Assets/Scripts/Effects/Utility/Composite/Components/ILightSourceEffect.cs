@@ -2,7 +2,7 @@
 
 namespace EffectsCompositeComponent
 {
-    public interface ILightSourceController
+    public interface ILightSourceEffect
     {
         void Initialize(Light2D light2D, bool playInUnscaledTime);
 

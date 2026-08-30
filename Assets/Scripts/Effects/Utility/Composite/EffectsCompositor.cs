@@ -17,14 +17,14 @@ public class EffectsCompositor : MonoBehaviour
 
     private VisualEffect _visualEffect;
     private ISoundEffect[] _soundEffects;
-    private ILightSourceController[] _lightSourceControllers;
+    private ILightSourceEffect[] _lightSourceEffects;
     private Coroutine _deactivateCoroutine;
 
     private void Awake()
     {
         _visualEffect = GetComponent<VisualEffect>();
         _soundEffects = GetComponents<ISoundEffect>();
-        _lightSourceControllers = GetComponents<ILightSourceController>();
+        _lightSourceEffects = GetComponents<ILightSourceEffect>();
     }
 
     public void Initialize(AudioSource audioSource)
@@ -34,17 +34,17 @@ public class EffectsCompositor : MonoBehaviour
             soundEffect.Initialize(audioSource);
         }
 
-        if (_lightSourceControllers.Length > 0)
+        if (_lightSourceEffects.Length > 0)
         {
             var light2D = GetComponent<Light2D>();
             if (light2D == null)
             {
-                Debug.LogWarning("Light2D component is missing. Light source controllers will not be initialized.");
-                _lightSourceControllers = new ILightSourceController[0]; // Clear the array to avoid further processing
+                Debug.LogWarning("Light2D component is missing. Light source effects will not be initialized.");
+                _lightSourceEffects = new ILightSourceEffect[0]; // Clear the array to avoid further processing
             }
-            foreach (var lightSourceController in _lightSourceControllers)
+            foreach (var lightSourceEffect in _lightSourceEffects)
             {
-                lightSourceController.Initialize(light2D, _playInUnscaledTime);
+                lightSourceEffect.Initialize(light2D, _playInUnscaledTime);
             }
         }
 
@@ -74,9 +74,9 @@ public class EffectsCompositor : MonoBehaviour
         {
             soundEffect.Play();
         }
-        foreach (var lightSourceController in _lightSourceControllers)
+        foreach (var lightSourceEffect in _lightSourceEffects)
         {
-            lightSourceController.Play();
+            lightSourceEffect.Play();
         }
     }
 
