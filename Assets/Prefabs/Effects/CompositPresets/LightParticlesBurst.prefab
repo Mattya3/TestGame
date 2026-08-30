@@ -11,7 +11,9 @@ GameObject:
   - component: {fileID: 7945885557749197732}
   - component: {fileID: 8551065528359063952}
   - component: {fileID: 2434224364400919743}
+  - component: {fileID: 7268194909455541134}
   - component: {fileID: 2510673981902771188}
+  - component: {fileID: 5889630050491959562}
   m_Layer: 0
   m_Name: LightParticlesBurst
   m_TagString: Untagged
@@ -86,6 +88,20 @@ VisualEffect:
       m_Array: []
     m_Bool:
       m_Array: []
+--- !u!114 &7268194909455541134
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6691408204187200571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a8d705cd2e608043ae5d61cc2b8a85d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EffectsCompositeComponent.SoundEffect
+  _audioClip: {fileID: 8300000, guid: a71fef06768b07244b5fc5e7c4e78158, type: 3}
+  _volume: 1
 --- !u!73398921 &2510673981902771188
 VFXRenderer:
   serializedVersion: 1
@@ -133,3 +149,20 @@ VFXRenderer:
   m_SortingLayer: 5
   m_SortingOrder: 0
   m_MaskInteraction: 0
+--- !u!114 &5889630050491959562
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6691408204187200571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c308892f53fab8408ae221a453e381b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EffectsCompositeComponent.RandomSoundEffect
+  _audioClips:
+  - {fileID: 8300000, guid: 30c122f7e8df5624c8b30a8ab7ab033c, type: 3}
+  - {fileID: 8300000, guid: 11e1b3d106b33ac46a4532336ba18c9f, type: 3}
+  - {fileID: 8300000, guid: 33de3926a926b3c469b0546332cb200b, type: 3}
+  _volume: 1
