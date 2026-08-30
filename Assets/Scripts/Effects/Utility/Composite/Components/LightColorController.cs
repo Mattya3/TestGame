@@ -11,17 +11,16 @@ namespace EffectsCompositeComponent
         [SerializeField, Min(1e-3f)]
         private float _gradientDuration = 1f;
 
-        [SerializeField]
-        private bool _playInUnscaledTime = false;
-
         private Light2D _light;
         private Color _initialColor = Color.white;
+        private bool _playInUnscaledTime = false;
         private float _time = 0f;
 
-        public void Initialize(Light2D light)
+        public void Initialize(Light2D light, bool playInUnscaledTime)
         {
             _light = light;
             _initialColor = _light.color;
+            _playInUnscaledTime = playInUnscaledTime;
             _light.color = Color.black; // 初期化時点では光源を消灯しておく
         }
 

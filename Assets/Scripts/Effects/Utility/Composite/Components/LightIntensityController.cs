@@ -17,17 +17,16 @@ namespace EffectsCompositeComponent
         [SerializeField, Range(0.0f, 1.0f)]
         private float _modulationAmplitude = 0f;
 
-        [SerializeField]
-        private bool _playInUnscaledTime = false;
-
         private Light2D _light;
         private float _initialIntensity = 1f;
+        private bool _playInUnscaledTime = false;
         private float _time = 0f;
 
-        public void Initialize(Light2D light)
+        public void Initialize(Light2D light, bool playInUnscaledTime)
         {
             _light = light;
             _initialIntensity = _light.intensity;
+            _playInUnscaledTime = playInUnscaledTime;
 
             _light.intensity = 0f; // 初期化時点では光源を消灯しておく
         }

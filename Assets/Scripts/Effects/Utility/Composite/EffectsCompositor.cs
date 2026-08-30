@@ -12,6 +12,9 @@ public class EffectsCompositor : MonoBehaviour
     [SerializeField]
     private float _delayTime = 0f;
 
+    [SerializeField]
+    private bool _playInUnscaledTime = false;
+
     private VisualEffect _visualEffect;
     private ISoundEffect[] _soundEffects;
     private ILightSourceController[] _lightSourceControllers;
@@ -41,7 +44,7 @@ public class EffectsCompositor : MonoBehaviour
             }
             foreach (var lightSourceController in _lightSourceControllers)
             {
-                lightSourceController.Initialize(light2D);
+                lightSourceController.Initialize(light2D, _playInUnscaledTime);
             }
         }
 
@@ -64,7 +67,7 @@ public class EffectsCompositor : MonoBehaviour
 
     private IEnumerator _CoPlayEffects()
     {
-        yield return new WaitForSeconds(_delayTime);
+        yield return _playInUnscaledTime ? new WaitForSecondsRealtime(_delayTime) : new WaitForSeconds(_delayTime);
 
         _visualEffect.Play();
         foreach (var soundEffect in _soundEffects)
@@ -79,7 +82,7 @@ public class EffectsCompositor : MonoBehaviour
 
     private IEnumerator _CoDeactivateAfterDuration()
     {
-        yield return new WaitForSeconds(_duration);
+        yield return _playInUnscaledTime ? new WaitForSecondsRealtime(_duration) : new WaitForSeconds(_duration);
         gameObject.SetActive(false);
         _deactivateCoroutine = null;
     }

@@ -53,6 +53,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EffectsCompositor
   _duration: 2
   _delayTime: 0
+  _playInUnscaledTime: 0
 --- !u!2083052967 &2434224364400919743
 VisualEffect:
   m_ObjectHideFlags: 0
