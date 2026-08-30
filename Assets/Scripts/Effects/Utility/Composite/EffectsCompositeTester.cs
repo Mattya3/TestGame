@@ -1,16 +1,16 @@
 ﻿using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class EffectsCompositTester : MonoBehaviour
+public class EffectsCompositeTester : MonoBehaviour
 {
     [SerializeField]
     private GameObject _effectPrefab;
 
-    private EffectsCompositPlayer _player;
+    private EffectsCompositePlayer _player;
 
     private void Awake()
     {
-        _player = new EffectsCompositPlayer(
+        _player = new EffectsCompositePlayer(
             _effectPrefab,
             transform.position,
             transform.rotation,

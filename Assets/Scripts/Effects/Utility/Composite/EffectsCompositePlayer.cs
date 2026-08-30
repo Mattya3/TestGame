@@ -1,11 +1,11 @@
 ﻿using UnityEngine;
 
-public class EffectsCompositPlayer
+public class EffectsCompositePlayer
 {
     private GameObject _instance;
     private EffectsCompositor _compositor;
 
-    public EffectsCompositPlayer(
+    public EffectsCompositePlayer(
         GameObject effectPrefab,
         Vector3 position = default,
         Quaternion rotation = default,
