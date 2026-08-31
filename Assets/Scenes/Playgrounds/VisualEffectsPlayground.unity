@@ -1973,6 +1973,7 @@ MonoBehaviour:
   _audioSource: {fileID: 1700165872}
   _cameraAccess: {fileID: 1700165873}
   _transformOffsetController: {fileID: 1700165874}
+  _renderer: {fileID: 1688538435}
 --- !u!82 &1700165872
 AudioSource:
   m_ObjectHideFlags: 0

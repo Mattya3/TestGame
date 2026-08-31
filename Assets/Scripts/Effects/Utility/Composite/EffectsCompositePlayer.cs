@@ -10,6 +10,7 @@ public class EffectsCompositePlayer
         AudioSource audioSource,
         CameraMutableAccess cameraAccess,
         TransformOffsetController transformOffsetController,
+        Renderer renderer,
         Vector3 position = default,
         Quaternion rotation = default,
         Transform parent = null
@@ -35,7 +36,7 @@ public class EffectsCompositePlayer
             return;
         }
 
-        _compositor.Initialize(audioSource, cameraAccess, transformOffsetController);
+        _compositor.Initialize(audioSource, cameraAccess, transformOffsetController, renderer);
     }
 
     public void PlayEffects()

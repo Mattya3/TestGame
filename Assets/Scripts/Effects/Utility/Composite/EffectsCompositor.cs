@@ -20,6 +20,8 @@ public class EffectsCompositor : MonoBehaviour
     private ILightSourceEffect[] _lightSourceEffects;
     private ICameraEffect[] _cameraEffects;
     private ITransformEffect[] _transformEffects;
+    private IRendererEffect[] _rendererEffects;
+
     private Coroutine _deactivateCoroutine;
 
     private void Awake()
@@ -29,9 +31,15 @@ public class EffectsCompositor : MonoBehaviour
         _lightSourceEffects = GetComponents<ILightSourceEffect>();
         _cameraEffects = GetComponents<ICameraEffect>();
         _transformEffects = GetComponents<ITransformEffect>();
+        _rendererEffects = GetComponents<IRendererEffect>();
     }
 
-    public void Initialize(AudioSource audioSource, CameraMutableAccess cameraAccess, TransformOffsetController transformOffsetController)
+    public void Initialize(
+        AudioSource audioSource,
+        CameraMutableAccess cameraAccess,
+        TransformOffsetController transformOffsetController,
+        Renderer renderer
+        )
     {
         foreach (var soundEffect in _soundEffects)
         {
@@ -60,6 +68,11 @@ public class EffectsCompositor : MonoBehaviour
         foreach (var transformEffect in _transformEffects)
         {
             transformEffect.Initialize(transformOffsetController, _playInUnscaledTime);
+        }
+
+        foreach (var rendererEffect in _rendererEffects)
+        {
+            rendererEffect.Initialize(renderer, _playInUnscaledTime);
         }
 
         // 初期化時点では非アクティブにする
@@ -104,6 +117,11 @@ public class EffectsCompositor : MonoBehaviour
         {
             if (transformEffect.isEnabled)
                 transformEffect.Play();
+        }
+        foreach (var rendererEffect in _rendererEffects)
+        {
+            if (rendererEffect.isEnabled)
+                rendererEffect.Play();
         }
     }
 

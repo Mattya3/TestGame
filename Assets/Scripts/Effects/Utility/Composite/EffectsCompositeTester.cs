@@ -17,6 +17,9 @@ public class EffectsCompositeTester : MonoBehaviour
     [SerializeField]
     private TransformOffsetController _transformOffsetController;
 
+    [SerializeField]
+    private Renderer _renderer;
+
     private EffectsCompositePlayer _player;
 
     private void Awake()
@@ -26,6 +29,7 @@ public class EffectsCompositeTester : MonoBehaviour
             _audioSource,
             _cameraAccess,
             _transformOffsetController,
+            _renderer,
             transform.position,
             transform.rotation,
             transform
