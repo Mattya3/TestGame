@@ -22,7 +22,7 @@ public class EffectsCompositeTester : MonoBehaviour
 
     private EffectsCompositePlayer _player;
 
-    private void Awake()
+    private void Start()
     {
         _player = new EffectsCompositePlayer(
             _effectPrefab,
