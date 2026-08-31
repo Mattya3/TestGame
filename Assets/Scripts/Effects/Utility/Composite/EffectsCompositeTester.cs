@@ -38,9 +38,15 @@ public class EffectsCompositeTester : MonoBehaviour
 
     public void PlayEffects(InputAction.CallbackContext context)
     {
-        if (!context.performed)
+        if (context.performed)
+        {
+            _player.PlayEffects();
             return;
-
-        _player.PlayEffects();
+        }
+        if (context.canceled)
+        {
+            _player.StopEffects();
+            return;
+        }
     }
 }

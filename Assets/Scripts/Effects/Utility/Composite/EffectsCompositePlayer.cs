@@ -45,8 +45,12 @@ public class EffectsCompositePlayer
     public void PlayEffects()
     {
         foreach (var compositor in _compositors)
-        {
             compositor.PlayEffects();
-        }
+    }
+
+    public void StopEffects()
+    {
+        foreach(var compositor in _compositors)
+            compositor.StopEffects();
     }
 }
