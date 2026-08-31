@@ -8,15 +8,24 @@ public class EffectsCompositeTester : MonoBehaviour
     [SerializeField]
     private GameObject _effectPrefab;
 
+    [SerializeField]
+    private AudioSource _audioSource;
+
+    [SerializeField]
+    private CameraMutableAccess _cameraAccess;
+
+    [SerializeField]
+    private TransformOffsetController _transformOffsetController;
+
     private EffectsCompositePlayer _player;
 
     private void Awake()
     {
         _player = new EffectsCompositePlayer(
             _effectPrefab,
-            GetComponent<AudioSource>(),
-            GetComponent<CameraMutableAccess>(),
-            GetComponent<TransformOffsetController>(),
+            _audioSource,
+            _cameraAccess,
+            _transformOffsetController,
             transform.position,
             transform.rotation,
             transform

@@ -1970,6 +1970,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EffectsCompositTester
   _effectPrefab: {fileID: 6691408204187200571, guid: 1eb3057a73034284eb6a963be7b33ba0, type: 3}
+  _audioSource: {fileID: 1700165872}
+  _cameraAccess: {fileID: 1700165873}
+  _transformOffsetController: {fileID: 1700165874}
 --- !u!82 &1700165872
 AudioSource:
   m_ObjectHideFlags: 0
