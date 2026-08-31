@@ -4,7 +4,7 @@ using UnityEngine.VFX;
 using UnityEngine.Rendering.Universal;
 using System.Collections;
 
-public class EffectsCompositor : MonoBehaviour
+public class OneShotEffectsCompositor : MonoBehaviour, IEffectsCompositor
 {
     [SerializeField]
     private float _duration = 1f;
@@ -90,6 +90,16 @@ public class EffectsCompositor : MonoBehaviour
         _deactivateCoroutine = StartCoroutine(_CoDeactivateAfterDuration());
 
         StartCoroutine(_CoPlayEffects());
+    }
+
+    public void StopEffects()
+    {
+        if (_deactivateCoroutine != null)
+        {
+            StopCoroutine(_deactivateCoroutine);
+            _deactivateCoroutine = null;
+        }
+        gameObject.SetActive(false);
     }
 
     private IEnumerator _CoPlayEffects()

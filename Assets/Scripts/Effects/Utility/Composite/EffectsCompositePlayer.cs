@@ -3,7 +3,7 @@
 public class EffectsCompositePlayer
 {
     private GameObject _instance;
-    private EffectsCompositor[] _compositors;
+    private IEffectsCompositor[] _compositors;
 
     public EffectsCompositePlayer(
         GameObject effectPrefab,
@@ -29,7 +29,7 @@ public class EffectsCompositePlayer
         }
 
         _instance = GameObject.Instantiate(effectPrefab, position, rotation, parent);
-        _compositors = _instance.GetComponentsInChildren<EffectsCompositor>();
+        _compositors = _instance.GetComponentsInChildren<IEffectsCompositor>();
         if (_compositors == null || _compositors.Length == 0)
         {
             Debug.LogWarning("EffectsCompositor components are not found on the effect prefab.");
