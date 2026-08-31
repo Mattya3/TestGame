@@ -3,7 +3,7 @@
 public class EffectsCompositePlayer
 {
     private GameObject _instance;
-    private EffectsCompositor _compositor;
+    private EffectsCompositor[] _compositors;
 
     public EffectsCompositePlayer(
         GameObject effectPrefab,
@@ -29,18 +29,24 @@ public class EffectsCompositePlayer
         }
 
         _instance = GameObject.Instantiate(effectPrefab, position, rotation, parent);
-        _compositor = _instance.GetComponent<EffectsCompositor>();
-        if (_compositor == null)
+        _compositors = _instance.GetComponentsInChildren<EffectsCompositor>();
+        if (_compositors == null || _compositors.Length == 0)
         {
-            Debug.LogWarning("EffectsCompositor component is not found on the effect prefab.");
+            Debug.LogWarning("EffectsCompositor components are not found on the effect prefab.");
             return;
         }
 
-        _compositor.Initialize(audioSource, cameraAccess, transformOffsetController, renderer);
+        foreach (var compositor in _compositors)
+        {
+            compositor.Initialize(audioSource, cameraAccess, transformOffsetController, renderer);
+        }
     }
 
     public void PlayEffects()
     {
-        _compositor?.PlayEffects();
+        foreach (var compositor in _compositors)
+        {
+            compositor.PlayEffects();
+        }
     }
 }
