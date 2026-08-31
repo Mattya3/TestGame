@@ -17,6 +17,9 @@ GameObject:
   - component: {fileID: 7303061641433102352}
   - component: {fileID: 6484555022936971360}
   - component: {fileID: 299760604958613621}
+  - component: {fileID: 3768554617257062086}
+  - component: {fileID: 4082295522287719668}
+  - component: {fileID: 6271076078988648481}
   m_Layer: 0
   m_Name: TestEffect
   m_TagString: Untagged
@@ -331,3 +334,41 @@ MonoBehaviour:
     m_NumColorKeys: 8
     m_NumAlphaKeys: 2
   _gradientDuration: 1
+--- !u!114 &3768554617257062086
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6691408204187200571}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b70159a606f5424bad8595820bab7b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EffectsCompositeComponent.CameraShakeEffect
+  _shakeEffect: {fileID: 11400000, guid: 88da2f5115bb88c4e916768df01a3999, type: 2}
+--- !u!114 &4082295522287719668
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6691408204187200571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 848a2642648dfd047a04efe209c2ee13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EffectsCompositeComponent.PositionShakeEffect
+  _shakeEffect: {fileID: 11400000, guid: 2a8b071c70b251944a6b520529925825, type: 2}
+--- !u!114 &6271076078988648481
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6691408204187200571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4032ccd99bdb0db41ab7e1769270c75d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ShakeEffectsPlayer

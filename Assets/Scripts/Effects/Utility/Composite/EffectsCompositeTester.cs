@@ -1,13 +1,12 @@
 ﻿using UnityEngine;
 using UnityEngine.InputSystem;
 
+[RequireComponent(typeof(CameraMutableAccess))]
+[RequireComponent(typeof(TransformOffsetController))]
 public class EffectsCompositeTester : MonoBehaviour
 {
     [SerializeField]
     private GameObject _effectPrefab;
-
-    [SerializeField]
-    private AudioSource _audioSource;
 
     private EffectsCompositePlayer _player;
 
@@ -15,7 +14,9 @@ public class EffectsCompositeTester : MonoBehaviour
     {
         _player = new EffectsCompositePlayer(
             _effectPrefab,
-            _audioSource,
+            GetComponent<AudioSource>(),
+            GetComponent<CameraMutableAccess>(),
+            GetComponent<TransformOffsetController>(),
             transform.position,
             transform.rotation,
             transform

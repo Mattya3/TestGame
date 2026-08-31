@@ -22,6 +22,9 @@ namespace EffectsCompositeComponent
         private float _initialIntensity = 1f;
         private bool _playInUnscaledTime = false;
         private float _time = 0f;
+        private bool _isPlaying = false;
+
+        public bool isEnabled => enabled;
 
         public void Initialize(Light2D light, bool playInUnscaledTime)
         {
@@ -35,17 +38,23 @@ namespace EffectsCompositeComponent
             _initialIntensity = _light.intensity;
             _playInUnscaledTime = playInUnscaledTime;
 
+            if (!enabled)
+                return;
             _light.intensity = 0f; // 初期化時点では光源を消灯しておく
         }
 
         public void Play()
         {
             _time = 0f;
+            _isPlaying = true;
         }
 
         private void Update()
         {
             if (_light == null)
+                return;
+
+            if (!_isPlaying)
                 return;
 
             _time += _playInUnscaledTime ? Time.unscaledDeltaTime : Time.deltaTime;

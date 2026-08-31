@@ -8,6 +8,8 @@ public class EffectsCompositePlayer
     public EffectsCompositePlayer(
         GameObject effectPrefab,
         AudioSource audioSource,
+        CameraMutableAccess cameraAccess,
+        TransformOffsetController transformOffsetController,
         Vector3 position = default,
         Quaternion rotation = default,
         Transform parent = null
@@ -33,7 +35,7 @@ public class EffectsCompositePlayer
             return;
         }
 
-        _compositor.Initialize(audioSource);
+        _compositor.Initialize(audioSource, cameraAccess, transformOffsetController);
     }
 
     public void PlayEffects()

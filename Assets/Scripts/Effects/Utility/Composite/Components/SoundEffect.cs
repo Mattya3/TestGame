@@ -12,6 +12,8 @@ namespace EffectsCompositeComponent
 
         private AudioSource _audioSource;
 
+        public bool isEnabled => enabled;
+
         private void Awake()
         {
             if (_audioClip == null)
@@ -23,15 +25,18 @@ namespace EffectsCompositeComponent
         public void Initialize(AudioSource audioSource)
         {
             _audioSource = audioSource;
-        }
 
-        public void Play()
-        {
             if (_audioClip == null || _audioSource == null)
             {
                 Debug.LogWarning("Cannot play sound: No audio clip assigned or AudioSource is null.");
                 return;
             }
+        }
+
+        public void Play()
+        {
+            if (_audioClip == null || _audioSource == null)
+                return;
 
             _audioSource.PlayOneShot(_audioClip, _volume);
         }

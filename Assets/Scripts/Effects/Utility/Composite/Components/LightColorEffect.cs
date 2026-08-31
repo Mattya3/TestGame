@@ -16,6 +16,9 @@ namespace EffectsCompositeComponent
         private Color _initialColor = Color.white;
         private bool _playInUnscaledTime = false;
         private float _time = 0f;
+        private bool _isPlaying = false;
+
+        public bool isEnabled => enabled;
 
         public void Initialize(Light2D light, bool playInUnscaledTime)
         {
@@ -28,17 +31,24 @@ namespace EffectsCompositeComponent
 
             _initialColor = _light.color;
             _playInUnscaledTime = playInUnscaledTime;
+
+            if (!enabled)
+                return;
             _light.color = Color.black; // 初期化時点では光源を消灯しておく
         }
 
         public void Play()
         {
             _time = 0f;
+            _isPlaying = true;
         }
 
         private void Update()
         {
             if (_light == null)
+                return;
+
+            if (!_isPlaying)
                 return;
 
             _time += _playInUnscaledTime ? Time.unscaledDeltaTime : Time.deltaTime;

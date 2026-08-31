@@ -18,6 +18,8 @@ public class EffectsCompositor : MonoBehaviour
     private VisualEffect _visualEffect;
     private ISoundEffect[] _soundEffects;
     private ILightSourceEffect[] _lightSourceEffects;
+    private ICameraEffect[] _cameraEffects;
+    private ITransformEffect[] _transformEffects;
     private Coroutine _deactivateCoroutine;
 
     private void Awake()
@@ -25,9 +27,11 @@ public class EffectsCompositor : MonoBehaviour
         _visualEffect = GetComponent<VisualEffect>();
         _soundEffects = GetComponents<ISoundEffect>();
         _lightSourceEffects = GetComponents<ILightSourceEffect>();
+        _cameraEffects = GetComponents<ICameraEffect>();
+        _transformEffects = GetComponents<ITransformEffect>();
     }
 
-    public void Initialize(AudioSource audioSource)
+    public void Initialize(AudioSource audioSource, CameraMutableAccess cameraAccess, TransformOffsetController transformOffsetController)
     {
         foreach (var soundEffect in _soundEffects)
         {
@@ -46,6 +50,16 @@ public class EffectsCompositor : MonoBehaviour
             {
                 lightSourceEffect.Initialize(light2D, _playInUnscaledTime);
             }
+        }
+
+        foreach (var cameraEffect in _cameraEffects)
+        {
+            cameraEffect.Initialize(cameraAccess, _playInUnscaledTime);
+        }
+
+        foreach (var transformEffect in _transformEffects)
+        {
+            transformEffect.Initialize(transformOffsetController, _playInUnscaledTime);
         }
 
         // 初期化時点では非アクティブにする
@@ -69,14 +83,27 @@ public class EffectsCompositor : MonoBehaviour
     {
         yield return _playInUnscaledTime ? new WaitForSecondsRealtime(_delayTime) : new WaitForSeconds(_delayTime);
 
-        _visualEffect.Play();
+        if (_visualEffect.enabled)
+            _visualEffect.Play();
         foreach (var soundEffect in _soundEffects)
         {
-            soundEffect.Play();
+            if (soundEffect.isEnabled)
+                soundEffect.Play();
         }
         foreach (var lightSourceEffect in _lightSourceEffects)
         {
-            lightSourceEffect.Play();
+            if (lightSourceEffect.isEnabled)
+                lightSourceEffect.Play();
+        }
+        foreach (var cameraEffect in _cameraEffects)
+        {
+            if (cameraEffect.isEnabled)
+                cameraEffect.Play();
+        }
+        foreach (var transformEffect in _transformEffects)
+        {
+            if (transformEffect.isEnabled)
+                transformEffect.Play();
         }
     }
 
