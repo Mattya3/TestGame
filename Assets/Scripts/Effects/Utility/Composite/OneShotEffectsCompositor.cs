@@ -1,10 +1,8 @@
-﻿using EffectsCompositeComponent;
-using UnityEngine;
-using UnityEngine.VFX;
-using UnityEngine.Rendering.Universal;
+﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
-public class OneShotEffectsCompositor : MonoBehaviour, IEffectsCompositor
+public class OneShotEffectsCompositor : EffectsCompositorBase
 {
     [SerializeField]
     private float _duration = 1f;
@@ -15,130 +13,78 @@ public class OneShotEffectsCompositor : MonoBehaviour, IEffectsCompositor
     [SerializeField]
     private bool _playInUnscaledTime = false;
 
-    private VisualEffect _visualEffect;
-    private ISoundEffect[] _soundEffects;
-    private ILightSourceEffect[] _lightSourceEffects;
-    private ICameraEffect[] _cameraEffects;
-    private ITransformEffect[] _transformEffects;
-    private IRendererEffect[] _rendererEffects;
-
+    private List<Coroutine> _playCoroutines = new List<Coroutine>();
     private Coroutine _deactivateCoroutine;
 
-    private void Awake()
-    {
-        _visualEffect = GetComponent<VisualEffect>();
-        _soundEffects = GetComponents<ISoundEffect>();
-        _lightSourceEffects = GetComponents<ILightSourceEffect>();
-        _cameraEffects = GetComponents<ICameraEffect>();
-        _transformEffects = GetComponents<ITransformEffect>();
-        _rendererEffects = GetComponents<IRendererEffect>();
-    }
-
-    public void Initialize(
+    public override void Initialize(
         AudioSource audioSource,
         CameraMutableAccess cameraAccess,
         TransformOffsetController transformOffsetController,
         Renderer renderer
         )
     {
-        foreach (var soundEffect in _soundEffects)
-        {
-            soundEffect.Initialize(audioSource);
-        }
-
-        if (_lightSourceEffects.Length > 0)
-        {
-            var light2D = GetComponent<Light2D>();
-            if (light2D == null)
-            {
-                Debug.LogWarning("Light2D component is missing. Light source effects will not be initialized.");
-                _lightSourceEffects = new ILightSourceEffect[0]; // Clear the array to avoid further processing
-            }
-            foreach (var lightSourceEffect in _lightSourceEffects)
-            {
-                lightSourceEffect.Initialize(light2D, _playInUnscaledTime);
-            }
-        }
-
-        foreach (var cameraEffect in _cameraEffects)
-        {
-            cameraEffect.Initialize(cameraAccess, _playInUnscaledTime);
-        }
-
-        foreach (var transformEffect in _transformEffects)
-        {
-            transformEffect.Initialize(transformOffsetController, _playInUnscaledTime);
-        }
-
-        foreach (var rendererEffect in _rendererEffects)
-        {
-            rendererEffect.Initialize(renderer, _playInUnscaledTime);
-        }
+        InitializeComponents(audioSource, cameraAccess, transformOffsetController, renderer, _playInUnscaledTime);
 
         // 初期化時点では非アクティブにする
         gameObject.SetActive(false);
     }
 
-    public void PlayEffects()
+    public override void PlayEffects()
     {
         gameObject.SetActive(true);
 
-        if (_deactivateCoroutine != null)
-        {
-            StopCoroutine(_deactivateCoroutine);
-        }
-        _deactivateCoroutine = StartCoroutine(_CoDeactivateAfterDuration());
+        _RemoveFinishedPlayCoroutines();
+        _StopDeactivateCoroutine();
 
-        StartCoroutine(_CoPlayEffects());
+        _playCoroutines.Add(StartCoroutine(_CoPlayEffects()));
+        _deactivateCoroutine = StartCoroutine(_CoDeactivateAfterDuration());
     }
 
-    public void StopEffects()
+    public override void StopEffects()
+    {
+        _StopAllPlayCoroutines();
+
+        // この時点ではDeactivateしない。コルーチンによって一定時間後にDeactivateされるのを待機
+    }
+
+    private IEnumerator _CoPlayEffects()
+    {
+        yield return _playInUnscaledTime ? new WaitForSecondsRealtime(_delayTime) : new WaitForSeconds(_delayTime);
+        PlayComponents();
+    }
+
+    private IEnumerator _CoDeactivateAfterDuration()
+    {
+        yield return _playInUnscaledTime ? new WaitForSecondsRealtime(_duration) : new WaitForSeconds(_duration);
+        
+        _StopAllPlayCoroutines();
+        gameObject.SetActive(false);
+        _deactivateCoroutine = null;
+    }
+
+    private void _StopAllPlayCoroutines()
+    {
+        foreach (var playCoroutine in _playCoroutines)
+        {
+            if (playCoroutine != null)
+            {
+                StopCoroutine(playCoroutine);
+            }
+        }
+        _playCoroutines.Clear();
+    }
+
+    private void _StopDeactivateCoroutine()
     {
         if (_deactivateCoroutine != null)
         {
             StopCoroutine(_deactivateCoroutine);
             _deactivateCoroutine = null;
         }
-        gameObject.SetActive(false);
     }
 
-    private IEnumerator _CoPlayEffects()
+    private void _RemoveFinishedPlayCoroutines()
     {
-        yield return _playInUnscaledTime ? new WaitForSecondsRealtime(_delayTime) : new WaitForSeconds(_delayTime);
-
-        if (_visualEffect.enabled)
-            _visualEffect.Play();
-        foreach (var soundEffect in _soundEffects)
-        {
-            if (soundEffect.isEnabled)
-                soundEffect.Play();
-        }
-        foreach (var lightSourceEffect in _lightSourceEffects)
-        {
-            if (lightSourceEffect.isEnabled)
-                lightSourceEffect.Play();
-        }
-        foreach (var cameraEffect in _cameraEffects)
-        {
-            if (cameraEffect.isEnabled)
-                cameraEffect.Play();
-        }
-        foreach (var transformEffect in _transformEffects)
-        {
-            if (transformEffect.isEnabled)
-                transformEffect.Play();
-        }
-        foreach (var rendererEffect in _rendererEffects)
-        {
-            if (rendererEffect.isEnabled)
-                rendererEffect.Play();
-        }
-    }
-
-    private IEnumerator _CoDeactivateAfterDuration()
-    {
-        yield return _playInUnscaledTime ? new WaitForSecondsRealtime(_duration) : new WaitForSeconds(_duration);
-        gameObject.SetActive(false);
-        _deactivateCoroutine = null;
+        _playCoroutines.RemoveAll(coroutine => coroutine == null);
     }
 }

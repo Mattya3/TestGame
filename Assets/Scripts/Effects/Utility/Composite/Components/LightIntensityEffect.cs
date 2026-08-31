@@ -26,14 +26,9 @@ namespace EffectsCompositeComponent
 
         public bool isEnabled => enabled;
 
-        public void Initialize(Light2D light, bool playInUnscaledTime)
+        public void Initialize(bool playInUnscaledTime)
         {
-            _light = light;
-            if (_light == null)
-            {
-                Debug.LogWarning("Light2D component is missing. LightIntensityController will not function properly.");
-                return;
-            }
+            _light = GetComponent<Light2D>();
 
             _initialIntensity = _light.intensity;
             _playInUnscaledTime = playInUnscaledTime;

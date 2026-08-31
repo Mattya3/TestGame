@@ -36,7 +36,7 @@ namespace EffectsCompositeComponent
             _isPlaying = true;
         }
 
-        private void Update()
+        private void LateUpdate()
         {
             if (_renderer == null)
                 return;

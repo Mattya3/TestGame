@@ -45,7 +45,7 @@ namespace EffectsCompositeComponent
             _shakeEffectsPlayer.Play(_shakeEffect);
         }
 
-        private void Update()
+        private void LateUpdate()
         {
             var shakeOffset = _shakeEffectsPlayer.CurrentShakeOffset;
             _transformOffsetController.SetPositionOffset(shakeOffset);

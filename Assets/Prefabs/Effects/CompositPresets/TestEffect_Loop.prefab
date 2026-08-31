@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7945885557749197732}
-  - component: {fileID: 8551065528359063952}
+  - component: {fileID: 2230680965094983960}
   - component: {fileID: 2434224364400919743}
   - component: {fileID: 7268194909455541134}
   - component: {fileID: 2510673981902771188}
@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 511865828983060948}
   - component: {fileID: 4598667163348321790}
   m_Layer: 0
-  m_Name: TestEffect
+  m_Name: TestEffect_Loop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -44,7 +44,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8551065528359063952
+--- !u!114 &2230680965094983960
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -53,11 +53,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 6691408204187200571}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9c7369578e59f94bb63f91795fdb30d, type: 3}
+  m_Script: {fileID: 11500000, guid: 363b488bfad2c4a43a36db349fa4cdd6, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EffectsCompositor
-  _duration: 2
-  _delayTime: 0
+  m_EditorClassIdentifier: Assembly-CSharp::LoopingEffectsCompositor
+  _loopTime: 1
+  _fadeOutTime: 0.5
   _playInUnscaledTime: 0
 --- !u!2083052967 &2434224364400919743
 VisualEffect:
