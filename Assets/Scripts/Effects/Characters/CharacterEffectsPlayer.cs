@@ -2,30 +2,46 @@
 
 public class CharacterEffectsPlayer : MonoBehaviour
 {
-    [SerializeField]
-    private VisualEffectsPool.EffectConfig _deadZoneDeathEffect;
+    [Header("Reference")]
 
     [SerializeField]
-    private VisualEffectsPool.EffectConfig _fallDeathEffect;
+    private AudioSource _audioSource;
 
-    private VisualEffectsPool.IEffectPlayer _deadZonePlayer;
-    private VisualEffectsPool.IEffectPlayer _fallPlayer;
+    [SerializeField]
+    private CameraMutableAccess _cameraAccess;
+
+    [SerializeField]
+    private TransformOffsetController _transformOffsetController;
+
+    [SerializeField]
+    private Renderer _renderer;
+
+    [Header("Effect Prefabs")]
+
+    [SerializeField]
+    private GameObject _deadZoneDeathEffectPrefab;
+
+    [SerializeField]
+    private GameObject _fallDeathEffectPrefab;
+
+    private EffectsCompositePlayer _deadZonePlayer;
+    private EffectsCompositePlayer _fallPlayer;
 
     private void Awake()
     {
-        _deadZonePlayer = _deadZoneDeathEffect.CreateEffectPlayer(transform);
-        _fallPlayer = _fallDeathEffect.CreateEffectPlayer(transform);
+        _deadZonePlayer = new EffectsCompositePlayer(_deadZoneDeathEffectPrefab, _audioSource, _cameraAccess, _transformOffsetController, _renderer, transform.position, transform.rotation, transform);
+        _fallPlayer = new EffectsCompositePlayer(_fallDeathEffectPrefab, _audioSource, _cameraAccess, _transformOffsetController, _renderer, transform.position, transform.rotation, transform);
     }
 
     private void OnDestroy()
     {
-        _deadZonePlayer?.Cleanup(this);
-        _fallPlayer?.Cleanup(this);
+        _deadZonePlayer?.Cleanup();
+        _fallPlayer?.Cleanup();
     }
 
     public void PlayDeathEffect(Constants.DeathReason deathReason)
     {
-        VisualEffectsPool.IEffectPlayer player = null;
+        EffectsCompositePlayer player = null;
         switch (deathReason)
         {
             case Constants.DeathReason.DeadZone:
@@ -39,6 +55,6 @@ public class CharacterEffectsPlayer : MonoBehaviour
                 return;
         }
 
-        player?.Play(this);
+        player?.PlayEffects();
     }
 }

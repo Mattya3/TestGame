@@ -53,4 +53,13 @@ public class EffectsCompositePlayer
         foreach(var compositor in _compositors)
             compositor.StopEffects();
     }
+
+    public void Cleanup()
+    {
+        if (_instance != null)
+        {
+            GameObject.Destroy(_instance);
+            _instance = null;
+        }
+    }
 }
