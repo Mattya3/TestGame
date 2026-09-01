@@ -148,6 +148,8 @@ public class CameraController : MonoBehaviour
     private void _EnableColliders(bool enable)
     {
         // 変化しない場合は早期return
+        // 先頭要素のenabled状態を確認することで、全体の状態を推測する
+        // 一部だけenableが違う状況は想定しない
         if (_colliders == null || _colliders.Length == 0)
             return;
         if (_colliders[0].enabled == enable)
