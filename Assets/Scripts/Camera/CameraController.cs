@@ -18,19 +18,29 @@ public class CameraController : MonoBehaviour
     private CameraBounds _bounds = new CameraBounds(); // カメラの移動制約
 
     private Camera _camera; // カメラコンポーネントへの参照
-    private ICameraTarget _cameraTarget;
+    private CameraTargetsStack _targetsStack; // カメラターゲットのスタック
+    private Collider2D[] _colliders; // カメラのコライダーへの参照
     private Vector3 _velocity = Vector3.zero; // カメラの現在の速度
 
     void Awake()
     {
         _camera = GetComponentInChildren<Camera>();
-        _cameraTarget = GetComponentInChildren<ICameraTarget>();
+        _targetsStack = new CameraTargetsStack(GetComponentsInChildren<ICameraTarget>());
 
         if (!_IsConfigurationValid())
         {
             enabled = false;
             return;
         }
+
+        _colliders = _colliderRoot.GetComponentsInChildren<Collider2D>();
+
+        AccessComponent<CameraController>.RegisterReference(this);
+    }
+
+    void OnDestroy()
+    {
+        AccessComponent<CameraController>.UnregisterReference(this);
     }
 
     private bool _IsConfigurationValid()
@@ -45,10 +55,10 @@ public class CameraController : MonoBehaviour
             Debug.LogError("CameraControllerにはCameraコンポーネントが必要です", this);
             return false;
         }
-        if (_cameraTarget == null)
+        if (_targetsStack.IsEmpty)
         {
             Debug.LogError(
-                "CameraControllerにはICameraTargetを実装したコンポーネントが必要です",
+                "CameraControllerには少なくとも1つのICameraTargetを実装したコンポーネントが必要です",
                 this
             );
             return false;
@@ -68,7 +78,8 @@ public class CameraController : MonoBehaviour
 
     void Start()
     {
-        _cameraTarget.OnStart();
+        _targetsStack.Start();
+        _EnableColliders(_targetsStack.EnableCollider);
 
         // カメラの初期位置を設定
         var destination = _CalculateDestination();
@@ -78,8 +89,23 @@ public class CameraController : MonoBehaviour
         _camera.transform.position = boundedDestination;
     }
 
+    public void PushTarget(ICameraTarget target)
+    {
+        _targetsStack.Push(target);
+        _EnableColliders(_targetsStack.EnableCollider);
+    }
+
+    public void PopTarget()
+    {
+        _targetsStack.Pop();
+        _EnableColliders(_targetsStack.EnableCollider);
+    }
+
     private void FixedUpdate()
     {
+        _targetsStack.Update();
+        _EnableColliders(_targetsStack.EnableCollider);
+
         var destination = _CalculateDestination();
         var boundedDestination = _Bound(destination);
 
@@ -111,12 +137,26 @@ public class CameraController : MonoBehaviour
 
     private Vector3 _CalculateDestination()
     {
-        return _cameraTarget.Position;
+        return _targetsStack.Position;
     }
 
     private Vector3 _Bound(Vector3 pos)
     {
         return _bounds.Bound(pos, _camera.transform.position);
+    }
+
+    private void _EnableColliders(bool enable)
+    {
+        // 変化しない場合は早期return
+        // 先頭要素のenabled状態を確認することで、全体の状態を推測する
+        // 一部だけenableが違う状況は想定しない
+        if (_colliders == null || _colliders.Length == 0)
+            return;
+        if (_colliders[0].enabled == enable)
+            return;
+
+        for (int i = 0; i < _colliders.Length; i++)
+            _colliders[i].enabled = enable;
     }
 
     // エディタ上でカメラの移動範囲を視覚化するためのGizmosを描画

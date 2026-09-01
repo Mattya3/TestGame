@@ -2,6 +2,11 @@
 
 public class GameManagerMutableAccess : AccessComponent<IGameManager>
 {
+    public void HandlePlayStart()
+    {
+        Reference?.HandlePlayStart();
+    }
+
     public void HandleFailure()
     {
         Reference?.HandleFailure();

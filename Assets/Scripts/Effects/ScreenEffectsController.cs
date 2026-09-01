@@ -64,7 +64,7 @@ public class ScreenEffectsController : MonoEventReactingBehaviour
 
     public void OnOpeningEffectComplete()
     {
-        // TODO: 演出完了後の処理（例: プレイヤーの操作を許可するなど）をここに実装
+        _gameManagerAccess.HandlePlayStart();
     }
 
     public void OnClosingEffectComplete()

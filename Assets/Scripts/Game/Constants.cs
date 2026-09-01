@@ -33,8 +33,9 @@
 
     public enum GameEvent
     {
-        Failure,
-        Success,
-        SceneEnd,
+        GamePlayStart = 0,
+        Failure = 1,
+        Success = 2,
+        SceneEnd = 3,
     }
 }
