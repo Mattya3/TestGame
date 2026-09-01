@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: -2212097100237574106}
   - component: {fileID: 2678149706083594254}
   - component: {fileID: 863400722589022102}
-  - component: {fileID: 2532400794782106296}
   m_Layer: 7
   m_Name: DeadZoneDeathEffect
   m_TagString: Untagged
@@ -135,16 +134,3 @@ VFXRenderer:
   m_SortingLayer: 5
   m_SortingOrder: 10
   m_MaskInteraction: 0
---- !u!114 &2532400794782106296
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8555158167546874534}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b70159a606f5424bad8595820bab7b2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EffectsCompositeComponent.CameraShakeEffect
-  _shakeEffect: {fileID: 11400000, guid: 88da2f5115bb88c4e916768df01a3999, type: 2}
