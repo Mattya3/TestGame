@@ -4,7 +4,7 @@ using UnityEngine.VFX;
 
 public abstract class EffectsCompositorBase : MonoBehaviour, IEffectsCompositor
 {
-    private VisualEffect[] _visualEffects;
+    private VisualEffect _visualEffect;
     private ISoundEffect[] _soundEffects;
     private ILightSourceEffect[] _lightSourceEffects;
     private ICameraEffect[] _cameraEffects;
@@ -14,7 +14,7 @@ public abstract class EffectsCompositorBase : MonoBehaviour, IEffectsCompositor
 
     protected virtual void Awake()
     {
-        _visualEffects = GetComponents<VisualEffect>();
+        _visualEffect = GetComponent<VisualEffect>();
         _soundEffects = GetComponents<ISoundEffect>();
         _lightSourceEffects = GetComponents<ILightSourceEffect>();
         _cameraEffects = GetComponents<ICameraEffect>();
@@ -60,10 +60,9 @@ public abstract class EffectsCompositorBase : MonoBehaviour, IEffectsCompositor
 
     protected void PlayComponents()
     {
-        foreach (var visualEffect in _visualEffects)
+        if (_visualEffect != null)
         {
-            if (visualEffect.enabled)
-                visualEffect.Play();
+            _visualEffect.Play();
         }
         foreach (var soundEffect in _soundEffects)
         {
