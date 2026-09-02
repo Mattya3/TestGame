@@ -1970,7 +1970,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a6d7fdab618c0d4bb2c80242e6b5f3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EffectsCompositTester
-  _effectPrefab: {fileID: 8555158167546874534, guid: d286d829fee8ae34fa587ef8fda79bd4, type: 3}
+  _effectPrefab: {fileID: 2002033790450558206, guid: 4850e9d2ed41ea84b9d4ca2c59a37ebf, type: 3}
   _audioSource: {fileID: 1700165872}
   _cameraAccess: {fileID: 1700165873}
   _transformOffsetController: {fileID: 1700165874}

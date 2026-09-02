@@ -3,7 +3,6 @@ using UnityEngine;
 
 namespace EffectsCompositeComponents
 {
-    [RequireComponent(typeof(LightSourcesPool))]
     public class LightSourceInstantiationEffect : MonoBehaviour, IInstantiationEffect
     {
         [SerializeField]
