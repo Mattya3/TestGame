@@ -1,24 +1,30 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-public class LightSourcesPool : MonoBehaviour
+public class LightSourcesPool
 {
-    [SerializeField]
-    private GameObject _lightPrefab;
-
-    [SerializeField, Min(1)]
+    private MonoBehaviour _owner;
     private int _poolSize;
+    private bool _playInUnscaledTime;
 
     private GameObject[] _pool;
     private Coroutine[] _activeCoroutines;
     private int _lastUsedIndex = -1; // 最後に使用したインデックス
 
-    private void Awake()
+    public LightSourcesPool(MonoBehaviour owner, GameObject lightPrefab, int poolSize, bool playInUnscaledTime, Transform instantiationParent)
     {
-        if (_lightPrefab == null)
+        _owner = owner;
+        _poolSize = poolSize;
+        _playInUnscaledTime = playInUnscaledTime;
+
+        if (_owner == null)
+        {
+            Debug.LogError("Owner MonoBehaviour is not assigned.");
+            return;
+        }
+        if (lightPrefab == null)
         {
             Debug.LogError("Light prefab is not assigned.");
-            enabled = false;
             return;
         }
 
@@ -26,9 +32,9 @@ public class LightSourcesPool : MonoBehaviour
         _activeCoroutines = new Coroutine[_poolSize];
         for (int i = 0; i < _poolSize; i++)
         {
-            _pool[i] = Instantiate(_lightPrefab);
+            _pool[i] = Object.Instantiate(lightPrefab);
             _pool[i].SetActive(false);
-            _pool[i].transform.parent = transform;
+            _pool[i].transform.parent = instantiationParent;
             _activeCoroutines[i] = null;
         }
     }
@@ -44,10 +50,10 @@ public class LightSourcesPool : MonoBehaviour
         // 既存のコルーチンがあれば停止
         if (_activeCoroutines[index] != null)
         {
-            StopCoroutine(_activeCoroutines[index]);
+            _owner.StopCoroutine(_activeCoroutines[index]);
         }
 
-        _activeCoroutines[index] = StartCoroutine(CoKillInstance(index, duration));
+        _activeCoroutines[index] = _owner.StartCoroutine(CoKillInstance(index, duration));
         _lastUsedIndex = index; // 使用したインデックスを記録
     }
 
@@ -69,7 +75,7 @@ public class LightSourcesPool : MonoBehaviour
 
     private IEnumerator CoKillInstance(int index, float duration)
     {
-        yield return new WaitForSeconds(duration);
+        yield return _playInUnscaledTime ? new WaitForSecondsRealtime(duration) : new WaitForSeconds(duration);
         _pool[index].SetActive(false);
         _activeCoroutines[index] = null;
     }

@@ -2,7 +2,6 @@
 using UnityEngine.VFX;
 
 [RequireComponent(typeof(VisualEffect))]
-[RequireComponent(typeof(LightSourcesPool))]
 public class ElectricBarSparks : MonoBehaviour
 {
     [SerializeField]
