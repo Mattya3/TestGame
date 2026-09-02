@@ -4,6 +4,9 @@ using UnityEngine.VFX;
 
 public abstract class EffectsCompositorBase : MonoBehaviour, IEffectsCompositor
 {
+    [SerializeField]
+    private bool _playInUnscaledTime = false;
+
     private VisualEffect _visualEffect;
     private ISoundEffect[] _soundEffects;
     private ILightSourceEffect[] _lightSourceEffects;
@@ -28,33 +31,34 @@ public abstract class EffectsCompositorBase : MonoBehaviour, IEffectsCompositor
         CameraMutableAccess cameraAccess,
         TransformOffsetController transformOffsetController,
         Renderer renderer,
-        Transform instantiationParent,
-        bool playInUnscaledTime
+        Transform instantiationParent
     )
     {
+        _visualEffect.pause = true;
+
         foreach (var soundEffect in _soundEffects)
         {
             soundEffect.Initialize(audioSource);
         }
         foreach (var lightSourceEffect in _lightSourceEffects)
         {
-            lightSourceEffect.Initialize(playInUnscaledTime);
+            lightSourceEffect.Initialize(_playInUnscaledTime);
         }
         foreach (var cameraEffect in _cameraEffects)
         {
-            cameraEffect.Initialize(cameraAccess, playInUnscaledTime);
+            cameraEffect.Initialize(cameraAccess, _playInUnscaledTime);
         }
         foreach (var transformEffect in _transformEffects)
         {
-            transformEffect.Initialize(transformOffsetController, playInUnscaledTime);
+            transformEffect.Initialize(transformOffsetController, _playInUnscaledTime);
         }
         foreach (var rendererEffect in _rendererEffects)
         {
-            rendererEffect.Initialize(renderer, playInUnscaledTime);
+            rendererEffect.Initialize(renderer, _playInUnscaledTime);
         }
         foreach (var instantiationEffect in _instantiationEffects)
         {
-            instantiationEffect.Initialize(instantiationParent, playInUnscaledTime);
+            instantiationEffect.Initialize(instantiationParent, _playInUnscaledTime);
         }
     }
 
@@ -95,6 +99,17 @@ public abstract class EffectsCompositorBase : MonoBehaviour, IEffectsCompositor
                 instantiationEffect.Play();
         }
     }
+
+    protected virtual void Update()
+    {
+        if (_visualEffect == null)
+            return;
+
+        // 時間スケールに対応するため、手動で更新
+        _visualEffect.Simulate(_playInUnscaledTime ? Time.unscaledDeltaTime : Time.deltaTime);
+    }
+
+    protected bool PlayInUnscaledTime => _playInUnscaledTime;
 
     public abstract void Initialize(AudioSource audioSource, CameraMutableAccess cameraAccess, TransformOffsetController transformOffsetController, Renderer renderer, Transform instantiationParent);
     public abstract void PlayEffects();

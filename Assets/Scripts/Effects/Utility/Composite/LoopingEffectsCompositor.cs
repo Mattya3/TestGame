@@ -11,9 +11,6 @@ public class LoopingEffectsCompositor : EffectsCompositorBase
     [SerializeField]
     private float _fadeOutTime = 0.5f;
 
-    [SerializeField]
-    private bool _playInUnscaledTime = false;
-
     private bool _isPlaying = false;
     private float _replayTimer = 0f;
     private Coroutine _deactivateCoroutine;
@@ -26,7 +23,7 @@ public class LoopingEffectsCompositor : EffectsCompositorBase
         Transform instantiationParent
         )
     {
-        InitializeComponents(audioSource, cameraAccess, transformOffsetController, renderer, instantiationParent, _playInUnscaledTime);
+        InitializeComponents(audioSource, cameraAccess, transformOffsetController, renderer, instantiationParent);
 
         // 初期化時点では非アクティブにする
         gameObject.SetActive(false);
@@ -50,14 +47,16 @@ public class LoopingEffectsCompositor : EffectsCompositorBase
         StartCoroutine(_CoDeactivateAfterFadeout());
     }
 
-    private void Update()
+    protected override void Update()
     {
+        base.Update();
+
         // loopTime経過ごとにPlayComponents()を実行
 
         if (!_isPlaying)
             return;
 
-        _replayTimer -= _playInUnscaledTime ? Time.unscaledDeltaTime : Time.deltaTime;
+        _replayTimer -= PlayInUnscaledTime ? Time.unscaledDeltaTime : Time.deltaTime;
         if (_replayTimer > 0f)
             return;
 
@@ -67,7 +66,7 @@ public class LoopingEffectsCompositor : EffectsCompositorBase
 
     private IEnumerator _CoDeactivateAfterFadeout()
     {
-        yield return _playInUnscaledTime ? new WaitForSecondsRealtime(_fadeOutTime) : new WaitForSeconds(_fadeOutTime);
+        yield return PlayInUnscaledTime ? new WaitForSecondsRealtime(_fadeOutTime) : new WaitForSeconds(_fadeOutTime);
 
         gameObject.SetActive(false);
         _deactivateCoroutine = null;

@@ -10,9 +10,6 @@ public class OneShotEffectsCompositor : EffectsCompositorBase
     [SerializeField]
     private float _delayTime = 0f;
 
-    [SerializeField]
-    private bool _playInUnscaledTime = false;
-
     private List<Coroutine> _playCoroutines = new List<Coroutine>();
     private Coroutine _deactivateCoroutine;
 
@@ -24,7 +21,7 @@ public class OneShotEffectsCompositor : EffectsCompositorBase
         Transform instantiationParent
         )
     {
-        InitializeComponents(audioSource, cameraAccess, transformOffsetController, renderer, instantiationParent, _playInUnscaledTime);
+        InitializeComponents(audioSource, cameraAccess, transformOffsetController, renderer, instantiationParent);
 
         // 初期化時点では非アクティブにする
         gameObject.SetActive(false);
@@ -50,13 +47,13 @@ public class OneShotEffectsCompositor : EffectsCompositorBase
 
     private IEnumerator _CoPlayEffects()
     {
-        yield return _playInUnscaledTime ? new WaitForSecondsRealtime(_delayTime) : new WaitForSeconds(_delayTime);
+        yield return PlayInUnscaledTime ? new WaitForSecondsRealtime(_delayTime) : new WaitForSeconds(_delayTime);
         PlayComponents();
     }
 
     private IEnumerator _CoDeactivateAfterDuration()
     {
-        yield return _playInUnscaledTime ? new WaitForSecondsRealtime(_duration) : new WaitForSeconds(_duration);
+        yield return PlayInUnscaledTime ? new WaitForSecondsRealtime(_duration) : new WaitForSeconds(_duration);
         
         _StopAllPlayCoroutines();
         gameObject.SetActive(false);

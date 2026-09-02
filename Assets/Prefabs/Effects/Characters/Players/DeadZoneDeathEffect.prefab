@@ -49,9 +49,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9c7369578e59f94bb63f91795fdb30d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OneShotEffectsCompositor
+  _playInUnscaledTime: 1
   _duration: 5
   _delayTime: 0
-  _playInUnscaledTime: 1
 --- !u!2083052967 &2678149706083594254
 VisualEffect:
   m_ObjectHideFlags: 0
@@ -256,6 +256,10 @@ PrefabInstance:
       propertyPath: m_PropertySheet.m_Vector4f.m_Array.Array.data[1].m_Overridden
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -1382408738697863885, guid: a94a4d42aea7a9340a414f0ad15f5572, type: 3}
+      propertyPath: _playInUnscaledTime
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2204454405676848261, guid: a94a4d42aea7a9340a414f0ad15f5572, type: 3}
       propertyPath: m_Name
       value: FlareBurst_Red
@@ -376,6 +380,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -5530357289975153629, guid: a94a4d42aea7a9340a414f0ad15f5572, type: 3}
       propertyPath: m_PropertySheet.m_Vector4f.m_Array.Array.data[1].m_Overridden
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -1382408738697863885, guid: a94a4d42aea7a9340a414f0ad15f5572, type: 3}
+      propertyPath: _playInUnscaledTime
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2204454405676848261, guid: a94a4d42aea7a9340a414f0ad15f5572, type: 3}
