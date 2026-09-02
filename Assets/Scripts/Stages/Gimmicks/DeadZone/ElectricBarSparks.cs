@@ -1,9 +1,11 @@
 ﻿using UnityEngine;
 using UnityEngine.VFX;
 
-[RequireComponent(typeof(VisualEffect))]
 public class ElectricBarSparks : MonoBehaviour
 {
+    [SerializeField]
+    private GameObject _effectPrefab;
+
     [SerializeField]
     private float _spawnPositionMin = -10.0f;
 
@@ -17,30 +19,26 @@ public class ElectricBarSparks : MonoBehaviour
     private float _spawnIntervalMax = 0.3f;
 
     [SerializeField]
-    private float _lightDuration = 0.1f;
+    private AudioSource _audioSource;
 
-    private VisualEffect _visualEffect;
-    private VFXEventAttribute _eventAttribute;
-    private LightSourcesPool _lightPool;
+    private EffectsCompositePlayer _effectsPlayer;
 
     private float _spawnTimer = 0.0f;
 
-    static readonly string _spawnEventName = "OnSpawn";
-    static readonly int _positionAttribute = Shader.PropertyToID("SparkPosition");
-
     private void Awake()
     {
-        _visualEffect = GetComponent<VisualEffect>();
-        _eventAttribute = _visualEffect.CreateVFXEventAttribute();
-        _lightPool = GetComponent<LightSourcesPool>();
-
-        if (!_eventAttribute.HasFloat(_positionAttribute))
+        if (_effectPrefab == null)
         {
-            Debug.LogError(
-                "The Visual Effect does not have the required 'SparkPosition' attribute."
-            );
+            Debug.LogError("Effect prefab is not assigned.", this);
             enabled = false;
+            return;
         }
+        _effectsPlayer = new EffectsCompositePlayer(_effectPrefab, _audioSource, null, null, null, transform.position, transform.rotation, transform);
+    }
+
+    private void OnDestroy()
+    {
+        _effectsPlayer?.Cleanup();
     }
 
     private void Start()
@@ -66,8 +64,7 @@ public class ElectricBarSparks : MonoBehaviour
     private void _SpawnSpark()
     {
         float randomPos = Random.Range(_spawnPositionMin, _spawnPositionMax);
-        _eventAttribute.SetFloat(_positionAttribute, randomPos);
-        _visualEffect.SendEvent(_spawnEventName, _eventAttribute);
-        _lightPool.Spawn(transform.position + transform.up * randomPos, _lightDuration);
+        Vector3 spawnPos = transform.position + transform.up * randomPos;
+        _effectsPlayer?.PlayEffects(spawnPos);
     }
 }

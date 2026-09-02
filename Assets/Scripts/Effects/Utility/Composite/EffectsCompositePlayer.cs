@@ -48,6 +48,12 @@ public class EffectsCompositePlayer
             compositor.PlayEffects();
     }
 
+    public void PlayEffects(Vector3 position)
+    {
+        _instance.transform.position = position;
+        PlayEffects();
+    }
+
     public void StopEffects()
     {
         foreach(var compositor in _compositors)

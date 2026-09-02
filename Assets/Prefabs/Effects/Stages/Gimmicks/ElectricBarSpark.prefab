@@ -138,8 +138,8 @@ VFXRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: -2020023769
-  m_SortingLayer: 5
+  m_SortingLayerID: 1990554817
+  m_SortingLayer: 4
   m_SortingOrder: 10
   m_MaskInteraction: 0
 --- !u!114 &6171463323843638863
@@ -175,4 +175,4 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 41ff27f310b5a93429fd909544809cbf, type: 3}
   - {fileID: 8300000, guid: 6e24965cbb874da43a7b3b2ae2dfcc7c, type: 3}
   - {fileID: 8300000, guid: fc098829e4e3e874697594c0d2db438c, type: 3}
-  _volume: 0.4
+  _volume: 0.5
