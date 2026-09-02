@@ -6,7 +6,8 @@ public interface IEffectsCompositor
         AudioSource audioSource,
         CameraMutableAccess cameraAccess,
         TransformOffsetController transformOffsetController,
-        Renderer renderer
+        Renderer renderer,
+        Transform instantiationParent
         );
 
     public void PlayEffects();

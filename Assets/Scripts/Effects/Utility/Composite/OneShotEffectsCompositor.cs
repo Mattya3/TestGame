@@ -20,10 +20,11 @@ public class OneShotEffectsCompositor : EffectsCompositorBase
         AudioSource audioSource,
         CameraMutableAccess cameraAccess,
         TransformOffsetController transformOffsetController,
-        Renderer renderer
+        Renderer renderer,
+        Transform instantiationParent
         )
     {
-        InitializeComponents(audioSource, cameraAccess, transformOffsetController, renderer, _playInUnscaledTime);
+        InitializeComponents(audioSource, cameraAccess, transformOffsetController, renderer, instantiationParent, _playInUnscaledTime);
 
         // 初期化時点では非アクティブにする
         gameObject.SetActive(false);

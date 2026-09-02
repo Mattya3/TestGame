@@ -1,6 +1,4 @@
-﻿using UnityEngine.Rendering.Universal;
-
-namespace EffectsCompositeComponent
+﻿namespace EffectsCompositeComponent
 {
     public interface ILightSourceEffect
     {
