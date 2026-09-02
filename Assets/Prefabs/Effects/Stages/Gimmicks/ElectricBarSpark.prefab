@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: -6969299956165519387}
   - component: {fileID: -7011020989782557037}
   - component: {fileID: 6171463323843638863}
+  - component: {fileID: 5362480519051486125}
   m_Layer: 0
   m_Name: ElectricBarSpark
   m_TagString: Untagged
@@ -157,3 +158,21 @@ MonoBehaviour:
   _duration: 0.04
   _independentInstances: 1
   _poolSize: 5
+--- !u!114 &5362480519051486125
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2002033790450558206}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c308892f53fab8408ae221a453e381b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EffectsCompositeComponent.RandomSoundEffect
+  _audioClips:
+  - {fileID: 8300000, guid: a0fb87693d012ed4ea32c99dac770047, type: 3}
+  - {fileID: 8300000, guid: 41ff27f310b5a93429fd909544809cbf, type: 3}
+  - {fileID: 8300000, guid: 6e24965cbb874da43a7b3b2ae2dfcc7c, type: 3}
+  - {fileID: 8300000, guid: fc098829e4e3e874697594c0d2db438c, type: 3}
+  _volume: 0.4
