@@ -1,7 +1,6 @@
-﻿using EffectsCompositeComponent;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace EffectsCompositeComponents
+namespace EffectsCompositeComponent
 {
     public class LightSourceInstantiationEffect : MonoBehaviour, IInstantiationEffect
     {
