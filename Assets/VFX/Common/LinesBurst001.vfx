@@ -2410,8 +2410,6 @@ MonoBehaviour:
   - m_Id: 0
     linkedSlots:
     - outputSlot: {fileID: 8926484042661614602}
-      inputSlot: {fileID: 114963171269329408}
-    - outputSlot: {fileID: 8926484042661614602}
       inputSlot: {fileID: 8926484042661614666}
     position: {x: 340, y: -110}
     expandedSlots: []
