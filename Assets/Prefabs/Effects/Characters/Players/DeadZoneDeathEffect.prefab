@@ -1082,15 +1082,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2284074820323039523, guid: af2338bb8914d9740a1afb666f851fed, type: 3}
       propertyPath: m_PropertySheet.m_Vector4f.m_Array.Array.data[0].m_Value.w
-      value: 0.5019608
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2284074820323039523, guid: af2338bb8914d9740a1afb666f851fed, type: 3}
       propertyPath: m_PropertySheet.m_Vector4f.m_Array.Array.data[0].m_Value.x
-      value: 1
+      value: 0.25015837
       objectReference: {fileID: 0}
     - target: {fileID: 2284074820323039523, guid: af2338bb8914d9740a1afb666f851fed, type: 3}
       propertyPath: m_PropertySheet.m_Vector4f.m_Array.Array.data[0].m_Value.y
-      value: 0.2509804
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2284074820323039523, guid: af2338bb8914d9740a1afb666f851fed, type: 3}
       propertyPath: m_PropertySheet.m_Vector4f.m_Array.Array.data[1].m_Value.w
@@ -1102,11 +1102,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2284074820323039523, guid: af2338bb8914d9740a1afb666f851fed, type: 3}
       propertyPath: m_PropertySheet.m_Vector4f.m_Array.Array.data[1].m_Value.y
-      value: 0.7529412
+      value: 0.1254902
       objectReference: {fileID: 0}
     - target: {fileID: 2284074820323039523, guid: af2338bb8914d9740a1afb666f851fed, type: 3}
       propertyPath: m_PropertySheet.m_Vector4f.m_Array.Array.data[1].m_Value.z
-      value: 0.2509804
+      value: 0.1254902
       objectReference: {fileID: 0}
     - target: {fileID: 2284074820323039523, guid: af2338bb8914d9740a1afb666f851fed, type: 3}
       propertyPath: m_PropertySheet.m_Vector4f.m_Array.Array.data[0].m_Overridden
@@ -1180,7 +1180,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -6189579511330381476, guid: 114dddb149104214c853ea48195c3de7, type: 3}
       propertyPath: _delayTime
-      value: 0.05
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: -6189579511330381476, guid: 114dddb149104214c853ea48195c3de7, type: 3}
       propertyPath: _playInUnscaledTime
@@ -1284,7 +1284,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2284074820323039523, guid: 114dddb149104214c853ea48195c3de7, type: 3}
       propertyPath: m_PropertySheet.m_Vector4f.m_Array.Array.data[0].m_Value.y
-      value: 0.2509804
+      value: 0.0627451
       objectReference: {fileID: 0}
     - target: {fileID: 2284074820323039523, guid: 114dddb149104214c853ea48195c3de7, type: 3}
       propertyPath: m_PropertySheet.m_Vector4f.m_Array.Array.data[0].m_Overridden
