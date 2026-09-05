@@ -34,7 +34,8 @@ public abstract class EffectsCompositorBase : MonoBehaviour, IEffectsCompositor
         Transform instantiationParent
     )
     {
-        _visualEffect.pause = true;
+        if (_visualEffect != null)
+            _visualEffect.pause = true;
 
         foreach (var soundEffect in _soundEffects)
         {
