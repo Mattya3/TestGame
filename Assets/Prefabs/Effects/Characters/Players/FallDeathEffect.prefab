@@ -1174,6 +1174,10 @@ PrefabInstance:
       propertyPath: _delayTime
       value: 0.1
       objectReference: {fileID: 0}
+    - target: {fileID: 791490643825736778, guid: b4488f788508be948b796ceeec30d0c3, type: 3}
+      propertyPath: _playInUnscaledTime
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7858059069860865967, guid: b4488f788508be948b796ceeec30d0c3, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.46591
