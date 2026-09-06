@@ -7,6 +7,7 @@ namespace EffectsCompositeComponent
     public class LightColorEffect : MonoBehaviour, ILightSourceEffect
     {
         [SerializeField]
+        [GradientUsage(true)]
         private Gradient _colorGradient = new Gradient();
 
         [SerializeField, Min(1e-3f)]
