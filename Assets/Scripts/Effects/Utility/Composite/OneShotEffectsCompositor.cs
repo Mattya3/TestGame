@@ -5,6 +5,7 @@ using System.Collections.Generic;
 public class OneShotEffectsCompositor : EffectsCompositorBase
 {
     [SerializeField]
+    [ShowIf(nameof(IsRoot))]
     private float _duration = 1f;
 
     [SerializeField]
@@ -35,7 +36,9 @@ public class OneShotEffectsCompositor : EffectsCompositorBase
         _StopDeactivateCoroutine();
 
         _playCoroutines.Add(StartCoroutine(_CoPlayEffects()));
-        _deactivateCoroutine = StartCoroutine(_CoDeactivateAfterDuration());
+
+        if (IsRoot)
+            _deactivateCoroutine = StartCoroutine(_CoDeactivateAfterDuration());
     }
 
     public override void StopEffects()
