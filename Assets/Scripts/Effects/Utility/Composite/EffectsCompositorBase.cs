@@ -8,6 +8,11 @@ public abstract class EffectsCompositorBase : MonoBehaviour, IEffectsCompositor
     [ShowIf(nameof(IsRoot))]
     private bool _playInUnscaledTime = false;
 
+    [SerializeField]
+    [ShowIf(nameof(IsRoot))]
+    [Min(1e-3f)]
+    private float _playSpeedRate = 1.0f;
+
     private IEffectsCompositor _parentCompositor;
 
     private VisualEffect _visualEffect;
@@ -72,23 +77,23 @@ public abstract class EffectsCompositorBase : MonoBehaviour, IEffectsCompositor
         }
         foreach (var lightSourceEffect in _lightSourceEffects)
         {
-            lightSourceEffect.Initialize(PlayInUnscaledTime);
+            lightSourceEffect.Initialize(PlayInUnscaledTime, PlaySpeedRate);
         }
         foreach (var cameraEffect in _cameraEffects)
         {
-            cameraEffect.Initialize(cameraAccess, PlayInUnscaledTime);
+            cameraEffect.Initialize(cameraAccess, PlayInUnscaledTime, PlaySpeedRate);
         }
         foreach (var transformEffect in _transformEffects)
         {
-            transformEffect.Initialize(transformOffsetController, PlayInUnscaledTime);
+            transformEffect.Initialize(transformOffsetController, PlayInUnscaledTime, PlaySpeedRate);
         }
         foreach (var rendererEffect in _rendererEffects)
         {
-            rendererEffect.Initialize(renderer, PlayInUnscaledTime);
+            rendererEffect.Initialize(renderer, PlayInUnscaledTime, PlaySpeedRate);
         }
         foreach (var instantiationEffect in _instantiationEffects)
         {
-            instantiationEffect.Initialize(instantiationParent, PlayInUnscaledTime);
+            instantiationEffect.Initialize(instantiationParent, PlayInUnscaledTime, PlaySpeedRate);
         }
     }
 
@@ -136,11 +141,13 @@ public abstract class EffectsCompositorBase : MonoBehaviour, IEffectsCompositor
             return;
 
         // 時間スケールに対応するため、手動で更新
-        _visualEffect.Simulate(PlayInUnscaledTime ? Time.unscaledDeltaTime : Time.deltaTime);
+        var stepDeltaTime = (PlayInUnscaledTime ? Time.unscaledDeltaTime : Time.deltaTime) * PlaySpeedRate;
+        _visualEffect.Simulate(stepDeltaTime);
     }
 
     // 親のEffectsCompositorBaseが存在する場合は、親の設定を優先
     public bool PlayInUnscaledTime => _parentCompositor != null ? _parentCompositor.PlayInUnscaledTime : _playInUnscaledTime;
+    public float PlaySpeedRate => _parentCompositor != null ? _parentCompositor.PlaySpeedRate : _playSpeedRate;
 
     public abstract void Initialize(AudioSource audioSource, CameraMutableAccess cameraAccess, TransformOffsetController transformOffsetController, Renderer renderer, Transform instantiationParent);
     public abstract void PlayEffects();

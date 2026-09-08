@@ -50,13 +50,15 @@ public class OneShotEffectsCompositor : EffectsCompositorBase
 
     private IEnumerator _CoPlayEffects()
     {
-        yield return PlayInUnscaledTime ? new WaitForSecondsRealtime(_delayTime) : new WaitForSeconds(_delayTime);
+        var adjustedDelayTime = _delayTime / PlaySpeedRate;
+        yield return PlayInUnscaledTime ? new WaitForSecondsRealtime(adjustedDelayTime) : new WaitForSeconds(adjustedDelayTime);
         PlayComponents();
     }
 
     private IEnumerator _CoDeactivateAfterDuration()
     {
-        yield return PlayInUnscaledTime ? new WaitForSecondsRealtime(_duration) : new WaitForSeconds(_duration);
+        var adjustedDuration = _duration / PlaySpeedRate;
+        yield return PlayInUnscaledTime ? new WaitForSecondsRealtime(adjustedDuration) : new WaitForSeconds(adjustedDuration);
         
         _StopAllPlayCoroutines();
         gameObject.SetActive(false);

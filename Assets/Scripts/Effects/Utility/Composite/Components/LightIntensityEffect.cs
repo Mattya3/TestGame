@@ -21,17 +21,19 @@ namespace EffectsCompositeComponent
         private Light2D _light;
         private float _initialIntensity = 1f;
         private bool _playInUnscaledTime = false;
+        private float _playSpeedRate = 1f;
         private float _time = 0f;
         private bool _isPlaying = false;
 
         public bool isEnabled => enabled;
 
-        public void Initialize(bool playInUnscaledTime)
+        public void Initialize(bool playInUnscaledTime, float playSpeedRate)
         {
             _light = GetComponent<Light2D>();
 
             _initialIntensity = _light.intensity;
             _playInUnscaledTime = playInUnscaledTime;
+            _playSpeedRate = playSpeedRate;
 
             if (!enabled)
                 return;
@@ -52,7 +54,7 @@ namespace EffectsCompositeComponent
             if (!_isPlaying)
                 return;
 
-            _time += _playInUnscaledTime ? Time.unscaledDeltaTime : Time.deltaTime;
+            _time += (_playInUnscaledTime ? Time.unscaledDeltaTime : Time.deltaTime) * _playSpeedRate;
 
             float curveTime = Mathf.Clamp01(_time / _curveDuration);
             float curveValue = _intensityCurve.Evaluate(curveTime);

@@ -16,18 +16,20 @@ namespace EffectsCompositeComponent
         [SerializeField, Min(1)]
         private int _poolSize = 5;
 
+        private float _playSpeedRate = 1f;
         private LightSourcesPool _lightSourcesPool;
 
         public bool isEnabled => enabled;
 
-        public void Initialize(Transform instantiationParent, bool playInUnscaledTime)
+        public void Initialize(Transform instantiationParent, bool playInUnscaledTime, float playSpeedRate)
         {
+            _playSpeedRate = playSpeedRate;
             _lightSourcesPool = new LightSourcesPool(this, _lightPrefab, _poolSize, playInUnscaledTime, _independentInstances ? null : instantiationParent);
         }
 
         public void Play()
         {
-            _lightSourcesPool.Spawn(transform.position, _duration);
+            _lightSourcesPool.Spawn(transform.position, _duration / _playSpeedRate);
         }
     }
 }

@@ -23,7 +23,7 @@ namespace EffectsCompositeComponent
             }
         }
 
-        public void Initialize(TransformOffsetController transformOffsetController, bool playInUnscaledTime)
+        public void Initialize(TransformOffsetController transformOffsetController, bool playInUnscaledTime, float playSpeedRate)
         {
             _transformOffsetController = transformOffsetController;
             if (_transformOffsetController == null)
