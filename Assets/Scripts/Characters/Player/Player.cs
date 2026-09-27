@@ -1,11 +1,10 @@
-using System;
+﻿using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using static Constants;
 
 public partial class Player : Character
 {
-    public static event Action<Player> OnCreated;
     public event Action<Player> OnGoal;
     public event Action<DeathReason> OnDied;
 
@@ -23,18 +22,18 @@ public partial class Player : Character
     public bool IsInGoalState => _currentState is GoalState;
     public Vector2 InputDirection => _inputDirection;
 
-    private void Start()
+    protected override void Awake()
     {
+        base.Awake();
+
         if (_sounds == null || !_sounds.IsValid())
         {
             Debug.LogError("PlayerSounds is not properly set up.");
             enabled = false;
             return;
         }
-
         _stateContext = new StateContext(this);
         _ChangeState(_CreateInitialState());
-        OnCreated?.Invoke(this);
     }
 
     protected override void _Move()
