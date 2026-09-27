@@ -34,6 +34,11 @@ public partial class Player : Character
 
         _stateContext = new StateContext(this);
         _externalEffectApplier = new PlayerExternalEffectApplier();
+        // _ChangeState(_CreateInitialState());
+    }
+
+    protected override void Start()
+    {
         _ChangeState(_CreateInitialState());
     }
 
