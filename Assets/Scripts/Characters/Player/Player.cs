@@ -11,8 +11,6 @@ public partial class Player : Character
 
     private IPlayerState _currentState;
 
-    // private List<IExternalState> _externalStates;
-
     [SerializeField]
     private PlayerSounds _sounds;
 
