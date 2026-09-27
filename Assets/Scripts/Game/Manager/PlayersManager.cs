@@ -64,7 +64,6 @@ public class PlayersManager : MonoBehaviour, IPlayersCollection
 
         _SetPlayersDead();
         _FreezeAllPlayers();
-
         _gameManagerAccess.HandleFailure();
     }
 
@@ -90,13 +89,13 @@ public class PlayersManager : MonoBehaviour, IPlayersCollection
     {
         foreach (var player in _players)
         {
-            player.Freeze();
+            player.EnterFrozenState();
         }
     }
 
     private bool _AllPlayersReachedGoal()
     {
-        return _players.Count > 0 && _players.All(p => p.HasReachedGoal);
+        return _players.Count > 0 && _players.All(player => player.IsInGoalState);
     }
 
     public int Count => _players.Count;
@@ -137,14 +136,6 @@ public class PlayersManager : MonoBehaviour, IPlayersCollection
                 _inputDirectionsList.Add(player.InputDirection);
             }
             return _inputDirectionsReadOnly;
-        }
-    }
-
-    public void SetMoveController(IMoveController moveController)
-    {
-        foreach (var player in _players)
-        {
-            player.MoveController = moveController;
         }
     }
 }
