@@ -36,7 +36,6 @@ public class PlayersManager : MonoBehaviour, IPlayersCollection
         // Findによってプレイヤを取得。プレイヤを動的に生成するようになったら、Findはやめる
         foreach (var player in FindObjectsByType<Player>(FindObjectsSortMode.InstanceID))
             _RegisterPlayer(player);
-        _SetExternalEffect();
 
         _gameManagerAccess = GetComponent<GameManagerMutableAccess>();
 
@@ -45,6 +44,11 @@ public class PlayersManager : MonoBehaviour, IPlayersCollection
         _inputDirectionsReadOnly = new ReadOnlyCollection<Vector2>(_inputDirectionsList);
 
         AccessComponent<IPlayersCollection>.RegisterReference(this);
+    }
+
+    private void Start()
+    {
+        _SetExternalEffect();
     }
 
     private void OnDestroy()
