@@ -1,0 +1,83 @@
+﻿using System.Collections.Generic;
+using UnityEngine;
+
+// カメラターゲットのスタック
+// 最上位のターゲットが現在のカメラターゲットとなる
+public class CameraTargetsStack
+{
+    private Stack<ICameraTarget> _stack = new Stack<ICameraTarget>();
+
+    public CameraTargetsStack(ICameraTarget[] targetsArray)
+    {
+        // 配列の順序を逆にしてスタックに積む
+        System.Array.Reverse(targetsArray);
+        foreach (var target in targetsArray)
+            _stack.Push(target);
+    }
+
+    public bool IsEmpty => _stack.Count == 0;
+
+    public void Push(ICameraTarget target)
+    {
+        _stack.Push(target);
+        target.OnStart();
+    }
+
+    public void Pop()
+    {
+        // スタックが空になる場合はポップしない
+        if (_stack.Count <= 1)
+            return;
+
+        _stack.Pop();
+        Start();
+    }
+
+    public void Start()
+    {
+        if (_HasTargets)
+            _stack.Peek().OnStart();
+
+        _CheckAndPopInactiveTargets();
+    }
+
+    public void Update()
+    {
+        // 毎フレームの更新で、最上位のターゲットがアクティブでない場合はスタックから削除する
+        _CheckAndPopInactiveTargets();
+    }
+
+    public Vector3 Position
+    {
+        get
+        {
+            if (_HasTargets)
+                return _stack.Peek().Position;
+            else
+                return Vector3.zero; // スタックが空の場合は原点を返す
+        }
+    }
+
+    public bool EnableCollider
+    {
+        get
+        {
+            if (_HasTargets)
+                return _stack.Peek().AreCollidersEnabled;
+            else
+                return false; // スタックが空の場合はコライダーを無効にする
+        }
+    }
+
+    private void _CheckAndPopInactiveTargets()
+    {
+        // スタックの最上位のターゲットがアクティブでない場合は、スタックから削除して次のターゲットを確認する
+        while (_stack.Count > 1 && !_stack.Peek().IsActive)
+        {
+            _stack.Pop();
+            _stack.Peek().OnStart();
+        }
+    }
+
+    private bool _HasTargets => _stack.Count > 0;
+}
