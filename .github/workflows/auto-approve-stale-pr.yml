@@ -1,0 +1,87 @@
+name: Auto Approve Stale Pull Requests
+
+on:
+  schedule:
+    - cron: '0 0 * * *'
+  workflow_dispatch:
+
+concurrency:
+  group: auto-approve-stale-pr
+  cancel-in-progress: false
+
+jobs:
+  approve-stale-prs:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: read
+      pull-requests: write
+    steps:
+      - name: Approve stale pull requests
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const { owner, repo } = context.repo;
+            const sevenDays = 7 * 24 * 60 * 60 * 1000;
+            const cutoff = Date.now() - sevenDays;
+            const pullRequests = await github.paginate(github.rest.pulls.list, {
+              owner, repo, state: 'open', per_page: 100,
+            });
+
+            for (const pullRequest of pullRequests) {
+              // Draft PR はレビュー準備前なので対象外にする。
+              if (pullRequest.draft) continue;
+
+              // 会話コメント、行コメント、レビューをまとめて取得する。
+              const [conversationComments, reviewComments, reviews] = await Promise.all([
+                github.paginate(github.rest.issues.listComments, {
+                  owner, repo, issue_number: pullRequest.number, per_page: 100,
+                }),
+                github.paginate(github.rest.pulls.listReviewComments, {
+                  owner, repo, pull_number: pullRequest.number, per_page: 100,
+                }),
+                github.paginate(github.rest.pulls.listReviews, {
+                  owner, repo, pull_number: pullRequest.number, per_page: 100,
+                }),
+              ]);
+
+              // PR本体と各コメント・レビューのうち、最も新しい活動を基準にする。
+              const activityDates = [
+                pullRequest.updated_at,
+                ...[...conversationComments, ...reviewComments]
+                  .map((comment) => comment.updated_at || comment.created_at),
+                ...reviews
+                  .filter((review) => review.submitted_at)
+                  .map((review) => review.submitted_at),
+              ].map(Date.parse);
+              const latestActivity = Math.max(...activityDates);
+              if (latestActivity > cutoff) continue;
+
+              // 各レビュアーの最新レビュー状態だけを判定対象にする。
+              const latestReviewByUser = new Map();
+              for (const review of reviews) {
+                if (!review.submitted_at || !review.user?.login) continue;
+                const previous = latestReviewByUser.get(review.user.login);
+                if (!previous || review.submitted_at > previous.submitted_at) {
+                  latestReviewByUser.set(review.user.login, review);
+                }
+              }
+
+              const hasBlockingReview = [...latestReviewByUser.values()].some((review) =>
+                ['APPROVED', 'CHANGES_REQUESTED'].includes(review.state)
+              );
+              if (hasBlockingReview) continue;
+
+              try {
+                await github.rest.pulls.createReview({
+                  owner,
+                  repo,
+                  pull_number: pullRequest.number,
+                  event: 'APPROVE',
+                  body: '7日間レビューの更新がなかったため、自動承認しました。',
+                });
+                core.info(`Approved PR #${pullRequest.number}.`);
+              } catch (error) {
+                // 1件の失敗で、他のPRの処理を止めない。
+                core.warning(`Could not approve PR #${pullRequest.number}: ${error.message}`);
+              }
+            }
