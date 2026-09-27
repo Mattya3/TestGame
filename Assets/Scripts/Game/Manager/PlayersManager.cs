@@ -98,6 +98,8 @@ public class PlayersManager : MonoBehaviour, IPlayersCollection
         return _players.Count > 0 && _players.All(player => player.IsInGoalState);
     }
 
+    public int Count => _players.Count;
+
     public ReadOnlyCollection<Vector3> Positions
     {
         get
