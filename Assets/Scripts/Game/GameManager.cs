@@ -1,14 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using static Constants;
 
 [RequireComponent(typeof(GameEventTriggerAccess))]
 public class GameManager : MonoBehaviour, IGameManager
 {
-    [SerializeField]
-    private ExternalEffectManager _externalEffectManager;
-
     private GameEventTriggerAccess _gameEventTriggerAccess;
 
     private void Awake()
