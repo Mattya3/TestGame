@@ -15,6 +15,8 @@
 
     public static class AnimationTrigger
     {
+        public const string OPENING = "Opening";
+        public const string RESTART = "Restart";
         public const string FAILURE = "Failure";
         public const string SUCCESS = "Success";
     }
@@ -35,7 +37,9 @@
 
     public enum GameEvent
     {
-        Failure,
-        Success,
+        GamePlayStart = 0,
+        Failure = 1,
+        Success = 2,
+        SceneEnd = 3,
     }
 }

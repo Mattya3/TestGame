@@ -1,29 +1,33 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static Constants;
 
-public class GameManager : MonoBehaviour
+[RequireComponent(typeof(GameEventTriggerAccess))]
+public class GameManager : MonoBehaviour, IGameManager
 {
-    [SerializeField]
-    private SceneTransitionManager _sceneTransitionManager;
-
     [SerializeField]
     private ExternalEffectManager _externalEffectManager;
 
     [SerializeField]
     private PlayersManager _playersManager;
 
-    public static GameManager Instance { get; private set; }
+    private GameEventTriggerAccess _gameEventTriggerAccess;
 
     private void Awake()
     {
-        if (Instance == null)
-            Instance = this;
+        _gameEventTriggerAccess = GetComponent<GameEventTriggerAccess>();
+        AccessComponent<IGameManager>.RegisterReference(this);
+    }
+
+    private void OnDestroy()
+    {
+        AccessComponent<IGameManager>.UnregisterReference(this);
     }
 
     private IEnumerator Start()
     {
-        if (_playersManager == null || _externalEffectManager == null)
+        if (_externalEffectManager == null)
         {
             Debug.LogError("GameManager dependencies are not properly set up.", this);
             yield break;
@@ -33,19 +37,23 @@ public class GameManager : MonoBehaviour
         _externalEffectManager.Initialize(_playersManager.Players);
     }
 
+    public void HandlePlayStart()
+    {
+        _gameEventTriggerAccess.TriggerEventActions(GameEvent.GamePlayStart);
+    }
+
     public void HandleFailure()
     {
-        GameEventTrigger.TriggerEvent(Constants.GameEvent.Failure);
-        GameEventTrigger.ResetEvents();
-        _sceneTransitionManager.RestartStage();
+        _gameEventTriggerAccess.TriggerEventActions(GameEvent.Failure);
     }
 
     public void HandleSuccess()
     {
-        GameEventTrigger.TriggerEvent(Constants.GameEvent.Success);
-        GameEventTrigger.ResetEvents();
-        _sceneTransitionManager.CompleteStage();
+        _gameEventTriggerAccess.TriggerEventActions(GameEvent.Success);
     }
 
-    public IReadOnlyList<Player> Players => _playersManager.Players;
+    public void HandleSceneEnd()
+    {
+        _gameEventTriggerAccess.TriggerEventActions(GameEvent.SceneEnd);
+    }
 }
