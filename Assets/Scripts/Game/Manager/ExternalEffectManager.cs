@@ -41,7 +41,7 @@ public class ExternalEffectManager : MonoBehaviour
 
             Constants.ExternalEffectType effectType = _GetExternalEffectType(i);
             IExternalEffect externalEffect = ExternalEffectFactory.Create(effectType, players, i);
-if (player.ExternalEffectApplier == null)
+            if (player.ExternalEffectApplier == null)
             {
                 Debug.LogError("PlayerExternalEffectApplier が初期化されていません。", player);
                 continue;
