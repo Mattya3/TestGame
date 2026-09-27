@@ -13,17 +13,20 @@ public sealed class PlayerExternalEffectContext : IExternalEffectContext
             return;
         }
 
-        bool shouldApply = _externalEffect.ShouldApply();
-        if (!_isEffectActive && shouldApply)
+        bool shouldBeActive = _externalEffect.ShouldApply();
+        bool shouldActivate = !_isEffectActive && shouldBeActive;
+        bool shouldDeactivate = _isEffectActive && !shouldBeActive;
+
+        if (shouldActivate)
         {
             _externalEffect.Apply();
         }
-        else if (_isEffectActive && !shouldApply)
+        else if (shouldDeactivate)
         {
             _externalEffect.Reset();
         }
 
-        _isEffectActive = shouldApply;
+        _isEffectActive = shouldBeActive;
     }
 
     public Vector2 GetMoveDirection(Vector2 inputDirection)

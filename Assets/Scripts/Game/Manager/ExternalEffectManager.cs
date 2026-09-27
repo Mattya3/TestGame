@@ -26,15 +26,13 @@ public class ExternalEffectManager : MonoBehaviour
             if (player == null)
                 continue;
 
-            IExternalEffectContext context = player.ExternalEffectContext;
             Constants.ExternalEffectType effectType = GetExternalEffectType(i);
             IExternalEffect externalEffect = ExternalEffectFactory.Create(
                 effectType,
                 players,
-                i,
-                context
+                i
             );
-            context.SetExternalEffect(externalEffect);
+            player.ExternalEffectContext.SetExternalEffect(externalEffect);
         }
     }
 

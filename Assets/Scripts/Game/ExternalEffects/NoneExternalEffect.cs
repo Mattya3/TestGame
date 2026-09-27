@@ -1,6 +1,6 @@
 public sealed class NoneExternalEffect : IExternalEffect
 {
-    public NoneExternalEffect(IExternalEffectContext context) { }
+    public NoneExternalEffect() { }
 
     public bool ShouldApply()
     {

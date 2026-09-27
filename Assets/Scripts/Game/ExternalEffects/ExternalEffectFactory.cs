@@ -6,8 +6,7 @@ public static class ExternalEffectFactory
     public static IExternalEffect Create(
         Constants.ExternalEffectType externalEffectType,
         IReadOnlyList<Player> players,
-        int playerIndex,
-        IExternalEffectContext context
+        int playerIndex
     )
     {
         Player player = players[playerIndex];
@@ -31,7 +30,7 @@ public static class ExternalEffectFactory
                 );
             case Constants.ExternalEffectType.None:
             default:
-                return new NoneExternalEffect(context);
+                return new NoneExternalEffect();
         }
     }
 }
