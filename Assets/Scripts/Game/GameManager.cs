@@ -1,9 +1,6 @@
-﻿using System;
+﻿using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using static Constants;
 
 public class GameManager : MonoBehaviour
 {
@@ -11,7 +8,7 @@ public class GameManager : MonoBehaviour
     private SceneTransitionManager _sceneTransitionManager;
 
     [SerializeField]
-    private MovementRuleManager _movementRuleManager;
+    private ExternalEffectManager _externalEffectManager;
 
     [SerializeField]
     private PlayersManager _playersManager;
@@ -24,21 +21,28 @@ public class GameManager : MonoBehaviour
             Instance = this;
     }
 
-    private void Start()
+    private IEnumerator Start()
     {
-        _movementRuleManager.Initialize(_playersManager.Players);
+        if (_playersManager == null || _externalEffectManager == null)
+        {
+            Debug.LogError("GameManager dependencies are not properly set up.", this);
+            yield break;
+        }
+
+        yield return new WaitUntil(() => _playersManager.Players.Count == Constants.PLAYER_COUNT);
+        _externalEffectManager.Initialize(_playersManager.Players);
     }
 
     public void HandleFailure()
     {
-        GameEventTrigger.TriggerEvent(GameEvent.Failure);
+        GameEventTrigger.TriggerEvent(Constants.GameEvent.Failure);
         GameEventTrigger.ResetEvents();
         _sceneTransitionManager.RestartStage();
     }
 
     public void HandleSuccess()
     {
-        GameEventTrigger.TriggerEvent(GameEvent.Success);
+        GameEventTrigger.TriggerEvent(Constants.GameEvent.Success);
         GameEventTrigger.ResetEvents();
         _sceneTransitionManager.CompleteStage();
     }

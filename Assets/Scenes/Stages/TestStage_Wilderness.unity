@@ -2729,6 +2729,52 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &241392245
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 241392246}
+  - component: {fileID: 241392247}
+  m_Layer: 0
+  m_Name: ExternalEffectManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &241392246
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 241392245}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1422380077}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &241392247
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 241392245}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62f42f4e97a64c0fae37c384fb9610a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ExternalEffectManager
+  _player1ExternalEffectType: 1
+  _player2ExternalEffectType: 1
 --- !u!1 &277532472
 GameObject:
   m_ObjectHideFlags: 0
@@ -3927,8 +3973,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6da054f73cb64dbd9ba4cecfbb19c2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
-  _moveSpeed: 5
-  _jumpInitialVelocity: 15
+  _ActionConfiguration: {fileID: 11400000, guid: 571cce6c34da34715818d94fa829cd87, type: 2}
   _groundDetector: {fileID: 1663018031}
   _sounds:
     _footstepSound:
@@ -5240,51 +5285,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7451114193451556193, guid: 6c9cd896daf317e4bb0dd0c2d55e1504, type: 3}
   m_PrefabInstance: {fileID: 844278663}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &845628945
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 845628947}
-  - component: {fileID: 845628946}
-  m_Layer: 0
-  m_Name: MovementRuleManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &845628946
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 845628945}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 900b1b34497064c488b6f70a73795756, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MovementRuleManager
-  _movementRuleEffect: 1
---- !u!4 &845628947
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 845628945}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1422380077}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &847357502
 GameObject:
   m_ObjectHideFlags: 0
@@ -8074,7 +8074,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   _sceneTransitionManager: {fileID: 554078608}
-  _movementRuleManager: {fileID: 845628946}
+  _externalEffectManager: {fileID: 241392247}
   _playersManager: {fileID: 1825111104}
 --- !u!4 &1422380077
 Transform:
@@ -8090,8 +8090,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 554078609}
-  - {fileID: 845628947}
   - {fileID: 1825111103}
+  - {fileID: 241392246}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1435100471
@@ -8197,8 +8197,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6da054f73cb64dbd9ba4cecfbb19c2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
-  _moveSpeed: 5
-  _jumpInitialVelocity: 15
+  _ActionConfiguration: {fileID: 11400000, guid: 571cce6c34da34715818d94fa829cd87, type: 2}
   _groundDetector: {fileID: 952535230}
   _sounds:
     _footstepSound:

@@ -11,17 +11,16 @@ public partial class Player : Character
 
     private IPlayerState _currentState;
 
-    // private List<IExternalState> _externalStates;
-
     [SerializeField]
     private PlayerSounds _sounds;
 
+    private PlayerExternalEffectApplier _externalEffectApplier;
     private Vector2 _inputDirection;
     private IPlayerStateContext _stateContext;
 
-    public IMoveController MoveController { get; set; }
     public bool IsInGoalState => _currentState is GoalState;
     public Vector2 InputDirection => _inputDirection;
+    public IExternalEffectApplier ExternalEffectApplier => _externalEffectApplier;
 
     private void Start()
     {
@@ -33,12 +32,16 @@ public partial class Player : Character
         }
 
         _stateContext = new StateContext(this);
+        _externalEffectApplier = new PlayerExternalEffectApplier();
         _ChangeState(_CreateInitialState());
         OnCreated?.Invoke(this);
     }
 
     protected override void _Move()
     {
+        // memo: このメソッドはここではない気がするが(character側にこれを置きたい), 次issueで対応
+        _externalEffectApplier.UpdateEffectState();
+
         if (_currentState == null)
             return;
 
@@ -101,8 +104,8 @@ public partial class Player : Character
 
     private void _MoveByInput(Vector2 inputDirection)
     {
-        Vector2 convertedDirection = MoveController.ConvertInputDirection(inputDirection);
-        _ApplyMovement(convertedDirection);
+        Vector2 direction = _externalEffectApplier.GetMoveDirection(inputDirection);
+        _ApplyMovement(direction);
     }
 
     private bool _IsGrounded()
