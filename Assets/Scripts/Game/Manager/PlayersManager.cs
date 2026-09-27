@@ -7,16 +7,6 @@ using static Constants;
 [RequireComponent(typeof(GameManagerMutableAccess))]
 public class PlayersManager : MonoBehaviour, IPlayersCollection
 {
-    [SerializeField]
-    private Constants.ExternalEffectType _player1ExternalEffectType = Constants
-        .ExternalEffectType
-        .None;
-
-    [SerializeField]
-    private Constants.ExternalEffectType _player2ExternalEffectType = Constants
-        .ExternalEffectType
-        .None;
-
     private List<Player> _players = new List<Player>();
     private GameManagerMutableAccess _gameManagerAccess;
 
@@ -44,11 +34,6 @@ public class PlayersManager : MonoBehaviour, IPlayersCollection
         _inputDirectionsReadOnly = new ReadOnlyCollection<Vector2>(_inputDirectionsList);
 
         AccessComponent<IPlayersCollection>.RegisterReference(this);
-    }
-
-    private void Start()
-    {
-        _SetExternalEffect();
     }
 
     private void OnDestroy()
@@ -79,7 +64,6 @@ public class PlayersManager : MonoBehaviour, IPlayersCollection
 
         _SetPlayersDead();
         _FreezeAllPlayers();
-
         _gameManagerAccess.HandleFailure();
     }
 
@@ -96,7 +80,6 @@ public class PlayersManager : MonoBehaviour, IPlayersCollection
         _gameManagerAccess.HandleSuccess();
     }
 
-
     private void _SetPlayersDead()
     {
         ArePlayersAlive = false;
@@ -112,10 +95,8 @@ public class PlayersManager : MonoBehaviour, IPlayersCollection
 
     private bool _AllPlayersReachedGoal()
     {
-        return _players.Count > 0 && _players.All(p => p.IsInGoalState);
+        return _players.Count > 0 && _players.All(player => player.IsInGoalState);
     }
-
-    public int Count => _players.Count;
 
     public ReadOnlyCollection<Vector3> Positions
     {
@@ -154,27 +135,5 @@ public class PlayersManager : MonoBehaviour, IPlayersCollection
             }
             return _inputDirectionsReadOnly;
         }
-    }
-
-    private void _SetExternalEffect(){
-        // yield return new WaitUntil(() => _players.Count == Constants.PLAYER_COUNT);
-        for (int i = 0; i < _players.Count; i++)
-        {
-            Player player = _players[i];
-
-            Constants.ExternalEffectType effectType = _GetExternalEffectType(i);
-            IExternalEffect externalEffect = ExternalEffectFactory.Create(effectType, _players, i);
-            player.ExternalEffectApplier.SetExternalEffect(externalEffect);
-        }
-    }
-
-    private Constants.ExternalEffectType _GetExternalEffectType(int playerIndex)
-    {
-        if (playerIndex == 0)
-            return _player1ExternalEffectType;
-        if (playerIndex == 1)
-            return _player2ExternalEffectType;
-
-        return Constants.ExternalEffectType.None;
     }
 }
