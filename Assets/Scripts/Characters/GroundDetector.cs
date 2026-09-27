@@ -12,11 +12,6 @@ public class GroundDetector : MonoBehaviour
     private void Awake()
     {
         _collider = GetComponentInParent<Collider2D>();
-        if(_collider == null){
-            Debug.LogError("no collider");
-        }else{
-            Debug.LogError("aru");
-        }
         _rigidBody = GetComponentInParent<Rigidbody2D>();
     }
 
@@ -57,6 +52,7 @@ public class GroundDetector : MonoBehaviour
     private RaycastHit2D _GroundCheck(params string[] layerNames)
     {
         Bounds bounds = _collider.bounds;
+        Debug.LogError(bounds.center.x);
         Vector2 origin = new Vector2(bounds.center.x, bounds.min.y - GROUND_CHECK_THICKNESS * 2);
         Vector2 boxSize = new Vector2(bounds.size.x, GROUND_CHECK_THICKNESS);
         int mask = LayerMask.GetMask(layerNames);
