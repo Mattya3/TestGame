@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public sealed class PlayerInputDirectionEffectContext : IInputDirectionEffectContext
+public sealed class PlayerInputDirectionEffectTarget : IInputDirectionEffectTarget
 {
     public Vector2 ReverseHorizontalInput(Vector2 inputDirection)
     {

@@ -1,4 +1,4 @@
-public interface IGravityEffectContext
+public interface IGravityEffectTarget
 {
     void SetGravityScale(float gravityScale);
     float GetDefaultGravityScale();

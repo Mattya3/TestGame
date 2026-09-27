@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public sealed class PlayerExternalEffectContext : IExternalEffectContext
+public sealed class PlayerExternalEffectApplier : IExternalEffectApplier
 {
     private IExternalEffect _externalEffect;
     private bool _isEffectActive;

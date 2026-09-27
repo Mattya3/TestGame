@@ -32,7 +32,7 @@ public class ExternalEffectManager : MonoBehaviour
                 players,
                 i
             );
-            player.ExternalEffectContext.SetExternalEffect(externalEffect);
+            player.ExternalEffectApplier.SetExternalEffect(externalEffect);
         }
     }
 

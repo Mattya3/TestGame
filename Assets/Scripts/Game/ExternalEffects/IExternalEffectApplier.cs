@@ -1,4 +1,4 @@
-public interface IExternalEffectContext
+public interface IExternalEffectApplier
 {
     void SetExternalEffect(IExternalEffect externalEffect);
 }

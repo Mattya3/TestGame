@@ -1,11 +1,11 @@
 using UnityEngine;
 
-public sealed class PlayerGravityEffectContext : IGravityEffectContext
+public sealed class PlayerGravityEffectTarget : IGravityEffectTarget
 {
     private readonly Rigidbody2D _rigidBody;
     private readonly float _defaultGravityScale;
 
-    public PlayerGravityEffectContext(Rigidbody2D rigidBody)
+    public PlayerGravityEffectTarget(Rigidbody2D rigidBody)
     {
         _rigidBody = rigidBody;
         _defaultGravityScale = rigidBody.gravityScale;

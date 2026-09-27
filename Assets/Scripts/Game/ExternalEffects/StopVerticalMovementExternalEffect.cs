@@ -3,15 +3,15 @@ using System.Collections.Generic;
 public sealed class StopVerticalMovementExternalEffect : IExternalEffect
 {
     private readonly IReadOnlyList<Player> _players;
-    private readonly IVerticalMovementEffectContext _context;
+    private readonly IVerticalMovementEffectTarget _target;
 
     public StopVerticalMovementExternalEffect(
         IReadOnlyList<Player> players,
-        IVerticalMovementEffectContext context
+        IVerticalMovementEffectTarget target
     )
     {
         _players = players;
-        _context = context;
+        _target = target;
     }
 
     public bool ShouldApply()
@@ -21,13 +21,13 @@ public sealed class StopVerticalMovementExternalEffect : IExternalEffect
 
     public void Apply()
     {
-        _context.SetGravityScale(0f);
-        _context.SetVerticalMovementStopped(true);
+        _target.SetGravityScale(0f);
+        _target.SetVerticalMovementStopped(true);
     }
 
     public void Reset()
     {
-        _context.SetGravityScale(_context.GetDefaultGravityScale());
-        _context.SetVerticalMovementStopped(false);
+        _target.SetGravityScale(_target.GetDefaultGravityScale());
+        _target.SetVerticalMovementStopped(false);
     }
 }

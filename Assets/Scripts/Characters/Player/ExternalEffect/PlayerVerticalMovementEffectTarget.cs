@@ -1,12 +1,12 @@
 using UnityEngine;
 
-public sealed class PlayerVerticalMovementEffectContext : IVerticalMovementEffectContext
+public sealed class PlayerVerticalMovementEffectTarget : IVerticalMovementEffectTarget
 {
     private readonly Rigidbody2D _rigidBody;
     private readonly float _defaultGravityScale;
     private readonly RigidbodyConstraints2D _defaultConstraints;
 
-    public PlayerVerticalMovementEffectContext(Rigidbody2D rigidBody)
+    public PlayerVerticalMovementEffectTarget(Rigidbody2D rigidBody)
     {
         _rigidBody = rigidBody;
         _defaultGravityScale = rigidBody.gravityScale;

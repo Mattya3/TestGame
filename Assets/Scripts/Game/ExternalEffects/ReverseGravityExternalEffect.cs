@@ -3,15 +3,15 @@ using System.Collections.Generic;
 public sealed class ReverseGravityExternalEffect : IExternalEffect
 {
     private readonly IReadOnlyList<Player> _players;
-    private readonly IGravityEffectContext _context;
+    private readonly IGravityEffectTarget _target;
 
     public ReverseGravityExternalEffect(
         IReadOnlyList<Player> players,
-        IGravityEffectContext context
+        IGravityEffectTarget target
     )
     {
         _players = players;
-        _context = context;
+        _target = target;
     }
 
     public bool ShouldApply()
@@ -21,11 +21,11 @@ public sealed class ReverseGravityExternalEffect : IExternalEffect
 
     public void Apply()
     {
-        _context.SetGravityScale(-_context.GetDefaultGravityScale());
+        _target.SetGravityScale(-_target.GetDefaultGravityScale());
     }
 
     public void Reset()
     {
-        _context.SetGravityScale(_context.GetDefaultGravityScale());
+        _target.SetGravityScale(_target.GetDefaultGravityScale());
     }
 }

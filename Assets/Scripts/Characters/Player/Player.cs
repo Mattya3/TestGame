@@ -14,13 +14,13 @@ public partial class Player : Character
     [SerializeField]
     private PlayerSounds _sounds;
 
-    private PlayerExternalEffectContext _externalEffectContext;
+    private PlayerExternalEffectApplier _externalEffectApplier;
     private Vector2 _inputDirection;
     private IPlayerStateContext _stateContext;
 
     public bool IsInGoalState => _currentState is GoalState;
     public Vector2 InputDirection => _inputDirection;
-    public IExternalEffectContext ExternalEffectContext => _externalEffectContext;
+    public IExternalEffectApplier ExternalEffectApplier => _externalEffectApplier;
 
     private void Start()
     {
@@ -32,7 +32,7 @@ public partial class Player : Character
         }
 
         _stateContext = new StateContext(this);
-        _externalEffectContext = new PlayerExternalEffectContext();
+        _externalEffectApplier = new PlayerExternalEffectApplier();
         _ChangeState(_CreateInitialState());
         OnCreated?.Invoke(this);
     }
@@ -40,7 +40,7 @@ public partial class Player : Character
     protected override void _Move()
     {
         // memo: このメソッドはここではない気がするが(character側にこれを置きたい), 次issueで対応
-        _externalEffectContext.UpdateEffectState();
+        _externalEffectApplier.UpdateEffectState();
 
         if (_currentState == null)
             return;
@@ -104,7 +104,7 @@ public partial class Player : Character
 
     private void _MoveByInput(Vector2 inputDirection)
     {
-        Vector2 direction = _externalEffectContext.GetMoveDirection(inputDirection);
+        Vector2 direction = _externalEffectApplier.GetMoveDirection(inputDirection);
         _ApplyMovement(direction);
     }
 

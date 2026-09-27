@@ -4,15 +4,15 @@ using UnityEngine;
 public sealed class ReverseInputExternalEffect : IExternalEffect, IInputDirectionEffect
 {
     private readonly IReadOnlyList<Player> _players;
-    private readonly IInputDirectionEffectContext _context;
+    private readonly IInputDirectionEffectTarget _target;
 
     public ReverseInputExternalEffect(
         IReadOnlyList<Player> players,
-        IInputDirectionEffectContext context
+        IInputDirectionEffectTarget target
     )
     {
         _players = players;
-        _context = context;
+        _target = target;
     }
 
     public bool ShouldApply()
@@ -26,6 +26,6 @@ public sealed class ReverseInputExternalEffect : IExternalEffect, IInputDirectio
 
     public Vector2 ConvertInputDirection(Vector2 inputDirection)
     {
-        return _context.ReverseHorizontalInput(inputDirection);
+        return _target.ReverseHorizontalInput(inputDirection);
     }
 }
