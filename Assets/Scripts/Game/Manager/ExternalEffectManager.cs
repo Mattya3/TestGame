@@ -16,14 +16,16 @@ public class ExternalEffectManager : MonoBehaviour
 
     private IEnumerator Start()
     {
-        yield return new WaitUntil(
-            () => FindObjectsByType<Player>(FindObjectsSortMode.InstanceID).Length
-                == Constants.PLAYER_COUNT
-        );
-        Initialize(FindObjectsByType<Player>(FindObjectsSortMode.InstanceID));
+        Player[] players = null;
+        yield return new WaitUntil(() =>
+        {
+            players = FindObjectsByType<Player>(FindObjectsSortMode.InstanceID);
+            return players.Length == Constants.PLAYER_COUNT;
+        });
+        Initialize(players);
     }
 
-    public void Initialize(IReadOnlyList<Player> players)
+    private void Initialize(IReadOnlyList<Player> players)
     {
         if (players == null)
         {
