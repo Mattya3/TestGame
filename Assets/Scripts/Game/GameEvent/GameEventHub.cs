@@ -1,0 +1,58 @@
+﻿using System;
+using System.Collections.Generic;
+using UnityEngine;
+using static Constants;
+
+public class GameEventHub : MonoBehaviour
+{
+    private readonly Dictionary<GameEvent, Action> _eventActions;
+
+    public GameEventHub()
+    {
+        _eventActions = new Dictionary<GameEvent, Action>();
+        foreach (GameEvent gameEvent in Enum.GetValues(typeof(GameEvent)))
+        {
+            _eventActions[gameEvent] = null;
+        }
+    }
+
+    private void Awake()
+    {
+        AccessComponent<GameEventHub>.RegisterReference(this);
+    }
+
+    private void OnDestroy()
+    {
+        AccessComponent<GameEventHub>.UnregisterReference(this);
+    }
+
+    public void RegisterEventAction(GameEvent gameEvent, Action eventAction)
+    {
+        if (!_eventActions.ContainsKey(gameEvent))
+        {
+            Debug.LogError($"Unhandled GameEvent value in RegisterEventAction: {gameEvent}");
+            throw new ArgumentOutOfRangeException(nameof(gameEvent), gameEvent, null);
+        }
+
+        _eventActions[gameEvent] += eventAction;
+    }
+
+    public void UnregisterEventAction(GameEvent gameEvent, Action eventAction)
+    {
+        if (!_eventActions.ContainsKey(gameEvent))
+        {
+            Debug.LogError($"Unhandled GameEvent value in UnregisterEventAction: {gameEvent}");
+            throw new ArgumentOutOfRangeException(nameof(gameEvent), gameEvent, null);
+        }
+
+        _eventActions[gameEvent] -= eventAction;
+    }
+
+    public void TriggerEventActions(GameEvent gameEvent)
+    {
+        if (_eventActions.TryGetValue(gameEvent, out var action))
+        {
+            action?.Invoke();
+        }
+    }
+}

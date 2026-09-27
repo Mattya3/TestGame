@@ -21,6 +21,11 @@ public abstract class Character : MonoEventReactingBehaviour
         _collider = GetComponent<Collider2D>();
     }
 
+    protected virtual void Start()
+    {
+        
+    }
+
     protected virtual void Update()
     {
         _Move();
