@@ -5,10 +5,7 @@ public sealed class ReverseGravityExternalEffect : IExternalEffect
     private readonly IReadOnlyList<Player> _players;
     private readonly IGravityEffectTarget _target;
 
-    public ReverseGravityExternalEffect(
-        IReadOnlyList<Player> players,
-        IGravityEffectTarget target
-    )
+    public ReverseGravityExternalEffect(IReadOnlyList<Player> players, IGravityEffectTarget target)
     {
         _players = players;
         _target = target;
