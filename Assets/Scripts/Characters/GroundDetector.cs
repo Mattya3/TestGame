@@ -12,6 +12,11 @@ public class GroundDetector : MonoBehaviour
     private void Awake()
     {
         _collider = GetComponentInParent<Collider2D>();
+        if(_collider == null){
+            Debug.LogError("no collider");
+        }else{
+            Debug.LogError("aru");
+        }
         _rigidBody = GetComponentInParent<Rigidbody2D>();
     }
 

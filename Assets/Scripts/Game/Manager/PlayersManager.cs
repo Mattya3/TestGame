@@ -7,6 +7,16 @@ using static Constants;
 [RequireComponent(typeof(GameManagerMutableAccess))]
 public class PlayersManager : MonoBehaviour, IPlayersCollection
 {
+    [SerializeField]
+    private Constants.ExternalEffectType _player1ExternalEffectType = Constants
+        .ExternalEffectType
+        .None;
+
+    [SerializeField]
+    private Constants.ExternalEffectType _player2ExternalEffectType = Constants
+        .ExternalEffectType
+        .None;
+
     private List<Player> _players = new List<Player>();
     private GameManagerMutableAccess _gameManagerAccess;
 
@@ -26,6 +36,7 @@ public class PlayersManager : MonoBehaviour, IPlayersCollection
         // Findによってプレイヤを取得。プレイヤを動的に生成するようになったら、Findはやめる
         foreach (var player in FindObjectsByType<Player>(FindObjectsSortMode.InstanceID))
             _RegisterPlayer(player);
+        _SetExternalEffect();
 
         _gameManagerAccess = GetComponent<GameManagerMutableAccess>();
 
@@ -80,6 +91,7 @@ public class PlayersManager : MonoBehaviour, IPlayersCollection
 
         _gameManagerAccess.HandleSuccess();
     }
+
 
     private void _SetPlayersDead()
     {
@@ -138,5 +150,27 @@ public class PlayersManager : MonoBehaviour, IPlayersCollection
             }
             return _inputDirectionsReadOnly;
         }
+    }
+
+    private void _SetExternalEffect(){
+        // yield return new WaitUntil(() => _players.Count == Constants.PLAYER_COUNT);
+        for (int i = 0; i < _players.Count; i++)
+        {
+            Player player = _players[i];
+
+            Constants.ExternalEffectType effectType = _GetExternalEffectType(i);
+            IExternalEffect externalEffect = ExternalEffectFactory.Create(effectType, _players, i);
+            player.ExternalEffectApplier.SetExternalEffect(externalEffect);
+        }
+    }
+
+    private Constants.ExternalEffectType _GetExternalEffectType(int playerIndex)
+    {
+        if (playerIndex == 0)
+            return _player1ExternalEffectType;
+        if (playerIndex == 1)
+            return _player2ExternalEffectType;
+
+        return Constants.ExternalEffectType.None;
     }
 }

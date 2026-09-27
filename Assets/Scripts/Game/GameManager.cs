@@ -9,9 +9,6 @@ public class GameManager : MonoBehaviour, IGameManager
     [SerializeField]
     private ExternalEffectManager _externalEffectManager;
 
-    [SerializeField]
-    private PlayersManager _playersManager;
-
     private GameEventTriggerAccess _gameEventTriggerAccess;
 
     private void Awake()
@@ -23,18 +20,6 @@ public class GameManager : MonoBehaviour, IGameManager
     private void OnDestroy()
     {
         AccessComponent<IGameManager>.UnregisterReference(this);
-    }
-
-    private IEnumerator Start()
-    {
-        if (_externalEffectManager == null)
-        {
-            Debug.LogError("GameManager dependencies are not properly set up.", this);
-            yield break;
-        }
-
-        yield return new WaitUntil(() => _playersManager.Players.Count == Constants.PLAYER_COUNT);
-        _externalEffectManager.Initialize(_playersManager.Players);
     }
 
     public void HandlePlayStart()

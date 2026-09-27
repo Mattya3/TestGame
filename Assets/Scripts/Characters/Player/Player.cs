@@ -35,7 +35,6 @@ public partial class Player : Character
         _stateContext = new StateContext(this);
         _externalEffectApplier = new PlayerExternalEffectApplier();
         _ChangeState(_CreateInitialState());
-        OnCreated?.Invoke(this);
     }
 
     protected override void _Move()
