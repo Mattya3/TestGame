@@ -27,11 +27,7 @@ public class ExternalEffectManager : MonoBehaviour
                 continue;
 
             Constants.ExternalEffectType effectType = GetExternalEffectType(i);
-            IExternalEffect externalEffect = ExternalEffectFactory.Create(
-                effectType,
-                players,
-                i
-            );
+            IExternalEffect externalEffect = ExternalEffectFactory.Create(effectType, players, i);
             player.ExternalEffectContext.SetExternalEffect(externalEffect);
         }
     }
