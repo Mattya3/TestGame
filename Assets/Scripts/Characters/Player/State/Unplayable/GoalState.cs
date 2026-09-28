@@ -1,9 +1,10 @@
 using UnityEngine;
 using static Constants;
+using CharacterState;
 
-public class GoalState : UnplayableState
+public sealed class GoalState : CharacterUnplayableState
 {
-    public GoalState(IPlayerStateContext context, PlayerSounds sounds)
+    public GoalState(ICharacterStateContext context, PlayerSounds sounds)
         : base(context, sounds) { }
 
     public override void OnEnabled()
