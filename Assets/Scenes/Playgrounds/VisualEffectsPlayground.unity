@@ -1932,7 +1932,7 @@ MonoBehaviour:
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1700165871}
-        m_TargetAssemblyTypeName: EffectsCompositTester, Assembly-CSharp
+        m_TargetAssemblyTypeName: EffectsCompositeTester, Assembly-CSharp
         m_MethodName: PlayEffects
         m_Mode: 0
         m_Arguments:
