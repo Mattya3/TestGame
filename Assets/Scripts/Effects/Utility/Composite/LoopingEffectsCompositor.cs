@@ -1,7 +1,6 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
-
+using UnityEngine;
 
 public class LoopingEffectsCompositor : EffectsCompositorBase
 {
@@ -23,9 +22,15 @@ public class LoopingEffectsCompositor : EffectsCompositorBase
         CameraMutableAccess cameraAccess,
         TransformOffsetController transformOffsetController,
         Renderer renderer
-        )
+    )
     {
-        InitializeComponents(audioSource, cameraAccess, transformOffsetController, renderer, _playInUnscaledTime);
+        InitializeComponents(
+            audioSource,
+            cameraAccess,
+            transformOffsetController,
+            renderer,
+            _playInUnscaledTime
+        );
 
         // 初期化時点では非アクティブにする
         gameObject.SetActive(false);
@@ -66,7 +71,9 @@ public class LoopingEffectsCompositor : EffectsCompositorBase
 
     private IEnumerator _CoDeactivateAfterFadeout()
     {
-        yield return _playInUnscaledTime ? new WaitForSecondsRealtime(_fadeOutTime) : new WaitForSeconds(_fadeOutTime);
+        yield return _playInUnscaledTime
+            ? new WaitForSecondsRealtime(_fadeOutTime)
+            : new WaitForSeconds(_fadeOutTime);
 
         gameObject.SetActive(false);
         _deactivateCoroutine = null;

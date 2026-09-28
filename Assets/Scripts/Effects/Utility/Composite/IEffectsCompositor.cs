@@ -7,7 +7,7 @@ public interface IEffectsCompositor
         CameraMutableAccess cameraAccess,
         TransformOffsetController transformOffsetController,
         Renderer renderer
-        );
+    );
 
     public void PlayEffects();
     public void StopEffects();

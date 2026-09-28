@@ -84,7 +84,12 @@ public abstract class EffectsCompositorBase : MonoBehaviour, IEffectsCompositor
         }
     }
 
-    public abstract void Initialize(AudioSource audioSource, CameraMutableAccess cameraAccess, TransformOffsetController transformOffsetController, Renderer renderer);
+    public abstract void Initialize(
+        AudioSource audioSource,
+        CameraMutableAccess cameraAccess,
+        TransformOffsetController transformOffsetController,
+        Renderer renderer
+    );
     public abstract void PlayEffects();
     public abstract void StopEffects();
 }

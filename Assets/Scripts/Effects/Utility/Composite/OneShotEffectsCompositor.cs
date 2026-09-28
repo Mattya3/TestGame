@@ -1,6 +1,6 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
 
 public class OneShotEffectsCompositor : EffectsCompositorBase
 {
@@ -21,9 +21,15 @@ public class OneShotEffectsCompositor : EffectsCompositorBase
         CameraMutableAccess cameraAccess,
         TransformOffsetController transformOffsetController,
         Renderer renderer
-        )
+    )
     {
-        InitializeComponents(audioSource, cameraAccess, transformOffsetController, renderer, _playInUnscaledTime);
+        InitializeComponents(
+            audioSource,
+            cameraAccess,
+            transformOffsetController,
+            renderer,
+            _playInUnscaledTime
+        );
 
         // 初期化時点では非アクティブにする
         gameObject.SetActive(false);
@@ -49,14 +55,18 @@ public class OneShotEffectsCompositor : EffectsCompositorBase
 
     private IEnumerator _CoPlayEffects()
     {
-        yield return _playInUnscaledTime ? new WaitForSecondsRealtime(_delayTime) : new WaitForSeconds(_delayTime);
+        yield return _playInUnscaledTime
+            ? new WaitForSecondsRealtime(_delayTime)
+            : new WaitForSeconds(_delayTime);
         PlayComponents();
     }
 
     private IEnumerator _CoDeactivateAfterDuration()
     {
-        yield return _playInUnscaledTime ? new WaitForSecondsRealtime(_duration) : new WaitForSeconds(_duration);
-        
+        yield return _playInUnscaledTime
+            ? new WaitForSecondsRealtime(_duration)
+            : new WaitForSeconds(_duration);
+
         _StopAllPlayCoroutines();
         gameObject.SetActive(false);
         _deactivateCoroutine = null;

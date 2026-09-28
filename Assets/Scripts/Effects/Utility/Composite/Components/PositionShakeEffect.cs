@@ -23,7 +23,10 @@ namespace EffectsCompositeComponent
             }
         }
 
-        public void Initialize(TransformOffsetController transformOffsetController, bool playInUnscaledTime)
+        public void Initialize(
+            TransformOffsetController transformOffsetController,
+            bool playInUnscaledTime
+        )
         {
             _transformOffsetController = transformOffsetController;
             if (_transformOffsetController == null)
@@ -31,9 +34,14 @@ namespace EffectsCompositeComponent
                 Debug.LogError("TransformOffsetController is not assigned.");
             }
 
-            if (playInUnscaledTime != _shakeEffect.UpdateMode.Equals(ShakeEffect.ShakeUpdateMode.UnscaledTime))
+            if (
+                playInUnscaledTime
+                != _shakeEffect.UpdateMode.Equals(ShakeEffect.ShakeUpdateMode.UnscaledTime)
+            )
             {
-                Debug.LogWarning("The playInUnscaledTime parameter does not match the ShakeEffect's UpdateMode. This may lead to unexpected behavior.");
+                Debug.LogWarning(
+                    "The playInUnscaledTime parameter does not match the ShakeEffect's UpdateMode. This may lead to unexpected behavior."
+                );
             }
         }
 

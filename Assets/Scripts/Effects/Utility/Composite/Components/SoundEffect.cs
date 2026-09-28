@@ -28,7 +28,9 @@ namespace EffectsCompositeComponent
 
             if (_audioClip == null || _audioSource == null)
             {
-                Debug.LogWarning("Cannot play sound: No audio clip assigned or AudioSource is null.");
+                Debug.LogWarning(
+                    "Cannot play sound: No audio clip assigned or AudioSource is null."
+                );
                 return;
             }
         }

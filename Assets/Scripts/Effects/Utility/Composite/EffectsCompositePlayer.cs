@@ -14,7 +14,7 @@ public class EffectsCompositePlayer
         Vector3 position = default,
         Quaternion rotation = default,
         Transform parent = null
-        )
+    )
     {
         if (effectPrefab == null)
         {
@@ -50,7 +50,7 @@ public class EffectsCompositePlayer
 
     public void StopEffects()
     {
-        foreach(var compositor in _compositors)
+        foreach (var compositor in _compositors)
             compositor.StopEffects();
     }
 }

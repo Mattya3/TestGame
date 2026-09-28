@@ -71,7 +71,9 @@ namespace EffectsCompositeComponent
             _renderer = renderer;
             if (_renderer == null)
             {
-                Debug.LogWarning("Renderer component is missing. ShaderPropertiesEffect will not function properly.");
+                Debug.LogWarning(
+                    "Renderer component is missing. ShaderPropertiesEffect will not function properly."
+                );
                 return;
             }
             _materialPropertyBlock = new MaterialPropertyBlock();
@@ -83,7 +85,9 @@ namespace EffectsCompositeComponent
                 floatProp.Initialize();
                 if (!_renderer.sharedMaterial.HasProperty(floatProp.PropertyID))
                 {
-                    Debug.LogWarning($"Property '{floatProp.PropertyName}' not found in the material. Please ensure the property name is correct and exists in the shader.");
+                    Debug.LogWarning(
+                        $"Property '{floatProp.PropertyName}' not found in the material. Please ensure the property name is correct and exists in the shader."
+                    );
                 }
             }
             foreach (var colorProp in colorProperties)
@@ -91,7 +95,9 @@ namespace EffectsCompositeComponent
                 colorProp.Initialize();
                 if (!_renderer.sharedMaterial.HasProperty(colorProp.PropertyID))
                 {
-                    Debug.LogWarning($"Property '{colorProp.PropertyName}' not found in the material. Please ensure the property name is correct and exists in the shader.");
+                    Debug.LogWarning(
+                        $"Property '{colorProp.PropertyName}' not found in the material. Please ensure the property name is correct and exists in the shader."
+                    );
                 }
             }
         }

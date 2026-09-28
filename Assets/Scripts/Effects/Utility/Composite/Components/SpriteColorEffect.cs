@@ -23,7 +23,9 @@ namespace EffectsCompositeComponent
             _renderer = renderer as SpriteRenderer;
             if (_renderer == null)
             {
-                Debug.LogWarning("Renderer component is missing, or not a SpriteRenderer. SpriteColorEffect will not function properly.");
+                Debug.LogWarning(
+                    "Renderer component is missing, or not a SpriteRenderer. SpriteColorEffect will not function properly."
+                );
                 return;
             }
             _initialColor = _renderer.material.color;
