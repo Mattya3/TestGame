@@ -1,10 +1,10 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using static Constants;
+using CharacterState;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(Collider2D))]
-public abstract class Character : MonoEventReactingBehaviour
+public abstract partial class Character : MonoEventReactingBehaviour
 {
     [SerializeField]
     private PlayerActionConfiguration _ActionConfiguration;
@@ -12,23 +12,68 @@ public abstract class Character : MonoEventReactingBehaviour
     [SerializeField]
     protected GroundDetector _groundDetector;
 
+    //Player用のsoundをCharacterに拡張できる
+    [SerializeField]
+    private PlayerSounds _characterSounds;
+
     private Rigidbody2D _rigidBody;
     private Collider2D _collider;
+    private ICharacterState _characterState;
+    private ICharacterStateContext _characterStateContext;
+
+    protected ICharacterState _CurrentState => _characterState;
+
+    protected ICharacterStateContext _StateContext => _characterStateContext;
+
+    protected virtual PlayerSounds _StateSounds => _characterSounds;
 
     protected virtual void Awake()
     {
         _rigidBody = GetComponent<Rigidbody2D>();
         _collider = GetComponent<Collider2D>();
+        _characterStateContext = new CharacterStateContext(this);
     }
 
-    protected virtual void Start() { }
+    protected virtual void Start()
+    {
+        _ChangeState(_CreateInitialState());
+    }
 
     protected virtual void Update()
     {
         _Move();
     }
 
-    protected abstract void _Move();
+    protected virtual void _Move()
+    {
+        _BeforeStateMove();
+        _characterState?.OnMove();
+    }
+
+    protected virtual void _BeforeStateMove() { }
+
+    protected virtual void _MoveCharacter() { }
+
+    protected virtual ICharacterState _CreateInitialState()
+    {
+        return _groundDetector.IsGrounded()
+            ? new CharacterGroundState(_characterStateContext, _StateSounds)
+            : new CharacterAirState(_characterStateContext, _StateSounds);
+    }
+
+    protected void _ChangeState(ICharacterState nextState)
+    {
+        if (nextState == null)
+        {
+            Debug.LogError("Next character state is null.", this);
+            return;
+        }
+
+        _characterState?.OnDisabled();
+        _characterState = nextState;
+        _characterState.OnEnabled();
+    }
+
 
     protected void _ApplyMovement(Vector2 direction)
     {
@@ -50,6 +95,25 @@ public abstract class Character : MonoEventReactingBehaviour
         );
         _rigidBody.AddForce(Vector2.up * deltaVy * _rigidBody.mass, ForceMode2D.Impulse);
     }
+
+    public virtual void Die(DeathReason deathReason)
+    {
+        _characterState?.Die(deathReason);
+    }
+
+    public void EnterFrozenState()
+    {
+        if (_CurrentState == null)
+            return;
+        if (_CurrentState is CharacterUnplayableState)
+            return;
+
+        _ChangeState(new CharacterFrozenState(_StateContext, _StateSounds));
+    }
+
+    protected virtual void _NotifyDied(DeathReason deathReason) { }
+
+    protected virtual void _NotifyGoalReached() { }
 
     protected override void OnFailure()
     {
