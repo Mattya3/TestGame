@@ -1,6 +1,6 @@
+using CharacterState;
 using UnityEngine;
 using static Constants;
-using CharacterState;
 
 public sealed class GoalState : CharacterUnplayableState
 {

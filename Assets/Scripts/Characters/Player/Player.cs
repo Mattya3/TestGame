@@ -1,8 +1,8 @@
 ﻿using System;
+using CharacterState;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using static Constants;
-using CharacterState;
 
 public partial class Player : Character
 {
