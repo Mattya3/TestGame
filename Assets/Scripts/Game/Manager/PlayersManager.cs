@@ -26,8 +26,6 @@ public class PlayersManager : MonoBehaviour, IPlayersCollection
 
     private void Awake()
     {
-        AccessComponent<IPlayersCollection>.RegisterReference(this);
-
         // Findによってプレイヤを取得。プレイヤを動的に生成するようになったら、Findはやめる
         foreach (var player in FindObjectsByType<Player>(FindObjectsSortMode.InstanceID))
             _RegisterPlayer(player);
@@ -38,6 +36,8 @@ public class PlayersManager : MonoBehaviour, IPlayersCollection
         _boundsReadOnly = new ReadOnlyCollection<Bounds>(_boundsList);
         _inputDirectionsReadOnly = new ReadOnlyCollection<Vector2>(_inputDirectionsList);
         _aliveFlagsReadOnly = new ReadOnlyCollection<bool>(_aliveFlagsList);
+
+        AccessComponent<IPlayersCollection>.RegisterReference(this);
     }
 
     private void OnDestroy()
