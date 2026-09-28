@@ -1,6 +1,6 @@
-﻿using UnityEngine;
+﻿using CharacterState;
+using UnityEngine;
 using static Constants;
-using CharacterState;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(Collider2D))]
@@ -69,7 +69,6 @@ public abstract partial class Character : MonoEventReactingBehaviour
         _characterState = nextState;
         _characterState.OnEnabled();
     }
-
 
     protected void _ApplyMovement(Vector2 direction)
     {

@@ -1,6 +1,6 @@
 using System;
-using UnityEngine;
 using CharacterState;
+using UnityEngine;
 
 [Serializable]
 public class CharacterSounds : ICharacterSounds
