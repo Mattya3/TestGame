@@ -50,7 +50,7 @@ public class CharacterSounds : ICharacterSounds
     [SerializeField]
     private AudioClipInfo _deathSound;
 
-    public bool IsValid()
+    public virtual bool IsValid()
     {
         return _footstepSound.IsValid("Footstep")
             && _jumpSound.IsValid("Jump")
