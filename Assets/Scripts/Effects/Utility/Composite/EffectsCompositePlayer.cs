@@ -44,12 +44,18 @@ public class EffectsCompositePlayer
 
     public void PlayEffects()
     {
+        if (_compositors == null)
+            return;
+
         foreach (var compositor in _compositors)
             compositor.PlayEffects();
     }
 
     public void StopEffects()
     {
+        if (_compositors == null)
+            return;
+
         foreach (var compositor in _compositors)
             compositor.StopEffects();
     }
