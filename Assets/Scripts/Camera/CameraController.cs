@@ -27,8 +27,6 @@ public class CameraController : MonoBehaviour
 
     void Awake()
     {
-        AccessComponent<CameraController>.RegisterReference(this);
-
         _camera = GetComponentInChildren<Camera>();
         _targetsStack = new CameraTargetsStack(GetComponentsInChildren<ICameraTarget>());
         if (!_IsConfigurationValid())
@@ -38,6 +36,8 @@ public class CameraController : MonoBehaviour
         }
         _colliders = _colliderRoot.GetComponentsInChildren<Collider2D>();
         _shakeEffectsPlayer = GetComponent<ShakeEffectsPlayer>();
+
+        AccessComponent<CameraController>.RegisterReference(this);
     }
 
     void OnDestroy()
@@ -119,6 +119,7 @@ public class CameraController : MonoBehaviour
     private void FixedUpdate()
     {
         _targetsStack.Update();
+        _EnableColliders(_targetsStack.EnableCollider);
 
         var destination = _CalculateDestination();
         var boundedDestination = _Bound(destination);
@@ -169,6 +170,14 @@ public class CameraController : MonoBehaviour
 
     private void _EnableColliders(bool enable)
     {
+        // 変化しない場合は早期return
+        // 先頭要素のenabled状態を確認することで、全体の状態を推測する
+        // 一部だけenableが違う状況は想定しない
+        if (_colliders == null || _colliders.Length == 0)
+            return;
+        if (_colliders[0].enabled == enable)
+            return;
+
         for (int i = 0; i < _colliders.Length; i++)
             _colliders[i].enabled = enable;
     }
