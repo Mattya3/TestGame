@@ -52,5 +52,11 @@ namespace EffectsCompositeComponent
             Color gradientColor = _colorGradient.Evaluate(gradientTime);
             _renderer.color = _initialColor * gradientColor;
         }
+
+        private void OnDisable()
+        {
+            if (_renderer != null)
+                _renderer.color = _initialColor;
+        }
     }
 }
