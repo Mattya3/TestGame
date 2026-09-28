@@ -49,7 +49,7 @@ public class TransformOffsetController : MonoBehaviour
     public void SetOffset(
         Vector3 positionOffset = default,
         Vector3 rotationOffset = default,
-        Vector3 scaleOffset = default
+        Vector3 scaleOffset = Vector3.one
     )
     {
         SetPositionOffset(positionOffset);
