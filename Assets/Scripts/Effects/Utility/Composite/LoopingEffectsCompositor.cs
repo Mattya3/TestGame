@@ -46,7 +46,7 @@ public class LoopingEffectsCompositor : EffectsCompositorBase
     public override void StopEffects()
     {
         _isPlaying = false;
-        StartCoroutine(_CoDeactivateAfterFadeout());
+        _deactivateCoroutine = StartCoroutine(_CoDeactivateAfterFadeout());
     }
 
     private void Update()
