@@ -4,6 +4,7 @@ using static Constants;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(Collider2D))]
+[RequireComponent(typeof(CharacterEffectsPlayer))]
 public abstract class Character : MonoEventReactingBehaviour
 {
     [SerializeField, Range(0f, 20f)]
@@ -17,11 +18,13 @@ public abstract class Character : MonoEventReactingBehaviour
 
     private Rigidbody2D _rigidBody;
     private Collider2D _collider;
+    private CharacterEffectsPlayer _effectsPlayer;
 
     protected virtual void Awake()
     {
         _rigidBody = GetComponent<Rigidbody2D>();
         _collider = GetComponent<Collider2D>();
+        _effectsPlayer = GetComponent<CharacterEffectsPlayer>();
     }
 
     protected virtual void Update()
@@ -69,4 +72,6 @@ public abstract class Character : MonoEventReactingBehaviour
     }
 
     public Bounds Bounds => _collider.bounds;
+
+    protected CharacterEffectsPlayer EffectsPlayer => _effectsPlayer;
 }

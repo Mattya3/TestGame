@@ -35,7 +35,7 @@ public class EventMusicPlayer : MonoEventReactingBehaviour
 
     private IEnumerator _CoPlay()
     {
-        yield return new WaitForSeconds(_delayBeforePlaying);
+        yield return new WaitForSecondsRealtime(_delayBeforePlaying);
         _audioSource.Play();
     }
 }

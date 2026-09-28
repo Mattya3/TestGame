@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82ec888f721947d42940fe94067b0086, type: 3}
+  m_Name: ShakeOnFailure
+  m_EditorClassIdentifier: Assembly-CSharp::ShakeEffect
+  _shakeType: 0
+  _updateMode: 1
+  _duration: 0.3
+  _magnitude: {x: 0.6, y: 0.6}
+  _frequency: {x: 17, y: 16}
+  _phaseOffsets: {x: 0, y: 2}

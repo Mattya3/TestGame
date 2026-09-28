@@ -15,9 +15,8 @@ public class AnimationSoundPlayer : MonoBehaviour
         _audioSource = GetComponent<AudioSource>();
     }
 
-    public void PlaySound(Object clipObject)
+    public void PlaySound(AudioClip clip)
     {
-        var clip = clipObject as AudioClip;
         if (clip == null)
             return;
 

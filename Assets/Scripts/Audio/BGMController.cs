@@ -34,7 +34,7 @@ public class BGMController : MonoEventReactingBehaviour
         var elapsedTime = 0.0f;
         while (elapsedTime < fadeOutTime)
         {
-            elapsedTime += Time.deltaTime;
+            elapsedTime += Time.unscaledDeltaTime;
             var t = Mathf.Clamp01(elapsedTime / fadeOutTime);
             _audioSource.volume = Mathf.Lerp(startVolume, 0.0f, t);
             yield return null;
