@@ -34,6 +34,9 @@ namespace EffectsCompositeComponent
                 Debug.LogError("TransformOffsetController is not assigned.");
             }
 
+            if (_shakeEffect == null)
+                return;
+
             if (
                 playInUnscaledTime
                 != _shakeEffect.UpdateMode.Equals(ShakeEffect.ShakeUpdateMode.UnscaledTime)
