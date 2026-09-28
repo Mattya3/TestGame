@@ -19,7 +19,7 @@ public partial class Player : Character
     public Vector2 InputDirection => _inputDirection;
     public IExternalEffectApplier ExternalEffectApplier => _externalEffectApplier;
 
-    protected override PlayerSounds _StateSounds => _sounds;
+    protected override ICharacterSounds _StateSounds => _sounds;
 
     protected override void Awake()
     {

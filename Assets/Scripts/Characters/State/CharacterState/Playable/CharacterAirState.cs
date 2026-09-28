@@ -4,7 +4,7 @@ namespace CharacterState
 {
     public sealed class CharacterAirState : CharacterPlayableState
     {
-        public CharacterAirState(ICharacterStateContext context, PlayerSounds sounds)
+        public CharacterAirState(ICharacterStateContext context, ICharacterSounds sounds)
             : base(context, sounds) { }
 
         public override void OnMove()

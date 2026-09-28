@@ -4,7 +4,7 @@ namespace CharacterState
 {
     public abstract class CharacterPlayableState : CharacterStateBase
     {
-        protected CharacterPlayableState(ICharacterStateContext context, PlayerSounds sounds)
+        protected CharacterPlayableState(ICharacterStateContext context, ICharacterSounds sounds)
             : base(context, sounds) { }
 
         public override void Die(DeathReason deathReason)

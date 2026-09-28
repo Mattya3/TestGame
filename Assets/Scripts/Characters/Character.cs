@@ -12,10 +12,6 @@ public abstract partial class Character : MonoEventReactingBehaviour
     [SerializeField]
     protected GroundDetector _groundDetector;
 
-    //Player用のsoundをCharacterに拡張できる
-    [SerializeField]
-    private PlayerSounds _characterSounds;
-
     private Rigidbody2D _rigidBody;
     private Collider2D _collider;
     private ICharacterState _characterState;
@@ -25,7 +21,7 @@ public abstract partial class Character : MonoEventReactingBehaviour
 
     protected ICharacterStateContext _StateContext => _characterStateContext;
 
-    protected virtual PlayerSounds _StateSounds => _characterSounds;
+    protected abstract ICharacterSounds _StateSounds { get; }
 
     protected virtual void Awake()
     {

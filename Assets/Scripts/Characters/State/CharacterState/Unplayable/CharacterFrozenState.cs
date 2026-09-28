@@ -5,7 +5,7 @@ namespace CharacterState
 {
     public sealed class CharacterFrozenState : CharacterUnplayableState
     {
-        public CharacterFrozenState(ICharacterStateContext context, PlayerSounds sounds)
+        public CharacterFrozenState(ICharacterStateContext context, ICharacterSounds sounds)
             : base(context, sounds) { }
 
         public override void OnEnabled()

@@ -2,7 +2,7 @@
 using UnityEngine;
 
 [Serializable]
-public class PlayerSounds
+public class PlayerSounds : ICharacterSounds
 {
     [Serializable]
     private class AudioClipInfo

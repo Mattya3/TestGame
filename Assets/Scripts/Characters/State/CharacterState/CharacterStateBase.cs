@@ -4,14 +4,14 @@ namespace CharacterState
 {
     public abstract class CharacterStateBase : ICharacterState
     {
-        protected CharacterStateBase(ICharacterStateContext context, PlayerSounds sounds)
+        protected CharacterStateBase(ICharacterStateContext context, ICharacterSounds sounds)
         {
             Context = context;
             Sounds = sounds;
         }
 
         protected ICharacterStateContext Context { get; }
-        protected PlayerSounds Sounds { get; }
+        protected ICharacterSounds Sounds { get; }
 
         public virtual void OnMove() { }
 

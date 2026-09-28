@@ -9,7 +9,7 @@ namespace CharacterState
 
         public CharacterDeadState(
             ICharacterStateContext context,
-            PlayerSounds sounds,
+            ICharacterSounds sounds,
             DeathReason deathReason
         )
             : base(context, sounds)
