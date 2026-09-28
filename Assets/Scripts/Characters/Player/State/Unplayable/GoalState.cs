@@ -1,16 +1,22 @@
+using CharacterState;
 using UnityEngine;
 using static Constants;
 
-public class GoalState : UnplayableState
+public sealed class GoalState : CharacterUnplayableState
 {
-    public GoalState(IPlayerStateContext context, PlayerSounds sounds)
-        : base(context, sounds) { }
+    private readonly PlayerSounds _playerSounds;
+
+    public GoalState(ICharacterStateContext context, PlayerSounds sounds)
+        : base(context, sounds)
+    {
+        _playerSounds = sounds;
+    }
 
     public override void OnEnabled()
     {
         Context.NotifyGoalReached();
         Context.Freeze();
-        Sounds.OnGoal();
+        _playerSounds.OnGoal();
     }
 
     public override void Die(DeathReason deathReason)

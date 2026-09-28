@@ -1,9 +1,9 @@
-﻿using System;
+using System;
 using CharacterState;
 using UnityEngine;
 
 [Serializable]
-public class PlayerSounds : CharacterSounds
+public class CharacterSounds : ICharacterSounds
 {
     [Serializable]
     private class AudioClipInfo
@@ -39,12 +39,30 @@ public class PlayerSounds : CharacterSounds
     }
 
     [SerializeField]
-    private AudioClipInfo _goalSound;
+    private AudioClipInfo _footstepSound;
 
-    public override bool IsValid()
+    [SerializeField]
+    private AudioClipInfo _jumpSound;
+
+    [SerializeField]
+    private AudioClipInfo _landSound;
+
+    [SerializeField]
+    private AudioClipInfo _deathSound;
+
+    public virtual bool IsValid()
     {
-        return base.IsValid() && _goalSound.IsValid("Goal");
+        return _footstepSound.IsValid("Footstep")
+            && _jumpSound.IsValid("Jump")
+            && _landSound.IsValid("Land")
+            && _deathSound.IsValid("Death");
     }
 
-    public void OnGoal() => _goalSound.Play();
+    public void OnFootstep() => _footstepSound.Play();
+
+    public void OnJump() => _jumpSound.Play();
+
+    public void OnLand() => _landSound.Play();
+
+    public void OnDeath() => _deathSound.Play();
 }
