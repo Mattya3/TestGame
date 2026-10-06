@@ -1,5 +1,5 @@
-﻿using System.Collections;
-using System;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -41,9 +41,7 @@ public class OneShotEffectsCompositor : EffectsCompositorBase
         _StopDeactivateCoroutine();
 
         Coroutine playCoroutine = null;
-        playCoroutine = StartCoroutine(
-            _CoPlayEffects(() => _playCoroutines.Remove(playCoroutine))
-        );
+        playCoroutine = StartCoroutine(_CoPlayEffects(() => _playCoroutines.Remove(playCoroutine)));
         _playCoroutines.Add(playCoroutine);
         _deactivateCoroutine = StartCoroutine(_CoDeactivateAfterDuration());
     }
