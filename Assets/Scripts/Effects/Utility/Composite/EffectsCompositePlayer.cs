@@ -59,6 +59,9 @@ public class EffectsCompositePlayer
 
     public void PlayEffects(Vector3 position)
     {
+        if (_instance == null)
+            return;
+
         _instance.transform.position = position;
         PlayEffects();
     }
