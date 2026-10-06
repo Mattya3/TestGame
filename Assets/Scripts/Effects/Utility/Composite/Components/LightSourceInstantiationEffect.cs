@@ -35,5 +35,10 @@ namespace EffectsCompositeComponent
         {
             _lightSourcesPool.Spawn(transform.position, _duration);
         }
+
+        private void OnDestroy()
+        {
+            _lightSourcesPool?.Destroy();
+        }
     }
 }

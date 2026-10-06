@@ -45,6 +45,18 @@ public class LightSourcesPool
         }
     }
 
+    public void Destroy()
+    {
+        for (int i = 0; i < _poolSize; i++)
+        {
+            if (_pool[i] != null)
+            {
+                Object.Destroy(_pool[i]);
+                _pool[i] = null;
+            }
+        }
+    }
+
     public void Spawn(Vector3 position, float duration)
     {
         int index = FindInactiveIndex();
