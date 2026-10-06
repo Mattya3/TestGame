@@ -22,6 +22,13 @@ namespace EffectsCompositeComponent
 
         public void Initialize(Transform instantiationParent, bool playInUnscaledTime)
         {
+            if (_lightPrefab == null)
+            {
+                Debug.LogError("Light prefab is not assigned.", this);
+                enabled = false;
+                return;
+            }
+
             _lightSourcesPool = new LightSourcesPool(
                 this,
                 _lightPrefab,
@@ -33,7 +40,7 @@ namespace EffectsCompositeComponent
 
         public void Play()
         {
-            _lightSourcesPool.Spawn(transform.position, _duration);
+            _lightSourcesPool?.Spawn(transform.position, _duration);
         }
 
         private void OnDestroy()
