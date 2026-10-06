@@ -38,7 +38,13 @@ public class EffectsCompositePlayer
 
         foreach (var compositor in _compositors)
         {
-            compositor.Initialize(audioSource, cameraAccess, transformOffsetController, renderer);
+            compositor.Initialize(
+                audioSource,
+                cameraAccess,
+                transformOffsetController,
+                renderer,
+                parent
+            );
         }
     }
 
@@ -51,6 +57,15 @@ public class EffectsCompositePlayer
             compositor.PlayEffects();
     }
 
+    public void PlayEffects(Vector3 position)
+    {
+        if (_instance == null)
+            return;
+
+        _instance.transform.position = position;
+        PlayEffects();
+    }
+
     public void StopEffects()
     {
         if (_compositors == null)
@@ -58,5 +73,14 @@ public class EffectsCompositePlayer
 
         foreach (var compositor in _compositors)
             compositor.StopEffects();
+    }
+
+    public void Cleanup()
+    {
+        if (_instance != null)
+        {
+            GameObject.Destroy(_instance);
+            _instance = null;
+        }
     }
 }

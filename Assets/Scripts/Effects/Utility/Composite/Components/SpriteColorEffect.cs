@@ -5,6 +5,7 @@ namespace EffectsCompositeComponent
     public class SpriteColorEffect : MonoBehaviour, IRendererEffect
     {
         [SerializeField]
+        [GradientUsage(true)]
         private Gradient _colorGradient = new Gradient();
 
         [SerializeField, Min(1e-3f)]
