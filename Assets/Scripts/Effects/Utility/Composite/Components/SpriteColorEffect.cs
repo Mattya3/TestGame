@@ -24,7 +24,9 @@ namespace EffectsCompositeComponent
             _renderer = renderer as SpriteRenderer;
             if (_renderer == null)
             {
-                Debug.LogWarning("Renderer component is missing, or not a SpriteRenderer. SpriteColorEffect will not function properly.");
+                Debug.LogWarning(
+                    "Renderer component is missing, or not a SpriteRenderer. SpriteColorEffect will not function properly."
+                );
                 return;
             }
             _initialColor = _renderer.material.color;
@@ -50,6 +52,12 @@ namespace EffectsCompositeComponent
             float gradientTime = Mathf.Clamp01(_time / _gradientDuration);
             Color gradientColor = _colorGradient.Evaluate(gradientTime);
             _renderer.color = _initialColor * gradientColor;
+        }
+
+        private void OnDisable()
+        {
+            if (_renderer != null)
+                _renderer.color = _initialColor;
         }
     }
 }

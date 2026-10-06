@@ -112,7 +112,13 @@ public abstract class EffectsCompositorBase : MonoBehaviour, IEffectsCompositor
 
     protected bool PlayInUnscaledTime => _playInUnscaledTime;
 
-    public abstract void Initialize(AudioSource audioSource, CameraMutableAccess cameraAccess, TransformOffsetController transformOffsetController, Renderer renderer, Transform instantiationParent);
+    public abstract void Initialize(
+        AudioSource audioSource,
+        CameraMutableAccess cameraAccess,
+        TransformOffsetController transformOffsetController,
+        Renderer renderer,
+        Transform instantiationParent
+    );
     public abstract void PlayEffects();
     public abstract void StopEffects();
 }

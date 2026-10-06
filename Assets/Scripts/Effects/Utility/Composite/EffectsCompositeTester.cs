@@ -33,7 +33,7 @@ public class EffectsCompositeTester : MonoBehaviour
             transform.position,
             transform.rotation,
             transform
-            );
+        );
     }
 
     public void PlayEffects(InputAction.CallbackContext context)

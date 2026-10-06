@@ -8,7 +8,7 @@ public interface IEffectsCompositor
         TransformOffsetController transformOffsetController,
         Renderer renderer,
         Transform instantiationParent
-        );
+    );
 
     public void PlayEffects();
     public void StopEffects();

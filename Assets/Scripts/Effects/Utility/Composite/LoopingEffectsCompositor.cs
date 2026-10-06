@@ -1,7 +1,6 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
-
+using UnityEngine;
 
 public class LoopingEffectsCompositor : EffectsCompositorBase
 {
@@ -44,7 +43,7 @@ public class LoopingEffectsCompositor : EffectsCompositorBase
     public override void StopEffects()
     {
         _isPlaying = false;
-        StartCoroutine(_CoDeactivateAfterFadeout());
+        _deactivateCoroutine = StartCoroutine(_CoDeactivateAfterFadeout());
     }
 
     protected override void Update()

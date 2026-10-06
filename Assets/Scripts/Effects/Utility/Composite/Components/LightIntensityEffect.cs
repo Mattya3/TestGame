@@ -65,7 +65,10 @@ namespace EffectsCompositeComponent
             else
             {
                 var noise = Mathf.PerlinNoise1D(_time * _modulationFrequency);
-                _light.intensity = _initialIntensity * curveValue * (1f + (noise * 2f - 1f) * _modulationAmplitude);
+                _light.intensity =
+                    _initialIntensity
+                    * curveValue
+                    * (1f + (noise * 2f - 1f) * _modulationAmplitude);
             }
         }
     }
