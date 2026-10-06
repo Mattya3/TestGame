@@ -3,7 +3,6 @@
 public class CharacterEffectsPlayer : MonoBehaviour
 {
     [Header("Reference")]
-
     [SerializeField]
     private AudioSource _audioSource;
 
@@ -17,7 +16,6 @@ public class CharacterEffectsPlayer : MonoBehaviour
     private Renderer _renderer;
 
     [Header("Effect Prefabs")]
-
     [SerializeField]
     private GameObject _deadZoneDeathEffectPrefab;
 
@@ -29,8 +27,26 @@ public class CharacterEffectsPlayer : MonoBehaviour
 
     private void Awake()
     {
-        _deadZonePlayer = new EffectsCompositePlayer(_deadZoneDeathEffectPrefab, _audioSource, _cameraAccess, _transformOffsetController, _renderer, transform.position, transform.rotation, transform);
-        _fallPlayer = new EffectsCompositePlayer(_fallDeathEffectPrefab, _audioSource, _cameraAccess, _transformOffsetController, _renderer, transform.position, transform.rotation, transform);
+        _deadZonePlayer = new EffectsCompositePlayer(
+            _deadZoneDeathEffectPrefab,
+            _audioSource,
+            _cameraAccess,
+            _transformOffsetController,
+            _renderer,
+            transform.position,
+            transform.rotation,
+            transform
+        );
+        _fallPlayer = new EffectsCompositePlayer(
+            _fallDeathEffectPrefab,
+            _audioSource,
+            _cameraAccess,
+            _transformOffsetController,
+            _renderer,
+            transform.position,
+            transform.rotation,
+            transform
+        );
     }
 
     private void OnDestroy()

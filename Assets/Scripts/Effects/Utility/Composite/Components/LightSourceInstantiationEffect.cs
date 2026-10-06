@@ -22,7 +22,13 @@ namespace EffectsCompositeComponent
 
         public void Initialize(Transform instantiationParent, bool playInUnscaledTime)
         {
-            _lightSourcesPool = new LightSourcesPool(this, _lightPrefab, _poolSize, playInUnscaledTime, _independentInstances ? null : instantiationParent);
+            _lightSourcesPool = new LightSourcesPool(
+                this,
+                _lightPrefab,
+                _poolSize,
+                playInUnscaledTime,
+                _independentInstances ? null : instantiationParent
+            );
         }
 
         public void Play()

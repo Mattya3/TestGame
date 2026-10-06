@@ -38,7 +38,13 @@ public class EffectsCompositePlayer
 
         foreach (var compositor in _compositors)
         {
-            compositor.Initialize(audioSource, cameraAccess, transformOffsetController, renderer, parent);
+            compositor.Initialize(
+                audioSource,
+                cameraAccess,
+                transformOffsetController,
+                renderer,
+                parent
+            );
         }
     }
 

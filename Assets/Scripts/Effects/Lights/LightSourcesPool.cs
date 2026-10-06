@@ -11,7 +11,13 @@ public class LightSourcesPool
     private Coroutine[] _activeCoroutines;
     private int _lastUsedIndex = -1; // 最後に使用したインデックス
 
-    public LightSourcesPool(MonoBehaviour owner, GameObject lightPrefab, int poolSize, bool playInUnscaledTime, Transform instantiationParent)
+    public LightSourcesPool(
+        MonoBehaviour owner,
+        GameObject lightPrefab,
+        int poolSize,
+        bool playInUnscaledTime,
+        Transform instantiationParent
+    )
     {
         _owner = owner;
         _poolSize = poolSize;
@@ -75,7 +81,9 @@ public class LightSourcesPool
 
     private IEnumerator CoKillInstance(int index, float duration)
     {
-        yield return _playInUnscaledTime ? new WaitForSecondsRealtime(duration) : new WaitForSeconds(duration);
+        yield return _playInUnscaledTime
+            ? new WaitForSecondsRealtime(duration)
+            : new WaitForSeconds(duration);
         _pool[index].SetActive(false);
         _activeCoroutines[index] = null;
     }

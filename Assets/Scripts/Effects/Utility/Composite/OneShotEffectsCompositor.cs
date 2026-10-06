@@ -19,9 +19,15 @@ public class OneShotEffectsCompositor : EffectsCompositorBase
         TransformOffsetController transformOffsetController,
         Renderer renderer,
         Transform instantiationParent
-        )
+    )
     {
-        InitializeComponents(audioSource, cameraAccess, transformOffsetController, renderer, instantiationParent);
+        InitializeComponents(
+            audioSource,
+            cameraAccess,
+            transformOffsetController,
+            renderer,
+            instantiationParent
+        );
 
         // 初期化時点では非アクティブにする
         gameObject.SetActive(false);
@@ -47,14 +53,18 @@ public class OneShotEffectsCompositor : EffectsCompositorBase
 
     private IEnumerator _CoPlayEffects()
     {
-        yield return PlayInUnscaledTime ? new WaitForSecondsRealtime(_delayTime) : new WaitForSeconds(_delayTime);
+        yield return PlayInUnscaledTime
+            ? new WaitForSecondsRealtime(_delayTime)
+            : new WaitForSeconds(_delayTime);
         PlayComponents();
     }
 
     private IEnumerator _CoDeactivateAfterDuration()
     {
-        yield return PlayInUnscaledTime ? new WaitForSecondsRealtime(_duration) : new WaitForSeconds(_duration);
-        
+        yield return PlayInUnscaledTime
+            ? new WaitForSecondsRealtime(_duration)
+            : new WaitForSeconds(_duration);
+
         _StopAllPlayCoroutines();
         gameObject.SetActive(false);
         _deactivateCoroutine = null;

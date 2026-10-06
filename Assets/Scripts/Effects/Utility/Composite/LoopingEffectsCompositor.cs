@@ -20,9 +20,15 @@ public class LoopingEffectsCompositor : EffectsCompositorBase
         TransformOffsetController transformOffsetController,
         Renderer renderer,
         Transform instantiationParent
-        )
+    )
     {
-        InitializeComponents(audioSource, cameraAccess, transformOffsetController, renderer, instantiationParent);
+        InitializeComponents(
+            audioSource,
+            cameraAccess,
+            transformOffsetController,
+            renderer,
+            instantiationParent
+        );
 
         // 初期化時点では非アクティブにする
         gameObject.SetActive(false);
@@ -65,7 +71,9 @@ public class LoopingEffectsCompositor : EffectsCompositorBase
 
     private IEnumerator _CoDeactivateAfterFadeout()
     {
-        yield return PlayInUnscaledTime ? new WaitForSecondsRealtime(_fadeOutTime) : new WaitForSeconds(_fadeOutTime);
+        yield return PlayInUnscaledTime
+            ? new WaitForSecondsRealtime(_fadeOutTime)
+            : new WaitForSeconds(_fadeOutTime);
 
         gameObject.SetActive(false);
         _deactivateCoroutine = null;
