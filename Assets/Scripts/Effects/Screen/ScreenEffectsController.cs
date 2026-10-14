@@ -5,7 +5,6 @@ using UnityEngine;
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(StageSceneContextReadonlyAccess))]
 [RequireComponent(typeof(GameManagerMutableAccess))]
-[RequireComponent(typeof(CameraMutableAccess))]
 public class ScreenEffectsController : MonoEventReactingBehaviour
 {
     [Serializable]

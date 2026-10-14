@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,9 +11,6 @@ public class OneShotEffectsCompositor : EffectsCompositorBase
     [SerializeField]
     private float _delayTime = 0f;
 
-    [SerializeField]
-    private bool _playInUnscaledTime = false;
-
     private List<Coroutine> _playCoroutines = new List<Coroutine>();
     private Coroutine _deactivateCoroutine;
 
@@ -20,7 +18,8 @@ public class OneShotEffectsCompositor : EffectsCompositorBase
         AudioSource audioSource,
         CameraMutableAccess cameraAccess,
         TransformOffsetController transformOffsetController,
-        Renderer renderer
+        Renderer renderer,
+        Transform instantiationParent
     )
     {
         InitializeComponents(
@@ -28,7 +27,7 @@ public class OneShotEffectsCompositor : EffectsCompositorBase
             cameraAccess,
             transformOffsetController,
             renderer,
-            _playInUnscaledTime
+            instantiationParent
         );
 
         // 初期化時点では非アクティブにする
@@ -39,10 +38,11 @@ public class OneShotEffectsCompositor : EffectsCompositorBase
     {
         gameObject.SetActive(true);
 
-        _RemoveFinishedPlayCoroutines();
         _StopDeactivateCoroutine();
 
-        _playCoroutines.Add(StartCoroutine(_CoPlayEffects()));
+        Coroutine playCoroutine = null;
+        playCoroutine = StartCoroutine(_CoPlayEffects(() => _playCoroutines.Remove(playCoroutine)));
+        _playCoroutines.Add(playCoroutine);
         _deactivateCoroutine = StartCoroutine(_CoDeactivateAfterDuration());
     }
 
@@ -53,17 +53,24 @@ public class OneShotEffectsCompositor : EffectsCompositorBase
         // この時点ではDeactivateしない。コルーチンによって一定時間後にDeactivateされるのを待機
     }
 
-    private IEnumerator _CoPlayEffects()
+    private IEnumerator _CoPlayEffects(Action onFinished)
     {
-        yield return _playInUnscaledTime
-            ? new WaitForSecondsRealtime(_delayTime)
-            : new WaitForSeconds(_delayTime);
-        PlayComponents();
+        try
+        {
+            yield return PlayInUnscaledTime
+                ? new WaitForSecondsRealtime(_delayTime)
+                : new WaitForSeconds(_delayTime);
+            PlayComponents();
+        }
+        finally
+        {
+            onFinished?.Invoke();
+        }
     }
 
     private IEnumerator _CoDeactivateAfterDuration()
     {
-        yield return _playInUnscaledTime
+        yield return PlayInUnscaledTime
             ? new WaitForSecondsRealtime(_duration)
             : new WaitForSeconds(_duration);
 
@@ -74,14 +81,16 @@ public class OneShotEffectsCompositor : EffectsCompositorBase
 
     private void _StopAllPlayCoroutines()
     {
-        foreach (var playCoroutine in _playCoroutines)
+        var playCoroutines = _playCoroutines.ToArray();
+        _playCoroutines.Clear();
+
+        foreach (var playCoroutine in playCoroutines)
         {
             if (playCoroutine != null)
             {
                 StopCoroutine(playCoroutine);
             }
         }
-        _playCoroutines.Clear();
     }
 
     private void _StopDeactivateCoroutine()
@@ -91,10 +100,5 @@ public class OneShotEffectsCompositor : EffectsCompositorBase
             StopCoroutine(_deactivateCoroutine);
             _deactivateCoroutine = null;
         }
-    }
-
-    private void _RemoveFinishedPlayCoroutines()
-    {
-        _playCoroutines.RemoveAll(coroutine => coroutine == null);
     }
 }

@@ -44,6 +44,7 @@ namespace EffectsCompositeComponent
         private class ColorProperty : PropertyBase
         {
             [SerializeField]
+            [GradientUsage(true)]
             private Gradient gradient = new Gradient();
 
             public Color Evaluate(float time)
