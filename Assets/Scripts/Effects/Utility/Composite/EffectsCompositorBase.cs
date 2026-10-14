@@ -30,7 +30,7 @@ public abstract class EffectsCompositorBase : MonoBehaviour, IEffectsCompositor
     {
         get
         {
-            if ( transform.parent == null)
+            if (transform.parent == null)
                 return true;
 
             // エディタの場合はGetComponentInParentで検索
@@ -85,7 +85,11 @@ public abstract class EffectsCompositorBase : MonoBehaviour, IEffectsCompositor
         }
         foreach (var transformEffect in _transformEffects)
         {
-            transformEffect.Initialize(transformOffsetController, PlayInUnscaledTime, PlaySpeedRate);
+            transformEffect.Initialize(
+                transformOffsetController,
+                PlayInUnscaledTime,
+                PlaySpeedRate
+            );
         }
         foreach (var rendererEffect in _rendererEffects)
         {
@@ -141,13 +145,16 @@ public abstract class EffectsCompositorBase : MonoBehaviour, IEffectsCompositor
             return;
 
         // 時間スケールに対応するため、手動で更新
-        var stepDeltaTime = (PlayInUnscaledTime ? Time.unscaledDeltaTime : Time.deltaTime) * PlaySpeedRate;
+        var stepDeltaTime =
+            (PlayInUnscaledTime ? Time.unscaledDeltaTime : Time.deltaTime) * PlaySpeedRate;
         _visualEffect.Simulate(stepDeltaTime);
     }
 
     // 親のEffectsCompositorBaseが存在する場合は、親の設定を優先
-    public bool PlayInUnscaledTime => _parentCompositor != null ? _parentCompositor.PlayInUnscaledTime : _playInUnscaledTime;
-    public float PlaySpeedRate => _parentCompositor != null ? _parentCompositor.PlaySpeedRate : _playSpeedRate;
+    public bool PlayInUnscaledTime =>
+        _parentCompositor != null ? _parentCompositor.PlayInUnscaledTime : _playInUnscaledTime;
+    public float PlaySpeedRate =>
+        _parentCompositor != null ? _parentCompositor.PlaySpeedRate : _playSpeedRate;
 
     public abstract void Initialize(
         AudioSource audioSource,

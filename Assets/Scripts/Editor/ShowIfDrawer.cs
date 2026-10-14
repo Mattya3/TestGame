@@ -6,34 +6,20 @@ using UnityEngine;
 [CustomPropertyDrawer(typeof(ShowIfAttribute))]
 public class ShowIfDrawer : PropertyDrawer
 {
-    public override void OnGUI(
-        Rect position,
-        SerializedProperty property,
-        GUIContent label)
+    public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
     {
         if (!_ShouldShow(property))
             return;
 
-        EditorGUI.PropertyField(
-            position,
-            property,
-            label,
-            true
-        );
+        EditorGUI.PropertyField(position, property, label, true);
     }
 
-    public override float GetPropertyHeight(
-        SerializedProperty property,
-        GUIContent label)
+    public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
     {
         if (!_ShouldShow(property))
             return 0f;
 
-        return EditorGUI.GetPropertyHeight(
-            property,
-            label,
-            true
-        );
+        return EditorGUI.GetPropertyHeight(property, label, true);
     }
 
     private bool _ShouldShow(SerializedProperty property)
@@ -45,17 +31,10 @@ public class ShowIfDrawer : PropertyDrawer
         if (target == null)
             return false;
 
-        return _EvaluateMember(
-            target,
-            attribute.MemberName,
-            attribute.Arguments
-        );
+        return _EvaluateMember(target, attribute.MemberName, attribute.Arguments);
     }
 
-    private bool _EvaluateMember(
-        object target,
-        string memberName,
-        object[] arguments)
+    private bool _EvaluateMember(object target, string memberName, object[] arguments)
     {
         Type type = target.GetType();
 
@@ -78,8 +57,7 @@ public class ShowIfDrawer : PropertyDrawer
 
         PropertyInfo property = _FindProperty(type, memberName);
 
-        if (property != null &&
-            property.CanRead)
+        if (property != null && property.CanRead)
         {
             object value = property.GetValue(target);
 
@@ -90,41 +68,25 @@ public class ShowIfDrawer : PropertyDrawer
         // 3. メソッド
         // --------------------------------
 
-        MethodInfo method = _FindMethod(
-            type,
-            memberName,
-            arguments
-        );
+        MethodInfo method = _FindMethod(type, memberName, arguments);
 
         if (method != null)
         {
-            object[] convertedArguments =
-                _ConvertArguments(
-                    method.GetParameters(),
-                    arguments
-                );
+            object[] convertedArguments = _ConvertArguments(method.GetParameters(), arguments);
 
             if (convertedArguments == null)
             {
-                Debug.LogError(
-                    $"ShowIf: メソッド '{memberName}' の引数を変換できません。"
-                );
+                Debug.LogError($"ShowIf: メソッド '{memberName}' の引数を変換できません。");
 
                 return false;
             }
 
-            object result = method.Invoke(
-                target,
-                convertedArguments
-            );
+            object result = method.Invoke(target, convertedArguments);
 
             return _ConvertToBool(result);
         }
 
-        Debug.LogError(
-            $"ShowIf: '{memberName}' が " +
-            $"{type.Name} に見つかりません。"
-        );
+        Debug.LogError($"ShowIf: '{memberName}' が " + $"{type.Name} に見つかりません。");
 
         return false;
     }
@@ -133,18 +95,16 @@ public class ShowIfDrawer : PropertyDrawer
     // Field
     // ============================================================
 
-    private FieldInfo _FindField(
-        Type type,
-        string name)
+    private FieldInfo _FindField(Type type, string name)
     {
         while (type != null)
         {
             FieldInfo field = type.GetField(
                 name,
-                BindingFlags.Instance |
-                BindingFlags.Public |
-                BindingFlags.NonPublic |
-                BindingFlags.DeclaredOnly
+                BindingFlags.Instance
+                    | BindingFlags.Public
+                    | BindingFlags.NonPublic
+                    | BindingFlags.DeclaredOnly
             );
 
             if (field != null)
@@ -160,18 +120,16 @@ public class ShowIfDrawer : PropertyDrawer
     // Property
     // ============================================================
 
-    private PropertyInfo _FindProperty(
-        Type type,
-        string name)
+    private PropertyInfo _FindProperty(Type type, string name)
     {
         while (type != null)
         {
             PropertyInfo property = type.GetProperty(
                 name,
-                BindingFlags.Instance |
-                BindingFlags.Public |
-                BindingFlags.NonPublic |
-                BindingFlags.DeclaredOnly
+                BindingFlags.Instance
+                    | BindingFlags.Public
+                    | BindingFlags.NonPublic
+                    | BindingFlags.DeclaredOnly
             );
 
             if (property != null)
@@ -187,18 +145,15 @@ public class ShowIfDrawer : PropertyDrawer
     // Method
     // ============================================================
 
-    private MethodInfo _FindMethod(
-        Type type,
-        string name,
-        object[] arguments)
+    private MethodInfo _FindMethod(Type type, string name, object[] arguments)
     {
         while (type != null)
         {
             MethodInfo[] methods = type.GetMethods(
-                BindingFlags.Instance |
-                BindingFlags.Public |
-                BindingFlags.NonPublic |
-                BindingFlags.DeclaredOnly
+                BindingFlags.Instance
+                    | BindingFlags.Public
+                    | BindingFlags.NonPublic
+                    | BindingFlags.DeclaredOnly
             );
 
             foreach (MethodInfo method in methods)
@@ -206,15 +161,12 @@ public class ShowIfDrawer : PropertyDrawer
                 if (method.Name != name)
                     continue;
 
-                ParameterInfo[] parameters =
-                    method.GetParameters();
+                ParameterInfo[] parameters = method.GetParameters();
 
                 if (parameters.Length != arguments.Length)
                     continue;
 
-                if (_CanConvertArguments(
-                    parameters,
-                    arguments))
+                if (_CanConvertArguments(parameters, arguments))
                 {
                     return method;
                 }
@@ -230,15 +182,11 @@ public class ShowIfDrawer : PropertyDrawer
     // Argument conversion
     // ============================================================
 
-    private bool _CanConvertArguments(
-        ParameterInfo[] parameters,
-        object[] arguments)
+    private bool _CanConvertArguments(ParameterInfo[] parameters, object[] arguments)
     {
         for (int i = 0; i < parameters.Length; i++)
         {
-            if (!_CanConvertArgument(
-                arguments[i],
-                parameters[i].ParameterType))
+            if (!_CanConvertArgument(arguments[i], parameters[i].ParameterType))
             {
                 return false;
             }
@@ -247,13 +195,10 @@ public class ShowIfDrawer : PropertyDrawer
         return true;
     }
 
-    private bool _CanConvertArgument(
-        object value,
-        Type targetType)
+    private bool _CanConvertArgument(object value, Type targetType)
     {
         if (value == null)
-            return !targetType.IsValueType ||
-                   Nullable.GetUnderlyingType(targetType) != null;
+            return !targetType.IsValueType || Nullable.GetUnderlyingType(targetType) != null;
 
         Type valueType = value.GetType();
 
@@ -262,17 +207,12 @@ public class ShowIfDrawer : PropertyDrawer
 
         if (targetType.IsEnum)
         {
-            return value is string ||
-                   value is Enum ||
-                   value is int;
+            return value is string || value is Enum || value is int;
         }
 
         try
         {
-            Convert.ChangeType(
-                value,
-                targetType
-            );
+            Convert.ChangeType(value, targetType);
 
             return true;
         }
@@ -282,21 +222,15 @@ public class ShowIfDrawer : PropertyDrawer
         }
     }
 
-    private object[] _ConvertArguments(
-        ParameterInfo[] parameters,
-        object[] arguments)
+    private object[] _ConvertArguments(ParameterInfo[] parameters, object[] arguments)
     {
-        object[] result =
-            new object[arguments.Length];
+        object[] result = new object[arguments.Length];
 
         for (int i = 0; i < arguments.Length; i++)
         {
             try
             {
-                result[i] = _ConvertArgument(
-                    arguments[i],
-                    parameters[i].ParameterType
-                );
+                result[i] = _ConvertArgument(arguments[i], parameters[i].ParameterType);
             }
             catch
             {
@@ -307,15 +241,12 @@ public class ShowIfDrawer : PropertyDrawer
         return result;
     }
 
-    private object _ConvertArgument(
-        object value,
-        Type targetType)
+    private object _ConvertArgument(object value, Type targetType)
     {
         if (value == null)
             return null;
 
-        if (targetType.IsAssignableFrom(
-            value.GetType()))
+        if (targetType.IsAssignableFrom(value.GetType()))
         {
             return value;
         }
@@ -324,22 +255,13 @@ public class ShowIfDrawer : PropertyDrawer
         {
             if (value is string stringValue)
             {
-                return Enum.Parse(
-                    targetType,
-                    stringValue
-                );
+                return Enum.Parse(targetType, stringValue);
             }
 
-            return Enum.ToObject(
-                targetType,
-                value
-            );
+            return Enum.ToObject(targetType, value);
         }
 
-        return Convert.ChangeType(
-            value,
-            targetType
-        );
+        return Convert.ChangeType(value, targetType);
     }
 
     // ============================================================
@@ -384,12 +306,7 @@ public class ShowIfDrawer : PropertyDrawer
 
             if (element.StartsWith("data["))
             {
-                int index = int.Parse(
-                    element.Substring(
-                        5,
-                        element.Length - 6
-                    )
-                );
+                int index = int.Parse(element.Substring(5, element.Length - 6));
 
                 if (obj is System.Collections.IList list)
                 {
@@ -408,26 +325,21 @@ public class ShowIfDrawer : PropertyDrawer
         return obj;
     }
 
-    private object _GetMemberValue(
-        object obj,
-        string name)
+    private object _GetMemberValue(object obj, string name)
     {
         if (obj == null)
             return null;
 
         Type type = obj.GetType();
 
-        FieldInfo field =
-            _FindField(type, name);
+        FieldInfo field = _FindField(type, name);
 
         if (field != null)
             return field.GetValue(obj);
 
-        PropertyInfo property =
-            _FindProperty(type, name);
+        PropertyInfo property = _FindProperty(type, name);
 
-        if (property != null &&
-            property.CanRead)
+        if (property != null && property.CanRead)
         {
             return property.GetValue(obj);
         }

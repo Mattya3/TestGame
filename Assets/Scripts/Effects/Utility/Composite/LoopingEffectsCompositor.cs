@@ -63,7 +63,8 @@ public class LoopingEffectsCompositor : EffectsCompositorBase
         if (!_isPlaying)
             return;
 
-        _replayTimer -= (PlayInUnscaledTime ? Time.unscaledDeltaTime : Time.deltaTime) * PlaySpeedRate;
+        _replayTimer -=
+            (PlayInUnscaledTime ? Time.unscaledDeltaTime : Time.deltaTime) * PlaySpeedRate;
         if (_replayTimer > 0f)
             return;
 
@@ -74,7 +75,9 @@ public class LoopingEffectsCompositor : EffectsCompositorBase
     private IEnumerator _CoDeactivateAfterFadeout()
     {
         var adjustedFadeOutTime = _fadeOutTime / PlaySpeedRate;
-        yield return PlayInUnscaledTime ? new WaitForSecondsRealtime(adjustedFadeOutTime) : new WaitForSeconds(adjustedFadeOutTime);
+        yield return PlayInUnscaledTime
+            ? new WaitForSecondsRealtime(adjustedFadeOutTime)
+            : new WaitForSeconds(adjustedFadeOutTime);
 
         gameObject.SetActive(false);
         _deactivateCoroutine = null;

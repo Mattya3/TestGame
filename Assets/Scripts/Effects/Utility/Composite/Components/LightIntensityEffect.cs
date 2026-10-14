@@ -54,7 +54,8 @@ namespace EffectsCompositeComponent
             if (!_isPlaying)
                 return;
 
-            _time += (_playInUnscaledTime ? Time.unscaledDeltaTime : Time.deltaTime) * _playSpeedRate;
+            _time +=
+                (_playInUnscaledTime ? Time.unscaledDeltaTime : Time.deltaTime) * _playSpeedRate;
 
             float curveTime = Mathf.Clamp01(_time / _curveDuration);
             float curveValue = _intensityCurve.Evaluate(curveTime);

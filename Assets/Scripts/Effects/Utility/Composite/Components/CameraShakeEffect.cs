@@ -11,7 +11,11 @@ namespace EffectsCompositeComponent
 
         public bool isEnabled => enabled;
 
-        public void Initialize(CameraMutableAccess cameraAccess, bool playInUnscaledTime, float playSpeedRate)
+        public void Initialize(
+            CameraMutableAccess cameraAccess,
+            bool playInUnscaledTime,
+            float playSpeedRate
+        )
         {
             _cameraAccess = cameraAccess;
             if (_cameraAccess == null)
@@ -22,9 +26,14 @@ namespace EffectsCompositeComponent
             {
                 Debug.LogError("Shake effect is not assigned.");
             }
-            else if ((_shakeEffect.UpdateMode == ShakeEffect.ShakeUpdateMode.UnscaledTime) != playInUnscaledTime)
+            else if (
+                (_shakeEffect.UpdateMode == ShakeEffect.ShakeUpdateMode.UnscaledTime)
+                != playInUnscaledTime
+            )
             {
-                Debug.LogWarning("Shake effect update mode does not match the playInUnscaledTime setting.");
+                Debug.LogWarning(
+                    "Shake effect update mode does not match the playInUnscaledTime setting."
+                );
             }
         }
 

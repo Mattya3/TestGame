@@ -21,7 +21,11 @@ namespace EffectsCompositeComponent
 
         public bool isEnabled => enabled;
 
-        public void Initialize(Transform instantiationParent, bool playInUnscaledTime, float playSpeedRate)
+        public void Initialize(
+            Transform instantiationParent,
+            bool playInUnscaledTime,
+            float playSpeedRate
+        )
         {
             _playSpeedRate = playSpeedRate;
 

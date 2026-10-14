@@ -5,7 +5,11 @@ namespace EffectsCompositeComponent
     public interface IInstantiationEffect
     {
         bool isEnabled { get; }
-        void Initialize(Transform instantiationParent, bool playInUnscaledTime, float playSpeedRate);
+        void Initialize(
+            Transform instantiationParent,
+            bool playInUnscaledTime,
+            float playSpeedRate
+        );
 
         void Play();
     }

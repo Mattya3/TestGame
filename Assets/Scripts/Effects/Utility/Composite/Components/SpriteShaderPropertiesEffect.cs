@@ -119,7 +119,8 @@ namespace EffectsCompositeComponent
             if (!_isPlaying)
                 return;
 
-            _time += (_playInUnscaledTime ? Time.unscaledDeltaTime : Time.deltaTime) * _playSpeedRate;
+            _time +=
+                (_playInUnscaledTime ? Time.unscaledDeltaTime : Time.deltaTime) * _playSpeedRate;
 
             _renderer.GetPropertyBlock(_materialPropertyBlock);
             foreach (var floatProp in floatProperties)
