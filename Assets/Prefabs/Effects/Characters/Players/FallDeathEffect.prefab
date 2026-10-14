@@ -56,7 +56,7 @@ MonoBehaviour:
   _playInUnscaledTime: 1
   _playSpeedRate: 0.9
   _duration: 5
-  _delayTime: 0
+  _delayTime: 0.1
 --- !u!2083052967 &2678149706083594254
 VisualEffect:
   m_ObjectHideFlags: 0
@@ -168,7 +168,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -5530357289975153629, guid: a94a4d42aea7a9340a414f0ad15f5572, type: 3}
       propertyPath: m_PropertySheet.m_Float.m_Array.Array.data[1].m_Value
-      value: 0.1
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: -5530357289975153629, guid: a94a4d42aea7a9340a414f0ad15f5572, type: 3}
       propertyPath: m_PropertySheet.m_Vector4f.m_Array.Array.data[0].m_Name
@@ -224,7 +224,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -5530357289975153629, guid: a94a4d42aea7a9340a414f0ad15f5572, type: 3}
       propertyPath: m_PropertySheet.m_AnimationCurve.m_Array.Array.data[0].m_Overridden
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -5530357289975153629, guid: a94a4d42aea7a9340a414f0ad15f5572, type: 3}
       propertyPath: m_PropertySheet.m_AnimationCurve.m_Array.Array.data[0].m_Value.m_PreInfinity
@@ -358,7 +358,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -6189579511330381476, guid: 114dddb149104214c853ea48195c3de7, type: 3}
       propertyPath: _delayTime
-      value: 0.08
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: -6189579511330381476, guid: 114dddb149104214c853ea48195c3de7, type: 3}
       propertyPath: _playInUnscaledTime
@@ -652,7 +652,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -5530357289975153629, guid: 6fa7908e098888546b11e4becac7adc7, type: 3}
       propertyPath: m_PropertySheet.m_AnimationCurve.m_Array.Array.data[0].m_Overridden
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -5530357289975153629, guid: 6fa7908e098888546b11e4becac7adc7, type: 3}
       propertyPath: m_PropertySheet.m_AnimationCurve.m_Array.Array.data[1].m_Overridden
@@ -796,7 +796,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -1382408738697863885, guid: 6fa7908e098888546b11e4becac7adc7, type: 3}
       propertyPath: _delayTime
-      value: 0.08
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: -1382408738697863885, guid: 6fa7908e098888546b11e4becac7adc7, type: 3}
       propertyPath: _playInUnscaledTime
@@ -988,7 +988,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -5530357289975153629, guid: a94a4d42aea7a9340a414f0ad15f5572, type: 3}
       propertyPath: m_PropertySheet.m_Float.m_Array.Array.data[1].m_Value
-      value: 0.14
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: -5530357289975153629, guid: a94a4d42aea7a9340a414f0ad15f5572, type: 3}
       propertyPath: m_PropertySheet.m_Vector4f.m_Array.Array.data[0].m_Name
@@ -1044,7 +1044,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -5530357289975153629, guid: a94a4d42aea7a9340a414f0ad15f5572, type: 3}
       propertyPath: m_PropertySheet.m_AnimationCurve.m_Array.Array.data[0].m_Overridden
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -5530357289975153629, guid: a94a4d42aea7a9340a414f0ad15f5572, type: 3}
       propertyPath: m_PropertySheet.m_AnimationCurve.m_Array.Array.data[0].m_Value.m_PreInfinity
@@ -1092,7 +1092,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -1382408738697863885, guid: a94a4d42aea7a9340a414f0ad15f5572, type: 3}
       propertyPath: _delayTime
-      value: 0.04
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -1382408738697863885, guid: a94a4d42aea7a9340a414f0ad15f5572, type: 3}
       propertyPath: _playInUnscaledTime
@@ -1182,7 +1182,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 791490643825736778, guid: b4488f788508be948b796ceeec30d0c3, type: 3}
       propertyPath: _delayTime
-      value: 0.08
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 791490643825736778, guid: b4488f788508be948b796ceeec30d0c3, type: 3}
       propertyPath: _playInUnscaledTime
@@ -1268,7 +1268,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -5530357289975153629, guid: a94a4d42aea7a9340a414f0ad15f5572, type: 3}
       propertyPath: m_PropertySheet.m_Float.m_Array.Array.data[1].m_Value
-      value: 0.1
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: -5530357289975153629, guid: a94a4d42aea7a9340a414f0ad15f5572, type: 3}
       propertyPath: m_PropertySheet.m_Vector4f.m_Array.Array.data[0].m_Name
@@ -1324,7 +1324,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -5530357289975153629, guid: a94a4d42aea7a9340a414f0ad15f5572, type: 3}
       propertyPath: m_PropertySheet.m_AnimationCurve.m_Array.Array.data[0].m_Overridden
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -5530357289975153629, guid: a94a4d42aea7a9340a414f0ad15f5572, type: 3}
       propertyPath: m_PropertySheet.m_AnimationCurve.m_Array.Array.data[0].m_Value.m_PreInfinity
@@ -1396,7 +1396,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -1382408738697863885, guid: a94a4d42aea7a9340a414f0ad15f5572, type: 3}
       propertyPath: _delayTime
-      value: 0.08
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: -1382408738697863885, guid: a94a4d42aea7a9340a414f0ad15f5572, type: 3}
       propertyPath: _playInUnscaledTime
@@ -1470,7 +1470,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -6189579511330381476, guid: af2338bb8914d9740a1afb666f851fed, type: 3}
       propertyPath: _delayTime
-      value: 0.08
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: -6189579511330381476, guid: af2338bb8914d9740a1afb666f851fed, type: 3}
       propertyPath: _playInUnscaledTime
