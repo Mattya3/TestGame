@@ -8,6 +8,7 @@ public class LoopingEffectsCompositor : EffectsCompositorBase
     private float _loopTime = 1f;
 
     [SerializeField]
+    [ShowIf(nameof(IsRoot))]
     private float _fadeOutTime = 0.5f;
 
     private bool _isPlaying = false;
