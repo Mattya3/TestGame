@@ -56,7 +56,7 @@ MonoBehaviour:
   _playInUnscaledTime: 1
   _playSpeedRate: 0.9
   _duration: 5
-  _delayTime: 0.1
+  _delayTime: 0.05
 --- !u!2083052967 &2678149706083594254
 VisualEffect:
   m_ObjectHideFlags: 0
@@ -358,7 +358,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -6189579511330381476, guid: 114dddb149104214c853ea48195c3de7, type: 3}
       propertyPath: _delayTime
-      value: 0.05
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: -6189579511330381476, guid: 114dddb149104214c853ea48195c3de7, type: 3}
       propertyPath: _playInUnscaledTime
@@ -422,11 +422,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2284074820323039523, guid: 114dddb149104214c853ea48195c3de7, type: 3}
       propertyPath: m_PropertySheet.m_Float.m_Array.Array.data[4].m_Value
-      value: 0.8
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 2284074820323039523, guid: 114dddb149104214c853ea48195c3de7, type: 3}
       propertyPath: m_PropertySheet.m_Float.m_Array.Array.data[5].m_Value
-      value: 0.4
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 2284074820323039523, guid: 114dddb149104214c853ea48195c3de7, type: 3}
       propertyPath: m_PropertySheet.m_Vector3f.m_Array.Array.data[0].m_Name
@@ -1534,7 +1534,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2284074820323039523, guid: af2338bb8914d9740a1afb666f851fed, type: 3}
       propertyPath: m_PropertySheet.m_Float.m_Array.Array.data[1].m_Value
-      value: 0.4
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 2284074820323039523, guid: af2338bb8914d9740a1afb666f851fed, type: 3}
       propertyPath: m_PropertySheet.m_Float.m_Array.Array.data[2].m_Value
