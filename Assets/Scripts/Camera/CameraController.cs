@@ -104,9 +104,9 @@ public class CameraController : MonoBehaviour
         _EnableColliders(_targetsStack.EnableCollider);
     }
 
-    public void PlayShake(ShakeEffect shakeEffect)
+    public void PlayShake(ShakeEffect shakeEffect, bool playInUnscaledTime, float playSpeedRate)
     {
-        _shakeEffectsPlayer.Play(shakeEffect);
+        _shakeEffectsPlayer.Play(shakeEffect, playInUnscaledTime, playSpeedRate);
     }
 
     public float AspectRatio => _camera.aspect;

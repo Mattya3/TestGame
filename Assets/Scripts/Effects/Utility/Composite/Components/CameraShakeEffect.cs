@@ -7,7 +7,12 @@ namespace EffectsCompositeComponent
         [SerializeField]
         private ShakeEffect _shakeEffect;
 
+        [SerializeField]
+        private bool _applyPlaySpeedRate = true;
+
         private CameraMutableAccess _cameraAccess;
+        private bool _playInUnscaledTime = false;
+        private float _playSpeedRate = 1.0f;
 
         public bool isEnabled => enabled;
 
@@ -17,6 +22,9 @@ namespace EffectsCompositeComponent
             float playSpeedRate
         )
         {
+            _playInUnscaledTime = playInUnscaledTime;
+            _playSpeedRate = playSpeedRate;
+
             _cameraAccess = cameraAccess;
             if (_cameraAccess == null)
             {
@@ -26,15 +34,6 @@ namespace EffectsCompositeComponent
             {
                 Debug.LogError("Shake effect is not assigned.");
             }
-            else if (
-                (_shakeEffect.UpdateMode == ShakeEffect.ShakeUpdateMode.UnscaledTime)
-                != playInUnscaledTime
-            )
-            {
-                Debug.LogWarning(
-                    "Shake effect update mode does not match the playInUnscaledTime setting."
-                );
-            }
         }
 
         public void Play()
@@ -42,7 +41,7 @@ namespace EffectsCompositeComponent
             if (_cameraAccess == null)
                 return;
 
-            _cameraAccess.PlayShake(_shakeEffect);
+            _cameraAccess.PlayShake(_shakeEffect, _playInUnscaledTime, _applyPlaySpeedRate ? _playSpeedRate : 1.0f);
         }
     }
 }

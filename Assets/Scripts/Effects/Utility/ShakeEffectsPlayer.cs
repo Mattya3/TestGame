@@ -16,24 +16,25 @@ public class ShakeEffectsPlayer : MonoBehaviour
         private readonly ShakeEffect _effect;
         private readonly float _phaseX;
         private readonly float _phaseY;
+        private readonly bool _playInUnscaledTime;
+        private readonly float _playSpeedRate;
         private float _elapsedTime;
 
-        protected ActiveShakeBase(ShakeEffect effect)
+        protected ActiveShakeBase(ShakeEffect effect, bool playInUnscaledTime, float playSpeedRate)
         {
             _effect = effect;
-            _elapsedTime = 0f;
             _phaseX = effect.PhaseOffsets.x;
             _phaseY = effect.PhaseOffsets.y;
+            _playInUnscaledTime = playInUnscaledTime;
+            _playSpeedRate = playSpeedRate;
+
+            _elapsedTime = 0f;
         }
 
         public void UpdateTime()
         {
-            float deltaTime =
-                _effect.UpdateMode == ShakeEffect.ShakeUpdateMode.UnscaledTime
-                    ? Time.unscaledDeltaTime
-                    : Time.deltaTime;
-
-            _elapsedTime += deltaTime;
+            float deltaTime = _playInUnscaledTime ? Time.unscaledDeltaTime : Time.deltaTime;
+            _elapsedTime += deltaTime * _playSpeedRate;
         }
 
         public abstract bool IsExpired();
@@ -64,8 +65,8 @@ public class ShakeEffectsPlayer : MonoBehaviour
 
     private class OneShotShake : ActiveShakeBase
     {
-        public OneShotShake(ShakeEffect effect)
-            : base(effect) { }
+        public OneShotShake(ShakeEffect effect, bool playInUnscaledTime, float playSpeedRate)
+            : base(effect, playInUnscaledTime, playSpeedRate) { }
 
         public override bool IsExpired()
         {
@@ -88,8 +89,8 @@ public class ShakeEffectsPlayer : MonoBehaviour
 
     private class ContinuousShake : ActiveShakeBase
     {
-        public ContinuousShake(ShakeEffect effect)
-            : base(effect) { }
+        public ContinuousShake(ShakeEffect effect, bool playInUnscaledTime, float playSpeedRate)
+            : base(effect, playInUnscaledTime, playSpeedRate) { }
 
         public override bool IsExpired()
         {
@@ -110,7 +111,7 @@ public class ShakeEffectsPlayer : MonoBehaviour
     private readonly List<IActiveShake> _activeShakes = new List<IActiveShake>();
     private Vector2 _currentShakeOffset = Vector2.zero;
 
-    public void Play(ShakeEffect shakeEffect)
+    public void Play(ShakeEffect shakeEffect, bool playInUnscaledTime, float playSpeedRate)
     {
         if (shakeEffect == null)
         {
@@ -120,8 +121,8 @@ public class ShakeEffectsPlayer : MonoBehaviour
 
         IActiveShake shake =
             shakeEffect.Type == ShakeEffect.ShakeType.OneShot
-                ? (IActiveShake)new OneShotShake(shakeEffect)
-                : new ContinuousShake(shakeEffect);
+                ? new OneShotShake(shakeEffect, playInUnscaledTime, playSpeedRate)
+                : new ContinuousShake(shakeEffect, playInUnscaledTime, playSpeedRate);
 
         _activeShakes.Add(shake);
     }

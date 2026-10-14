@@ -8,8 +8,13 @@ namespace EffectsCompositeComponent
         [SerializeField]
         private ShakeEffect _shakeEffect;
 
+        [SerializeField]
+        private bool _applyPlaySpeedRate = true;
+
         private ShakeEffectsPlayer _shakeEffectsPlayer;
         private TransformOffsetController _transformOffsetController;
+        private bool _playInUnscaledTime = false;
+        private float _playSpeedRate = 1.0f;
 
         public bool isEnabled => enabled;
 
@@ -29,6 +34,9 @@ namespace EffectsCompositeComponent
             float playSpeedRate
         )
         {
+            _playInUnscaledTime = playInUnscaledTime;
+            _playSpeedRate = playSpeedRate;
+
             _transformOffsetController = transformOffsetController;
             if (_transformOffsetController == null)
             {
@@ -37,16 +45,6 @@ namespace EffectsCompositeComponent
 
             if (_shakeEffect == null)
                 return;
-
-            if (
-                playInUnscaledTime
-                != _shakeEffect.UpdateMode.Equals(ShakeEffect.ShakeUpdateMode.UnscaledTime)
-            )
-            {
-                Debug.LogWarning(
-                    "The playInUnscaledTime parameter does not match the ShakeEffect's UpdateMode. This may lead to unexpected behavior."
-                );
-            }
         }
 
         public void Play()
@@ -54,7 +52,7 @@ namespace EffectsCompositeComponent
             if (_shakeEffect == null)
                 return;
 
-            _shakeEffectsPlayer.Play(_shakeEffect);
+            _shakeEffectsPlayer.Play(_shakeEffect, _playInUnscaledTime, _applyPlaySpeedRate ? _playSpeedRate : 1.0f);
         }
 
         private void LateUpdate()
