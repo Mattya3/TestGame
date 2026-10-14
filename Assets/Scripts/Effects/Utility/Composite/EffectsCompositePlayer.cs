@@ -14,7 +14,7 @@ public class EffectsCompositePlayer
         Vector3 position = default,
         Quaternion rotation = default,
         Transform parent = null
-        )
+    )
     {
         if (effectPrefab == null)
         {
@@ -38,25 +38,40 @@ public class EffectsCompositePlayer
 
         foreach (var compositor in _compositors)
         {
-            compositor.Initialize(audioSource, cameraAccess, transformOffsetController, renderer, parent);
+            compositor.Initialize(
+                audioSource,
+                cameraAccess,
+                transformOffsetController,
+                renderer,
+                parent
+            );
         }
     }
 
     public void PlayEffects()
     {
+        if (_compositors == null)
+            return;
+
         foreach (var compositor in _compositors)
             compositor.PlayEffects();
     }
 
     public void PlayEffects(Vector3 position)
     {
+        if (_instance == null)
+            return;
+
         _instance.transform.position = position;
         PlayEffects();
     }
 
     public void StopEffects()
     {
-        foreach(var compositor in _compositors)
+        if (_compositors == null)
+            return;
+
+        foreach (var compositor in _compositors)
             compositor.StopEffects();
     }
 

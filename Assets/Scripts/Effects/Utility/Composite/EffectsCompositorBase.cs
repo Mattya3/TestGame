@@ -149,7 +149,13 @@ public abstract class EffectsCompositorBase : MonoBehaviour, IEffectsCompositor
     public bool PlayInUnscaledTime => _parentCompositor != null ? _parentCompositor.PlayInUnscaledTime : _playInUnscaledTime;
     public float PlaySpeedRate => _parentCompositor != null ? _parentCompositor.PlaySpeedRate : _playSpeedRate;
 
-    public abstract void Initialize(AudioSource audioSource, CameraMutableAccess cameraAccess, TransformOffsetController transformOffsetController, Renderer renderer, Transform instantiationParent);
+    public abstract void Initialize(
+        AudioSource audioSource,
+        CameraMutableAccess cameraAccess,
+        TransformOffsetController transformOffsetController,
+        Renderer renderer,
+        Transform instantiationParent
+    );
     public abstract void PlayEffects();
     public abstract void StopEffects();
 }

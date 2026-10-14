@@ -9,4 +9,3 @@ namespace EffectsCompositeComponent
         void Play();
     }
 }
-

@@ -46,7 +46,7 @@ public class TransformOffsetController : MonoBehaviour
         _targetTransform.localScale = Vector3.Scale(_originTransform.localScale, scaleOffset);
     }
 
-    public void SetOffset(Vector3 positionOffset = default, Vector3 rotationOffset = default, Vector3 scaleOffset = default)
+    public void SetOffset(Vector3 positionOffset, Vector3 rotationOffset, Vector3 scaleOffset)
     {
         SetPositionOffset(positionOffset);
         SetRotationOffset(rotationOffset);

@@ -24,12 +24,31 @@ namespace EffectsCompositeComponent
         public void Initialize(Transform instantiationParent, bool playInUnscaledTime, float playSpeedRate)
         {
             _playSpeedRate = playSpeedRate;
-            _lightSourcesPool = new LightSourcesPool(this, _lightPrefab, _poolSize, playInUnscaledTime, _independentInstances ? null : instantiationParent);
+
+            if (_lightPrefab == null)
+            {
+                Debug.LogError("Light prefab is not assigned.", this);
+                enabled = false;
+                return;
+            }
+
+            _lightSourcesPool = new LightSourcesPool(
+                this,
+                _lightPrefab,
+                _poolSize,
+                playInUnscaledTime,
+                _independentInstances ? null : instantiationParent
+            );
         }
 
         public void Play()
         {
-            _lightSourcesPool.Spawn(transform.position, _duration / _playSpeedRate);
+            _lightSourcesPool?.Spawn(transform.position, _duration / _playSpeedRate);
+        }
+
+        private void OnDestroy()
+        {
+            _lightSourcesPool?.Destroy();
         }
     }
 }

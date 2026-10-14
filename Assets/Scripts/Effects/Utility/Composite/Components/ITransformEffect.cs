@@ -8,5 +8,4 @@ namespace EffectsCompositeComponent
         void Initialize(TransformOffsetController transformOffsetController, bool playInUnscaledTime, float playSpeedRate);
         void Play();
     }
-
 }

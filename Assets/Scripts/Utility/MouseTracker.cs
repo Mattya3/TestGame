@@ -32,7 +32,9 @@ public class MouseTracker : MonoBehaviour
 
     private void _TrackMousePosition()
     {
-        var worldPosition = _camera.ScreenToWorldPoint(new Vector3(_mousePosition.x, _mousePosition.y, _camera.nearClipPlane));
+        var worldPosition = _camera.ScreenToWorldPoint(
+            new Vector3(_mousePosition.x, _mousePosition.y, _camera.nearClipPlane)
+        );
         transform.position = new Vector3(worldPosition.x, worldPosition.y, transform.position.z);
     }
 }

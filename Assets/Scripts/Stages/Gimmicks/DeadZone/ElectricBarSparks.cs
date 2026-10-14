@@ -33,7 +33,16 @@ public class ElectricBarSparks : MonoBehaviour
             enabled = false;
             return;
         }
-        _effectsPlayer = new EffectsCompositePlayer(_effectPrefab, _audioSource, null, null, null, transform.position, transform.rotation, transform);
+        _effectsPlayer = new EffectsCompositePlayer(
+            _effectPrefab,
+            _audioSource,
+            null,
+            null,
+            null,
+            transform.position,
+            transform.rotation,
+            transform
+        );
     }
 
     private void OnDestroy()

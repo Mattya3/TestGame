@@ -19,6 +19,7 @@ namespace EffectsCompositeComponent
             if (_audioClips == null || _audioClips.Length == 0)
             {
                 Debug.LogWarning("No audio clips assigned to RandomSoundEffect.");
+                return;
             }
             for (int i = 0; i < _audioClips.Length; i++)
             {
@@ -33,16 +34,18 @@ namespace EffectsCompositeComponent
         {
             _audioSource = audioSource;
 
-            if (_audioClips.Length == 0 || _audioSource == null)
+            if (_audioClips == null || _audioClips.Length == 0 || _audioSource == null)
             {
-                Debug.LogWarning("Cannot play sound: No audio clips assigned or AudioSource is null.");
+                Debug.LogWarning(
+                    "Cannot play sound: No audio clips assigned or AudioSource is null."
+                );
                 return;
             }
         }
 
         public void Play()
         {
-            if (_audioClips.Length == 0 || _audioSource == null)
+            if (_audioClips == null || _audioClips.Length == 0 || _audioSource == null)
                 return;
 
             int randomIndex = Random.Range(0, _audioClips.Length);

@@ -1,7 +1,6 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
-
+using UnityEngine;
 
 public class LoopingEffectsCompositor : EffectsCompositorBase
 {
@@ -21,9 +20,15 @@ public class LoopingEffectsCompositor : EffectsCompositorBase
         TransformOffsetController transformOffsetController,
         Renderer renderer,
         Transform instantiationParent
-        )
+    )
     {
-        InitializeComponents(audioSource, cameraAccess, transformOffsetController, renderer, instantiationParent);
+        InitializeComponents(
+            audioSource,
+            cameraAccess,
+            transformOffsetController,
+            renderer,
+            instantiationParent
+        );
 
         // 初期化時点では非アクティブにする
         gameObject.SetActive(false);
