@@ -52,7 +52,11 @@ namespace EffectsCompositeComponent
             if (_shakeEffect == null)
                 return;
 
-            _shakeEffectsPlayer.Play(_shakeEffect, _playInUnscaledTime, _applyPlaySpeedRate ? _playSpeedRate : 1.0f);
+            _shakeEffectsPlayer.Play(
+                _shakeEffect,
+                _playInUnscaledTime,
+                _applyPlaySpeedRate ? _playSpeedRate : 1.0f
+            );
         }
 
         private void LateUpdate()

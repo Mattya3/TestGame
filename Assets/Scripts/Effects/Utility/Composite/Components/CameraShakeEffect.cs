@@ -41,7 +41,11 @@ namespace EffectsCompositeComponent
             if (_cameraAccess == null)
                 return;
 
-            _cameraAccess.PlayShake(_shakeEffect, _playInUnscaledTime, _applyPlaySpeedRate ? _playSpeedRate : 1.0f);
+            _cameraAccess.PlayShake(
+                _shakeEffect,
+                _playInUnscaledTime,
+                _applyPlaySpeedRate ? _playSpeedRate : 1.0f
+            );
         }
     }
 }
