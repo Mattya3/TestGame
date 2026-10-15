@@ -10,7 +10,7 @@ public abstract class EffectsCompositorBase : MonoBehaviour, IEffectsCompositor
     private bool _playInUnscaledTime = false;
 
     [SerializeField]
-    [FormerlySerializedAs("_playbackSpeedRate")]
+    [FormerlySerializedAs("_playSpeedRate")]
     [ShowIf(nameof(IsRoot))]
     [Min(1e-3f)]
     private float _playbackSpeedRate = 1.0f;
