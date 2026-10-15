@@ -30,7 +30,7 @@ namespace EffectsCompositeComponent
                 );
                 return;
             }
-            _initialColor = _renderer.material.color;
+            _initialColor = _renderer.color;
             _playInUnscaledTime = playInUnscaledTime;
             _playbackSpeedRate = playbackSpeedRate;
         }
