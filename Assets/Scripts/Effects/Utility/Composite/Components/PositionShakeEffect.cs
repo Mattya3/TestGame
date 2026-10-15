@@ -25,6 +25,8 @@ namespace EffectsCompositeComponent
             if (_shakeEffect == null)
             {
                 Debug.LogError("ShakeEffect is not assigned in the inspector.");
+                enabled = false;
+                return;
             }
         }
 
@@ -41,10 +43,8 @@ namespace EffectsCompositeComponent
             if (_transformOffsetController == null)
             {
                 Debug.LogError("TransformOffsetController is not assigned.");
+                enabled = false;
             }
-
-            if (_shakeEffect == null)
-                return;
         }
 
         public void Play()
@@ -61,6 +61,9 @@ namespace EffectsCompositeComponent
 
         private void LateUpdate()
         {
+            if (_shakeEffectsPlayer == null || _transformOffsetController == null)
+                return;
+
             var shakeOffset = _shakeEffectsPlayer.CurrentShakeOffset;
             _transformOffsetController.SetPositionOffset(shakeOffset);
         }
