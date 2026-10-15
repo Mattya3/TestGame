@@ -50,7 +50,8 @@ namespace EffectsCompositeComponent
                 return;
 
             _time +=
-                (_playInUnscaledTime ? Time.unscaledDeltaTime : Time.deltaTime) * _playbackSpeedRate;
+                (_playInUnscaledTime ? Time.unscaledDeltaTime : Time.deltaTime)
+                * _playbackSpeedRate;
 
             float gradientTime = Mathf.Clamp01(_time / _gradientDuration);
             Color gradientColor = _colorGradient.Evaluate(gradientTime);

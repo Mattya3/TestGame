@@ -20,7 +20,11 @@ public class ShakeEffectsPlayer : MonoBehaviour
         private readonly float _playbackSpeedRate;
         private float _elapsedTime;
 
-        protected ActiveShakeBase(ShakeEffect effect, bool playInUnscaledTime, float playbackSpeedRate)
+        protected ActiveShakeBase(
+            ShakeEffect effect,
+            bool playInUnscaledTime,
+            float playbackSpeedRate
+        )
         {
             _effect = effect;
             _phaseX = effect.PhaseOffsets.x;

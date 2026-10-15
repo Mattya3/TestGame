@@ -1,7 +1,7 @@
 ﻿using EffectsCompositeComponent;
 using UnityEngine;
-using UnityEngine.VFX;
 using UnityEngine.Serialization;
+using UnityEngine.VFX;
 
 public abstract class EffectsCompositorBase : MonoBehaviour, IEffectsCompositor
 {
@@ -99,7 +99,11 @@ public abstract class EffectsCompositorBase : MonoBehaviour, IEffectsCompositor
         }
         foreach (var instantiationEffect in _instantiationEffects)
         {
-            instantiationEffect.Initialize(instantiationParent, PlayInUnscaledTime, PlaybackSpeedRate);
+            instantiationEffect.Initialize(
+                instantiationParent,
+                PlayInUnscaledTime,
+                PlaybackSpeedRate
+            );
         }
     }
 
