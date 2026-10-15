@@ -6,6 +6,7 @@ using UnityEngine;
 public class OneShotEffectsCompositor : EffectsCompositorBase
 {
     [SerializeField]
+    [ShowIf(nameof(IsRoot))]
     private float _duration = 1f;
 
     [SerializeField]
@@ -43,7 +44,8 @@ public class OneShotEffectsCompositor : EffectsCompositorBase
         Coroutine playCoroutine = null;
         playCoroutine = StartCoroutine(_CoPlayEffects(() => _playCoroutines.Remove(playCoroutine)));
         _playCoroutines.Add(playCoroutine);
-        _deactivateCoroutine = StartCoroutine(_CoDeactivateAfterDuration());
+        if (IsRoot)
+            _deactivateCoroutine = StartCoroutine(_CoDeactivateAfterDuration());
     }
 
     public override void StopEffects()
@@ -57,9 +59,10 @@ public class OneShotEffectsCompositor : EffectsCompositorBase
     {
         try
         {
+            var adjustedDelayTime = _delayTime / PlaybackSpeedRate;
             yield return PlayInUnscaledTime
-                ? new WaitForSecondsRealtime(_delayTime)
-                : new WaitForSeconds(_delayTime);
+                ? new WaitForSecondsRealtime(adjustedDelayTime)
+                : new WaitForSeconds(adjustedDelayTime);
             PlayComponents();
         }
         finally
@@ -70,9 +73,10 @@ public class OneShotEffectsCompositor : EffectsCompositorBase
 
     private IEnumerator _CoDeactivateAfterDuration()
     {
+        var adjustedDuration = _duration / PlaybackSpeedRate;
         yield return PlayInUnscaledTime
-            ? new WaitForSecondsRealtime(_duration)
-            : new WaitForSeconds(_duration);
+            ? new WaitForSecondsRealtime(adjustedDuration)
+            : new WaitForSeconds(adjustedDuration);
 
         _StopAllPlayCoroutines();
         gameObject.SetActive(false);

@@ -8,6 +8,7 @@ public class LoopingEffectsCompositor : EffectsCompositorBase
     private float _loopTime = 1f;
 
     [SerializeField]
+    [ShowIf(nameof(IsRoot))]
     private float _fadeOutTime = 0.5f;
 
     private bool _isPlaying = false;
@@ -49,7 +50,9 @@ public class LoopingEffectsCompositor : EffectsCompositorBase
     public override void StopEffects()
     {
         _isPlaying = false;
-        _deactivateCoroutine = StartCoroutine(_CoDeactivateAfterFadeout());
+
+        if (IsRoot)
+            _deactivateCoroutine = StartCoroutine(_CoDeactivateAfterFadeout());
     }
 
     protected override void Update()
@@ -61,7 +64,8 @@ public class LoopingEffectsCompositor : EffectsCompositorBase
         if (!_isPlaying)
             return;
 
-        _replayTimer -= PlayInUnscaledTime ? Time.unscaledDeltaTime : Time.deltaTime;
+        _replayTimer -=
+            (PlayInUnscaledTime ? Time.unscaledDeltaTime : Time.deltaTime) * PlaybackSpeedRate;
         if (_replayTimer > 0f)
             return;
 
@@ -71,9 +75,10 @@ public class LoopingEffectsCompositor : EffectsCompositorBase
 
     private IEnumerator _CoDeactivateAfterFadeout()
     {
+        var adjustedFadeOutTime = _fadeOutTime / PlaybackSpeedRate;
         yield return PlayInUnscaledTime
-            ? new WaitForSecondsRealtime(_fadeOutTime)
-            : new WaitForSeconds(_fadeOutTime);
+            ? new WaitForSecondsRealtime(adjustedFadeOutTime)
+            : new WaitForSeconds(adjustedFadeOutTime);
 
         gameObject.SetActive(false);
         _deactivateCoroutine = null;

@@ -7,7 +7,8 @@ namespace EffectsCompositeComponent
         bool isEnabled { get; }
         void Initialize(
             TransformOffsetController transformOffsetController,
-            bool playInUnscaledTime
+            bool playInUnscaledTime,
+            float playbackSpeedRate
         );
         void Play();
     }

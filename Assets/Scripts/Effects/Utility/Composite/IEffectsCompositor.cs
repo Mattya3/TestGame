@@ -2,6 +2,10 @@
 
 public interface IEffectsCompositor
 {
+    public bool IsRoot { get; }
+    public bool PlayInUnscaledTime { get; }
+    public float PlaybackSpeedRate { get; }
+
     public void Initialize(
         AudioSource audioSource,
         CameraMutableAccess cameraAccess,

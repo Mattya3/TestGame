@@ -56,9 +56,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 363b488bfad2c4a43a36db349fa4cdd6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LoopingEffectsCompositor
+  _playInUnscaledTime: 0
+  _playSpeedRate: 1
   _loopTime: 1
   _fadeOutTime: 0.5
-  _playInUnscaledTime: 0
 --- !u!2083052967 &2434224364400919743
 VisualEffect:
   m_ObjectHideFlags: 0
@@ -349,6 +350,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EffectsCompositeComponent.CameraShakeEffect
   _shakeEffect: {fileID: 11400000, guid: 88da2f5115bb88c4e916768df01a3999, type: 2}
+  _applyPlaySpeedRate: 1
 --- !u!114 &4082295522287719668
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -362,6 +364,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EffectsCompositeComponent.PositionShakeEffect
   _shakeEffect: {fileID: 11400000, guid: 2a8b071c70b251944a6b520529925825, type: 2}
+  _applyPlaySpeedRate: 1
 --- !u!114 &6271076078988648481
 MonoBehaviour:
   m_ObjectHideFlags: 0

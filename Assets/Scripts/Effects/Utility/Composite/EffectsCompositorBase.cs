@@ -1,11 +1,21 @@
 ﻿using EffectsCompositeComponent;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.VFX;
 
 public abstract class EffectsCompositorBase : MonoBehaviour, IEffectsCompositor
 {
     [SerializeField]
+    [ShowIf(nameof(IsRoot))]
     private bool _playInUnscaledTime = false;
+
+    [SerializeField]
+    [FormerlySerializedAs("_playbackSpeedRate")]
+    [ShowIf(nameof(IsRoot))]
+    [Min(1e-3f)]
+    private float _playbackSpeedRate = 1.0f;
+
+    private IEffectsCompositor _parentCompositor;
 
     private VisualEffect _visualEffect;
     private ISoundEffect[] _soundEffects;
@@ -15,8 +25,34 @@ public abstract class EffectsCompositorBase : MonoBehaviour, IEffectsCompositor
     private IRendererEffect[] _rendererEffects;
     private IInstantiationEffect[] _instantiationEffects;
 
+    // ルートオブジェクトかどうかを判定するプロパティ
+    // 親がいない場合はルート
+    // あるいはいたとしても、IEffectsCompositorを実装したコンポーネントが親に存在しない場合もルートとみなす
+    public bool IsRoot
+    {
+        get
+        {
+            if (transform.parent == null)
+                return true;
+
+            // エディタの場合はGetComponentInParentで検索
+            if (Application.isEditor)
+            {
+                var parentCompositor = transform.parent.GetComponentInParent<IEffectsCompositor>();
+                return parentCompositor == null;
+            }
+            // 実行時は_parentCompositorで判定
+            else
+            {
+                return _parentCompositor == null;
+            }
+        }
+    }
+
     protected virtual void Awake()
     {
+        _parentCompositor = transform.parent?.GetComponentInParent<IEffectsCompositor>();
+
         _visualEffect = GetComponent<VisualEffect>();
         _soundEffects = GetComponents<ISoundEffect>();
         _lightSourceEffects = GetComponents<ILightSourceEffect>();
@@ -43,23 +79,31 @@ public abstract class EffectsCompositorBase : MonoBehaviour, IEffectsCompositor
         }
         foreach (var lightSourceEffect in _lightSourceEffects)
         {
-            lightSourceEffect.Initialize(_playInUnscaledTime);
+            lightSourceEffect.Initialize(PlayInUnscaledTime, PlaybackSpeedRate);
         }
         foreach (var cameraEffect in _cameraEffects)
         {
-            cameraEffect.Initialize(cameraAccess, _playInUnscaledTime);
+            cameraEffect.Initialize(cameraAccess, PlayInUnscaledTime, PlaybackSpeedRate);
         }
         foreach (var transformEffect in _transformEffects)
         {
-            transformEffect.Initialize(transformOffsetController, _playInUnscaledTime);
+            transformEffect.Initialize(
+                transformOffsetController,
+                PlayInUnscaledTime,
+                PlaybackSpeedRate
+            );
         }
         foreach (var rendererEffect in _rendererEffects)
         {
-            rendererEffect.Initialize(renderer, _playInUnscaledTime);
+            rendererEffect.Initialize(renderer, PlayInUnscaledTime, PlaybackSpeedRate);
         }
         foreach (var instantiationEffect in _instantiationEffects)
         {
-            instantiationEffect.Initialize(instantiationParent, _playInUnscaledTime);
+            instantiationEffect.Initialize(
+                instantiationParent,
+                PlayInUnscaledTime,
+                PlaybackSpeedRate
+            );
         }
     }
 
@@ -107,10 +151,16 @@ public abstract class EffectsCompositorBase : MonoBehaviour, IEffectsCompositor
             return;
 
         // 時間スケールに対応するため、手動で更新
-        _visualEffect.Simulate(_playInUnscaledTime ? Time.unscaledDeltaTime : Time.deltaTime);
+        var stepDeltaTime =
+            (PlayInUnscaledTime ? Time.unscaledDeltaTime : Time.deltaTime) * PlaybackSpeedRate;
+        _visualEffect.Simulate(stepDeltaTime);
     }
 
-    protected bool PlayInUnscaledTime => _playInUnscaledTime;
+    // 親のEffectsCompositorBaseが存在する場合は、親の設定を優先
+    public bool PlayInUnscaledTime =>
+        _parentCompositor != null ? _parentCompositor.PlayInUnscaledTime : _playInUnscaledTime;
+    public float PlaybackSpeedRate =>
+        _parentCompositor != null ? _parentCompositor.PlaybackSpeedRate : _playbackSpeedRate;
 
     public abstract void Initialize(
         AudioSource audioSource,

@@ -16,12 +16,19 @@ namespace EffectsCompositeComponent
         [SerializeField, Min(1)]
         private int _poolSize = 5;
 
+        private float _playbackSpeedRate = 1f;
         private LightSourcesPool _lightSourcesPool;
 
         public bool isEnabled => enabled;
 
-        public void Initialize(Transform instantiationParent, bool playInUnscaledTime)
+        public void Initialize(
+            Transform instantiationParent,
+            bool playInUnscaledTime,
+            float playbackSpeedRate
+        )
         {
+            _playbackSpeedRate = playbackSpeedRate;
+
             if (_lightPrefab == null)
             {
                 Debug.LogError("Light prefab is not assigned.", this);
@@ -40,7 +47,7 @@ namespace EffectsCompositeComponent
 
         public void Play()
         {
-            _lightSourcesPool?.Spawn(transform.position, _duration);
+            _lightSourcesPool?.Spawn(transform.position, _duration / _playbackSpeedRate);
         }
 
         private void OnDestroy()

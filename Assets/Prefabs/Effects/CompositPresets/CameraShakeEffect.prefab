@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OneShotEffectsCompositor
   _playInUnscaledTime: 0
+  _playSpeedRate: 1
   _duration: 1
   _delayTime: 0
 --- !u!114 &2081982993903073275
@@ -61,3 +62,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EffectsCompositeComponent.CameraShakeEffect
   _shakeEffect: {fileID: 11400000, guid: 88da2f5115bb88c4e916768df01a3999, type: 2}
+  _applyPlaySpeedRate: 0

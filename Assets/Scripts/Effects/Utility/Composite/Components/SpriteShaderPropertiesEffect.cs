@@ -62,12 +62,13 @@ namespace EffectsCompositeComponent
         private Renderer _renderer;
         private MaterialPropertyBlock _materialPropertyBlock;
         private bool _playInUnscaledTime = false;
+        private float _playbackSpeedRate = 1f;
         private float _time = 0f;
         private bool _isPlaying = false;
 
         public bool isEnabled => enabled;
 
-        public void Initialize(Renderer renderer, bool playInUnscaledTime)
+        public void Initialize(Renderer renderer, bool playInUnscaledTime, float playbackSpeedRate)
         {
             _renderer = renderer;
             if (_renderer == null)
@@ -80,6 +81,7 @@ namespace EffectsCompositeComponent
             _materialPropertyBlock = new MaterialPropertyBlock();
 
             _playInUnscaledTime = playInUnscaledTime;
+            _playbackSpeedRate = playbackSpeedRate;
 
             foreach (var floatProp in floatProperties)
             {
@@ -117,7 +119,9 @@ namespace EffectsCompositeComponent
             if (!_isPlaying)
                 return;
 
-            _time += _playInUnscaledTime ? Time.unscaledDeltaTime : Time.deltaTime;
+            _time +=
+                (_playInUnscaledTime ? Time.unscaledDeltaTime : Time.deltaTime)
+                * _playbackSpeedRate;
 
             _renderer.GetPropertyBlock(_materialPropertyBlock);
             foreach (var floatProp in floatProperties)
