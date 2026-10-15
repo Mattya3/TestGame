@@ -5,6 +5,9 @@ using UnityEngine;
 public class PlayersCollectionReadonlyAccess : AccessComponent<IPlayersCollection>
 {
     // 参照がない場合に返す空のコレクションをキャッシュしておく
+    private ReadOnlyCollection<bool> _emptyAliveFlags = new ReadOnlyCollection<bool>(
+        new List<bool>()
+    );
     private ReadOnlyCollection<Vector3> _emptyPositions = new ReadOnlyCollection<Vector3>(
         new List<Vector3>()
     );
@@ -25,4 +28,7 @@ public class PlayersCollectionReadonlyAccess : AccessComponent<IPlayersCollectio
 
     public ReadOnlyCollection<Vector2> InputDirections =>
         Reference != null ? Reference.InputDirections : _emptyInputDirections;
+
+    public ReadOnlyCollection<bool> AliveFlags =>
+        Reference != null ? Reference.AliveFlags : _emptyAliveFlags;
 }
