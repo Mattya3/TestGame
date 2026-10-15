@@ -50,6 +50,11 @@ namespace EffectsCompositeComponent
             _lightSourcesPool?.Spawn(transform.position, _duration / _playbackSpeedRate);
         }
 
+        private void OnDisable()
+        {
+            _lightSourcesPool?.DeactivateAll();
+        }
+
         private void OnDestroy()
         {
             _lightSourcesPool?.Destroy();

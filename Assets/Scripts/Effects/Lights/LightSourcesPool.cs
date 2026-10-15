@@ -57,6 +57,23 @@ public class LightSourcesPool
         }
     }
 
+    public void DeactivateAll()
+    {
+        for (int i = 0; i < _poolSize; i++)
+        {
+            if (_activeCoroutines[i] != null)
+            {
+                _owner.StopCoroutine(_activeCoroutines[i]);
+                _activeCoroutines[i] = null;
+            }
+
+            if (_pool[i] != null)
+            {
+                _pool[i].SetActive(false);
+            }
+        }
+    }
+
     public void Spawn(Vector3 position, float duration)
     {
         int index = FindInactiveIndex();
