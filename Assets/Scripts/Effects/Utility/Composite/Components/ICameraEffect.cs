@@ -6,7 +6,7 @@
         void Initialize(
             CameraMutableAccess cameraAccess,
             bool playInUnscaledTime,
-            float playSpeedRate
+            float playbackSpeedRate
         );
         void Play();
     }

@@ -8,7 +8,7 @@ namespace EffectsCompositeComponent
         void Initialize(
             TransformOffsetController transformOffsetController,
             bool playInUnscaledTime,
-            float playSpeedRate
+            float playbackSpeedRate
         );
         void Play();
     }

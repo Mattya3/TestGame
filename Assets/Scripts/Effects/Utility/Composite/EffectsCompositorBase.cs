@@ -1,6 +1,7 @@
 ﻿using EffectsCompositeComponent;
 using UnityEngine;
 using UnityEngine.VFX;
+using UnityEngine.Serialization;
 
 public abstract class EffectsCompositorBase : MonoBehaviour, IEffectsCompositor
 {
@@ -9,9 +10,10 @@ public abstract class EffectsCompositorBase : MonoBehaviour, IEffectsCompositor
     private bool _playInUnscaledTime = false;
 
     [SerializeField]
+    [FormerlySerializedAs("_playbackSpeedRate")]
     [ShowIf(nameof(IsRoot))]
     [Min(1e-3f)]
-    private float _playSpeedRate = 1.0f;
+    private float _playbackSpeedRate = 1.0f;
 
     private IEffectsCompositor _parentCompositor;
 
@@ -77,27 +79,27 @@ public abstract class EffectsCompositorBase : MonoBehaviour, IEffectsCompositor
         }
         foreach (var lightSourceEffect in _lightSourceEffects)
         {
-            lightSourceEffect.Initialize(PlayInUnscaledTime, PlaySpeedRate);
+            lightSourceEffect.Initialize(PlayInUnscaledTime, PlaybackSpeedRate);
         }
         foreach (var cameraEffect in _cameraEffects)
         {
-            cameraEffect.Initialize(cameraAccess, PlayInUnscaledTime, PlaySpeedRate);
+            cameraEffect.Initialize(cameraAccess, PlayInUnscaledTime, PlaybackSpeedRate);
         }
         foreach (var transformEffect in _transformEffects)
         {
             transformEffect.Initialize(
                 transformOffsetController,
                 PlayInUnscaledTime,
-                PlaySpeedRate
+                PlaybackSpeedRate
             );
         }
         foreach (var rendererEffect in _rendererEffects)
         {
-            rendererEffect.Initialize(renderer, PlayInUnscaledTime, PlaySpeedRate);
+            rendererEffect.Initialize(renderer, PlayInUnscaledTime, PlaybackSpeedRate);
         }
         foreach (var instantiationEffect in _instantiationEffects)
         {
-            instantiationEffect.Initialize(instantiationParent, PlayInUnscaledTime, PlaySpeedRate);
+            instantiationEffect.Initialize(instantiationParent, PlayInUnscaledTime, PlaybackSpeedRate);
         }
     }
 
@@ -146,15 +148,15 @@ public abstract class EffectsCompositorBase : MonoBehaviour, IEffectsCompositor
 
         // 時間スケールに対応するため、手動で更新
         var stepDeltaTime =
-            (PlayInUnscaledTime ? Time.unscaledDeltaTime : Time.deltaTime) * PlaySpeedRate;
+            (PlayInUnscaledTime ? Time.unscaledDeltaTime : Time.deltaTime) * PlaybackSpeedRate;
         _visualEffect.Simulate(stepDeltaTime);
     }
 
     // 親のEffectsCompositorBaseが存在する場合は、親の設定を優先
     public bool PlayInUnscaledTime =>
         _parentCompositor != null ? _parentCompositor.PlayInUnscaledTime : _playInUnscaledTime;
-    public float PlaySpeedRate =>
-        _parentCompositor != null ? _parentCompositor.PlaySpeedRate : _playSpeedRate;
+    public float PlaybackSpeedRate =>
+        _parentCompositor != null ? _parentCompositor.PlaybackSpeedRate : _playbackSpeedRate;
 
     public abstract void Initialize(
         AudioSource audioSource,

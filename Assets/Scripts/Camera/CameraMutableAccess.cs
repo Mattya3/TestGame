@@ -12,8 +12,8 @@ public class CameraMutableAccess : AccessComponent<CameraController>
         Reference?.PopTarget();
     }
 
-    public void PlayShake(ShakeEffect shakeEffect, bool playInUnscaledTime, float playSpeedRate)
+    public void PlayShake(ShakeEffect shakeEffect, bool playInUnscaledTime, float playbackSpeedRate)
     {
-        Reference?.PlayShake(shakeEffect, playInUnscaledTime, playSpeedRate);
+        Reference?.PlayShake(shakeEffect, playInUnscaledTime, playbackSpeedRate);
     }
 }

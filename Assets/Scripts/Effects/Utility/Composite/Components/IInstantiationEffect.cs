@@ -8,7 +8,7 @@ namespace EffectsCompositeComponent
         void Initialize(
             Transform instantiationParent,
             bool playInUnscaledTime,
-            float playSpeedRate
+            float playbackSpeedRate
         );
 
         void Play();

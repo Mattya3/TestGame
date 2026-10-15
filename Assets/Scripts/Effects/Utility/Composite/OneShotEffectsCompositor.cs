@@ -59,7 +59,7 @@ public class OneShotEffectsCompositor : EffectsCompositorBase
     {
         try
         {
-            var adjustedDelayTime = _delayTime / PlaySpeedRate;
+            var adjustedDelayTime = _delayTime / PlaybackSpeedRate;
             yield return PlayInUnscaledTime
                 ? new WaitForSecondsRealtime(adjustedDelayTime)
                 : new WaitForSeconds(adjustedDelayTime);
@@ -73,7 +73,7 @@ public class OneShotEffectsCompositor : EffectsCompositorBase
 
     private IEnumerator _CoDeactivateAfterDuration()
     {
-        var adjustedDuration = _duration / PlaySpeedRate;
+        var adjustedDuration = _duration / PlaybackSpeedRate;
         yield return PlayInUnscaledTime
             ? new WaitForSecondsRealtime(adjustedDuration)
             : new WaitForSeconds(adjustedDuration);

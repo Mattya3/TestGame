@@ -9,12 +9,12 @@ namespace EffectsCompositeComponent
         private ShakeEffect _shakeEffect;
 
         [SerializeField]
-        private bool _applyPlaySpeedRate = true;
+        private bool _applyPlaybackSpeedRate = true;
 
         private ShakeEffectsPlayer _shakeEffectsPlayer;
         private TransformOffsetController _transformOffsetController;
         private bool _playInUnscaledTime = false;
-        private float _playSpeedRate = 1.0f;
+        private float _playbackSpeedRate = 1.0f;
 
         public bool isEnabled => enabled;
 
@@ -31,11 +31,11 @@ namespace EffectsCompositeComponent
         public void Initialize(
             TransformOffsetController transformOffsetController,
             bool playInUnscaledTime,
-            float playSpeedRate
+            float playbackSpeedRate
         )
         {
             _playInUnscaledTime = playInUnscaledTime;
-            _playSpeedRate = playSpeedRate;
+            _playbackSpeedRate = playbackSpeedRate;
 
             _transformOffsetController = transformOffsetController;
             if (_transformOffsetController == null)
@@ -55,7 +55,7 @@ namespace EffectsCompositeComponent
             _shakeEffectsPlayer.Play(
                 _shakeEffect,
                 _playInUnscaledTime,
-                _applyPlaySpeedRate ? _playSpeedRate : 1.0f
+                _applyPlaybackSpeedRate ? _playbackSpeedRate : 1.0f
             );
         }
 

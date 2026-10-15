@@ -16,19 +16,19 @@ namespace EffectsCompositeComponent
         private Light2D _light;
         private Color _initialColor = Color.white;
         private bool _playInUnscaledTime = false;
-        private float _playSpeedRate = 1f;
+        private float _playbackSpeedRate = 1f;
         private float _time = 0f;
         private bool _isPlaying = false;
 
         public bool isEnabled => enabled;
 
-        public void Initialize(bool playInUnscaledTime, float playSpeedRate)
+        public void Initialize(bool playInUnscaledTime, float playbackSpeedRate)
         {
             _light = GetComponent<Light2D>();
 
             _initialColor = _light.color;
             _playInUnscaledTime = playInUnscaledTime;
-            _playSpeedRate = playSpeedRate;
+            _playbackSpeedRate = playbackSpeedRate;
 
             if (!enabled)
                 return;
@@ -50,7 +50,7 @@ namespace EffectsCompositeComponent
                 return;
 
             _time +=
-                (_playInUnscaledTime ? Time.unscaledDeltaTime : Time.deltaTime) * _playSpeedRate;
+                (_playInUnscaledTime ? Time.unscaledDeltaTime : Time.deltaTime) * _playbackSpeedRate;
 
             float gradientTime = Mathf.Clamp01(_time / _gradientDuration);
             Color gradientColor = _colorGradient.Evaluate(gradientTime);

@@ -16,7 +16,7 @@ namespace EffectsCompositeComponent
         [SerializeField, Min(1)]
         private int _poolSize = 5;
 
-        private float _playSpeedRate = 1f;
+        private float _playbackSpeedRate = 1f;
         private LightSourcesPool _lightSourcesPool;
 
         public bool isEnabled => enabled;
@@ -24,10 +24,10 @@ namespace EffectsCompositeComponent
         public void Initialize(
             Transform instantiationParent,
             bool playInUnscaledTime,
-            float playSpeedRate
+            float playbackSpeedRate
         )
         {
-            _playSpeedRate = playSpeedRate;
+            _playbackSpeedRate = playbackSpeedRate;
 
             if (_lightPrefab == null)
             {
@@ -47,7 +47,7 @@ namespace EffectsCompositeComponent
 
         public void Play()
         {
-            _lightSourcesPool?.Spawn(transform.position, _duration / _playSpeedRate);
+            _lightSourcesPool?.Spawn(transform.position, _duration / _playbackSpeedRate);
         }
 
         private void OnDestroy()

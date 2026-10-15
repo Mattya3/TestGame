@@ -8,22 +8,22 @@ namespace EffectsCompositeComponent
         private ShakeEffect _shakeEffect;
 
         [SerializeField]
-        private bool _applyPlaySpeedRate = true;
+        private bool _applyPlaybackSpeedRate = true;
 
         private CameraMutableAccess _cameraAccess;
         private bool _playInUnscaledTime = false;
-        private float _playSpeedRate = 1.0f;
+        private float _playbackSpeedRate = 1.0f;
 
         public bool isEnabled => enabled;
 
         public void Initialize(
             CameraMutableAccess cameraAccess,
             bool playInUnscaledTime,
-            float playSpeedRate
+            float playbackSpeedRate
         )
         {
             _playInUnscaledTime = playInUnscaledTime;
-            _playSpeedRate = playSpeedRate;
+            _playbackSpeedRate = playbackSpeedRate;
 
             _cameraAccess = cameraAccess;
             if (_cameraAccess == null)
@@ -44,7 +44,7 @@ namespace EffectsCompositeComponent
             _cameraAccess.PlayShake(
                 _shakeEffect,
                 _playInUnscaledTime,
-                _applyPlaySpeedRate ? _playSpeedRate : 1.0f
+                _applyPlaybackSpeedRate ? _playbackSpeedRate : 1.0f
             );
         }
     }

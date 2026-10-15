@@ -5,7 +5,7 @@ namespace EffectsCompositeComponent
     public interface IRendererEffect
     {
         bool isEnabled { get; }
-        void Initialize(Renderer renderer, bool playInUnscaledTime, float playSpeedRate);
+        void Initialize(Renderer renderer, bool playInUnscaledTime, float playbackSpeedRate);
         void Play();
     }
 }
