@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace EffectsCompositeComponent
 {
@@ -8,6 +9,7 @@ namespace EffectsCompositeComponent
         private ShakeEffect _shakeEffect;
 
         [SerializeField]
+        [FormerlySerializedAs("_applyPlaySpeedRate")]
         private bool _applyPlaybackSpeedRate = true;
 
         private CameraMutableAccess _cameraAccess;
