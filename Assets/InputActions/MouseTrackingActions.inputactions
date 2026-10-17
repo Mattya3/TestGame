@@ -1,0 +1,55 @@
+{
+    "version": 1,
+    "name": "MouseTrackingActions",
+    "maps": [
+        {
+            "name": "Mouse",
+            "id": "d9d0c824-d8dd-4bd0-9f71-ae9f7ab93759",
+            "actions": [
+                {
+                    "name": "ClickL",
+                    "type": "Button",
+                    "id": "982eee66-4317-448d-8ec7-1581abda7187",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Move",
+                    "type": "Value",
+                    "id": "c8e361f6-79b2-41ef-bbbf-8aae4b2d66d1",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "9fb9ce8a-8c23-495d-8216-f78e90f42b19",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ClickL",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "059cc339-e2b6-4015-9f14-3fd8a42fae69",
+                    "path": "<Mouse>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

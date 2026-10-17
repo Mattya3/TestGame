@@ -13,8 +13,7 @@ MonoBehaviour:
   m_Name: ShakeOnFailure
   m_EditorClassIdentifier: Assembly-CSharp::ShakeEffect
   _shakeType: 0
-  _updateMode: 1
   _duration: 0.3
-  _magnitude: {x: 0.6, y: 0.6}
+  _magnitude: {x: 0.4, y: 0.4}
   _frequency: {x: 17, y: 16}
   _phaseOffsets: {x: 0, y: 2}
