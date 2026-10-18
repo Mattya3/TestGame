@@ -14,5 +14,5 @@ public class FixedCameraTarget : MonoBehaviour, ICameraTarget
 
     public Vector3 Position => _position;
 
-    public bool EnableCollider => false;
+    public bool AreCollidersEnabled => false;
 }
