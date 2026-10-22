@@ -4,9 +4,6 @@ using static Constants;
 [RequireComponent(typeof(GameEventTriggerAccess))]
 public class GameManager : MonoBehaviour, IGameManager
 {
-    [SerializeField]
-    private MovementRuleManager _movementRuleManager;
-
     private GameEventTriggerAccess _gameEventTriggerAccess;
 
     private void Awake()
@@ -18,11 +15,6 @@ public class GameManager : MonoBehaviour, IGameManager
     private void OnDestroy()
     {
         AccessComponent<IGameManager>.UnregisterReference(this);
-    }
-
-    private void Start()
-    {
-        _movementRuleManager.Initialize();
     }
 
     public void HandlePlayStart()

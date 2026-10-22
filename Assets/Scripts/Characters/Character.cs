@@ -7,11 +7,8 @@ using static Constants;
 [RequireComponent(typeof(CharacterEffectsPlayer))]
 public abstract class Character : MonoEventReactingBehaviour
 {
-    [SerializeField, Range(0f, 20f)]
-    private float _moveSpeed;
-
-    [SerializeField, Range(0f, 40f)]
-    private float _jumpInitialVelocity;
+    [SerializeField]
+    private PlayerActionConfiguration _ActionConfiguration;
 
     [SerializeField]
     protected GroundDetector _groundDetector;
@@ -27,6 +24,8 @@ public abstract class Character : MonoEventReactingBehaviour
         _effectsPlayer = GetComponent<CharacterEffectsPlayer>();
     }
 
+    protected virtual void Start() { }
+
     protected virtual void Update()
     {
         _Move();
@@ -38,7 +37,7 @@ public abstract class Character : MonoEventReactingBehaviour
     {
         Vector2 groundVelocity = _groundDetector.GetGroundVelocity();
         _rigidBody.linearVelocity = new Vector2(
-            direction.x * _moveSpeed + groundVelocity.x,
+            direction.x * _ActionConfiguration._moveSpeed + groundVelocity.x,
             _rigidBody.linearVelocity.y
         );
     }
@@ -49,7 +48,7 @@ public abstract class Character : MonoEventReactingBehaviour
             return;
 
         float deltaVy = Mathf.Max(
-            Mathf.Min(_jumpInitialVelocity, _jumpInitialVelocity - _rigidBody.linearVelocity.y),
+            _ActionConfiguration._jumpInitialVelocity - _rigidBody.linearVelocity.y,
             0f
         );
         _rigidBody.AddForce(Vector2.up * deltaVy * _rigidBody.mass, ForceMode2D.Impulse);
