@@ -14,10 +14,12 @@ public partial class Player : Character
     private PlayerSounds _sounds;
 
     private PlayerExternalEffectApplier _externalEffectApplier;
+    private bool _isAlive = true;
     private Vector2 _inputDirection;
     private IPlayerStateContext _stateContext;
 
     public bool IsInGoalState => _currentState is GoalState;
+    public bool IsAlive => _isAlive;
     public Vector2 InputDirection => _inputDirection;
     public IExternalEffectApplier ExternalEffectApplier => _externalEffectApplier;
 
@@ -128,6 +130,8 @@ public partial class Player : Character
 
     private void _NotifyDied(DeathReason deathReason)
     {
+        _isAlive = false;
+        EffectsPlayer.PlayDeathEffect(deathReason);
         OnDied?.Invoke(deathReason);
     }
 
