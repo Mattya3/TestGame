@@ -10,6 +10,4 @@ public interface IPlayersCollection
     ReadOnlyCollection<Vector2> InputDirections { get; }
 
     ReadOnlyCollection<bool> AliveFlags { get; }
-
-    void SetMoveController(IMoveController moveController);
 }

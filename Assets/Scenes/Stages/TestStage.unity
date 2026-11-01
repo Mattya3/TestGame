@@ -936,8 +936,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6da054f73cb64dbd9ba4cecfbb19c2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
-  _moveSpeed: 5
-  _jumpInitialVelocity: 15
+  _ActionConfiguration: {fileID: 11400000, guid: 571cce6c34da34715818d94fa829cd87, type: 2}
   _groundDetector: {fileID: 1663018031}
   _sounds:
     _footstepSound:
@@ -2235,8 +2234,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6da054f73cb64dbd9ba4cecfbb19c2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
-  _moveSpeed: 5
-  _jumpInitialVelocity: 15
+  _ActionConfiguration: {fileID: 11400000, guid: 571cce6c34da34715818d94fa829cd87, type: 2}
   _groundDetector: {fileID: 952535230}
   _sounds:
     _footstepSound:
