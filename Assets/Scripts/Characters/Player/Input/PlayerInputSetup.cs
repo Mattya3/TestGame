@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.Users;
 
 [RequireComponent(typeof(PlayerInput))]
 public class PlayerInputSetup : MonoBehaviour
