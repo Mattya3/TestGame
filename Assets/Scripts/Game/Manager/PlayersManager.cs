@@ -74,6 +74,12 @@ public class PlayersManager : MonoBehaviour, IPlayersCollection
                 enabled = false;
                 return;
             }
+            if (spawnPoints[i] == null)
+            {
+                Debug.LogError($"プレイヤのSpawnPointがnullです。インデックス: {i}");
+                enabled = false;
+                return;
+            }
             var playerInstance = Instantiate(prefab, spawnPoints[i].position, spawnPoints[i].rotation);
             var playerComponent = playerInstance.GetComponent<Player>();
             if (playerComponent == null)
