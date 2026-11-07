@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using static Constants;
 
+[RequireComponent(typeof(PlayerInputSetup))]
 public partial class Player : Character
 {
     public event Action<Player> OnGoal;
@@ -52,6 +53,12 @@ public partial class Player : Character
             return;
 
         _currentState.OnMove(_inputDirection);
+    }
+
+    public void SetupPlayerInput(int playerIndex)
+    {
+        var inputSetup = GetComponent<PlayerInputSetup>();
+        inputSetup.Setup(playerIndex);
     }
 
     public void OnMove(InputAction.CallbackContext context)

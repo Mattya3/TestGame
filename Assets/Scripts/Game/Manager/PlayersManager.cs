@@ -82,6 +82,7 @@ public class PlayersManager : MonoBehaviour, IPlayersCollection
                 enabled = false;
                 return;
             }
+            playerComponent.SetupPlayerInput(i);
             _RegisterPlayer(playerComponent);
         }
 
