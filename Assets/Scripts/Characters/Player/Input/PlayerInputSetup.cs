@@ -16,7 +16,7 @@ public class PlayerInputSetup : MonoBehaviour
         if (playerIndex < 0 || playerIndex >= KEYBOARD_SCHEMES.Length)
         {
             Debug.LogError($"Invalid player index: {playerIndex}. It should be between 0 and {KEYBOARD_SCHEMES.Length - 1}.");
-            return;
+            throw new System.ArgumentOutOfRangeException(nameof(playerIndex), $"Player index must be between 0 and {KEYBOARD_SCHEMES.Length - 1}.");
         }
 
         // 現在のキーボードを割り当てる
