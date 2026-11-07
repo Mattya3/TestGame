@@ -86,10 +86,6 @@ public class PlayersManager : MonoBehaviour, IPlayersCollection
             _RegisterPlayer(playerComponent);
         }
 
-        // Findによってプレイヤを取得。プレイヤを動的に生成するようになったら、Findはやめる
-        //foreach (var player in FindObjectsByType<Player>(FindObjectsSortMode.InstanceID))
-        //    _RegisterPlayer(player);
-
         AccessComponent<IPlayersCollection>.RegisterReference(this);
     }
 
