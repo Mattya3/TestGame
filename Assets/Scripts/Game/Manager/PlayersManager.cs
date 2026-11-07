@@ -65,6 +65,13 @@ public class PlayersManager : MonoBehaviour, IPlayersCollection
             enabled = false;
             return;
         }
+        if (PlayerInputSetup.AreInputDevicesAvailable(playerPrefabs.Count) == false)
+        {
+            Debug.LogError("プレイヤの入力デバイスが足りません。");
+            enabled = false;
+            // TODO: シーンを終了する処理を追加
+            return;
+        }
         for (int i = 0; i < playerPrefabs.Count; i++)
         {
             var prefab = playerPrefabs[i];

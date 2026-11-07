@@ -6,6 +6,11 @@ public class PlayerInputSetup : MonoBehaviour
 {
     private static readonly string[] KEYBOARD_SCHEMES = { "KeyboardWASD", "KeyboardArrows" };
 
+    public static bool AreInputDevicesAvailable(int numPlayers)
+    {
+        return Keyboard.current != null && Keyboard.current.added && numPlayers <= KEYBOARD_SCHEMES.Length;
+    }
+
     public void Setup(int playerIndex)
     {
         if (playerIndex < 0 || playerIndex >= KEYBOARD_SCHEMES.Length)
@@ -15,7 +20,7 @@ public class PlayerInputSetup : MonoBehaviour
                 $"Player index must be between 0 and {KEYBOARD_SCHEMES.Length - 1}."
             );
         }
-        if (Keyboard.current == null)
+        if (Keyboard.current == null || !Keyboard.current.added)
         {
             throw new System.InvalidOperationException("No keyboard is currently connected.");
         }
