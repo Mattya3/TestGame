@@ -23,6 +23,7 @@ public class PlayersManager : MonoBehaviour, IPlayersCollection
     private ReadOnlyCollection<bool> _aliveFlagsReadOnly;
 
     private IPlayerPrefabsSpecifier _playerPrefabsSpecifier;
+    private IPlayerSpawnPointsSpecifier _playerSpawnPointsSpecifier;
 
     public bool AreAllPlayersAlive { get; private set; } = true;
 
@@ -30,6 +31,7 @@ public class PlayersManager : MonoBehaviour, IPlayersCollection
     {
         _gameManagerAccess = GetComponent<GameManagerMutableAccess>();
         _playerPrefabsSpecifier = GetComponent<IPlayerPrefabsSpecifier>();
+        _playerSpawnPointsSpecifier = GetComponent<IPlayerSpawnPointsSpecifier>();
 
         _positionsReadOnly = new ReadOnlyCollection<Vector3>(_positionsList);
         _boundsReadOnly = new ReadOnlyCollection<Bounds>(_boundsList);
@@ -42,11 +44,24 @@ public class PlayersManager : MonoBehaviour, IPlayersCollection
             enabled = false;
             return;
         }
+        if (_playerSpawnPointsSpecifier == null)
+        {
+            Debug.LogError("IPlayerSpawnPointsSpecifierが見つかりません。");
+            enabled = false;
+            return;
+        }
 
         var playerPrefabs = _playerPrefabsSpecifier.GetPlayerPrefabs();
         if (playerPrefabs.Count == 0)
         {
             Debug.LogError("プレイヤのPrefabが指定されていません。");
+            enabled = false;
+            return;
+        }
+        var spawnPoints = _playerSpawnPointsSpecifier.GetPlayerSpawnPoints();
+        if (spawnPoints.Count < playerPrefabs.Count)
+        {
+            Debug.LogError("プレイヤのSpawnPointが足りません。");
             enabled = false;
             return;
         }
@@ -59,7 +74,7 @@ public class PlayersManager : MonoBehaviour, IPlayersCollection
                 enabled = false;
                 return;
             }
-            var playerInstance = Instantiate(prefab, Vector3.zero, Quaternion.identity);
+            var playerInstance = Instantiate(prefab, spawnPoints[i].position, spawnPoints[i].rotation);
             var playerComponent = playerInstance.GetComponent<Player>();
             if (playerComponent == null)
             {
