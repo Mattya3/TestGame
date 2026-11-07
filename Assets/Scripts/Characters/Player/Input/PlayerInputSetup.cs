@@ -4,17 +4,16 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(PlayerInput))]
 public class PlayerInputSetup : MonoBehaviour
 {
-    private static readonly string[] KEYBOARD_SCHEMES =
-    {
-        "KeyboardWASD",
-        "KeyboardArrows",
-    };
+    private static readonly string[] KEYBOARD_SCHEMES = { "KeyboardWASD", "KeyboardArrows" };
 
     public void Setup(int playerIndex)
     {
         if (playerIndex < 0 || playerIndex >= KEYBOARD_SCHEMES.Length)
         {
-            throw new System.ArgumentOutOfRangeException(nameof(playerIndex), $"Player index must be between 0 and {KEYBOARD_SCHEMES.Length - 1}.");
+            throw new System.ArgumentOutOfRangeException(
+                nameof(playerIndex),
+                $"Player index must be between 0 and {KEYBOARD_SCHEMES.Length - 1}."
+            );
         }
 
         // 現在のキーボードを割り当てる

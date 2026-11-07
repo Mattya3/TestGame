@@ -80,11 +80,17 @@ public class PlayersManager : MonoBehaviour, IPlayersCollection
                 enabled = false;
                 return;
             }
-            var playerInstance = Instantiate(prefab, spawnPoints[i].position, spawnPoints[i].rotation);
+            var playerInstance = Instantiate(
+                prefab,
+                spawnPoints[i].position,
+                spawnPoints[i].rotation
+            );
             var playerComponent = playerInstance.GetComponent<Player>();
             if (playerComponent == null)
             {
-                Debug.LogError($"プレイヤのPrefabにPlayerコンポーネントがアタッチされていません。インデックス: {i}");
+                Debug.LogError(
+                    $"プレイヤのPrefabにPlayerコンポーネントがアタッチされていません。インデックス: {i}"
+                );
                 enabled = false;
                 return;
             }

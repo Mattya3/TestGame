@@ -1,6 +1,6 @@
-﻿using UnityEngine;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using UnityEngine;
 
 public class FixedPlayerPrefabsSpecifier : MonoBehaviour, IPlayerPrefabsSpecifier
 {
