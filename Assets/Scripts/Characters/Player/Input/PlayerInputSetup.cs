@@ -8,7 +8,9 @@ public class PlayerInputSetup : MonoBehaviour
 
     public static bool AreInputDevicesAvailable(int numPlayers)
     {
-        return Keyboard.current != null && Keyboard.current.added && numPlayers <= KEYBOARD_SCHEMES.Length;
+        return Keyboard.current != null
+            && Keyboard.current.added
+            && numPlayers <= KEYBOARD_SCHEMES.Length;
     }
 
     public void Setup(int playerIndex)
