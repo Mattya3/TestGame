@@ -22,20 +22,57 @@ public class PlayersManager : MonoBehaviour, IPlayersCollection
     private List<bool> _aliveFlagsList = new List<bool>();
     private ReadOnlyCollection<bool> _aliveFlagsReadOnly;
 
+    private IPlayerPrefabsSpecifier _playerPrefabsSpecifier;
+
     public bool AreAllPlayersAlive { get; private set; } = true;
 
     private void Awake()
     {
-        // Findによってプレイヤを取得。プレイヤを動的に生成するようになったら、Findはやめる
-        foreach (var player in FindObjectsByType<Player>(FindObjectsSortMode.InstanceID))
-            _RegisterPlayer(player);
-
         _gameManagerAccess = GetComponent<GameManagerMutableAccess>();
+        _playerPrefabsSpecifier = GetComponent<IPlayerPrefabsSpecifier>();
 
         _positionsReadOnly = new ReadOnlyCollection<Vector3>(_positionsList);
         _boundsReadOnly = new ReadOnlyCollection<Bounds>(_boundsList);
         _inputDirectionsReadOnly = new ReadOnlyCollection<Vector2>(_inputDirectionsList);
         _aliveFlagsReadOnly = new ReadOnlyCollection<bool>(_aliveFlagsList);
+
+        if (_playerPrefabsSpecifier == null)
+        {
+            Debug.LogError("IPlayerPrefabsSpecifierが見つかりません。");
+            enabled = false;
+            return;
+        }
+
+        var playerPrefabs = _playerPrefabsSpecifier.GetPlayerPrefabs();
+        if (playerPrefabs.Count == 0)
+        {
+            Debug.LogError("プレイヤのPrefabが指定されていません。");
+            enabled = false;
+            return;
+        }
+        for (int i = 0; i < playerPrefabs.Count; i++)
+        {
+            var prefab = playerPrefabs[i];
+            if (prefab == null)
+            {
+                Debug.LogError($"プレイヤのPrefabがnullです。インデックス: {i}");
+                enabled = false;
+                return;
+            }
+            var playerInstance = Instantiate(prefab, Vector3.zero, Quaternion.identity);
+            var playerComponent = playerInstance.GetComponent<Player>();
+            if (playerComponent == null)
+            {
+                Debug.LogError($"プレイヤのPrefabにPlayerコンポーネントがアタッチされていません。インデックス: {i}");
+                enabled = false;
+                return;
+            }
+            _RegisterPlayer(playerComponent);
+        }
+
+        // Findによってプレイヤを取得。プレイヤを動的に生成するようになったら、Findはやめる
+        //foreach (var player in FindObjectsByType<Player>(FindObjectsSortMode.InstanceID))
+        //    _RegisterPlayer(player);
 
         AccessComponent<IPlayersCollection>.RegisterReference(this);
     }
