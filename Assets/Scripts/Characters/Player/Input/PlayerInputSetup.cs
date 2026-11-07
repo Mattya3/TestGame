@@ -15,6 +15,10 @@ public class PlayerInputSetup : MonoBehaviour
                 $"Player index must be between 0 and {KEYBOARD_SCHEMES.Length - 1}."
             );
         }
+        if (Keyboard.current == null)
+        {
+            throw new System.InvalidOperationException("No keyboard is currently connected.");
+        }
 
         // 現在のキーボードを割り当てる
         var playerInput = GetComponent<PlayerInput>();
