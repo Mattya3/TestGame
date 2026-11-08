@@ -1,4 +1,4 @@
-﻿public interface IGameManager
+﻿public interface IGameManager : IAccessTarget
 {
     void HandlePlayStart();
     void HandleFailure();

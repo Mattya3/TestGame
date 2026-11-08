@@ -1,4 +1,4 @@
-﻿public interface IStageSceneContext
+﻿public interface IStageSceneContext : IAccessTarget
 {
     public bool AfterRestart { get; }
 

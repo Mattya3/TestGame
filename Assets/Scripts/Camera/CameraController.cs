@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 [RequireComponent(typeof(ShakeEffectsPlayer))]
-public class CameraController : MonoBehaviour
+public class CameraController : MonoBehaviour, IAccessTarget
 {
     [Header("Reference")]
     [SerializeField]

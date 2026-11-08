@@ -25,6 +25,8 @@ public class PlayersManager : MonoBehaviour, IPlayersCollection
     private IPlayerPrefabsSpecifier _playerPrefabsSpecifier;
     private IPlayerSpawnPointsSpecifier _playerSpawnPointsSpecifier;
 
+    private bool _isInitialized = false;
+
     public bool AreAllPlayersAlive { get; private set; } = true;
 
     private void Awake()
@@ -106,6 +108,17 @@ public class PlayersManager : MonoBehaviour, IPlayersCollection
         }
 
         AccessComponent<IPlayersCollection>.RegisterReference(this);
+    }
+
+    public void EnsureInitialized()
+    {
+        if (_isInitialized)
+            return;
+
+        foreach(var player in _players)
+            player.EnsureInitialized();
+
+        _isInitialized = true;
     }
 
     private void OnDestroy()

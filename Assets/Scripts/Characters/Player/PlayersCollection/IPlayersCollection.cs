@@ -2,7 +2,7 @@
 using System.Collections.ObjectModel;
 using UnityEngine;
 
-public interface IPlayersCollection
+public interface IPlayersCollection : IAccessTarget
 {
     int Count { get; }
     ReadOnlyCollection<Vector3> Positions { get; }

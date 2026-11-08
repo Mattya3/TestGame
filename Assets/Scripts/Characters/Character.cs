@@ -17,6 +17,8 @@ public abstract class Character : MonoEventReactingBehaviour
     private Collider2D _collider;
     private CharacterEffectsPlayer _effectsPlayer;
 
+    private bool _isInitialized = false;
+
     protected virtual void Awake()
     {
         _rigidBody = GetComponent<Rigidbody2D>();
@@ -24,7 +26,21 @@ public abstract class Character : MonoEventReactingBehaviour
         _effectsPlayer = GetComponent<CharacterEffectsPlayer>();
     }
 
-    protected virtual void Start() { }
+    protected virtual void Start()
+    {
+        EnsureInitialized();
+    }
+
+    protected virtual void Initialize() { }
+
+    public void EnsureInitialized()
+    {
+        if (_isInitialized)
+            return;
+
+        Initialize();
+        _isInitialized = true;
+    }
 
     protected virtual void Update()
     {

@@ -2,36 +2,12 @@
 
 public class CameraReadonlyAccess : AccessComponent<CameraController>
 {
-    public float AspectRatio
-    {
-        get
-        {
-            if (!Reference)
-                return 1.0f;
-
-            Reference.EnsureInitialized();
-            return Reference.AspectRatio;
-        }
-    }
+    public float AspectRatio => Reference?.AspectRatio ?? 1.0f;
 
     public Vector3 WorldToViewportPoint(Vector3 worldPosition)
     {
-        if (!Reference)
-            return Vector3.zero;
-
-        Reference.EnsureInitialized();
-        return Reference.WorldToViewportPoint(worldPosition);
+        return Reference?.WorldToViewportPoint(worldPosition) ?? Vector3.zero;
     }
 
-    public Vector3 UnoffsetPosition
-    {
-        get
-        {
-            if (!Reference)
-                return Vector3.zero;
-
-            Reference.EnsureInitialized();
-            return Reference.UnoffsetPosition;
-        }
-    }
+    public Vector3 UnoffsetPosition => Reference?.UnoffsetPosition ?? Vector3.zero;
 }

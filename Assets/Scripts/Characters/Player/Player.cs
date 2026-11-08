@@ -41,6 +41,11 @@ public partial class Player : Character
 
     protected override void Start()
     {
+        base.Start();
+    }
+
+    protected override void Initialize()
+    {
         _ChangeState(_CreateInitialState());
     }
 
