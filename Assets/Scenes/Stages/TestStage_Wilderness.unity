@@ -12181,9 +12181,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4eddd1a7247b05e4fa56071cc0870d41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  _originalFrequency: 44100
-  _loopBeginSample: 811245
-  _loopEndSample: 3069183
+  _audioLoop: {fileID: 11400000, guid: cf124ebbc421c904a84e6ce4ce63b93a, type: 2}
 --- !u!82 &1981519074
 AudioSource:
   m_ObjectHideFlags: 0
@@ -12195,8 +12193,8 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -2423421328695132010, guid: cd93d5f7040100c4c86ec28cf0fdc21a, type: 2}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: c28e5e03fd8777d479d1d474a04448b1, type: 3}
-  m_PlayOnAwake: 1
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 1

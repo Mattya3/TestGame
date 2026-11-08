@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0efd6bd5af793b0458b89dbe522ea116, type: 3}
+  m_Name: TestBGM
+  m_EditorClassIdentifier: Assembly-CSharp::AudioLoop
+  _originalFrequency: 44100
+  _loopBeginSample: 811245
+  _loopEndSample: 3069183
+  _clip: {fileID: 8300000, guid: c28e5e03fd8777d479d1d474a04448b1, type: 3}
