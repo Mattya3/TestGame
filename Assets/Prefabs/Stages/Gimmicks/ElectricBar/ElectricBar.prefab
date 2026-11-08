@@ -191,9 +191,7 @@ GameObject:
   - component: {fileID: 4793046071162040656}
   - component: {fileID: 6435719825513361549}
   - component: {fileID: 4133730392482425065}
-  - component: {fileID: 2451403186259149600}
   - component: {fileID: 6960536326918985715}
-  - component: {fileID: 2858322085634064092}
   m_Layer: 0
   m_Name: ElectricBar
   m_TagString: ElectricBar
@@ -346,20 +344,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.25, y: 4}
   m_EdgeRadius: 0
---- !u!114 &2451403186259149600
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5778943136724456322}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff8a6fa19d78244ad8fda9e2ddabb937, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ElectricBarMove
-  _moveSpeed: 1
-  _direction: {x: 0, y: 0, z: 0}
 --- !u!114 &6960536326918985715
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -373,18 +357,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DeadZone
   _deathReason: 1
---- !u!114 &2858322085634064092
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5778943136724456322}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 350ef0f6403c0f04b914a103f74b1680, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GameEventRegistrationAccess
 --- !u!1 &5851984940462912086
 GameObject:
   m_ObjectHideFlags: 0
