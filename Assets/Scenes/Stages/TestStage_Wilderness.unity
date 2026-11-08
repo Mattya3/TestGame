@@ -6106,7 +6106,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4112453259852671918, guid: f6e8d251a908ab44492ea0b4ee5daa84, type: 3}
       propertyPath: m_Name
-      value: StageSceneContext
+      value: SceneContext
       objectReference: {fileID: 0}
     - target: {fileID: 6617908593755286796, guid: f6e8d251a908ab44492ea0b4ee5daa84, type: 3}
       propertyPath: m_LocalPosition.x
