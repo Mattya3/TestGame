@@ -8,4 +8,6 @@ public class CameraReadonlyAccess : AccessComponent<CameraController>
     {
         return Reference != null ? Reference.WorldToViewportPoint(worldPosition) : Vector3.zero;
     }
+
+    public Vector3 UnoffsetPosition => Reference?.UnoffsetPosition ?? Vector3.zero;
 }

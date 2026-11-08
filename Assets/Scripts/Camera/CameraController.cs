@@ -116,6 +116,8 @@ public class CameraController : MonoBehaviour
         return _camera.WorldToViewportPoint(worldPosition);
     }
 
+    public Vector3 UnoffsetPosition => _smoothedPosition;
+
     private void FixedUpdate()
     {
         _targetsStack.Update();

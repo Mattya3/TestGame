@@ -12282,7 +12282,8 @@ GameObject:
   - component: {fileID: 1745397834}
   - component: {fileID: 1745397837}
   - component: {fileID: 1745397836}
-  - component: {fileID: 1745397835}
+  - component: {fileID: 1745397839}
+  - component: {fileID: 1745397838}
   m_Layer: 8
   m_Name: SandstormItems
   m_TagString: Untagged
@@ -12305,26 +12306,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1684261143}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1818360608 &1745397835
-PositionConstraint:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1745397833}
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Weight: 1
-  m_TranslationAtRest: {x: 0, y: 2, z: 0}
-  m_TranslationOffset: {x: 0, y: 2, z: 10}
-  m_AffectTranslationX: 1
-  m_AffectTranslationY: 0
-  m_AffectTranslationZ: 0
-  m_Active: 1
-  m_IsLocked: 1
-  m_Sources:
-  - sourceTransform: {fileID: 1113217129}
-    weight: 1
 --- !u!73398921 &1745397836
 VFXRenderer:
   serializedVersion: 1
@@ -12410,6 +12391,35 @@ VisualEffect:
       m_Array: []
     m_Bool:
       m_Array: []
+--- !u!114 &1745397838
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1745397833}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 194895a14f516b34dbffec016fd7cd35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CameraReadonlyAccess
+--- !u!114 &1745397839
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1745397833}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f155e2d815e2d14ab3da76bb239a37a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CameraTracker
+  _offset: {x: 0, y: 0, z: 0}
+  _trackAxes:
+    x: 1
+    y: 0
+    z: 0
 --- !u!1001 &1746291989
 PrefabInstance:
   m_ObjectHideFlags: 0
