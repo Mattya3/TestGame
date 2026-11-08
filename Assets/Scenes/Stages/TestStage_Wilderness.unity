@@ -11731,7 +11731,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2001070379339854794, guid: 9ea3b84fbc0107942935cdc779888180, type: 3}
       propertyPath: m_Name
-      value: Music
+      value: StageMusic
       objectReference: {fileID: 0}
     - target: {fileID: 8008309554526490712, guid: 9ea3b84fbc0107942935cdc779888180, type: 3}
       propertyPath: m_LocalPosition.x
@@ -11838,9 +11838,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8086655763509214338, guid: 216ea2dc2ca186d4ab2ebd98883118e9, type: 3}
+      propertyPath: m_Name
+      value: MainCamera
+      objectReference: {fileID: 0}
     - target: {fileID: 9033739131359358864, guid: 216ea2dc2ca186d4ab2ebd98883118e9, type: 3}
       propertyPath: m_Name
-      value: CameraController
+      value: StageCameraController
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
