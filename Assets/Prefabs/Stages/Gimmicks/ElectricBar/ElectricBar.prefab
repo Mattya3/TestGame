@@ -176,8 +176,8 @@ MonoBehaviour:
   _effectPrefab: {fileID: 2002033790450558206, guid: 4850e9d2ed41ea84b9d4ca2c59a37ebf, type: 3}
   _spawnPositionMin: -2
   _spawnPositionMax: 2
-  _spawnIntervalMin: 0.5
-  _spawnIntervalMax: 1
+  _spawnIntervalMin: 2.5
+  _spawnIntervalMax: 5
   _audioSource: {fileID: 1932928368249474141}
 --- !u!1 &5778943136724456322
 GameObject:
@@ -245,7 +245,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
+  - {fileID: 2100000, guid: f49898d2aeddd7d41ab6d1f225a51eee, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

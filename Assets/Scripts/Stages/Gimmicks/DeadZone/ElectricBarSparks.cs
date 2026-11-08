@@ -67,13 +67,15 @@ public class ElectricBarSparks : MonoBehaviour
 
     private void _ResetSpawnTimer()
     {
-        _spawnTimer = Random.Range(_spawnIntervalMin, _spawnIntervalMax);
+        _spawnTimer = Random.Range(_spawnIntervalMin, _spawnIntervalMax) / _LengthScale;
     }
 
     private void _SpawnSpark()
     {
-        float randomPos = Random.Range(_spawnPositionMin, _spawnPositionMax);
+        float randomPos = Random.Range(_spawnPositionMin, _spawnPositionMax) * _LengthScale;
         Vector3 spawnPos = transform.position + transform.up * randomPos;
         _effectsPlayer?.PlayEffects(spawnPos);
     }
+
+    private float _LengthScale => transform.lossyScale.y;
 }
