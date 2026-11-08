@@ -29,7 +29,7 @@ public class AudioLoop : ScriptableObject
             Debug.LogError("Loop begin sample must be less than loop end sample.");
             return false;
         }
-        if (_loopEndSample > (uint)_clip.samples)
+        if (CorrectedEndSample((uint)_clip.frequency) > (uint)_clip.samples)
         {
             Debug.LogError(
                 "Loop end sample must be less than or equal to the total number of samples in the AudioClip."
