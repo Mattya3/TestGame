@@ -359,7 +359,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ElectricBarMove
   _moveSpeed: 1
-  _direction: {x: 1, y: 0, z: 0}
+  _direction: {x: 0, y: 0, z: 0}
 --- !u!114 &6960536326918985715
 MonoBehaviour:
   m_ObjectHideFlags: 0
