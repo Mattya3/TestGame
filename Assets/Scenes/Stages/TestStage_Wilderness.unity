@@ -2753,6 +2753,7 @@ GameObject:
   - component: {fileID: 277532473}
   - component: {fileID: 277532475}
   - component: {fileID: 277532474}
+  - component: {fileID: 277532476}
   m_Layer: 8
   m_Name: ParallaxFront
   m_TagString: Untagged
@@ -2769,7 +2770,7 @@ Transform:
   m_GameObject: {fileID: 277532472}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.999999, y: -0.88999987, z: 10}
+  m_LocalPosition: {x: -2.999999, y: -0.88999987, z: 0}
   m_LocalScale: {x: 1.2, y: 1.2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2787,7 +2788,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58cb87e992e14eb4ebc0d0b20a61a6b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BackgroundScroller
-  _cameraTransform: {fileID: 1113217129}
   _followFactor: {x: 0.5, y: 0.5, z: 0}
   _loopX: 1
   _loopY: 0
@@ -2850,6 +2850,18 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!114 &277532476
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 277532472}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 194895a14f516b34dbffec016fd7cd35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CameraReadonlyAccess
 --- !u!1 &337790513
 GameObject:
   m_ObjectHideFlags: 0
@@ -4284,6 +4296,7 @@ GameObject:
   - component: {fileID: 777684017}
   - component: {fileID: 777684019}
   - component: {fileID: 777684018}
+  - component: {fileID: 777684020}
   m_Layer: 8
   m_Name: ParallaxMid
   m_TagString: Untagged
@@ -4300,7 +4313,7 @@ Transform:
   m_GameObject: {fileID: 777684016}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4, y: -1.9999998, z: 10}
+  m_LocalPosition: {x: -4, y: -1.9999998, z: 0}
   m_LocalScale: {x: 1.2, y: 1.2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4318,7 +4331,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58cb87e992e14eb4ebc0d0b20a61a6b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BackgroundScroller
-  _cameraTransform: {fileID: 1113217129}
   _followFactor: {x: 0.7, y: 0.7, z: 0}
   _loopX: 1
   _loopY: 0
@@ -4381,6 +4393,18 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!114 &777684020
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 777684016}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 194895a14f516b34dbffec016fd7cd35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CameraReadonlyAccess
 --- !u!1001 &794549506
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7412,6 +7436,7 @@ GameObject:
   - component: {fileID: 1506976597}
   - component: {fileID: 1506976599}
   - component: {fileID: 1506976598}
+  - component: {fileID: 1506976600}
   m_Layer: 8
   m_Name: ParallaxBack
   m_TagString: Untagged
@@ -7428,7 +7453,7 @@ Transform:
   m_GameObject: {fileID: 1506976596}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.5, y: 0.10911703, z: 10}
+  m_LocalPosition: {x: -0.5, y: 0.10911703, z: 0}
   m_LocalScale: {x: 1.2, y: 1.2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7446,7 +7471,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58cb87e992e14eb4ebc0d0b20a61a6b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  _cameraTransform: {fileID: 1113217129}
   _followFactor: {x: 1, y: 1, z: 0}
   _loopX: 1
   _loopY: 0
@@ -7509,6 +7533,18 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!114 &1506976600
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1506976596}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 194895a14f516b34dbffec016fd7cd35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CameraReadonlyAccess
 --- !u!1 &1624154523
 GameObject:
   m_ObjectHideFlags: 0

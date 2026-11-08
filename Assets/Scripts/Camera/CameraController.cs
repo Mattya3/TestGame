@@ -25,6 +25,8 @@ public class CameraController : MonoBehaviour
     private Vector3 _velocity = Vector3.zero; // カメラの現在の速度
     private ShakeEffectsPlayer _shakeEffectsPlayer; // カメラの揺れ効果を管理するコンポーネント
 
+    private bool _isInitialized = false; // 初期化済みかどうかのフラグ
+
     void Awake()
     {
         _camera = GetComponentInChildren<Camera>();
@@ -80,6 +82,11 @@ public class CameraController : MonoBehaviour
 
     void Start()
     {
+        EnsureInitialized();
+    }
+
+    private void _Initialize()
+    {
         _targetsStack.Start();
         _EnableColliders(_targetsStack.EnableCollider);
 
@@ -90,6 +97,16 @@ public class CameraController : MonoBehaviour
         _colliderRoot.transform.position = boundedDestination;
         _smoothedPosition = boundedDestination;
         _camera.transform.position = boundedDestination;
+
+        _isInitialized = true;
+    }
+
+    public void EnsureInitialized()
+    {
+        if (_isInitialized)
+            return;
+
+        _Initialize();
     }
 
     public void PushTarget(ICameraTarget target)
