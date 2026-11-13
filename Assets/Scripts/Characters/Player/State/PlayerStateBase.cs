@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using static Constants;
 
 public abstract class PlayerStateBase : IPlayerState
@@ -23,4 +23,9 @@ public abstract class PlayerStateBase : IPlayerState
     public virtual void OnEnabled() { }
 
     public virtual void OnDisabled() { }
+
+    public virtual string GetAnimationName()
+    {
+        return "";
+    }
 }

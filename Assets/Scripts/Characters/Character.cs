@@ -89,4 +89,6 @@ public abstract class Character : MonoEventReactingBehaviour
     public Bounds Bounds => _collider.bounds;
 
     protected CharacterEffectsPlayer EffectsPlayer => _effectsPlayer;
+
+    protected Vector2 CurrentLinearVelocity => _rigidBody.linearVelocity;
 }

@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class GroundState : PlayableState
 {
@@ -23,5 +23,10 @@ public class GroundState : PlayableState
 
         Sounds.OnJump();
         Context.ChangeState(new AirState(Context, Sounds));
+    }
+
+    public override string GetAnimationName()
+    {
+        return Context.CurrentInputDirection.magnitude > 0 ? "Run" : "Idle";
     }
 }

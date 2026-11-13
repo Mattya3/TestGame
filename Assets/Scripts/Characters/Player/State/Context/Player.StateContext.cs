@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using static Constants;
 
 public partial class Player
@@ -48,5 +48,8 @@ public partial class Player
         {
             _player._NotifyGoalReached();
         }
+
+        Vector2 IPlayerStateContext.CurrentInputDirection => _player._inputDirection;
+        Vector2 IPlayerStateContext.CurrentLinearVelocity => _player.CurrentLinearVelocity;
     }
 }

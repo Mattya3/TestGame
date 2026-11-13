@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using static Constants;
 
 public interface IPlayerState
@@ -9,4 +9,6 @@ public interface IPlayerState
     void Goal();
     void OnEnabled();
     void OnDisabled();
+
+    string GetAnimationName();
 }

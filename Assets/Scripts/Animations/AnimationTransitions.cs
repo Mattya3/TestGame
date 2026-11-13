@@ -86,6 +86,9 @@ public class AnimationTransitions : MonoBehaviour
         if (_desiredLoop == animationName)
             return; // Already in the desired loop, do nothing
 
+        if (animationName == "")
+            return; // Ignore empty animation names
+
         var originalAnimation = _desiredLoop;
         _desiredLoop = animationName;
         _currentPhase.OnPlay(originalAnimation, animationName);

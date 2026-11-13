@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using static Constants;
 
 public class DeadState : UnplayableState
@@ -27,4 +27,10 @@ public class DeadState : UnplayableState
     {
         Debug.LogWarning("Goal() was called while in DeadState.", Context.LogContext);
     }
+
+    public override string GetAnimationName()
+    {
+        return "Die";
+    }
+
 }

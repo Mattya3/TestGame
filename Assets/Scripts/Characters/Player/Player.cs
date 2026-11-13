@@ -19,6 +19,8 @@ public partial class Player : Character
     private Vector2 _inputDirection;
     private IPlayerStateContext _stateContext;
 
+    private AnimationTransitions _animationTransitions;
+
     public bool IsInGoalState => _currentState is GoalState;
     public bool IsAlive => _isAlive;
     public Vector2 InputDirection => _inputDirection;
@@ -37,6 +39,14 @@ public partial class Player : Character
 
         _stateContext = new StateContext(this);
         _externalEffectApplier = new PlayerExternalEffectApplier();
+
+        _animationTransitions = GetComponentInChildren<AnimationTransitions>();
+        if (_animationTransitions == null)
+        {
+            Debug.LogError("AnimationTransitions component not found in Player's children.");
+            enabled = false;
+            return;
+        }
     }
 
     protected override void Start()
@@ -58,6 +68,8 @@ public partial class Player : Character
             return;
 
         _currentState.OnMove(_inputDirection);
+
+        _animationTransitions.Play(_currentState.GetAnimationName());
     }
 
     public void SetupPlayerInput(int playerIndex)

@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class AirState : PlayableState
 {
@@ -14,5 +14,10 @@ public class AirState : PlayableState
             Sounds.OnLand();
             Context.ChangeState(new GroundState(Context, Sounds));
         }
+    }
+
+    public override string GetAnimationName()
+    {
+        return Context.CurrentLinearVelocity.y > 0 ? "AirUp" : "AirDown";
     }
 }
