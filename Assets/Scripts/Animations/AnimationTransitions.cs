@@ -1,13 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using System;
 
 public class AnimationTransitions : MonoBehaviour
 {
     private static int _StateToHash(string stateName) => Animator.StringToHash($"Base Layer.{stateName}_R");
 
     private static int _TransitionToHash(string source, string destination) => Animator.StringToHash($"{source}->{destination}");
-    
-    struct TransitionOneShot
+
+    [Serializable]
+    private struct TransitionOneShot
     {
         [SerializeField]
         private string _source;

@@ -284,6 +284,7 @@ GameObject:
   - component: {fileID: 1529969032720809445}
   - component: {fileID: 2978545842823711266}
   - component: {fileID: 4295684135927181264}
+  - component: {fileID: 3582197858781000411}
   - component: {fileID: 360478932538162378}
   - component: {fileID: 3158664309901774910}
   - component: {fileID: 6668691793731276845}
@@ -516,6 +517,32 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &3582197858781000411
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5426529304151448434}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7f3aae4585fe1b4a9ac1d7e8ee64d4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AnimationTransitions
+  _animator: {fileID: 4295684135927181264}
+  _transitions:
+  - _source: Idle
+    _destination: AirUp
+    _oneShot: Jump
+  - _source: Run
+    _destination: AirUp
+    _oneShot: Jump
+  - _source: AirUp
+    _destination: AirDown
+    _oneShot: AirApex
+  - _source: AirDown
+    _destination: Idle
+    _oneShot: Land
 --- !u!114 &360478932538162378
 MonoBehaviour:
   m_ObjectHideFlags: 0
