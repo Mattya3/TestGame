@@ -156,7 +156,6 @@ public partial class Player : Character
     private void _NotifyDied(DeathReason deathReason)
     {
         _isAlive = false;
-        EffectsPlayer.PlayDeathEffect(deathReason);
         OnDied?.Invoke(deathReason);
     }
 
@@ -173,6 +172,11 @@ public partial class Player : Character
     private void _SetAnimatorUpdateMode(AnimatorUpdateMode updateMode)
     {
         _animationTransitions.SetAnimatorUpdateMode(updateMode);
+    }
+
+    private void _PlayCharacterEffect(string effectKey)
+    {
+        EffectsPlayer.Play(effectKey);
     }
 
     private IPlayerState _CreateInitialState()

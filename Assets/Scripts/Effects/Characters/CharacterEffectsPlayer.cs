@@ -1,8 +1,43 @@
 ﻿using UnityEngine;
+using System;
+using System.Collections.Generic;
 
 public class CharacterEffectsPlayer : MonoBehaviour
 {
-    [Header("Reference")]
+    [Serializable]
+    private struct KeyedEffectPrefab
+    {
+        [SerializeField]
+        private string _key;
+
+        [SerializeField]
+        private GameObject _effectPrefab;
+
+        public EffectsCompositePlayer CreatePlayer(
+            AudioSource audioSource,
+            CameraMutableAccess cameraAccess,
+            TransformOffsetController transformOffsetController,
+            Renderer renderer,
+            Vector3 position,
+            Quaternion rotation,
+            Transform parent
+            )
+        {
+            return new EffectsCompositePlayer(
+                _effectPrefab,
+                audioSource,
+                cameraAccess,
+                transformOffsetController,
+                renderer,
+                position,
+                rotation,
+                parent
+            );
+        }
+
+        public string Key => _key;
+    }
+
     [SerializeField]
     private AudioSource _audioSource;
 
@@ -15,62 +50,45 @@ public class CharacterEffectsPlayer : MonoBehaviour
     [SerializeField]
     private Renderer _renderer;
 
-    [Header("Effect Prefabs")]
     [SerializeField]
-    private GameObject _deadZoneDeathEffectPrefab;
+    private List<KeyedEffectPrefab> _effectPrefabs = new List<KeyedEffectPrefab>();
 
-    [SerializeField]
-    private GameObject _fallDeathEffectPrefab;
-
-    private EffectsCompositePlayer _deadZonePlayer;
-    private EffectsCompositePlayer _fallPlayer;
+    private Dictionary<string, EffectsCompositePlayer> _effectPlayers = new Dictionary<string, EffectsCompositePlayer>();
 
     private void Awake()
     {
-        _deadZonePlayer = new EffectsCompositePlayer(
-            _deadZoneDeathEffectPrefab,
-            _audioSource,
-            _cameraAccess,
-            _transformOffsetController,
-            _renderer,
-            transform.position,
-            transform.rotation,
-            transform
-        );
-        _fallPlayer = new EffectsCompositePlayer(
-            _fallDeathEffectPrefab,
-            _audioSource,
-            _cameraAccess,
-            _transformOffsetController,
-            _renderer,
-            transform.position,
-            transform.rotation,
-            transform
-        );
+        foreach (var keyedPrefab in _effectPrefabs)
+        {
+            if (_effectPlayers.ContainsKey(keyedPrefab.Key))
+            {
+                Debug.LogError($"Duplicate effect key found: {keyedPrefab.Key}. Each effect must have a unique key.");
+                continue;
+            }
+
+            var player = keyedPrefab.CreatePlayer(
+                _audioSource,
+                _cameraAccess,
+                _transformOffsetController,
+                _renderer,
+                transform.position,
+                transform.rotation,
+                transform
+            );
+            _effectPlayers[keyedPrefab.Key] = player;
+        }
     }
 
     private void OnDestroy()
     {
-        _deadZonePlayer?.Cleanup();
-        _fallPlayer?.Cleanup();
+        foreach (var player in _effectPlayers.Values)
+            player.Cleanup();
     }
 
-    public void PlayDeathEffect(Constants.DeathReason deathReason)
+    public void Play(string key)
     {
-        EffectsCompositePlayer player = null;
-        switch (deathReason)
-        {
-            case Constants.DeathReason.DeadZone:
-                player = _deadZonePlayer;
-                break;
-            case Constants.DeathReason.Fall:
-                player = _fallPlayer;
-                break;
-            default:
-                Debug.LogError($"Unhandled DeathReason value: {deathReason}");
-                return;
-        }
-
-        player?.PlayEffects();
+        if (_effectPlayers.TryGetValue(key, out var player))
+            player.PlayEffects();
+        else
+            Debug.LogError($"Effect with key '{key}' not found.");
     }
 }

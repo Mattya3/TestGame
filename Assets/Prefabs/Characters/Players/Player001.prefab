@@ -562,8 +562,11 @@ MonoBehaviour:
   _cameraAccess: {fileID: 6668691793731276845}
   _transformOffsetController: {fileID: 688057045003942054}
   _renderer: {fileID: 6672952484177911739}
-  _deadZoneDeathEffectPrefab: {fileID: 8555158167546874534, guid: d43b716f007c3bf4682da4f58aa8513b, type: 3}
-  _fallDeathEffectPrefab: {fileID: 8555158167546874534, guid: d286d829fee8ae34fa587ef8fda79bd4, type: 3}
+  _effectPrefabs:
+  - _key: DeadZoneDeath
+    _effectPrefab: {fileID: 8555158167546874534, guid: d43b716f007c3bf4682da4f58aa8513b, type: 3}
+  - _key: FallDeath
+    _effectPrefab: {fileID: 8555158167546874534, guid: d286d829fee8ae34fa587ef8fda79bd4, type: 3}
 --- !u!114 &3158664309901774910
 MonoBehaviour:
   m_ObjectHideFlags: 0
