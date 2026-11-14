@@ -28,6 +28,6 @@ public class GroundState : PlayableState
 
     public override string GetAnimationName()
     {
-        return Context.CurrentInputDirection.magnitude > 0 ? "Run" : "Idle";
+        return Mathf.Approximately(Context.CurrentInputDirection.x, 0) ? "Idle" : "Run";
     }
 }
