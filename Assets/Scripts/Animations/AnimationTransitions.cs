@@ -90,6 +90,9 @@ public class AnimationTransitions : MonoBehaviour
 
     public void Play(string animationName)
     {
+        if (_animator == null)
+            return;
+
         if (_desiredAnimationName == animationName)
             return; // Already in the desired loop, do nothing
 
@@ -103,6 +106,9 @@ public class AnimationTransitions : MonoBehaviour
 
     public void SetFacingDirection(Character.FacingDirectionType newFacingDirection)
     {
+        if (_animator == null)
+            return;
+
         if (_currentFacingDirection == newFacingDirection)
             return; // No change in facing direction
         _currentFacingDirection = newFacingDirection;
@@ -111,8 +117,10 @@ public class AnimationTransitions : MonoBehaviour
 
     public void SetAnimatorUpdateMode(AnimatorUpdateMode updateMode)
     {
-        if (_animator != null)
-            _animator.updateMode = updateMode;
+        if (_animator == null)
+            return;
+
+        _animator.updateMode = updateMode;
     }
 
     private void LateUpdate()
