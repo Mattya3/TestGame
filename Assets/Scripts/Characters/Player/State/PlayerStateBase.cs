@@ -26,6 +26,6 @@ public abstract class PlayerStateBase : IPlayerState
 
     public virtual string GetAnimationName()
     {
-        return "";
+        return AnimationTransitions.IGNORED_ANIMATION_NAME;
     }
 }

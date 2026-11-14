@@ -4,7 +4,9 @@ using System;
 
 public class AnimationTransitions : MonoBehaviour
 {
-    private static int _StateToHash(string stateName) => Animator.StringToHash($"Base Layer.{stateName}_R");
+    public static string IGNORED_ANIMATION_NAME = "";
+
+    private static int _AnimatorStateToHash(string stateName) => Animator.StringToHash($"Base Layer.{stateName}_R");
 
     private static int _TransitionToHash(string source, string destination) => Animator.StringToHash($"{source}->{destination}");
 
@@ -46,7 +48,7 @@ public class AnimationTransitions : MonoBehaviour
         OneShot
     }
 
-    private string _desiredLoop = "";
+    private string _desiredAnimationName = IGNORED_ANIMATION_NAME;
     private Phase _currentPhase;
     private List<Phase> _phaseInstances = new List<Phase>();
     private Dictionary<int, string> _transitionMap = new Dictionary<int, string>();
@@ -83,14 +85,14 @@ public class AnimationTransitions : MonoBehaviour
 
     public void Play(string animationName)
     {
-        if (_desiredLoop == animationName)
+        if (_desiredAnimationName == animationName)
             return; // Already in the desired loop, do nothing
 
-        if (animationName == "")
+        if (animationName == IGNORED_ANIMATION_NAME)
             return; // Ignore empty animation names
 
-        var originalAnimation = _desiredLoop;
-        _desiredLoop = animationName;
+        var originalAnimation = _desiredAnimationName;
+        _desiredAnimationName = animationName;
         _currentPhase.OnPlay(originalAnimation, animationName);
     }
 
@@ -104,21 +106,21 @@ public class AnimationTransitions : MonoBehaviour
         _currentPhase = _phaseInstances[(int)newPhase];
     }
 
-    private void _PlayFromScratch(string animationName)
+    private void _PlayAnimationFromScratch(string animationName)
     {
         if (_animator == null)
             return;
 
-        int hash = _StateToHash(animationName);
+        int hash = _AnimatorStateToHash(animationName);
         _animator.Play(hash, 0, 0.0f);
     }
 
-    private void _PlayInherit(string animationName)
+    private void _PlayAnimationInherit(string animationName)
     {
         if (_animator == null)
             return;
 
-        int hash = _StateToHash(animationName);
+        int hash = _AnimatorStateToHash(animationName);
         _animator.Play(hash, 0, _animator.GetCurrentAnimatorStateInfo(0).normalizedTime);
     }
 
@@ -138,7 +140,7 @@ public class AnimationTransitions : MonoBehaviour
         }
         public void OnPlay(string originalAnimation, string newAnimation)
         {
-            _context._PlayFromScratch(newAnimation);
+            _context._PlayAnimationFromScratch(newAnimation);
             _context._ChangePhase(PhaseType.Loop);
         }
     }
@@ -164,13 +166,13 @@ public class AnimationTransitions : MonoBehaviour
             if (_context._transitionMap.TryGetValue(transitionHash, out string oneShotAnimation))
             {
                 // Play the one-shot animation
-                _context._PlayFromScratch(oneShotAnimation);
+                _context._PlayAnimationFromScratch(oneShotAnimation);
                 _context._ChangePhase(PhaseType.OneShot);
             }
             else
             {
                 // No one-shot transition, directly switch to the new loop
-                _context._PlayFromScratch(newAnimation);
+                _context._PlayAnimationFromScratch(newAnimation);
             }
         }
     }
@@ -192,7 +194,7 @@ public class AnimationTransitions : MonoBehaviour
                 return; // OneShot animation is still playing
 
             // OneShot animation has finished, transition back to the desired loop
-            _context._PlayFromScratch(_context._desiredLoop);
+            _context._PlayAnimationFromScratch(_context._desiredAnimationName);
             _context._ChangePhase(PhaseType.Loop);
         }
         public void OnPlay(string originalAnimation, string newAnimation)
@@ -202,13 +204,13 @@ public class AnimationTransitions : MonoBehaviour
             if (_context._transitionMap.TryGetValue(transitionHash, out string oneShotAnimation))
             {
                 // Play the one-shot animation
-                _context._PlayFromScratch(oneShotAnimation);
+                _context._PlayAnimationFromScratch(oneShotAnimation);
                 _context._ChangePhase(PhaseType.OneShot);
             }
             else
             {
                 // No one-shot transition, directly switch to the new loop
-                _context._PlayFromScratch(newAnimation);
+                _context._PlayAnimationFromScratch(newAnimation);
             }
         }
     }
