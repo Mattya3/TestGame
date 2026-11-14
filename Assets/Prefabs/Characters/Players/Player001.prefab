@@ -543,6 +543,9 @@ MonoBehaviour:
   - _source: AirDown
     _destination: Idle
     _oneShot: Land
+  - _source: AirDown
+    _destination: Run
+    _oneShot: LandRun
 --- !u!114 &360478932538162378
 MonoBehaviour:
   m_ObjectHideFlags: 0
