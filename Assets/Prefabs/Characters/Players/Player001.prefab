@@ -563,10 +563,18 @@ MonoBehaviour:
   _transformOffsetController: {fileID: 688057045003942054}
   _renderer: {fileID: 6672952484177911739}
   _effectPrefabs:
+  - _key: Goal
+    _effectPrefab: {fileID: 8555158167546874534, guid: 9fc862e1883b10843ae98a9ce8ffb3d9, type: 3}
   - _key: DeadZoneDeath
     _effectPrefab: {fileID: 8555158167546874534, guid: d43b716f007c3bf4682da4f58aa8513b, type: 3}
   - _key: FallDeath
     _effectPrefab: {fileID: 8555158167546874534, guid: d286d829fee8ae34fa587ef8fda79bd4, type: 3}
+  - _key: Footstep
+    _effectPrefab: {fileID: 8555158167546874534, guid: 23da21b5eec7f214899db258ac32ffc6, type: 3}
+  - _key: Jump
+    _effectPrefab: {fileID: 8555158167546874534, guid: 3c5029af823232e45ab47bda39cf75b3, type: 3}
+  - _key: Land
+    _effectPrefab: {fileID: 8555158167546874534, guid: 6853bbbfea11d144cb792b78445ede89, type: 3}
 --- !u!114 &3158664309901774910
 MonoBehaviour:
   m_ObjectHideFlags: 0
