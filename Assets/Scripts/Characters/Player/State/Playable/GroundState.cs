@@ -2,6 +2,8 @@
 
 public class GroundState : PlayableState
 {
+    private static readonly string _EFFECT_KEY_JUMP = "Jump";
+
     public GroundState(IPlayerStateContext context, PlayerSounds sounds)
         : base(context, sounds) { }
 
@@ -22,7 +24,7 @@ public class GroundState : PlayableState
         if (!Context.TryJump())
             return;
 
-        Sounds.OnJump();
+        Context.PlayCharacterEffect(_EFFECT_KEY_JUMP);
         Context.ChangeState(new AirState(Context, Sounds));
     }
 

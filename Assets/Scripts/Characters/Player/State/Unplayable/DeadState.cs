@@ -29,7 +29,6 @@ public class DeadState : UnplayableState
 
         Context.NotifyDied(_deathReason);
         Context.Freeze();
-        Sounds.OnDeath();
     }
 
     public override void Die(DeathReason deathReason)

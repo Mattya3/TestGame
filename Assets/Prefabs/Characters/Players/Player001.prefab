@@ -283,7 +283,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d365baaaa043ded4590b5d630a9b87f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SoundEffectOutput
-  _systemAudioSource: {fileID: 0}
+  _systemAudioSource: {fileID: 7544555956203329080}
   _actionAudioSource: {fileID: 3681305029337347658}
   _feedbackAudioSource: {fileID: 4475678960024065311}
   _environmentAudioSource: {fileID: 3713612493733741953}

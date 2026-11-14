@@ -29,6 +29,10 @@ public class SoundEffectOutput : MonoBehaviour
         {
             audioSource.PlayOneShot(clip, volume);
         }
+        else
+        {
+            Debug.LogWarning($"Cannot play sound effect. AudioSource or AudioClip is null. Bus: {bus}, Clip: {clip}", this);
+        }
     }
 
     private AudioSource GetAudioSource(Bus bus)
