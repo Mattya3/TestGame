@@ -7,7 +7,7 @@ namespace EffectsCompositeComponent
         [SerializeField]
         private AudioClip[] _audioClips;
 
-        [SerializeField]
+        [SerializeField, Range(0.0f, 1.0f)]
         private float _volume = 1.0f;
 
         private AudioSource _audioSource;
