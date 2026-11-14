@@ -13,6 +13,7 @@ public class DeadState : UnplayableState
 
     public override void OnEnabled()
     {
+        Context.SetAnimatorUpdateMode(AnimatorUpdateMode.UnscaledTime);
         Context.NotifyDied(_deathReason);
         Context.Freeze();
         Sounds.OnDeath();

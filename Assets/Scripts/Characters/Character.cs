@@ -88,12 +88,10 @@ public abstract class Character : MonoEventReactingBehaviour
 
     protected override void OnFailure()
     {
-        enabled = false;
     }
 
     protected override void OnSuccess()
     {
-        enabled = false;
     }
 
     public void Freeze()

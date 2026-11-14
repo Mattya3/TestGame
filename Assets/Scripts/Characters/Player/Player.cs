@@ -165,6 +165,11 @@ public partial class Player : Character
         OnGoal?.Invoke(this);
     }
 
+    private void _SetAnimatorUpdateMode(AnimatorUpdateMode updateMode)
+    {
+        _animationTransitions.SetAnimatorUpdateMode(updateMode);
+    }
+
     private IPlayerState _CreateInitialState()
     {
         return _groundDetector.IsGrounded()

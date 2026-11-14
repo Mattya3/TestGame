@@ -49,6 +49,11 @@ public partial class Player
             _player._NotifyGoalReached();
         }
 
+        void IPlayerStateContext.SetAnimatorUpdateMode(AnimatorUpdateMode updateMode)
+        {
+            _player._SetAnimatorUpdateMode(updateMode);
+        }
+
         Vector2 IPlayerStateContext.CurrentInputDirection => _player._inputDirection;
         Vector2 IPlayerStateContext.CurrentLinearVelocity => _player.CurrentLinearVelocity;
 

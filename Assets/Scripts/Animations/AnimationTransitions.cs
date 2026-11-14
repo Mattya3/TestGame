@@ -109,6 +109,12 @@ public class AnimationTransitions : MonoBehaviour
         _currentPhase.OnFacingDirectionChanged(newFacingDirection);
     }
 
+    public void SetAnimatorUpdateMode(AnimatorUpdateMode updateMode)
+    {
+        if (_animator != null)
+            _animator.updateMode = updateMode;
+    }
+
     private void LateUpdate()
     {
         _currentPhase.Update();
