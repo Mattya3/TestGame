@@ -7,10 +7,13 @@ namespace EffectsCompositeComponent
         [SerializeField]
         private AudioClip _audioClip;
 
+        [SerializeField]
+        private SoundEffectOutput.Bus _outputBus = SoundEffectOutput.Bus.Action;
+
         [SerializeField, Range(0.0f, 1.0f)]
         private float _volume = 1.0f;
 
-        private AudioSource _audioSource;
+        private SoundEffectOutput _output;
 
         public bool isEnabled => enabled;
 
@@ -22,14 +25,14 @@ namespace EffectsCompositeComponent
             }
         }
 
-        public void Initialize(AudioSource audioSource)
+        public void Initialize(SoundEffectOutput soundEffectOutput)
         {
-            _audioSource = audioSource;
+            _output = soundEffectOutput;
 
-            if (_audioClip == null || _audioSource == null)
+            if (_audioClip == null || _output == null)
             {
                 Debug.LogWarning(
-                    "Cannot play sound: No audio clip assigned or AudioSource is null."
+                    "Cannot play sound: No audio clip assigned or SoundEffectOutput is null."
                 );
                 return;
             }
@@ -37,10 +40,10 @@ namespace EffectsCompositeComponent
 
         public void Play()
         {
-            if (_audioClip == null || _audioSource == null)
+            if (_audioClip == null || _output == null)
                 return;
 
-            _audioSource.PlayOneShot(_audioClip, _volume);
+            _output.PlayOneShot(_audioClip, _volume, _outputBus);
         }
     }
 }

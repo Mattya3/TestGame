@@ -1965,6 +1965,7 @@ GameObject:
   - component: {fileID: 1700165871}
   - component: {fileID: 1700165870}
   - component: {fileID: 1700165872}
+  - component: {fileID: 1700165875}
   - component: {fileID: 1700165873}
   - component: {fileID: 1700165874}
   m_Layer: 0
@@ -2036,7 +2037,7 @@ MonoBehaviour:
     m_ActionName: 'StageGameplay/Jump[/Keyboard/w,/Keyboard/upArrow]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: KeyboardWASD
-  m_DefaultActionMap: e73209cc-05b9-4b41-90ca-1d163857c18b
+  m_DefaultActionMap: StageGameplay
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!114 &1700165871
@@ -2052,7 +2053,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EffectsCompositTester
   _effectPrefab: {fileID: 8555158167546874534, guid: d43b716f007c3bf4682da4f58aa8513b, type: 3}
-  _audioSource: {fileID: 1700165872}
+  _soundEffectOutput: {fileID: 1700165875}
   _cameraAccess: {fileID: 1700165873}
   _transformOffsetController: {fileID: 1700165874}
   _renderer: {fileID: 1688538435}
@@ -2179,6 +2180,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PositionShaker
   _originTransform: {fileID: 254871655}
   _targetTransform: {fileID: 1688538436}
+--- !u!114 &1700165875
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1700165868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d365baaaa043ded4590b5d630a9b87f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SoundEffectOutput
+  _systemAudioSource: {fileID: 1700165872}
+  _actionAudioSource: {fileID: 1700165872}
+  _feedbackAudioSource: {fileID: 1700165872}
+  _environmentAudioSource: {fileID: 1700165872}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

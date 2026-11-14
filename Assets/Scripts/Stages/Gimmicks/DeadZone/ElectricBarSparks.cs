@@ -19,7 +19,7 @@ public class ElectricBarSparks : MonoBehaviour
     private float _spawnIntervalMax = 0.3f;
 
     [SerializeField]
-    private AudioSource _audioSource;
+    private SoundEffectOutput _soundEffectOutput;
 
     private EffectsCompositePlayer _effectsPlayer;
 
@@ -35,7 +35,7 @@ public class ElectricBarSparks : MonoBehaviour
         }
         _effectsPlayer = new EffectsCompositePlayer(
             _effectPrefab,
-            _audioSource,
+            _soundEffectOutput,
             null,
             null,
             null,

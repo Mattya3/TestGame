@@ -16,7 +16,7 @@ public class LoopingEffectsCompositor : EffectsCompositorBase
     private Coroutine _deactivateCoroutine;
 
     public override void Initialize(
-        AudioSource audioSource,
+        SoundEffectOutput soundEffectOutput,
         CameraMutableAccess cameraAccess,
         TransformOffsetController transformOffsetController,
         Renderer renderer,
@@ -24,7 +24,7 @@ public class LoopingEffectsCompositor : EffectsCompositorBase
     )
     {
         InitializeComponents(
-            audioSource,
+            soundEffectOutput,
             cameraAccess,
             transformOffsetController,
             renderer,

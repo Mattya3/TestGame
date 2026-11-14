@@ -7,7 +7,7 @@ public interface IEffectsCompositor
     public float PlaybackSpeedRate { get; }
 
     public void Initialize(
-        AudioSource audioSource,
+        SoundEffectOutput soundEffectOutput,
         CameraMutableAccess cameraAccess,
         TransformOffsetController transformOffsetController,
         Renderer renderer,

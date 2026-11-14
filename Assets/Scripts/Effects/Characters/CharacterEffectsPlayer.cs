@@ -14,7 +14,7 @@ public class CharacterEffectsPlayer : MonoBehaviour
         private GameObject _effectPrefab;
 
         public EffectsCompositePlayer CreatePlayer(
-            AudioSource audioSource,
+            SoundEffectOutput soundEffectOutput,
             CameraMutableAccess cameraAccess,
             TransformOffsetController transformOffsetController,
             Renderer renderer,
@@ -25,7 +25,7 @@ public class CharacterEffectsPlayer : MonoBehaviour
         {
             return new EffectsCompositePlayer(
                 _effectPrefab,
-                audioSource,
+                soundEffectOutput,
                 cameraAccess,
                 transformOffsetController,
                 renderer,
@@ -39,7 +39,7 @@ public class CharacterEffectsPlayer : MonoBehaviour
     }
 
     [SerializeField]
-    private AudioSource _audioSource;
+    private SoundEffectOutput _soundEffectOutput;
 
     [SerializeField]
     private CameraMutableAccess _cameraAccess;
@@ -66,7 +66,7 @@ public class CharacterEffectsPlayer : MonoBehaviour
             }
 
             var player = keyedPrefab.CreatePlayer(
-                _audioSource,
+                _soundEffectOutput,
                 _cameraAccess,
                 _transformOffsetController,
                 _renderer,

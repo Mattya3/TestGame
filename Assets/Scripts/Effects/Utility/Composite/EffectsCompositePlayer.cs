@@ -7,7 +7,7 @@ public class EffectsCompositePlayer
 
     public EffectsCompositePlayer(
         GameObject effectPrefab,
-        AudioSource audioSource,
+        SoundEffectOutput soundEffectOutput,
         CameraMutableAccess cameraAccess,
         TransformOffsetController transformOffsetController,
         Renderer renderer,
@@ -39,7 +39,7 @@ public class EffectsCompositePlayer
         foreach (var compositor in _compositors)
         {
             compositor.Initialize(
-                audioSource,
+                soundEffectOutput,
                 cameraAccess,
                 transformOffsetController,
                 renderer,

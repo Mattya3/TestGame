@@ -48,9 +48,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9c7369578e59f94bb63f91795fdb30d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OneShotEffectsCompositor
+  _playInUnscaledTime: 0
+  _playbackSpeedRate: 1
   _duration: 1
   _delayTime: 0
-  _playInUnscaledTime: 0
 --- !u!2083052967 &-6969299956165519387
 VisualEffect:
   m_ObjectHideFlags: 0
@@ -175,4 +176,5 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 41ff27f310b5a93429fd909544809cbf, type: 3}
   - {fileID: 8300000, guid: 6e24965cbb874da43a7b3b2ae2dfcc7c, type: 3}
   - {fileID: 8300000, guid: fc098829e4e3e874697594c0d2db438c, type: 3}
+  _outputBus: 3
   _volume: 0.5

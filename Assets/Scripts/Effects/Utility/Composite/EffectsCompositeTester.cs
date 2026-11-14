@@ -9,7 +9,7 @@ public class EffectsCompositeTester : MonoBehaviour
     private GameObject _effectPrefab;
 
     [SerializeField]
-    private AudioSource _audioSource;
+    private SoundEffectOutput _soundEffectOutput;
 
     [SerializeField]
     private CameraMutableAccess _cameraAccess;
@@ -26,7 +26,7 @@ public class EffectsCompositeTester : MonoBehaviour
     {
         _player = new EffectsCompositePlayer(
             _effectPrefab,
-            _audioSource,
+            _soundEffectOutput,
             _cameraAccess,
             _transformOffsetController,
             _renderer,

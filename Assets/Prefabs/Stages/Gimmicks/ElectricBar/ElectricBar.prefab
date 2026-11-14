@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2617650973421696882}
   - component: {fileID: 1932928368249474141}
+  - component: {fileID: 7089031107785137050}
   m_Layer: 0
   m_Name: ElectricBarAudio
   m_TagString: Untagged
@@ -129,6 +130,22 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &7089031107785137050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1409964428420210221}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d365baaaa043ded4590b5d630a9b87f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SoundEffectOutput
+  _systemAudioSource: {fileID: 0}
+  _actionAudioSource: {fileID: 0}
+  _feedbackAudioSource: {fileID: 0}
+  _environmentAudioSource: {fileID: 1932928368249474141}
 --- !u!1 &4711187927529233386
 GameObject:
   m_ObjectHideFlags: 0
@@ -178,7 +195,7 @@ MonoBehaviour:
   _spawnPositionMax: 2
   _spawnIntervalMin: 2.5
   _spawnIntervalMax: 5
-  _audioSource: {fileID: 1932928368249474141}
+  _soundEffectOutput: {fileID: 7089031107785137050}
 --- !u!1 &5778943136724456322
 GameObject:
   m_ObjectHideFlags: 0

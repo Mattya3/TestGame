@@ -149,4 +149,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EffectsCompositeComponent.SoundEffect
   _audioClip: {fileID: 8300000, guid: e435a9441bd3dc7499cf53337bc37c57, type: 3}
+  _outputBus: 0
   _volume: 1

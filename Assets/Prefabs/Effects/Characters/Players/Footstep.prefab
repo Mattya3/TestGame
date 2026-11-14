@@ -150,4 +150,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EffectsCompositeComponent.RandomSoundEffect
   _audioClips:
   - {fileID: 8300000, guid: 30c122f7e8df5624c8b30a8ab7ab033c, type: 3}
+  _outputBus: 3
   _volume: 0.2

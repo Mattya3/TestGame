@@ -63,7 +63,7 @@ public abstract class EffectsCompositorBase : MonoBehaviour, IEffectsCompositor
     }
 
     protected void InitializeComponents(
-        AudioSource audioSource,
+        SoundEffectOutput soundEffectOutput,
         CameraMutableAccess cameraAccess,
         TransformOffsetController transformOffsetController,
         Renderer renderer,
@@ -75,7 +75,7 @@ public abstract class EffectsCompositorBase : MonoBehaviour, IEffectsCompositor
 
         foreach (var soundEffect in _soundEffects)
         {
-            soundEffect.Initialize(audioSource);
+            soundEffect.Initialize(soundEffectOutput);
         }
         foreach (var lightSourceEffect in _lightSourceEffects)
         {
@@ -163,7 +163,7 @@ public abstract class EffectsCompositorBase : MonoBehaviour, IEffectsCompositor
         _parentCompositor != null ? _parentCompositor.PlaybackSpeedRate : _playbackSpeedRate;
 
     public abstract void Initialize(
-        AudioSource audioSource,
+        SoundEffectOutput soundEffectOutput,
         CameraMutableAccess cameraAccess,
         TransformOffsetController transformOffsetController,
         Renderer renderer,
