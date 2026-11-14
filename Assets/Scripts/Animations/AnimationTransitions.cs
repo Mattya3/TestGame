@@ -140,7 +140,9 @@ public class AnimationTransitions : MonoBehaviour
             return;
 
         int hash = _AnimatorStateToHash(animationName, _currentFacingDirection);
-        _animator.Play(hash, 0, _animator.GetCurrentAnimatorStateInfo(0).normalizedTime);
+        var normalizedTime = _animator.GetCurrentAnimatorStateInfo(0).normalizedTime;
+        var timeFraction = Mathf.Repeat(normalizedTime, 1.0f);
+        _animator.Play(hash, 0, timeFraction);
     }
 
     // ==========
