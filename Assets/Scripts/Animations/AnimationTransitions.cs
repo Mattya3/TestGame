@@ -6,7 +6,9 @@ public class AnimationTransitions : MonoBehaviour
 {
     public static string IGNORED_ANIMATION_NAME = "";
 
-    private static int _AnimatorStateToHash(string stateName) => Animator.StringToHash($"Base Layer.{stateName}_R");
+    private static string _FacingDirectionToString(Character.FacingDirectionType facingDirection) => facingDirection == Character.FacingDirectionType.Left ? "L" : "R";
+
+    private static int _AnimatorStateToHash(string stateName, Character.FacingDirectionType facingDirection) => Animator.StringToHash($"Base Layer.{stateName}_{_FacingDirectionToString(facingDirection)}");
 
     private static int _TransitionToHash(string source, string destination) => Animator.StringToHash($"{source}->{destination}");
 
@@ -39,6 +41,7 @@ public class AnimationTransitions : MonoBehaviour
     {
         void Update();
         void OnPlay(string originalAnimation, string newAnimation);
+        void OnFacingDirectionChanged(Character.FacingDirectionType newFacingDirection);
     }
 
     private enum PhaseType
@@ -51,6 +54,7 @@ public class AnimationTransitions : MonoBehaviour
     private string _desiredAnimationName = IGNORED_ANIMATION_NAME;
     private Phase _currentPhase;
     private List<Phase> _phaseInstances = new List<Phase>();
+    private Character.FacingDirectionType _currentFacingDirection = Character.FacingDirectionType.Right;
     private Dictionary<int, string> _transitionMap = new Dictionary<int, string>();
 
     private void Awake()
@@ -96,6 +100,14 @@ public class AnimationTransitions : MonoBehaviour
         _currentPhase.OnPlay(originalAnimation, animationName);
     }
 
+    public void SetFacingDirection(Character.FacingDirectionType newFacingDirection)
+    {
+        if (_currentFacingDirection == newFacingDirection)
+            return; // No change in facing direction
+        _currentFacingDirection = newFacingDirection;
+        _currentPhase.OnFacingDirectionChanged(newFacingDirection);
+    }
+
     private void LateUpdate()
     {
         _currentPhase.Update();
@@ -111,7 +123,7 @@ public class AnimationTransitions : MonoBehaviour
         if (_animator == null)
             return;
 
-        int hash = _AnimatorStateToHash(animationName);
+        int hash = _AnimatorStateToHash(animationName, _currentFacingDirection);
         _animator.Play(hash, 0, 0.0f);
     }
 
@@ -120,7 +132,7 @@ public class AnimationTransitions : MonoBehaviour
         if (_animator == null)
             return;
 
-        int hash = _AnimatorStateToHash(animationName);
+        int hash = _AnimatorStateToHash(animationName, _currentFacingDirection);
         _animator.Play(hash, 0, _animator.GetCurrentAnimatorStateInfo(0).normalizedTime);
     }
 
@@ -142,6 +154,11 @@ public class AnimationTransitions : MonoBehaviour
         {
             _context._PlayAnimationFromScratch(newAnimation);
             _context._ChangePhase(PhaseType.Loop);
+        }
+
+        public void OnFacingDirectionChanged(Character.FacingDirectionType newFacingDirection)
+        {
+            // No specific logic for facing direction change in initial phase
         }
     }
 
@@ -175,6 +192,11 @@ public class AnimationTransitions : MonoBehaviour
                 _context._PlayAnimationFromScratch(newAnimation);
             }
         }
+        public void OnFacingDirectionChanged(Character.FacingDirectionType newFacingDirection)
+        {
+            // When facing direction changes, re-play the current animation to reflect the new direction
+            _context._PlayAnimationInherit(_context._desiredAnimationName);
+        }
     }
 
     // ==========
@@ -183,9 +205,12 @@ public class AnimationTransitions : MonoBehaviour
     private class OneShotPhase : Phase
     {
         private readonly AnimationTransitions _context;
+        private string _currentOneShotAnimation;
+
         public OneShotPhase(AnimationTransitions context)
         {
             _context = context;
+            _currentOneShotAnimation = "";
         }
         public void Update()
         {
@@ -194,6 +219,7 @@ public class AnimationTransitions : MonoBehaviour
                 return; // OneShot animation is still playing
 
             // OneShot animation has finished, transition back to the desired loop
+            _currentOneShotAnimation = "";
             _context._PlayAnimationFromScratch(_context._desiredAnimationName);
             _context._ChangePhase(PhaseType.Loop);
         }
@@ -204,6 +230,7 @@ public class AnimationTransitions : MonoBehaviour
             if (_context._transitionMap.TryGetValue(transitionHash, out string oneShotAnimation))
             {
                 // Play the one-shot animation
+                _currentOneShotAnimation = oneShotAnimation;
                 _context._PlayAnimationFromScratch(oneShotAnimation);
                 _context._ChangePhase(PhaseType.OneShot);
             }
@@ -212,6 +239,12 @@ public class AnimationTransitions : MonoBehaviour
                 // No one-shot transition, directly switch to the new loop
                 _context._PlayAnimationFromScratch(newAnimation);
             }
+        }
+
+        public void OnFacingDirectionChanged(Character.FacingDirectionType newFacingDirection)
+        {
+            // When facing direction changes, re-play the current one-shot animation to reflect the new direction
+            _context._PlayAnimationInherit(_currentOneShotAnimation);
         }
     }
 }

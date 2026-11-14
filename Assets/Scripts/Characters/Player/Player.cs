@@ -69,6 +69,7 @@ public partial class Player : Character
 
         _currentState.OnMove(_inputDirection);
 
+        _animationTransitions.SetFacingDirection(FacingDirection);
         _animationTransitions.Play(_currentState.GetAnimationName());
     }
 
