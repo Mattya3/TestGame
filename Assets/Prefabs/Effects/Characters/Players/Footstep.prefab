@@ -50,7 +50,7 @@ MonoBehaviour:
   _playInUnscaledTime: 0
   _playbackSpeedRate: 1
   _duration: 5
-  _delayTime: 0
+  _delayTime: 0.02
 --- !u!2083052967 &2678149706083594254
 VisualEffect:
   m_ObjectHideFlags: 0
@@ -151,4 +151,4 @@ MonoBehaviour:
   _audioClips:
   - {fileID: 8300000, guid: 30c122f7e8df5624c8b30a8ab7ab033c, type: 3}
   _outputBus: 3
-  _volume: 0.2
+  _volume: 0.6
