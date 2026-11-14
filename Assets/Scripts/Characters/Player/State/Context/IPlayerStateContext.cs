@@ -17,5 +17,11 @@ public interface IPlayerStateContext
     Vector2 CurrentLinearVelocity { get; }
 
     Character.FacingDirectionType FacingDirection { get; set; }
-    void SetFacingDirectionByVector(Vector2 direction);
+    void SetFacingDirectionByVector(Vector2 direction)
+    {
+        if (direction.x > 0)
+            FacingDirection = Character.FacingDirectionType.Right;
+        else if (direction.x < 0)
+            FacingDirection = Character.FacingDirectionType.Left;
+    }
 }

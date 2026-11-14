@@ -62,12 +62,5 @@ public partial class Player
             get => _player.FacingDirection;
             set => _player.FacingDirection = value;
         }
-        void IPlayerStateContext.SetFacingDirectionByVector(Vector2 direction)
-        {
-            if (direction.x > 0)
-                _player.FacingDirection = FacingDirectionType.Right;
-            else if (direction.x < 0)
-                _player.FacingDirection = FacingDirectionType.Left;
-        }
     }
 }
