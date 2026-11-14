@@ -7,6 +7,12 @@ using static Constants;
 [RequireComponent(typeof(CharacterEffectsPlayer))]
 public abstract class Character : MonoEventReactingBehaviour
 {
+    public enum FacingDirectionType
+    {
+        Left = -1,
+        Right = 1
+    }
+
     [SerializeField]
     private PlayerActionConfiguration _ActionConfiguration;
 
@@ -16,6 +22,7 @@ public abstract class Character : MonoEventReactingBehaviour
     private Rigidbody2D _rigidBody;
     private Collider2D _collider;
     private CharacterEffectsPlayer _effectsPlayer;
+    private FacingDirectionType _facingDirection = FacingDirectionType.Right;
 
     private bool _isInitialized = false;
 
@@ -48,6 +55,15 @@ public abstract class Character : MonoEventReactingBehaviour
     }
 
     protected abstract void _Move();
+
+    protected FacingDirectionType FacingDirection
+    {
+        get => _facingDirection;
+        set
+        {
+            _facingDirection = value;
+        }
+    }
 
     protected void _ApplyMovement(Vector2 direction)
     {

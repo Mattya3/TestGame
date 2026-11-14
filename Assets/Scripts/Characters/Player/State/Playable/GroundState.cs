@@ -14,6 +14,7 @@ public class GroundState : PlayableState
         }
 
         Context.MoveByInput(inputDirection);
+        Context.SetFacingDirectionByVector(inputDirection);
     }
 
     public override void OnJump()
