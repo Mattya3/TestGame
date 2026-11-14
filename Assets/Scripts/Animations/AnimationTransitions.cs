@@ -52,6 +52,7 @@ public class AnimationTransitions : MonoBehaviour
     }
 
     private string _desiredAnimationName = IGNORED_ANIMATION_NAME;
+    private string _currentOneShotAnimation = IGNORED_ANIMATION_NAME;
     private Phase _currentPhase;
     private List<Phase> _phaseInstances = new List<Phase>();
     private Character.FacingDirectionType _currentFacingDirection = Character.FacingDirectionType.Right;
@@ -185,6 +186,7 @@ public class AnimationTransitions : MonoBehaviour
                 // Play the one-shot animation
                 _context._PlayAnimationFromScratch(oneShotAnimation);
                 _context._ChangePhase(PhaseType.OneShot);
+                _context._currentOneShotAnimation = oneShotAnimation;
             }
             else
             {
@@ -205,12 +207,10 @@ public class AnimationTransitions : MonoBehaviour
     private class OneShotPhase : Phase
     {
         private readonly AnimationTransitions _context;
-        private string _currentOneShotAnimation;
 
         public OneShotPhase(AnimationTransitions context)
         {
             _context = context;
-            _currentOneShotAnimation = "";
         }
         public void Update()
         {
@@ -219,7 +219,7 @@ public class AnimationTransitions : MonoBehaviour
                 return; // OneShot animation is still playing
 
             // OneShot animation has finished, transition back to the desired loop
-            _currentOneShotAnimation = "";
+            _context._currentOneShotAnimation = IGNORED_ANIMATION_NAME;
             _context._PlayAnimationFromScratch(_context._desiredAnimationName);
             _context._ChangePhase(PhaseType.Loop);
         }
@@ -230,21 +230,21 @@ public class AnimationTransitions : MonoBehaviour
             if (_context._transitionMap.TryGetValue(transitionHash, out string oneShotAnimation))
             {
                 // Play the one-shot animation
-                _currentOneShotAnimation = oneShotAnimation;
+                _context._currentOneShotAnimation = oneShotAnimation;
                 _context._PlayAnimationFromScratch(oneShotAnimation);
-                _context._ChangePhase(PhaseType.OneShot);
             }
             else
             {
                 // No one-shot transition, directly switch to the new loop
                 _context._PlayAnimationFromScratch(newAnimation);
+                _context._ChangePhase(PhaseType.Loop);
             }
         }
 
         public void OnFacingDirectionChanged(Character.FacingDirectionType newFacingDirection)
         {
             // When facing direction changes, re-play the current one-shot animation to reflect the new direction
-            _context._PlayAnimationInherit(_currentOneShotAnimation);
+            _context._PlayAnimationInherit(_context._currentOneShotAnimation);
         }
     }
 }
