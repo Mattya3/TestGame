@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using static Constants;
 
 public class FrozenState : UnplayableState
@@ -8,6 +8,7 @@ public class FrozenState : UnplayableState
 
     public override void OnEnabled()
     {
+        Context.SetAnimatorSpeed(0f);
         Context.Freeze();
     }
 

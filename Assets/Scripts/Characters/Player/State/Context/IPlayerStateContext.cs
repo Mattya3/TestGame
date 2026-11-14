@@ -11,6 +11,7 @@ public interface IPlayerStateContext
     void Freeze();
     void NotifyDied(DeathReason deathReason);
     void NotifyGoalReached();
+    void SetAnimatorSpeed(float speed);
     void SetAnimatorUpdateMode(AnimatorUpdateMode updateMode);
 
     Vector2 CurrentInputDirection { get; }

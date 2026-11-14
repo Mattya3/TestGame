@@ -49,6 +49,11 @@ public partial class Player
             _player._NotifyGoalReached();
         }
 
+        void IPlayerStateContext.SetAnimatorSpeed(float speed)
+        {
+            _player._SetAnimatorSpeed(speed);
+        }
+
         void IPlayerStateContext.SetAnimatorUpdateMode(AnimatorUpdateMode updateMode)
         {
             _player._SetAnimatorUpdateMode(updateMode);

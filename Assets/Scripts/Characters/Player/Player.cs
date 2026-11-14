@@ -165,6 +165,11 @@ public partial class Player : Character
         OnGoal?.Invoke(this);
     }
 
+    private void _SetAnimatorSpeed(float speed)
+    {
+        _animationTransitions.SetAnimatorSpeed(speed);
+    }
+
     private void _SetAnimatorUpdateMode(AnimatorUpdateMode updateMode)
     {
         _animationTransitions.SetAnimatorUpdateMode(updateMode);

@@ -115,6 +115,13 @@ public class AnimationTransitions : MonoBehaviour
         _currentPhase.OnFacingDirectionChanged(newFacingDirection);
     }
 
+    public void SetAnimatorSpeed(float speed)
+    {
+        if (_animator == null)
+            return;
+        _animator.speed = speed;
+    }
+
     public void SetAnimatorUpdateMode(AnimatorUpdateMode updateMode)
     {
         if (_animator == null)
