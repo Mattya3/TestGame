@@ -8,8 +8,8 @@ public class DeadState : UnplayableState
 
     private readonly DeathReason _deathReason;
 
-    public DeadState(IPlayerStateContext context, PlayerSounds sounds, DeathReason deathReason)
-        : base(context, sounds)
+    public DeadState(IPlayerStateContext context, DeathReason deathReason)
+        : base(context)
     {
         _deathReason = deathReason;
     }

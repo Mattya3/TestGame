@@ -11,9 +11,6 @@ public partial class Player : Character
 
     private IPlayerState _currentState;
 
-    [SerializeField]
-    private PlayerSounds _sounds;
-
     private PlayerExternalEffectApplier _externalEffectApplier;
     private bool _isAlive = true;
     private Vector2 _inputDirection;
@@ -29,13 +26,6 @@ public partial class Player : Character
     protected override void Awake()
     {
         base.Awake();
-
-        if (_sounds == null || !_sounds.IsValid())
-        {
-            Debug.LogError("PlayerSounds is not properly set up.");
-            enabled = false;
-            return;
-        }
 
         _stateContext = new StateContext(this);
         _externalEffectApplier = new PlayerExternalEffectApplier();
@@ -117,7 +107,7 @@ public partial class Player : Character
         if (_currentState is UnplayableState)
             return;
 
-        _ChangeState(new FrozenState(_stateContext, _sounds));
+        _ChangeState(new FrozenState(_stateContext));
     }
 
     private void _ChangeState(IPlayerState nextState)
@@ -182,7 +172,7 @@ public partial class Player : Character
     private IPlayerState _CreateInitialState()
     {
         return _groundDetector.IsGrounded()
-            ? new GroundState(_stateContext, _sounds)
-            : new AirState(_stateContext, _sounds);
+            ? new GroundState(_stateContext)
+            : new AirState(_stateContext);
     }
 }

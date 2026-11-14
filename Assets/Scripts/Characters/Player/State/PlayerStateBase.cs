@@ -3,14 +3,12 @@ using static Constants;
 
 public abstract class PlayerStateBase : IPlayerState
 {
-    protected PlayerStateBase(IPlayerStateContext context, PlayerSounds sounds)
+    protected PlayerStateBase(IPlayerStateContext context)
     {
         Context = context;
-        Sounds = sounds;
     }
 
     protected IPlayerStateContext Context { get; }
-    protected PlayerSounds Sounds { get; }
 
     public virtual void OnMove(Vector2 inputDirection) { }
 

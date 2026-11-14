@@ -3,8 +3,8 @@ using static Constants;
 
 public class FrozenState : UnplayableState
 {
-    public FrozenState(IPlayerStateContext context, PlayerSounds sounds)
-        : base(context, sounds) { }
+    public FrozenState(IPlayerStateContext context)
+        : base(context) { }
 
     public override void OnEnabled()
     {

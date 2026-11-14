@@ -5,8 +5,8 @@ public class GoalState : UnplayableState
 {
     private static readonly string _EFFECT_KEY_GOAL = "Goal";
 
-    public GoalState(IPlayerStateContext context, PlayerSounds sounds)
-        : base(context, sounds) { }
+    public GoalState(IPlayerStateContext context)
+        : base(context) { }
 
     public override void OnEnabled()
     {

@@ -418,27 +418,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Player
   _ActionConfiguration: {fileID: 11400000, guid: 571cce6c34da34715818d94fa829cd87, type: 2}
   _groundDetector: {fileID: 5123218380326906968}
-  _sounds:
-    _footstepSound:
-      _clip: {fileID: 8300000, guid: 30c122f7e8df5624c8b30a8ab7ab033c, type: 3}
-      _source: {fileID: 3713612493733741953}
-      _volume: 0.2
-    _jumpSound:
-      _clip: {fileID: 8300000, guid: 11e1b3d106b33ac46a4532336ba18c9f, type: 3}
-      _source: {fileID: 3681305029337347658}
-      _volume: 0.8
-    _landSound:
-      _clip: {fileID: 8300000, guid: 33de3926a926b3c469b0546332cb200b, type: 3}
-      _source: {fileID: 3681305029337347658}
-      _volume: 0.4
-    _deathSound:
-      _clip: {fileID: 8300000, guid: a71fef06768b07244b5fc5e7c4e78158, type: 3}
-      _source: {fileID: 4475678960024065311}
-      _volume: 1
-    _goalSound:
-      _clip: {fileID: 8300000, guid: e435a9441bd3dc7499cf53337bc37c57, type: 3}
-      _source: {fileID: 4475678960024065311}
-      _volume: 1
 --- !u!114 &1529969032720809445
 MonoBehaviour:
   m_ObjectHideFlags: 0
