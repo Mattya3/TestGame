@@ -22,20 +22,88 @@ public class PlayersManager : MonoBehaviour, IPlayersCollection
     private List<bool> _aliveFlagsList = new List<bool>();
     private ReadOnlyCollection<bool> _aliveFlagsReadOnly;
 
+    private IPlayerPrefabsSpecifier _playerPrefabsSpecifier;
+    private IPlayerSpawnPointsSpecifier _playerSpawnPointsSpecifier;
+
     public bool AreAllPlayersAlive { get; private set; } = true;
 
     private void Awake()
     {
-        // Findによってプレイヤを取得。プレイヤを動的に生成するようになったら、Findはやめる
-        foreach (var player in FindObjectsByType<Player>(FindObjectsSortMode.InstanceID))
-            _RegisterPlayer(player);
-
         _gameManagerAccess = GetComponent<GameManagerMutableAccess>();
+        _playerPrefabsSpecifier = GetComponent<IPlayerPrefabsSpecifier>();
+        _playerSpawnPointsSpecifier = GetComponent<IPlayerSpawnPointsSpecifier>();
 
         _positionsReadOnly = new ReadOnlyCollection<Vector3>(_positionsList);
         _boundsReadOnly = new ReadOnlyCollection<Bounds>(_boundsList);
         _inputDirectionsReadOnly = new ReadOnlyCollection<Vector2>(_inputDirectionsList);
         _aliveFlagsReadOnly = new ReadOnlyCollection<bool>(_aliveFlagsList);
+
+        if (_playerPrefabsSpecifier == null)
+        {
+            Debug.LogError("IPlayerPrefabsSpecifierが見つかりません。");
+            enabled = false;
+            return;
+        }
+        if (_playerSpawnPointsSpecifier == null)
+        {
+            Debug.LogError("IPlayerSpawnPointsSpecifierが見つかりません。");
+            enabled = false;
+            return;
+        }
+
+        var playerPrefabs = _playerPrefabsSpecifier.GetPlayerPrefabs();
+        if (playerPrefabs.Count == 0)
+        {
+            Debug.LogError("プレイヤのPrefabが指定されていません。");
+            enabled = false;
+            return;
+        }
+        var spawnPoints = _playerSpawnPointsSpecifier.GetPlayerSpawnPoints();
+        if (spawnPoints.Count < playerPrefabs.Count)
+        {
+            Debug.LogError("プレイヤのSpawnPointが足りません。");
+            enabled = false;
+            return;
+        }
+        if (PlayerInputSetup.AreInputDevicesAvailable(playerPrefabs.Count) == false)
+        {
+            Debug.LogError("プレイヤの入力デバイスが足りません。");
+            enabled = false;
+            // TODO: シーンを終了する処理を追加
+            return;
+        }
+        for (int i = 0; i < playerPrefabs.Count; i++)
+        {
+            var prefab = playerPrefabs[i];
+            if (prefab == null)
+            {
+                Debug.LogError($"プレイヤのPrefabがnullです。インデックス: {i}");
+                enabled = false;
+                return;
+            }
+            if (spawnPoints[i] == null)
+            {
+                Debug.LogError($"プレイヤのSpawnPointがnullです。インデックス: {i}");
+                enabled = false;
+                return;
+            }
+            var playerInstance = Instantiate(
+                prefab,
+                spawnPoints[i].position,
+                spawnPoints[i].rotation
+            );
+            var playerComponent = playerInstance.GetComponent<Player>();
+            if (playerComponent == null)
+            {
+                Debug.LogError(
+                    $"プレイヤのPrefabにPlayerコンポーネントがアタッチされていません。インデックス: {i}"
+                );
+                enabled = false;
+                return;
+            }
+            playerComponent.SetupPlayerInput(i);
+            _RegisterPlayer(playerComponent);
+        }
 
         AccessComponent<IPlayersCollection>.RegisterReference(this);
     }
