@@ -12,7 +12,7 @@ public class AudioLooper : MonoBehaviour
     {
         _audioSource = GetComponent<AudioSource>();
 
-        if (_audioLoop == null )
+        if (_audioLoop == null)
         {
             Debug.LogError("AudioLoop is not assigned.");
             enabled = false;
@@ -34,8 +34,12 @@ public class AudioLooper : MonoBehaviour
             return;
 
         // 再生中に周波数が変わることがある（らしい）ので、Updateで毎フレーム計算
-        var correctedLoopBeginSample = _audioLoop.CorrectedBeginSample((uint)_audioSource.clip.frequency);
-        var correctedLoopEndSample = _audioLoop.CorrectedEndSample((uint)_audioSource.clip.frequency);
+        var correctedLoopBeginSample = _audioLoop.CorrectedBeginSample(
+            (uint)_audioSource.clip.frequency
+        );
+        var correctedLoopEndSample = _audioLoop.CorrectedEndSample(
+            (uint)_audioSource.clip.frequency
+        );
         var correctedLoopDurationSamples = correctedLoopEndSample - correctedLoopBeginSample;
 
         if (correctedLoopDurationSamples == 0)

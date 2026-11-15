@@ -1,5 +1,4 @@
-﻿
-public interface IAccessTarget
+﻿public interface IAccessTarget
 {
     void EnsureInitialized();
 }

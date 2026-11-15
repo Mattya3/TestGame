@@ -20,9 +20,12 @@ public class CameraTracker : MonoBehaviour
     private void LateUpdate()
     {
         var newPosition = _cameraAccess.UnoffsetPosition + _offset;
-        if (!_trackAxes.x) newPosition.x = transform.position.x;
-        if (!_trackAxes.y) newPosition.y = transform.position.y;
-        if (!_trackAxes.z) newPosition.z = transform.position.z;
+        if (!_trackAxes.x)
+            newPosition.x = transform.position.x;
+        if (!_trackAxes.y)
+            newPosition.y = transform.position.y;
+        if (!_trackAxes.z)
+            newPosition.z = transform.position.z;
         transform.position = newPosition;
     }
 }

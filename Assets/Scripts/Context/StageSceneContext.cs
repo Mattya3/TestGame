@@ -23,10 +23,7 @@ public class StageSceneContext : MonoEventReactingBehaviour, IStageSceneContext
         AccessComponent<IStageSceneContext>.RegisterReference(this);
     }
 
-    public void EnsureInitialized()
-    {
-
-    }
+    public void EnsureInitialized() { }
 
     private void OnDestroy()
     {
