@@ -16,4 +16,7 @@ public interface IEffectsCompositor
 
     public void PlayEffects();
     public void StopEffects();
+
+    public void SetVFXFloatProperty(int propertyId, float value);
+    public void SetVFXVector2Property(int propertyId, Vector2 value);
 }

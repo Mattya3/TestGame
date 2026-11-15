@@ -4,6 +4,13 @@ using System.Collections.Generic;
 
 public class CharacterEffectsPlayer : MonoBehaviour
 {
+    private static readonly int FACING_DIRECTION_PROPERTY_ID = Shader.PropertyToID("_FacingDirection");
+
+    private static Vector2 _FacingDirectionToVector(Character.FacingDirectionType facingDirection)
+    {
+        return facingDirection == Character.FacingDirectionType.Right ? Vector2.right : Vector2.left;
+    }
+
     [Serializable]
     private struct KeyedEffectPrefab
     {
@@ -84,11 +91,16 @@ public class CharacterEffectsPlayer : MonoBehaviour
             player.Cleanup();
     }
 
-    public void Play(string key)
+    public void Play(string key, Character.FacingDirectionType facingDirection)
     {
         if (_effectPlayers.TryGetValue(key, out var player))
+        {
+            player.SetVFXVector2Property(FACING_DIRECTION_PROPERTY_ID, _FacingDirectionToVector(facingDirection));
             player.PlayEffects();
+        }
         else
+        {
             Debug.LogError($"Effect with key '{key}' not found.");
+        }
     }
 }

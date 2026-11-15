@@ -171,4 +171,24 @@ public abstract class EffectsCompositorBase : MonoBehaviour, IEffectsCompositor
     );
     public abstract void PlayEffects();
     public abstract void StopEffects();
+
+    public virtual void SetVFXFloatProperty(int propertyId, float value) 
+    {
+        if (_visualEffect == null)
+            return;
+        if (!_visualEffect.HasFloat(propertyId))
+            return;
+
+        _visualEffect.SetFloat(propertyId, value);
+    }
+
+    public virtual void SetVFXVector2Property(int propertyId, Vector2 value) 
+    {
+        if (_visualEffect == null)
+            return;
+        if (!_visualEffect.HasVector2(propertyId))
+            return;
+
+        _visualEffect.SetVector2(propertyId, value);
+    }
 }

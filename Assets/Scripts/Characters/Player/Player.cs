@@ -166,7 +166,7 @@ public partial class Player : Character
 
     private void _PlayCharacterEffect(string effectKey)
     {
-        EffectsPlayer.Play(effectKey);
+        EffectsPlayer.Play(effectKey, FacingDirection);
     }
 
     private IPlayerState _CreateInitialState()

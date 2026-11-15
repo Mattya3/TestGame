@@ -83,4 +83,20 @@ public class EffectsCompositePlayer
             _instance = null;
         }
     }
+
+    public void SetVFXFloatProperty(int propertyId, float value)
+    {
+        if (_compositors == null)
+            return;
+        foreach (var compositor in _compositors)
+            compositor.SetVFXFloatProperty(propertyId, value);
+    }
+
+    public void SetVFXVector2Property(int propertyId, Vector2 value)
+    {
+        if (_compositors == null)
+            return;
+        foreach (var compositor in _compositors)
+            compositor.SetVFXVector2Property(propertyId, value);
+    }
 }
