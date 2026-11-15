@@ -41,9 +41,17 @@ public class OneShotEffectsCompositor : EffectsCompositorBase
 
         _StopDeactivateCoroutine();
 
-        Coroutine playCoroutine = null;
-        playCoroutine = StartCoroutine(_CoPlayEffects(() => _playCoroutines.Remove(playCoroutine)));
-        _playCoroutines.Add(playCoroutine);
+        if (_delayTime <= 0f)
+        {
+            PlayComponents();
+        }
+        else
+        {
+            Coroutine playCoroutine = null;
+            playCoroutine = StartCoroutine(_CoPlayEffects(() => _playCoroutines.Remove(playCoroutine)));
+            _playCoroutines.Add(playCoroutine);
+        }
+
         if (IsRoot)
             _deactivateCoroutine = StartCoroutine(_CoDeactivateAfterDuration());
     }
