@@ -67,7 +67,7 @@ public class ElectricBarSparks : MonoBehaviour
 
     private void _ResetSpawnTimer()
     {
-        _spawnTimer = Random.Range(_spawnIntervalMin, _spawnIntervalMax) / _LengthScale;
+        _spawnTimer = Random.Range(_spawnIntervalMin, _spawnIntervalMax) / Mathf.Abs(_LengthScale);
     }
 
     private void _SpawnSpark()
