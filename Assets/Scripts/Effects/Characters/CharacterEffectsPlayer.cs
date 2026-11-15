@@ -43,6 +43,8 @@ public class CharacterEffectsPlayer : MonoBehaviour
         }
 
         public string Key => _key;
+
+        public bool HasValidPrefab => _effectPrefab != null;
     }
 
     [SerializeField]
@@ -66,9 +68,19 @@ public class CharacterEffectsPlayer : MonoBehaviour
     {
         foreach (var keyedPrefab in _effectPrefabs)
         {
+            if (keyedPrefab.Key == null || keyedPrefab.Key.Trim() == "")
+            {
+                Debug.LogError("Effect key cannot be null or empty.");
+                continue;
+            }
             if (_effectPlayers.ContainsKey(keyedPrefab.Key))
             {
                 Debug.LogError($"Duplicate effect key found: {keyedPrefab.Key}. Each effect must have a unique key.");
+                continue;
+            }
+            if (!keyedPrefab.HasValidPrefab)
+            {
+                Debug.LogError($"Effect prefab for key '{keyedPrefab.Key}' is not set.");
                 continue;
             }
 
