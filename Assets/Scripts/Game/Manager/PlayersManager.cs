@@ -116,7 +116,10 @@ public class PlayersManager : MonoBehaviour, IPlayersCollection
             return;
 
         foreach (var player in _players)
-            player.EnsureInitialized();
+        {
+            if (player.isActiveAndEnabled)
+                player.EnsureInitialized();
+        }
 
         _isInitialized = true;
     }
