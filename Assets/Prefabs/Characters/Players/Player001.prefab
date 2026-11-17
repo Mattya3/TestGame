@@ -556,7 +556,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d67ca81f9e0c05e40a286db330f7f8a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CharacterEffectsPlayer
-  _sourceTransform: {fileID: 8368867623444757617}
+  _sourceTransform: {fileID: 3439068681331588861}
   _soundEffectOutput: {fileID: 6811618089356569331}
   _cameraAccess: {fileID: 6668691793731276845}
   _transformOffsetController: {fileID: 688057045003942054}
