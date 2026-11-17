@@ -10,6 +10,10 @@ public abstract class EffectsCompositorBase : MonoBehaviour, IEffectsCompositor
     private bool _playInUnscaledTime = false;
 
     [SerializeField]
+    [ShowIf(nameof(IsRoot))]
+    private bool _ignoreParentScale = true;
+
+    [SerializeField]
     [FormerlySerializedAs("_playSpeedRate")]
     [ShowIf(nameof(IsRoot))]
     [Min(1e-3f)]
@@ -70,6 +74,8 @@ public abstract class EffectsCompositorBase : MonoBehaviour, IEffectsCompositor
         Transform instantiationParent
     )
     {
+        _UpdateScale();
+
         if (_visualEffect != null)
             _visualEffect.pause = true;
 
@@ -109,6 +115,8 @@ public abstract class EffectsCompositorBase : MonoBehaviour, IEffectsCompositor
 
     protected void PlayComponents()
     {
+        _UpdateScale();
+
         if (_visualEffect != null)
         {
             _visualEffect.Play();
@@ -147,6 +155,8 @@ public abstract class EffectsCompositorBase : MonoBehaviour, IEffectsCompositor
 
     protected virtual void Update()
     {
+        _UpdateScale();
+
         if (_visualEffect == null)
             return;
 
@@ -190,5 +200,19 @@ public abstract class EffectsCompositorBase : MonoBehaviour, IEffectsCompositor
             return;
 
         _visualEffect.SetVector2(propertyId, value);
+    }
+
+    private void _UpdateScale()
+    {
+        if (_ignoreParentScale)
+            return;
+        if (transform.parent == null)
+            return;
+        var parentScale = transform.parent.lossyScale;
+        transform.localScale = new Vector3(
+            1f / parentScale.x,
+            1f / parentScale.y,
+            1f / parentScale.z
+        );
     }
 }

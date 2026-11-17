@@ -48,6 +48,9 @@ public class CharacterEffectsPlayer : MonoBehaviour
     }
 
     [SerializeField]
+    private Transform _sourceTransform;
+
+    [SerializeField]
     private SoundEffectOutput _soundEffectOutput;
 
     [SerializeField]
@@ -66,6 +69,9 @@ public class CharacterEffectsPlayer : MonoBehaviour
 
     private void Awake()
     {
+        if (_sourceTransform == null)
+            _sourceTransform = transform;
+
         foreach (var keyedPrefab in _effectPrefabs)
         {
             if (keyedPrefab.Key == null || keyedPrefab.Key.Trim() == "")
@@ -89,9 +95,9 @@ public class CharacterEffectsPlayer : MonoBehaviour
                 _cameraAccess,
                 _transformOffsetController,
                 _renderer,
-                transform.position,
-                transform.rotation,
-                transform
+                _sourceTransform.position,
+                _sourceTransform.rotation,
+                _sourceTransform
             );
             _effectPlayers[keyedPrefab.Key] = player;
         }
