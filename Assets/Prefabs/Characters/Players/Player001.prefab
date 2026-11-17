@@ -306,6 +306,7 @@ GameObject:
   - component: {fileID: 360478932538162378}
   - component: {fileID: 3158664309901774910}
   - component: {fileID: 6668691793731276845}
+  - component: {fileID: 6646266009093562514}
   m_Layer: 7
   m_Name: Player001
   m_TagString: Player
@@ -596,6 +597,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b591ffef9ac7ac41a9ab43b2decd044, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CameraMutableAccess
+--- !u!114 &6646266009093562514
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5426529304151448434}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0edbeb03e2096d4984825a4adfbdc96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StageSceneContextReadonlyAccess
 --- !u!1 &5944903759761878707
 GameObject:
   m_ObjectHideFlags: 0

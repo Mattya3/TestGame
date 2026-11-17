@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 using static Constants;
 
 [RequireComponent(typeof(PlayerInputSetup))]
+[RequireComponent(typeof(StageSceneContextReadonlyAccess))]
 public partial class Player : Character
 {
     public event Action<Player> OnGoal;
@@ -17,6 +18,7 @@ public partial class Player : Character
     private IPlayerStateContext _stateContext;
 
     private AnimationTransitions _animationTransitions;
+    private StageSceneContextReadonlyAccess _stageContextAccess;
 
     public bool IsInGoalState => _currentState is GoalState;
     public bool IsAlive => _isAlive;
@@ -26,6 +28,8 @@ public partial class Player : Character
     protected override void Awake()
     {
         base.Awake();
+
+        _stageContextAccess = GetComponent<StageSceneContextReadonlyAccess>();
 
         _stateContext = new StateContext(this);
         _externalEffectApplier = new PlayerExternalEffectApplier();
@@ -178,6 +182,10 @@ public partial class Player : Character
 
     private IPlayerState _CreateInitialState()
     {
+        // リスタート時はEntranceStateを経由せずにゲームプレイ開始状態に遷移する
+        if (_stageContextAccess.AfterRestart)
+            return _CreateGamePlayStartState();
+
         return new EntranceState(_stateContext);
     }
 
