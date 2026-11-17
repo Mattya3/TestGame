@@ -8,8 +8,6 @@ public class EntranceState : UnplayableState
 
     public override void OnEnabled()
     {
-        Context.SetAnimatorSpeed(0f);
-        Context.Freeze();
     }
 
     public override void Die(DeathReason deathReason)

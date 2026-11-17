@@ -41,6 +41,7 @@ public partial class Player : Character
 
     protected override void Start()
     {
+        // Character側でInitializeが呼ばれるので，ここでは呼ばない
         base.Start();
     }
 
@@ -61,6 +62,12 @@ public partial class Player : Character
 
         _animationTransitions.SetFacingDirection(FacingDirection);
         _animationTransitions.Play(_currentState.GetAnimationName());
+    }
+
+    protected override void OnGamePlayStart()
+    {
+        base.OnGamePlayStart();
+        _ChangeState(_CreateGamePlayStartState());
     }
 
     public void SetupPlayerInput(int playerIndex)
@@ -170,6 +177,11 @@ public partial class Player : Character
     }
 
     private IPlayerState _CreateInitialState()
+    {
+        return new EntranceState(_stateContext);
+    }
+
+    private IPlayerState _CreateGamePlayStartState()
     {
         return _groundDetector.IsGrounded()
             ? new GroundState(_stateContext)
