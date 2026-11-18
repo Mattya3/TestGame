@@ -55,6 +55,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OneShotEffectsCompositor
   _playInUnscaledTime: 1
+  _ignoreParentScale: 1
   _playbackSpeedRate: 0.9
   _duration: 5
   _delayTime: 0.05
