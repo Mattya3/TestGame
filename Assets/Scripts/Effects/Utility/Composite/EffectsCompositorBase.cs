@@ -204,7 +204,7 @@ public abstract class EffectsCompositorBase : MonoBehaviour, IEffectsCompositor
 
     private void _UpdateScale()
     {
-        if (_ignoreParentScale)
+        if (!_ignoreParentScale)
             return;
         if (transform.parent == null)
             return;
