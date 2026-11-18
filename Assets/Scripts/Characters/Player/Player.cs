@@ -180,6 +180,11 @@ public partial class Player : Character
         EffectsPlayer.Play(effectKey, FacingDirection);
     }
 
+    private void _StopCharacterEffect(string effectKey)
+    {
+        EffectsPlayer.Stop(effectKey);
+    }
+
     private IPlayerState _CreateInitialState()
     {
         // リスタート時はEntranceStateを経由せずにゲームプレイ開始状態に遷移する

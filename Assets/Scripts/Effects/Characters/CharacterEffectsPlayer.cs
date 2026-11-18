@@ -121,4 +121,16 @@ public class CharacterEffectsPlayer : MonoBehaviour
             Debug.LogError($"Effect with key '{key}' not found.");
         }
     }
+
+    public void Stop(string key)
+    {
+        if (_effectPlayers.TryGetValue(key, out var player))
+        {
+            player.StopEffects();
+        }
+        else
+        {
+            Debug.LogError($"Effect with key '{key}' not found.");
+        }
+    }
 }

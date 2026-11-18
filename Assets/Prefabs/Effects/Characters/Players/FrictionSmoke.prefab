@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6003512023056258983}
-  - component: {fileID: -2212097100237574106}
+  - component: {fileID: 7646900385744008009}
   - component: {fileID: 2678149706083594254}
   - component: {fileID: 863400722589022102}
   m_Layer: 7
@@ -34,7 +34,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-2212097100237574106
+--- !u!114 &7646900385744008009
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -43,14 +43,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 8555158167546874534}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9c7369578e59f94bb63f91795fdb30d, type: 3}
+  m_Script: {fileID: 11500000, guid: 363b488bfad2c4a43a36db349fa4cdd6, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::OneShotEffectsCompositor
+  m_EditorClassIdentifier: Assembly-CSharp::LoopingEffectsCompositor
   _playInUnscaledTime: 0
   _ignoreParentScale: 1
   _playbackSpeedRate: 1
-  _duration: 5
-  _delayTime: 0
+  _loopTime: 0.1
+  _fadeOutTime: 2
 --- !u!2083052967 &2678149706083594254
 VisualEffect:
   m_ObjectHideFlags: 0

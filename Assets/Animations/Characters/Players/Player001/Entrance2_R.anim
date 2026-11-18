@@ -282,29 +282,8 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.27083334
-    functionName: _PlayCharacterEffect
-    data: FrictionSmoke
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 0.5625
-    functionName: _PlayCharacterEffect
-    data: FrictionSmoke
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 0.8333333
-    functionName: _PlayCharacterEffect
-    data: FrictionSmoke
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 1.1041666
-    functionName: _PlayCharacterEffect
+  - time: 1
+    functionName: _StopCharacterEffect
     data: FrictionSmoke
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
