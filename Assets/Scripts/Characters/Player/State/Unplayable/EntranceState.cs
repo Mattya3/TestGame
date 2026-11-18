@@ -22,6 +22,6 @@ public class EntranceState : UnplayableState
 
     public override string GetAnimationName()
     {
-        return "Entrance2";
+        return "Entrance4";
     }
 }
