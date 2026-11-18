@@ -3,8 +3,15 @@ using static Constants;
 
 public class EntranceState : UnplayableState
 {
+    private static readonly int NUM_ENTRANCE_ANIMATIONS = 6;
+
+    private int _entranceAnimationIndex = 0;
+
     public EntranceState(IPlayerStateContext context)
-        : base(context) { }
+        : base(context)
+    {
+        _entranceAnimationIndex = Random.Range(0, NUM_ENTRANCE_ANIMATIONS);
+    }
 
     public override void OnEnabled()
     {
@@ -22,6 +29,6 @@ public class EntranceState : UnplayableState
 
     public override string GetAnimationName()
     {
-        return "Entrance6";
+        return $"Entrance{_entranceAnimationIndex + 1}";
     }
 }
