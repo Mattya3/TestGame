@@ -277,7 +277,7 @@ AnimationClip:
   m_Events:
   - time: 0.8125
     functionName: _PlayCharacterEffect
-    data: Jump
+    data: FlySmoke
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0

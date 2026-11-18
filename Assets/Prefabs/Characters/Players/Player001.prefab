@@ -574,6 +574,8 @@ MonoBehaviour:
     _effectPrefab: {fileID: 8555158167546874534, guid: 3c5029af823232e45ab47bda39cf75b3, type: 3}
   - _key: Land
     _effectPrefab: {fileID: 8555158167546874534, guid: 6853bbbfea11d144cb792b78445ede89, type: 3}
+  - _key: FlySmoke
+    _effectPrefab: {fileID: 8555158167546874534, guid: 558e175567861674da41035a9dfa92f1, type: 3}
 --- !u!114 &3158664309901774910
 MonoBehaviour:
   m_ObjectHideFlags: 0
