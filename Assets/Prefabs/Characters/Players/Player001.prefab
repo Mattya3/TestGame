@@ -576,6 +576,8 @@ MonoBehaviour:
     _effectPrefab: {fileID: 8555158167546874534, guid: 6853bbbfea11d144cb792b78445ede89, type: 3}
   - _key: FlySmoke
     _effectPrefab: {fileID: 8555158167546874534, guid: 558e175567861674da41035a9dfa92f1, type: 3}
+  - _key: FrictionSmoke
+    _effectPrefab: {fileID: 8555158167546874534, guid: 0c8c18d37f6809e46bd8858182ea9105, type: 3}
 --- !u!114 &3158664309901774910
 MonoBehaviour:
   m_ObjectHideFlags: 0
