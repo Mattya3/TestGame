@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3439068681331588861}
   - component: {fileID: 6672952484177911739}
   - component: {fileID: 688057045003942054}
+  - component: {fileID: 883513930348415363}
   m_Layer: 7
   m_Name: PlayerSprite
   m_TagString: Untagged
@@ -106,6 +107,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TransformOffsetController
   _originTransform: {fileID: 8368867623444757617}
   _targetTransform: {fileID: 3439068681331588861}
+--- !u!114 &883513930348415363
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 697538565314256778}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41d132b0442d72d43867aa03e95e965b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SortingLayerConrtoller
 --- !u!1 &1805016092611110415
 GameObject:
   m_ObjectHideFlags: 0
