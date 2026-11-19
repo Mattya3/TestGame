@@ -578,6 +578,8 @@ MonoBehaviour:
     _effectPrefab: {fileID: 8555158167546874534, guid: 558e175567861674da41035a9dfa92f1, type: 3}
   - _key: FrictionSmoke
     _effectPrefab: {fileID: 8555158167546874534, guid: 0c8c18d37f6809e46bd8858182ea9105, type: 3}
+  - _key: FrictionSound
+    _effectPrefab: {fileID: 2236425536881500068, guid: 7214af8fba34c424b87c3a3c86d1b0ab, type: 3}
 --- !u!114 &3158664309901774910
 MonoBehaviour:
   m_ObjectHideFlags: 0
