@@ -279,6 +279,13 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
+  - time: 0.4375
+    functionName: _PlayCharacterEffect
+    data: FrictionSound
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: 0.9166667
     functionName: _StopCharacterEffect
     data: FrictionSmoke
