@@ -3,24 +3,23 @@ using static Constants;
 
 public abstract class PlayerStateBase : IPlayerState
 {
-    private float _elapsedTimeInState = 0f;
-    private float _elapsedUnscaledTimeInState = 0f;
+    private float _enabledTime = 0f;
+    private float _enabledUnscaledTime = 0f;
 
     protected PlayerStateBase(IPlayerStateContext context)
     {
         Context = context;
+
+        _enabledTime = Time.time;
+        _enabledUnscaledTime = Time.unscaledTime;
     }
 
     protected IPlayerStateContext Context { get; }
 
-    protected float ElapsedTimeInState => _elapsedTimeInState;
-    protected float ElapsedUnscaledTimeInState => _elapsedUnscaledTimeInState;
+    protected float ElapsedTimeInState => Time.time - _enabledTime;
+    protected float ElapsedUnscaledTimeInState => Time.unscaledTime - _enabledUnscaledTime;
 
-    public virtual void OnMove(Vector2 inputDirection)
-    {
-        _elapsedTimeInState += Time.deltaTime;
-        _elapsedUnscaledTimeInState += Time.unscaledDeltaTime;
-    }
+    public virtual void OnMove(Vector2 inputDirection) { }
 
     public virtual void OnJump() { }
 
@@ -30,8 +29,8 @@ public abstract class PlayerStateBase : IPlayerState
 
     public virtual void OnEnabled()
     {
-        _elapsedTimeInState = 0f;
-        _elapsedUnscaledTimeInState = 0f;
+        _enabledTime = Time.time;
+        _enabledUnscaledTime = Time.unscaledTime;
     }
 
     public virtual void OnDisabled() { }
