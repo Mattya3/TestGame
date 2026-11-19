@@ -20,6 +20,7 @@ public abstract class EffectsCompositorBase : MonoBehaviour, IEffectsCompositor
     private float _playbackSpeedRate = 1.0f;
 
     private IEffectsCompositor _parentCompositor;
+    private Vector3 _originalLocalScale;
 
     private VisualEffect _visualEffect;
     private ISoundEffect[] _soundEffects;
@@ -56,6 +57,7 @@ public abstract class EffectsCompositorBase : MonoBehaviour, IEffectsCompositor
     protected virtual void Awake()
     {
         _parentCompositor = transform.parent?.GetComponentInParent<IEffectsCompositor>();
+        _originalLocalScale = transform.localScale;
 
         _visualEffect = GetComponent<VisualEffect>();
         _soundEffects = GetComponents<ISoundEffect>();
@@ -208,11 +210,20 @@ public abstract class EffectsCompositorBase : MonoBehaviour, IEffectsCompositor
             return;
         if (transform.parent == null)
             return;
+
         var parentScale = transform.parent.lossyScale;
+        if (Mathf.Approximately(parentScale.x, 0f) ||
+            Mathf.Approximately(parentScale.y, 0f) ||
+            Mathf.Approximately(parentScale.z, 0f))
+        {
+            
+            return;
+        }
+
         transform.localScale = new Vector3(
-            1f / parentScale.x,
-            1f / parentScale.y,
-            1f / parentScale.z
+            _originalLocalScale.x / parentScale.x,
+            _originalLocalScale.y / parentScale.y,
+            _originalLocalScale.z / parentScale.z
         );
     }
 }
