@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 3439068681331588861}
   - component: {fileID: 6672952484177911739}
   - component: {fileID: 688057045003942054}
-  - component: {fileID: 883513930348415363}
   m_Layer: 7
   m_Name: PlayerSprite
   m_TagString: Untagged
@@ -107,18 +106,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TransformOffsetController
   _originTransform: {fileID: 8368867623444757617}
   _targetTransform: {fileID: 3439068681331588861}
---- !u!114 &883513930348415363
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 697538565314256778}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 41d132b0442d72d43867aa03e95e965b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SortingLayerConrtoller
 --- !u!1 &1805016092611110415
 GameObject:
   m_ObjectHideFlags: 0
@@ -317,6 +304,7 @@ GameObject:
   - component: {fileID: 4295684135927181264}
   - component: {fileID: 3582197858781000411}
   - component: {fileID: 360478932538162378}
+  - component: {fileID: 1372485290124437161}
   - component: {fileID: 3158664309901774910}
   - component: {fileID: 6668691793731276845}
   - component: {fileID: 6646266009093562514}
@@ -593,6 +581,19 @@ MonoBehaviour:
     _effectPrefab: {fileID: 8555158167546874534, guid: 0c8c18d37f6809e46bd8858182ea9105, type: 3}
   - _key: FrictionSound
     _effectPrefab: {fileID: 2236425536881500068, guid: 7214af8fba34c424b87c3a3c86d1b0ab, type: 3}
+--- !u!114 &1372485290124437161
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5426529304151448434}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41d132b0442d72d43867aa03e95e965b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SortingLayerConrtoller
+  _renderer: {fileID: 6672952484177911739}
 --- !u!114 &3158664309901774910
 MonoBehaviour:
   m_ObjectHideFlags: 0
