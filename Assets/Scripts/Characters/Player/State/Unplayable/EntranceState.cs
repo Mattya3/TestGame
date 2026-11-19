@@ -15,6 +15,7 @@ public class EntranceState : UnplayableState
 
     public override void OnEnabled()
     {
+        base.OnEnabled();
     }
 
     public override void Die(DeathReason deathReason)

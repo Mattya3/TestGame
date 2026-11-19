@@ -8,6 +8,8 @@ public class FrozenState : UnplayableState
 
     public override void OnEnabled()
     {
+        base.OnEnabled();
+
         Context.SetAnimatorSpeed(0f);
         Context.Freeze();
     }

@@ -10,6 +10,8 @@ public class GoalState : UnplayableState
 
     public override void OnEnabled()
     {
+        base.OnEnabled();
+
         Context.PlayCharacterEffect(_EFFECT_KEY_GOAL);
         Context.NotifyGoalReached();
         Context.Freeze();

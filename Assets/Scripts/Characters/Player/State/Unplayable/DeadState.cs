@@ -16,6 +16,8 @@ public class DeadState : UnplayableState
 
     public override void OnEnabled()
     {
+        base.OnEnabled();
+
         Context.SetAnimatorUpdateMode(AnimatorUpdateMode.UnscaledTime);
         switch (_deathReason)
         {

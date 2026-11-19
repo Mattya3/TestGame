@@ -9,6 +9,8 @@ public class GroundState : PlayableState
 
     public override void OnMove(Vector2 inputDirection)
     {
+        base.OnMove(inputDirection);
+
         if (!Context.IsGrounded())
         {
             Context.ChangeState(new AirState(Context));

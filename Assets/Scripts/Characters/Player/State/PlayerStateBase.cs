@@ -3,6 +3,9 @@ using static Constants;
 
 public abstract class PlayerStateBase : IPlayerState
 {
+    private float _elapsedTimeInState = 0f;
+    private float _elapsedUnscaledTimeInState = 0f;
+
     protected PlayerStateBase(IPlayerStateContext context)
     {
         Context = context;
@@ -10,7 +13,14 @@ public abstract class PlayerStateBase : IPlayerState
 
     protected IPlayerStateContext Context { get; }
 
-    public virtual void OnMove(Vector2 inputDirection) { }
+    protected float ElapsedTimeInState => _elapsedTimeInState;
+    protected float ElapsedUnscaledTimeInState => _elapsedUnscaledTimeInState;
+
+    public virtual void OnMove(Vector2 inputDirection)
+    {
+        _elapsedTimeInState += Time.deltaTime;
+        _elapsedUnscaledTimeInState += Time.unscaledDeltaTime;
+    }
 
     public virtual void OnJump() { }
 
@@ -18,7 +28,11 @@ public abstract class PlayerStateBase : IPlayerState
 
     public virtual void Goal() { }
 
-    public virtual void OnEnabled() { }
+    public virtual void OnEnabled()
+    {
+        _elapsedTimeInState = 0f;
+        _elapsedUnscaledTimeInState = 0f;
+    }
 
     public virtual void OnDisabled() { }
 
