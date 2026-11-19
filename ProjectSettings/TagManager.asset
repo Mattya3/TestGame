@@ -60,6 +60,9 @@ TagManager:
   - name: Character
     uniqueID: 2274943527
     locked: 0
+  - name: IsolatedLighting
+    uniqueID: 2377738435
+    locked: 0
   - name: StageFront
     uniqueID: 39888881
     locked: 0
