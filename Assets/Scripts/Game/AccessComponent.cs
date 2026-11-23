@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 public abstract class AccessComponent<T> : MonoBehaviour
-    where T : class
+    where T : class, IAccessTarget
 {
     private static T _privateReference;
 
@@ -42,6 +42,7 @@ public abstract class AccessComponent<T> : MonoBehaviour
         get
         {
             _LogMissingReference();
+            _privateReference?.EnsureInitialized();
             return _privateReference;
         }
     }

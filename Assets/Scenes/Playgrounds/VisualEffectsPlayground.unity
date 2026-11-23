@@ -1583,6 +1583,7 @@ GameObject:
   - component: {fileID: 1084736948}
   - component: {fileID: 1084736947}
   - component: {fileID: 1084736949}
+  - component: {fileID: 1084736950}
   m_Layer: 8
   m_Name: Background
   m_TagString: Untagged
@@ -1676,10 +1677,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58cb87e992e14eb4ebc0d0b20a61a6b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ParallaxScroller
-  _cameraTransform: {fileID: 1317344867}
   _followFactor: {x: 0, y: 0, z: 0}
   _loopX: 1
   _loopY: 0
+--- !u!114 &1084736950
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1084736946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 194895a14f516b34dbffec016fd7cd35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CameraReadonlyAccess
 --- !u!1 &1317344864
 GameObject:
   m_ObjectHideFlags: 0
