@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour, IGameManager
         AccessComponent<IGameManager>.RegisterReference(this);
     }
 
+    public void EnsureInitialized() { }
+
     private void OnDestroy()
     {
         AccessComponent<IGameManager>.UnregisterReference(this);

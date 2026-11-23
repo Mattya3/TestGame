@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using static Constants;
 
-public class GameEventHub : MonoBehaviour
+public class GameEventHub : MonoBehaviour, IAccessTarget
 {
     private readonly Dictionary<GameEvent, Action> _eventActions;
 
@@ -20,6 +20,8 @@ public class GameEventHub : MonoBehaviour
     {
         AccessComponent<GameEventHub>.RegisterReference(this);
     }
+
+    public void EnsureInitialized() { }
 
     private void OnDestroy()
     {
