@@ -74,6 +74,7 @@ public class PlayersManager : MonoBehaviour, IPlayersCollection
             // TODO: シーンを終了する処理を追加
             return;
         }
+        // 先にプレイヤ全員分の検証を行い、問題がなければプレイヤを生成する
         for (int i = 0; i < playerPrefabs.Count; i++)
         {
             var prefab = playerPrefabs[i];
@@ -89,13 +90,7 @@ public class PlayersManager : MonoBehaviour, IPlayersCollection
                 enabled = false;
                 return;
             }
-            var playerInstance = Instantiate(
-                prefab,
-                spawnPoints[i].position,
-                spawnPoints[i].rotation
-            );
-            var playerComponent = playerInstance.GetComponent<Player>();
-            if (playerComponent == null)
+            if (prefab.GetComponent<Player>() == null)
             {
                 Debug.LogError(
                     $"プレイヤのPrefabにPlayerコンポーネントがアタッチされていません。インデックス: {i}"
@@ -103,6 +98,15 @@ public class PlayersManager : MonoBehaviour, IPlayersCollection
                 enabled = false;
                 return;
             }
+        }
+        for (int i = 0; i < playerPrefabs.Count; i++)
+        {
+            var playerInstance = Instantiate(
+                playerPrefabs[i],
+                spawnPoints[i].position,
+                spawnPoints[i].rotation
+            );
+            var playerComponent = playerInstance.GetComponent<Player>();
             playerComponent.SetupPlayerInput(i);
             _RegisterPlayer(playerComponent);
         }
