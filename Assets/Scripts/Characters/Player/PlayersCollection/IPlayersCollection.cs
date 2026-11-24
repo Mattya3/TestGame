@@ -8,6 +8,7 @@ public interface IPlayersCollection : IAccessTarget
     ReadOnlyCollection<Vector3> Positions { get; }
     ReadOnlyCollection<Bounds> BoundsList { get; }
     ReadOnlyCollection<Vector2> InputDirections { get; }
-
     ReadOnlyCollection<bool> AliveFlags { get; }
+
+    IExternalEffectTarget CreatePlayerExternalEffectTarget(int index);
 }

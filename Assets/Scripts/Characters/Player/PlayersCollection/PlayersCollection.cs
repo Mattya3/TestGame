@@ -229,4 +229,12 @@ public class PlayersCollection : MonoBehaviour, IPlayersCollection
             return _aliveFlagsReadOnly;
         }
     }
+
+    public IExternalEffectTarget CreatePlayerExternalEffectTarget(int index)
+    {
+        if (index < 0 || index >= _players.Count)
+            throw new System.ArgumentOutOfRangeException(nameof(index));
+            
+        return new Player.PlayerExternalEffectTarget(_players[index]);
+    }
 }
