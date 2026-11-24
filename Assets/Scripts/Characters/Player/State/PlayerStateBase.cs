@@ -23,7 +23,7 @@ public abstract class PlayerStateBase : IPlayerState
 
     public virtual void FixedUpdate(Vector2 inputDirection) { }
 
-    public virtual void OnJump() { }
+    public virtual void OnJumpInput() { }
 
     public virtual void Die(DeathReason deathReason) { }
 

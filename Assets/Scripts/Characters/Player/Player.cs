@@ -98,7 +98,7 @@ public partial class Player : Character
         if (_currentState == null)
             return;
 
-        _currentState.OnJump();
+        _currentState.OnJumpInput();
     }
 
     public void Die(DeathReason deathReason)

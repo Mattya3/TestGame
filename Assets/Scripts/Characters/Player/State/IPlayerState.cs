@@ -5,7 +5,7 @@ public interface IPlayerState
 {
     void Update(Vector2 inputDirection);
     void FixedUpdate(Vector2 inputDirection);
-    void OnJump();
+    void OnJumpInput();
     void Die(DeathReason deathReason);
     void Goal();
     void OnEnabled();

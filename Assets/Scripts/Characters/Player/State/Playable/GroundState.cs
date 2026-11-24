@@ -4,6 +4,8 @@ public class GroundState : PlayableState
 {
     private static readonly string _EFFECT_KEY_JUMP = "Jump";
 
+    private bool _jumpRequested = false;
+
     public GroundState(IPlayerStateContext context)
         : base(context) { }
 
@@ -16,26 +18,38 @@ public class GroundState : PlayableState
     {
         base.FixedUpdate(inputDirection);
 
+        Context.MoveByInput(inputDirection);
+        Context.SetFacingDirectionByVector(inputDirection);
+
         if (!Context.IsGrounded())
         {
             Context.ChangeState(new AirState(Context));
             return;
         }
-        Context.MoveByInput(inputDirection);
-        Context.SetFacingDirectionByVector(inputDirection);
+        if (_jumpRequested)
+        {
+            _jumpRequested = false;
+            _TryJump();
+            return;
+        }
     }
 
-    public override void OnJump()
+    public override void OnJumpInput()
     {
-        if (!Context.TryJump())
-            return;
-
-        Context.PlayCharacterEffect(_EFFECT_KEY_JUMP);
-        Context.ChangeState(new AirState(Context));
+        _jumpRequested = true;
     }
 
     public override string GetAnimationName()
     {
         return Mathf.Approximately(Context.CurrentInputDirection.x, 0) ? "Idle" : "Run";
+    }
+
+    private void _TryJump()
+    {
+        if (!Context.TryJump())
+            return;
+        
+        Context.PlayCharacterEffect(_EFFECT_KEY_JUMP);
+        Context.ChangeState(new AirState(Context));
     }
 }
