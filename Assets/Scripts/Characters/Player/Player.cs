@@ -68,6 +68,12 @@ public partial class Player : Character
         _animationTransitions.Play(_currentState.GetAnimationName());
     }
 
+    protected override void FixedUpdate()
+    {
+        base.FixedUpdate();
+        _currentState?.FixedUpdate(_inputDirection);
+    }
+
     protected override void OnGamePlayStart()
     {
         base.OnGamePlayStart();

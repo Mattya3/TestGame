@@ -51,6 +51,8 @@ public abstract class Character : MonoEventReactingBehaviour
 
     protected virtual void Update() { }
 
+    protected virtual void FixedUpdate() { }
+
     protected FacingDirectionType FacingDirection
     {
         get => _facingDirection;

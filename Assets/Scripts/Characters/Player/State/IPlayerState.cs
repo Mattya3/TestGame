@@ -4,6 +4,7 @@ using static Constants;
 public interface IPlayerState
 {
     void Update(Vector2 inputDirection);
+    void FixedUpdate(Vector2 inputDirection);
     void OnJump();
     void Die(DeathReason deathReason);
     void Goal();

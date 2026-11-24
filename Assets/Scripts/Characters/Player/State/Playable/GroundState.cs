@@ -10,13 +10,17 @@ public class GroundState : PlayableState
     public override void Update(Vector2 inputDirection)
     {
         base.Update(inputDirection);
+    }
+
+    public override void FixedUpdate(Vector2 inputDirection)
+    {
+        base.FixedUpdate(inputDirection);
 
         if (!Context.IsGrounded())
         {
             Context.ChangeState(new AirState(Context));
             return;
         }
-
         Context.MoveByInput(inputDirection);
         Context.SetFacingDirectionByVector(inputDirection);
     }

@@ -21,6 +21,8 @@ public abstract class PlayerStateBase : IPlayerState
 
     public virtual void Update(Vector2 inputDirection) { }
 
+    public virtual void FixedUpdate(Vector2 inputDirection) { }
+
     public virtual void OnJump() { }
 
     public virtual void Die(DeathReason deathReason) { }

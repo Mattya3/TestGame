@@ -10,6 +10,11 @@ public class AirState : PlayableState
     public override void Update(Vector2 inputDirection)
     {
         base.Update(inputDirection);
+    }
+
+    public override void FixedUpdate(Vector2 inputDirection)
+    {
+        base.FixedUpdate(inputDirection);
 
         Context.MoveByInput(inputDirection);
 
