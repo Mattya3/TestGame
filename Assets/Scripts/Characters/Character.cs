@@ -4,6 +4,7 @@ using static Constants;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(Collider2D))]
+[RequireComponent(typeof(AnimationTransitions))]
 [RequireComponent(typeof(CharacterEffectsPlayer))]
 public abstract class Character : MonoEventReactingBehaviour
 {
@@ -21,6 +22,7 @@ public abstract class Character : MonoEventReactingBehaviour
 
     private Rigidbody2D _rigidBody;
     private Collider2D _collider;
+    private AnimationTransitions _animationTransitions;
     private CharacterEffectsPlayer _effectsPlayer;
     private FacingDirectionType _facingDirection = FacingDirectionType.Right;
 
@@ -31,6 +33,7 @@ public abstract class Character : MonoEventReactingBehaviour
         _rigidBody = GetComponent<Rigidbody2D>();
         _collider = GetComponent<Collider2D>();
         _effectsPlayer = GetComponent<CharacterEffectsPlayer>();
+        _animationTransitions = GetComponent<AnimationTransitions>();
     }
 
     protected virtual void Start()
@@ -49,9 +52,19 @@ public abstract class Character : MonoEventReactingBehaviour
         _isInitialized = true;
     }
 
-    protected virtual void Update() { }
+    protected virtual void Update() {}
+
+    protected virtual void LateUpdate()
+    {
+        _animationTransitions.Play(GetAnimationName());
+    }
 
     protected virtual void FixedUpdate() { }
+
+    protected virtual string GetAnimationName()
+    {
+        return AnimationTransitions.IGNORED_ANIMATION_NAME;
+    }
 
     protected FacingDirectionType FacingDirection
     {
@@ -59,6 +72,7 @@ public abstract class Character : MonoEventReactingBehaviour
         set
         {
             _facingDirection = value;
+            _animationTransitions.SetFacingDirection(value);
         }
     }
 
@@ -101,6 +115,17 @@ public abstract class Character : MonoEventReactingBehaviour
     {
         return _groundDetector.IsGrounded();
     }
+
+    protected void SetAnimatorSpeed(float speed)
+    {
+        _animationTransitions.SetAnimatorSpeed(speed);
+    }
+
+    protected void SetAnimatorUpdateMode(AnimatorUpdateMode updateMode)
+    {
+        _animationTransitions.SetAnimatorUpdateMode(updateMode);
+    }
+
 
     public Bounds Bounds => _collider.bounds;
 

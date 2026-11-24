@@ -51,12 +51,12 @@ public partial class Player
 
         void IPlayerStateContext.SetAnimatorSpeed(float speed)
         {
-            _player._SetAnimatorSpeed(speed);
+            _player.SetAnimatorSpeed(speed);
         }
 
         void IPlayerStateContext.SetAnimatorUpdateMode(AnimatorUpdateMode updateMode)
         {
-            _player._SetAnimatorUpdateMode(updateMode);
+            _player.SetAnimatorUpdateMode(updateMode);
         }
 
         void IPlayerStateContext.PlayCharacterEffect(string effectKey)

@@ -17,7 +17,6 @@ public partial class Player : Character
     private Func<Vector2, Vector2> _inputDirectionConversion;
     private IPlayerStateContext _stateContext;
 
-    private AnimationTransitions _animationTransitions;
     private StageSceneContextReadonlyAccess _stageContextAccess;
 
     public bool IsInGoalState => _currentState?.HasReachedGoal ?? false;
@@ -32,14 +31,6 @@ public partial class Player : Character
 
         _stateContext = new StateContext(this);
         _externalEffectApplier = new PlayerExternalEffectApplier();
-
-        _animationTransitions = GetComponentInChildren<AnimationTransitions>();
-        if (_animationTransitions == null)
-        {
-            Debug.LogError("AnimationTransitions component not found in Player's children.");
-            enabled = false;
-            return;
-        }
     }
 
     protected override void Start()
@@ -56,22 +47,19 @@ public partial class Player : Character
     protected override void Update()
     {
         base.Update();
+        _currentState?.Update(_inputDirection);
+    }
 
-        if (_currentState == null)
-            return;
-
-        _currentState.Update(_inputDirection);
-        _animationTransitions.SetFacingDirection(FacingDirection);
-        _animationTransitions.Play(_currentState.GetAnimationName());
+    protected override string GetAnimationName()
+    {
+        return _currentState?.GetAnimationName() ?? AnimationTransitions.IGNORED_ANIMATION_NAME;
     }
 
     protected override void FixedUpdate()
     {
         base.FixedUpdate();
-
         // memo: このメソッドはここではない気がするが(character側にこれを置きたい), 次issueで対応
         _externalEffectApplier.UpdateEffectState();
-        
         _currentState?.FixedUpdate(_inputDirection);
     }
 
@@ -156,16 +144,6 @@ public partial class Player : Character
     private void _NotifyGoalReached()
     {
         OnGoal?.Invoke(this);
-    }
-
-    private void _SetAnimatorSpeed(float speed)
-    {
-        _animationTransitions.SetAnimatorSpeed(speed);
-    }
-
-    private void _SetAnimatorUpdateMode(AnimatorUpdateMode updateMode)
-    {
-        _animationTransitions.SetAnimatorUpdateMode(updateMode);
     }
 
     private void _PlayCharacterEffect(string effectKey)
