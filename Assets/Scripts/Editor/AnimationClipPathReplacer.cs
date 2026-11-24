@@ -29,7 +29,8 @@ public class AnimationClipPathReplacer : EditorWindow
         EditorGUILayout.HelpBox(
             "Projectウィンドウで対象のAnimationClipを複数選択してください。\n" +
             "Old Pathと完全一致するパスを置換します。対象は .anim ファイルです。\n" +
-            "New Pathを空にするとルートを対象にします。",
+            "New Pathを空にするとルートを対象にします。\n" +
+            "変更先に同じType・Propertyのカーブがある場合はスキップします。",
             MessageType.Info
         );
 
@@ -48,6 +49,7 @@ public class AnimationClipPathReplacer : EditorWindow
         int changedClipCount = 0;
         int changedBindingCount = 0;
         int skippedClipCount = 0;
+        int conflictCount = 0;
 
         Undo.IncrementCurrentGroup();
         int undoGroup = Undo.GetCurrentGroup();
@@ -72,21 +74,35 @@ public class AnimationClipPathReplacer : EditorWindow
                     continue;
                 }
 
+                // 数値・オブジェクト参照の両方を対象に置換先の重複を確認する。
+                var existingBindings = new EditorCurveBinding[
+                    curveBindings.Length + objectBindings.Length];
+                Array.Copy(curveBindings, existingBindings, curveBindings.Length);
+                Array.Copy(objectBindings, 0, existingBindings,
+                    curveBindings.Length, objectBindings.Length);
+
                 Undo.RecordObject(targetClip, "Replace Animation Paths");
 
                 // 数値カーブ（Transform, Rendererなど）
-                changedBindingCount += ReplaceBindingsGeneric(
-                    targetClip, curveBindings, oldP, newP,
+                int replacedCount = ReplaceBindingsGeneric(
+                    targetClip, curveBindings, existingBindings, oldP, newP,
                     AnimationUtility.GetEditorCurve,
-                    AnimationUtility.SetEditorCurve
+                    AnimationUtility.SetEditorCurve,
+                    ref conflictCount
                 );
 
                 // オブジェクト参照カーブ（Sprite, Materialなど）
-                changedBindingCount += ReplaceBindingsGeneric(
-                    targetClip, objectBindings, oldP, newP,
+                replacedCount += ReplaceBindingsGeneric(
+                    targetClip, objectBindings, existingBindings, oldP, newP,
                     AnimationUtility.GetObjectReferenceCurve,
-                    AnimationUtility.SetObjectReferenceCurve
+                    AnimationUtility.SetObjectReferenceCurve,
+                    ref conflictCount
                 );
+
+                if (replacedCount == 0)
+                    continue;
+
+                changedBindingCount += replacedCount;
 
                 EditorUtility.SetDirty(targetClip);
                 changedClipCount++;
@@ -106,6 +122,7 @@ public class AnimationClipPathReplacer : EditorWindow
             "置換結果",
             $"変更したクリップ：{changedClipCount} 個\n" +
             $"置換したカーブ：{changedBindingCount} 件\n" +
+            $"置換先が既存のためスキップ：{conflictCount} 件\n" +
             $"対象外のクリップ：{skippedClipCount} 個",
             "OK"
         );
@@ -114,10 +131,12 @@ public class AnimationClipPathReplacer : EditorWindow
     private int ReplaceBindingsGeneric<T>(
         AnimationClip targetClip,
         EditorCurveBinding[] bindings,
+        EditorCurveBinding[] existingBindings,
         string oldP,
         string newP,
         Func<AnimationClip, EditorCurveBinding, T> getter,
-        Action<AnimationClip, EditorCurveBinding, T> setter
+        Action<AnimationClip, EditorCurveBinding, T> setter,
+        ref int conflictCount
     )
     {
         int replacedCount = 0;
@@ -125,6 +144,17 @@ public class AnimationClipPathReplacer : EditorWindow
         {
             if (binding.path != oldP)
                 continue;
+
+            bool destinationExists = Array.Exists(existingBindings, candidate =>
+                candidate.path == newP &&
+                candidate.type == binding.type &&
+                candidate.propertyName == binding.propertyName);
+
+            if (destinationExists)
+            {
+                conflictCount++;
+                continue;
+            }
 
             T data = getter(targetClip, binding);
             var newBinding = binding;
