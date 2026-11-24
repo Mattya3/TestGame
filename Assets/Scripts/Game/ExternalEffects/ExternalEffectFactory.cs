@@ -9,22 +9,24 @@ public static class ExternalEffectFactory
         Player player
     )
     {
+        var target = new Player.PlayerExternalEffectTarget(player);
+
         switch (externalEffectType)
         {
             case Constants.ExternalEffectType.ReverseInput:
                 return new ReverseInputExternalEffect(
                     playersAccess,
-                    new Player.PlayerExternalEffectTarget(player)
+                    target
                 );
             case Constants.ExternalEffectType.ReverseGravity:
                 return new ReverseGravityExternalEffect(
                     playersAccess,
-                    new Player.PlayerExternalEffectTarget(player)
+                    target
                 );
             case Constants.ExternalEffectType.StopVerticalMovement:
                 return new StopVerticalMovementExternalEffect(
                     playersAccess,
-                    new Player.PlayerExternalEffectTarget(player)
+                    target
                 );
             case Constants.ExternalEffectType.None:
             default:
