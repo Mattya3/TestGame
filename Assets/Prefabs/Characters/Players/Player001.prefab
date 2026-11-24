@@ -310,7 +310,7 @@ Transform:
   m_GameObject: {fileID: 5426529304151448434}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7, y: 3, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -581,6 +581,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TransformOffsetController
   _originTransform: {fileID: 8368867623444757617}
   _targetTransform: {fileID: 3439068681331588861}
+  _animationPositionOffset: {x: 0, y: 0, z: 0}
+  _animationRotationOffset: {x: 0, y: 0, z: 0}
+  _animationScaleOffset: {x: 1, y: 1, z: 1}
 --- !u!114 &1372485290124437161
 MonoBehaviour:
   m_ObjectHideFlags: 0
