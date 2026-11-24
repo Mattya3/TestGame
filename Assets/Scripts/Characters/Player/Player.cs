@@ -57,9 +57,6 @@ public partial class Player : Character
     {
         base.Update();
 
-        // memo: このメソッドはここではない気がするが(character側にこれを置きたい), 次issueで対応
-        _externalEffectApplier.UpdateEffectState();
-
         if (_currentState == null)
             return;
 
@@ -71,6 +68,10 @@ public partial class Player : Character
     protected override void FixedUpdate()
     {
         base.FixedUpdate();
+
+        // memo: このメソッドはここではない気がするが(character側にこれを置きたい), 次issueで対応
+        _externalEffectApplier.UpdateEffectState();
+        
         _currentState?.FixedUpdate(_inputDirection);
     }
 
