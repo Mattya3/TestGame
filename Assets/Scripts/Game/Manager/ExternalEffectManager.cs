@@ -45,12 +45,7 @@ public class ExternalEffectManager : MonoBehaviour
 
             Constants.ExternalEffectType effectType = _GetExternalEffectType(i);
             IExternalEffect externalEffect = ExternalEffectFactory.Create(effectType, _playersAccess, player);
-            if (player.ExternalEffectApplier == null)
-            {
-                Debug.LogError("PlayerExternalEffectApplier が初期化されていません。", player);
-                continue;
-            }
-            player.ExternalEffectApplier.SetExternalEffect(externalEffect);
+            player.SetExternalEffect(externalEffect);
         }
     }
 

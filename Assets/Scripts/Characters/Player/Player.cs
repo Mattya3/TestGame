@@ -22,7 +22,6 @@ public partial class Player : Character
     public bool IsInGoalState => _currentState?.HasReachedGoal ?? false;
     public bool IsAlive => _currentState?.IsAlive ?? true;
     public Vector2 InputDirection => _inputDirection;
-    public IExternalEffectApplier ExternalEffectApplier => _externalEffectApplier;
 
     protected override void Awake()
     {
@@ -112,6 +111,11 @@ public partial class Player : Character
     public void Freeze()
     {
         _currentState?.Freeze();
+    }
+
+    public void SetExternalEffect(IExternalEffect externalEffect)
+    {
+        _externalEffectApplier.SetExternalEffect(externalEffect);
     }
 
     private void _ChangeState(IPlayerState nextState)
