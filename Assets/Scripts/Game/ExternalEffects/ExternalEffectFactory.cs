@@ -5,27 +5,25 @@ public static class ExternalEffectFactory
 {
     public static IExternalEffect Create(
         Constants.ExternalEffectType externalEffectType,
-        IReadOnlyList<Player> players,
-        int playerIndex
+        PlayersCollectionReadonlyAccess playersAccess,
+        Player player
     )
     {
-        Player player = players[playerIndex];
-
         switch (externalEffectType)
         {
             case Constants.ExternalEffectType.ReverseInput:
                 return new ReverseInputExternalEffect(
-                    players,
+                    playersAccess,
                     new PlayerInputDirectionEffectTarget()
                 );
             case Constants.ExternalEffectType.ReverseGravity:
                 return new ReverseGravityExternalEffect(
-                    players,
+                    playersAccess,
                     new PlayerGravityEffectTarget(player.GetComponent<Rigidbody2D>())
                 );
             case Constants.ExternalEffectType.StopVerticalMovement:
                 return new StopVerticalMovementExternalEffect(
-                    players,
+                    playersAccess,
                     new PlayerVerticalMovementEffectTarget(player.GetComponent<Rigidbody2D>())
                 );
             case Constants.ExternalEffectType.None:

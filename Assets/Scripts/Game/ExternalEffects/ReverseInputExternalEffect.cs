@@ -3,15 +3,15 @@ using UnityEngine;
 
 public sealed class ReverseInputExternalEffect : IExternalEffect, IInputDirectionEffect
 {
-    private readonly IReadOnlyList<Player> _players;
+    private readonly PlayersCollectionReadonlyAccess _players;
     private readonly IInputDirectionEffectTarget _target;
 
     public ReverseInputExternalEffect(
-        IReadOnlyList<Player> players,
+        PlayersCollectionReadonlyAccess playersAccess,
         IInputDirectionEffectTarget target
     )
     {
-        _players = players;
+        _players = playersAccess;
         _target = target;
     }
 

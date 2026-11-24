@@ -3,16 +3,18 @@ using UnityEngine;
 
 public static class ExternalEffectCondition
 {
-    public static bool AreAllPlayersInputtingHorizontal(IReadOnlyList<Player> players)
+    public static bool AreAllPlayersInputtingHorizontal(PlayersCollectionReadonlyAccess playersAccess)
     {
-        if (players == null || players.Count != Constants.PLAYER_COUNT)
+        if (playersAccess == null)
             return false;
 
-        for (int i = 0; i < players.Count; i++)
+        var inputDirections = playersAccess.InputDirections;
+        if (inputDirections == null || inputDirections.Count != playersAccess.Count)
+            return false;
+
+        for (int i = 0; i < playersAccess.Count; i++)
         {
-            if (players[i] == null)
-                return false;
-            if (Mathf.Approximately(players[i].InputDirection.x, 0f))
+            if (Mathf.Approximately(inputDirections[i].x, 0f))
                 return false;
         }
 

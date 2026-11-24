@@ -2,12 +2,12 @@ using System.Collections.Generic;
 
 public sealed class ReverseGravityExternalEffect : IExternalEffect
 {
-    private readonly IReadOnlyList<Player> _players;
+    private readonly PlayersCollectionReadonlyAccess _players;
     private readonly IGravityEffectTarget _target;
 
-    public ReverseGravityExternalEffect(IReadOnlyList<Player> players, IGravityEffectTarget target)
+    public ReverseGravityExternalEffect(PlayersCollectionReadonlyAccess playersAccess, IGravityEffectTarget target)
     {
-        _players = players;
+        _players = playersAccess;
         _target = target;
     }
 

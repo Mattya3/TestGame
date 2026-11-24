@@ -2,15 +2,15 @@ using System.Collections.Generic;
 
 public sealed class StopVerticalMovementExternalEffect : IExternalEffect
 {
-    private readonly IReadOnlyList<Player> _players;
+    private readonly PlayersCollectionReadonlyAccess _players;
     private readonly IVerticalMovementEffectTarget _target;
 
     public StopVerticalMovementExternalEffect(
-        IReadOnlyList<Player> players,
+        PlayersCollectionReadonlyAccess playersAccess,
         IVerticalMovementEffectTarget target
     )
     {
-        _players = players;
+        _players = playersAccess;
         _target = target;
     }
 

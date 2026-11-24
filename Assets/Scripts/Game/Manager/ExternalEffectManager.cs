@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(PlayersCollectionReadonlyAccess))]
 public class ExternalEffectManager : MonoBehaviour
 {
     [SerializeField]
@@ -14,6 +15,8 @@ public class ExternalEffectManager : MonoBehaviour
         .ExternalEffectType
         .None;
 
+    private PlayersCollectionReadonlyAccess _playersAccess;
+
     private IEnumerator Start()
     {
         Player[] players = null;
@@ -22,6 +25,7 @@ public class ExternalEffectManager : MonoBehaviour
             players = FindObjectsByType<Player>(FindObjectsSortMode.InstanceID);
             return players.Length == Constants.PLAYER_COUNT;
         });
+        _playersAccess = GetComponent<PlayersCollectionReadonlyAccess>();
         Initialize(players);
     }
 
@@ -40,7 +44,7 @@ public class ExternalEffectManager : MonoBehaviour
                 continue;
 
             Constants.ExternalEffectType effectType = _GetExternalEffectType(i);
-            IExternalEffect externalEffect = ExternalEffectFactory.Create(effectType, players, i);
+            IExternalEffect externalEffect = ExternalEffectFactory.Create(effectType, _playersAccess, player);
             if (player.ExternalEffectApplier == null)
             {
                 Debug.LogError("PlayerExternalEffectApplier が初期化されていません。", player);
