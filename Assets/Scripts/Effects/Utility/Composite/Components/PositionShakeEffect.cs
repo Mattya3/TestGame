@@ -65,7 +65,7 @@ namespace EffectsCompositeComponent
                 return;
 
             var shakeOffset = _shakeEffectsPlayer.CurrentShakeOffset;
-            _transformOffsetController.SetPositionOffset(shakeOffset);
+            _transformOffsetController.SetEffectPositionOffset(shakeOffset);
         }
     }
 }
