@@ -6,7 +6,7 @@ public partial class Player
     public sealed class PlayerExternalEffectTarget : IExternalEffectTarget
     {
         private Player _player;
-        private Rigidbody2D _rigidbody;
+        private readonly Rigidbody2D _rigidbody;
         private readonly float _defaultGravityScale = 1.0f;
         private readonly RigidbodyConstraints2D _originalConstraints;
 
