@@ -4,11 +4,11 @@ using UnityEngine;
 public sealed class ReverseInputExternalEffect : IExternalEffect, IInputDirectionEffect
 {
     private readonly PlayersCollectionReadonlyAccess _players;
-    private readonly IInputDirectionEffectTarget _target;
+    private readonly IExternalEffectTarget _target;
 
     public ReverseInputExternalEffect(
         PlayersCollectionReadonlyAccess playersAccess,
-        IInputDirectionEffectTarget target
+        IExternalEffectTarget target
     )
     {
         _players = playersAccess;

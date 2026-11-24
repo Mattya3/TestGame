@@ -3,9 +3,9 @@ using System.Collections.Generic;
 public sealed class ReverseGravityExternalEffect : IExternalEffect
 {
     private readonly PlayersCollectionReadonlyAccess _players;
-    private readonly IGravityEffectTarget _target;
+    private readonly IExternalEffectTarget _target;
 
-    public ReverseGravityExternalEffect(PlayersCollectionReadonlyAccess playersAccess, IGravityEffectTarget target)
+    public ReverseGravityExternalEffect(PlayersCollectionReadonlyAccess playersAccess, IExternalEffectTarget target)
     {
         _players = playersAccess;
         _target = target;

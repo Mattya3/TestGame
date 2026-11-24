@@ -3,11 +3,11 @@ using System.Collections.Generic;
 public sealed class StopVerticalMovementExternalEffect : IExternalEffect
 {
     private readonly PlayersCollectionReadonlyAccess _players;
-    private readonly IVerticalMovementEffectTarget _target;
+    private readonly IExternalEffectTarget _target;
 
     public StopVerticalMovementExternalEffect(
         PlayersCollectionReadonlyAccess playersAccess,
-        IVerticalMovementEffectTarget target
+        IExternalEffectTarget target
     )
     {
         _players = playersAccess;

@@ -14,17 +14,17 @@ public static class ExternalEffectFactory
             case Constants.ExternalEffectType.ReverseInput:
                 return new ReverseInputExternalEffect(
                     playersAccess,
-                    new PlayerInputDirectionEffectTarget()
+                    new Player.PlayerExternalEffectTarget(player)
                 );
             case Constants.ExternalEffectType.ReverseGravity:
                 return new ReverseGravityExternalEffect(
                     playersAccess,
-                    new PlayerGravityEffectTarget(player.GetComponent<Rigidbody2D>())
+                    new Player.PlayerExternalEffectTarget(player)
                 );
             case Constants.ExternalEffectType.StopVerticalMovement:
                 return new StopVerticalMovementExternalEffect(
                     playersAccess,
-                    new PlayerVerticalMovementEffectTarget(player.GetComponent<Rigidbody2D>())
+                    new Player.PlayerExternalEffectTarget(player)
                 );
             case Constants.ExternalEffectType.None:
             default:
