@@ -17,7 +17,6 @@ public abstract class PlayableState : PlayerStateBase
 
     public override void Freeze()
     {
-        base.Freeze();
         Context.ChangeState(new FrozenState(Context));
     }
 }
