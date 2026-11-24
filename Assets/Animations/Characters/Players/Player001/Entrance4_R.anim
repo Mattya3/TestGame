@@ -273,21 +273,21 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0.14583333
-    functionName: _PlayCharacterEffect
+    functionName: PlayCharacterEffect
     data: FrictionSmoke
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 0.5833333
-    functionName: _PlayCharacterEffect
+    functionName: PlayCharacterEffect
     data: FrictionSound
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 1.0625
-    functionName: _StopCharacterEffect
+    functionName: StopCharacterEffect
     data: FrictionSmoke
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

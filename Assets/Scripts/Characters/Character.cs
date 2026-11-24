@@ -126,6 +126,16 @@ public abstract class Character : MonoEventReactingBehaviour
         _animationTransitions.SetAnimatorUpdateMode(updateMode);
     }
 
+    protected void PlayCharacterEffect(string effectKey)
+    {
+        EffectsPlayer.Play(effectKey, FacingDirection);
+    }
+
+    protected void StopCharacterEffect(string effectKey)
+    {
+        EffectsPlayer.Stop(effectKey);
+    }
+    
 
     public Bounds Bounds => _collider.bounds;
 

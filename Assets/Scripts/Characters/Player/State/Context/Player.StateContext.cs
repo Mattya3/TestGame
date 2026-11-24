@@ -61,7 +61,12 @@ public partial class Player
 
         void IPlayerStateContext.PlayCharacterEffect(string effectKey)
         {
-            _player._PlayCharacterEffect(effectKey);
+            _player.PlayCharacterEffect(effectKey);
+        }
+
+        void IPlayerStateContext.StopCharacterEffect(string effectKey)
+        {
+            _player.StopCharacterEffect(effectKey);
         }
 
         Vector2 IPlayerStateContext.CurrentInputDirection => _player._inputDirection;

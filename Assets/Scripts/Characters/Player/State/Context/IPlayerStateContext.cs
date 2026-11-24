@@ -14,6 +14,7 @@ public interface IPlayerStateContext
     void SetAnimatorSpeed(float speed);
     void SetAnimatorUpdateMode(AnimatorUpdateMode updateMode);
     void PlayCharacterEffect(string effectKey);
+    void StopCharacterEffect(string effectKey);
 
     Vector2 CurrentInputDirection { get; }
     Vector2 CurrentLinearVelocity { get; }

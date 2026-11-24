@@ -146,16 +146,6 @@ public partial class Player : Character
         OnGoal?.Invoke(this);
     }
 
-    private void _PlayCharacterEffect(string effectKey)
-    {
-        EffectsPlayer.Play(effectKey, FacingDirection);
-    }
-
-    private void _StopCharacterEffect(string effectKey)
-    {
-        EffectsPlayer.Stop(effectKey);
-    }
-
     private IPlayerState _CreateInitialState()
     {
         // リスタート時はEntranceStateを経由せずにゲームプレイ開始状態に遷移する

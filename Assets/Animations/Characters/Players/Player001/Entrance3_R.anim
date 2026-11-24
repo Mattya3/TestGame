@@ -324,21 +324,21 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 1.25
-    functionName: _PlayCharacterEffect
+    functionName: PlayCharacterEffect
     data: FlySmoke
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 1.3333334
-    functionName: _StopCharacterEffect
+    functionName: StopCharacterEffect
     data: FlySmoke
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 1.4375
-    functionName: _PlayCharacterEffect
+    functionName: PlayCharacterEffect
     data: Land
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

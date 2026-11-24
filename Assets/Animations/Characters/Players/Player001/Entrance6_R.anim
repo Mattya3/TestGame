@@ -249,35 +249,35 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0.8541667
-    functionName: _PlayCharacterEffect
+    functionName: PlayCharacterEffect
     data: Footstep
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 1.0208334
-    functionName: _PlayCharacterEffect
+    functionName: PlayCharacterEffect
     data: Footstep
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 1.1875
-    functionName: _PlayCharacterEffect
+    functionName: PlayCharacterEffect
     data: Footstep
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 1.3541666
-    functionName: _PlayCharacterEffect
+    functionName: PlayCharacterEffect
     data: Footstep
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 1.5208334
-    functionName: _PlayCharacterEffect
+    functionName: PlayCharacterEffect
     data: Footstep
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
