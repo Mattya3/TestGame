@@ -7,8 +7,8 @@ public partial class Player
     {
         private Player _player;
         private Rigidbody2D _rigidbody;
-        private float _defaultGravityScale = 1.0f;
-        private RigidbodyConstraints2D _originalConstraints;
+        private readonly float _defaultGravityScale = 1.0f;
+        private readonly RigidbodyConstraints2D _originalConstraints;
 
         public PlayerExternalEffectTarget(Player player)
         {
