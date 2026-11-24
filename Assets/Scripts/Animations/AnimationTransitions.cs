@@ -147,6 +147,7 @@ public class AnimationTransitions : MonoBehaviour
 
         int hash = _AnimatorStateToHash(animationName, _currentFacingDirection);
         _animator.Play(hash, 0, 0.0f);
+        _animator.Update(0); // Updateが呼ばれるまでStateが反映されないので即座に反映させる
     }
 
     private void _PlayAnimationInherit(string animationName)
@@ -158,6 +159,7 @@ public class AnimationTransitions : MonoBehaviour
         var normalizedTime = _animator.GetCurrentAnimatorStateInfo(0).normalizedTime;
         var timeFraction = Mathf.Repeat(normalizedTime, 1.0f);
         _animator.Play(hash, 0, timeFraction);
+        _animator.Update(0); // Updateが呼ばれるまでStateが反映されないので即座に反映させる
     }
 
     // ==========
