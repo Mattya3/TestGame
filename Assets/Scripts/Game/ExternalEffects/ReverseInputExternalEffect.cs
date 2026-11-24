@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public sealed class ReverseInputExternalEffect : IExternalEffect, IInputDirectionEffect
+public sealed class ReverseInputExternalEffect : IExternalEffect
 {
     private readonly PlayersCollectionReadonlyAccess _players;
     private readonly IExternalEffectTarget _target;
@@ -20,12 +20,18 @@ public sealed class ReverseInputExternalEffect : IExternalEffect, IInputDirectio
         return ExternalEffectCondition.AreAllPlayersInputtingHorizontal(_players);
     }
 
-    public void Apply() { }
-
-    public void Reset() { }
-
-    public Vector2 ConvertInputDirection(Vector2 inputDirection)
+    public void Apply()
     {
-        return _target.ReverseHorizontalInput(inputDirection);
+        _target.RegisterInputDirectionConversion(_ConvertInputDirection);
+    }
+
+    public void Reset()
+    {
+        _target.RegisterInputDirectionConversion(null);
+    }
+
+    private Vector2 _ConvertInputDirection(Vector2 inputDirection)
+    {
+        return new Vector2(-inputDirection.x, inputDirection.y);
     }
 }

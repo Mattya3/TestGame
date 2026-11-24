@@ -14,6 +14,7 @@ public partial class Player : Character
 
     private PlayerExternalEffectApplier _externalEffectApplier;
     private Vector2 _inputDirection;
+    private Func<Vector2, Vector2> _inputDirectionConversion;
     private IPlayerStateContext _stateContext;
 
     private AnimationTransitions _animationTransitions;
@@ -133,7 +134,7 @@ public partial class Player : Character
 
     private void _MoveByInput(Vector2 inputDirection)
     {
-        Vector2 direction = _externalEffectApplier.GetMoveDirection(inputDirection);
+        Vector2 direction = _inputDirectionConversion != null ? _inputDirectionConversion(inputDirection) : inputDirection;
         _ApplyMovement(direction);
     }
 

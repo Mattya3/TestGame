@@ -29,17 +29,6 @@ public sealed class PlayerExternalEffectApplier
         _isEffectActive = shouldBeActive;
     }
 
-    public Vector2 GetMoveDirection(Vector2 inputDirection)
-    {
-        if (!_isEffectActive)
-            return inputDirection;
-
-        if (_externalEffect is IInputDirectionEffect inputDirectionEffect)
-            return inputDirectionEffect.ConvertInputDirection(inputDirection);
-
-        return inputDirection;
-    }
-
     public void SetExternalEffect(IExternalEffect externalEffect)
     {
         _externalEffect?.Reset();

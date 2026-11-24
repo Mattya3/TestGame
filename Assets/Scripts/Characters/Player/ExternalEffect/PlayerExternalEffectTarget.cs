@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public partial class Player
@@ -17,9 +18,9 @@ public partial class Player
             _originalConstraints = _rigidbody.constraints;
         }
 
-        public Vector2 ReverseHorizontalInput(Vector2 inputDirection)
+        public void RegisterInputDirectionConversion(Func<Vector2, Vector2> conversion)
         {
-            return new Vector2(-inputDirection.x, inputDirection.y);
+            _player._inputDirectionConversion = conversion;
         }
 
         public void SetGravityScale(float gravityScale)
