@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
+using UnityEngine.Animations;
+using UnityEngine.Playables;
 
-public class TransformOffsetController : MonoBehaviour
+[ExecuteAlways]
+public class TransformOffsetController : MonoBehaviour, IAnimationWindowPreview
 {
-    [SerializeField]
-    private Transform _originTransform;
-
     [SerializeField]
     private Transform _targetTransform;
 
@@ -13,27 +13,28 @@ public class TransformOffsetController : MonoBehaviour
     private Vector3 _effectScaleOffset = Vector3.one;
 
     // Animatorから操作できるようSerializedFieldを付与
-    [SerializeField]
+    [SerializeField, HideInInspector]
     private Vector3 _animationPositionOffset = Vector3.zero;
-    [SerializeField]
+    [SerializeField, HideInInspector]
     private Vector3 _animationRotationOffset = Vector3.zero;
-    [SerializeField]
+    [SerializeField, HideInInspector]
     private Vector3 _animationScaleOffset = Vector3.one;
     
-    private bool _isDirty = false;
+    private Vector3 _defaultLocalPosition;
+    private Quaternion _defaultLocalRotation;
+    private Vector3 _defaultLocalScale;
+    private bool _isDirty = true;
+    private bool _isPreviewing = false;
 
     private void Awake()
     {
-        if (_originTransform == null)
-        {
-            Debug.LogError("Origin Transform is not assigned.", this);
-            return;
-        }
         if (_targetTransform == null)
         {
             Debug.LogError("Target Transform is not assigned.", this);
             return;
         }
+
+        _MemorizeDefaultLocalTransform();
     }
 
     public void SetEffectPositionOffset(Vector3 positionOffset)
@@ -54,22 +55,82 @@ public class TransformOffsetController : MonoBehaviour
         _isDirty = true;
     }
 
+    public void StartPreview()
+    {
+        if (_isPreviewing)
+            return;
+
+        _MemorizeDefaultLocalTransform();
+        _isPreviewing = true;
+    }
+
+    public void StopPreview()
+    {
+        if (!_isPreviewing)
+            return;
+
+        _isPreviewing = false;
+        _ResetToDefaultLocalTransform();
+    }
+
+    public Playable BuildPreviewGraph(
+        PlayableGraph graph, Playable input)
+    {
+        return input;
+    }
+
+    public void UpdatePreviewGraph(PlayableGraph graph) {}
+
+    private void OnDisable()
+    {
+        StopPreview();
+    }
+
     private void LateUpdate()
     {
         if (!_isDirty)
             return;
-
-        if (_originTransform == null || _targetTransform == null)
-            return;
-
-        _targetTransform.position = _originTransform.position + _effectPositionOffset + _animationPositionOffset;
-        _targetTransform.rotation = _originTransform.rotation * Quaternion.Euler(_effectRotationOffset + _animationRotationOffset);
-        _targetTransform.localScale = Vector3.Scale(_originTransform.localScale, Vector3.Scale(_effectScaleOffset, _animationScaleOffset));
-        _isDirty = false;
+            
+        if (Application.IsPlaying(gameObject) || _isPreviewing)
+            _ApplyOffsets();
     }
 
     private void OnDidApplyAnimationProperties()
     {
         _isDirty = true;
+
+        if (Application.IsPlaying(gameObject) || _isPreviewing)
+            _ApplyOffsets();
+    }
+
+    private void _MemorizeDefaultLocalTransform()
+    {
+        if (_targetTransform == null)
+            return;
+
+        _defaultLocalPosition = _targetTransform.localPosition;
+        _defaultLocalRotation = _targetTransform.localRotation;
+        _defaultLocalScale = _targetTransform.localScale;
+    }
+
+    private void _ResetToDefaultLocalTransform()
+    {
+        if (_targetTransform == null)
+            return;
+
+        _targetTransform.localPosition = _defaultLocalPosition;
+        _targetTransform.localRotation = _defaultLocalRotation;
+        _targetTransform.localScale = _defaultLocalScale;
+    }
+
+    private void _ApplyOffsets()
+    {
+        if (_targetTransform == null)
+            return;
+
+        _targetTransform.localPosition = _defaultLocalPosition + _effectPositionOffset + _animationPositionOffset;
+        _targetTransform.localRotation = _defaultLocalRotation * Quaternion.Euler(_effectRotationOffset + _animationRotationOffset);
+        _targetTransform.localScale = Vector3.Scale(_defaultLocalScale, Vector3.Scale(_effectScaleOffset, _animationScaleOffset));
+        _isDirty = false;
     }
 }

@@ -579,7 +579,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ce0c47134b4fc244a29111c95b73163, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TransformOffsetController
-  _originTransform: {fileID: 8368867623444757617}
   _targetTransform: {fileID: 3439068681331588861}
   _animationPositionOffset: {x: 0, y: 0, z: 0}
   _animationRotationOffset: {x: 0, y: 0, z: 0}
