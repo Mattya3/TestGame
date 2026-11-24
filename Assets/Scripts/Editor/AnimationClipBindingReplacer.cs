@@ -60,25 +60,10 @@ public class AnimationClipBindingReplacer : EditorWindow
         Repaint();
     }
 
-    private static bool IsEditableClip(AnimationClip clip)
-    {
-        return AssetDatabase.GetAssetPath(clip).EndsWith(
-            ".anim", StringComparison.OrdinalIgnoreCase
-        );
-    }
-
-    private static string CurveKind(EditorCurveBinding binding)
-    {
-        if (binding.isPPtrCurve)
-            return "オブジェクト参照";
-
-        return binding.isDiscreteCurve ? "離散値" : "数値";
-    }
-
     private void OnGUI()
     {
         AnimationClip[] clips =
-            Selection.GetFiltered<AnimationClip>(SelectionMode.Assets);
+            AnimationClipToolUtility.GetSelectedClips();
 
         GUILayout.Label("変更元", EditorStyles.boldLabel);
 
@@ -101,7 +86,7 @@ public class AnimationClipBindingReplacer : EditorWindow
 
         if (_hasSource)
         {
-            EditorGUILayout.LabelField("カーブの種類", CurveKind(_source));
+            EditorGUILayout.LabelField("カーブの種類", AnimationClipBindingUtility.GetCurveKind(_source));
         }
 
         EditorGUILayout.Space();
@@ -165,15 +150,12 @@ public class AnimationClipBindingReplacer : EditorWindow
 
         foreach (AnimationClip clip in clips)
         {
-            if (!IsEditableClip(clip))
+            if (!AnimationClipToolUtility.IsEditableClip(clip))
                 continue;
 
             EditorGUILayout.LabelField(clip.name, EditorStyles.boldLabel);
 
-            DrawBindings(AnimationUtility.GetCurveBindings(clip));
-            DrawBindings(
-                AnimationUtility.GetObjectReferenceCurveBindings(clip)
-            );
+            DrawBindings(AnimationClipBindingUtility.GetBindings(clip));
 
             EditorGUILayout.Space();
         }
@@ -193,7 +175,7 @@ public class AnimationClipBindingReplacer : EditorWindow
 
             string label =
                 $"{binding.propertyName}\n" +
-                $"Path: {path} | Type: {typeName} | {CurveKind(binding)}";
+                $"Path: {path} | Type: {typeName} | {AnimationClipBindingUtility.GetCurveKind(binding)}";
 
             if (GUILayout.Button(label, GUILayout.MinHeight(38)))
             {
@@ -215,124 +197,21 @@ public class AnimationClipBindingReplacer : EditorWindow
         }
     }
 
-    private bool IsSource(EditorCurveBinding binding)
-    {
-        return binding.path == _source.path &&
-               binding.type == _source.type &&
-               binding.propertyName == _source.propertyName &&
-               binding.isPPtrCurve == _source.isPPtrCurve &&
-               binding.isDiscreteCurve == _source.isDiscreteCurve;
-    }
-
-    private bool IsDestination(EditorCurveBinding binding)
-    {
-        // カーブの種類が違っていても同じ宛先は競合とする。
-        return binding.path == _newPath &&
-               binding.type == _newType &&
-               binding.propertyName == _newProperty;
-    }
-
     private void ReplaceSelected(AnimationClip[] clips)
     {
-        int changedClips = 0;
-        int conflicts = 0;
-        int skippedClips = 0;
-
-        Undo.IncrementCurrentGroup();
-        int undoGroup = Undo.GetCurrentGroup();
-        Undo.SetCurrentGroupName("Replace Animation Bindings");
-
-        try
-        {
-            foreach (AnimationClip clip in clips)
-            {
-                if (!IsEditableClip(clip))
+        var result = AnimationClipBatchProcessor.Run(
+            clips, "Replace Animation Bindings",
+            clip => AnimationClipBindingUtility.CreateReplacement(
+                clip,
+                binding => AnimationClipBindingUtility.IsSameSource(binding, _source),
+                binding =>
                 {
-                    skippedClips++;
-                    continue;
-                }
+                    binding.path = _newPath;
+                    binding.type = _newType;
+                    binding.propertyName = _newProperty;
+                    return binding;
+                }));
 
-                var numericBindings =
-                    AnimationUtility.GetCurveBindings(clip);
-
-                var objectBindings =
-                    AnimationUtility.GetObjectReferenceCurveBindings(clip);
-
-                var sourceBindings = _source.isPPtrCurve
-                    ? objectBindings
-                    : numericBindings;
-
-                int sourceIndex = Array.FindIndex(sourceBindings, IsSource);
-
-                if (sourceIndex < 0)
-                    continue;
-
-                if (Array.Exists(numericBindings, IsDestination) ||
-                    Array.Exists(objectBindings, IsDestination))
-                {
-                    conflicts++;
-                    continue;
-                }
-
-                var oldBinding = sourceBindings[sourceIndex];
-
-                // 元のカーブ種別などの情報は保持する。
-                var newBinding = oldBinding;
-                newBinding.path = _newPath;
-                newBinding.type = _newType;
-                newBinding.propertyName = _newProperty;
-
-                Undo.RecordObject(clip, "Replace Animation Bindings");
-
-                if (oldBinding.isPPtrCurve)
-                {
-                    var keys = AnimationUtility.GetObjectReferenceCurve(
-                        clip, oldBinding
-                    );
-
-                    AnimationUtility.SetObjectReferenceCurve(
-                        clip, oldBinding, null
-                    );
-
-                    AnimationUtility.SetObjectReferenceCurve(
-                        clip, newBinding, keys
-                    );
-                }
-                else
-                {
-                    var curve = AnimationUtility.GetEditorCurve(
-                        clip, oldBinding
-                    );
-
-                    AnimationUtility.SetEditorCurve(
-                        clip, oldBinding, null
-                    );
-
-                    AnimationUtility.SetEditorCurve(
-                        clip, newBinding, curve
-                    );
-                }
-
-                EditorUtility.SetDirty(clip);
-                changedClips++;
-            }
-
-            if (changedClips > 0)
-            {
-                AssetDatabase.SaveAssets();
-            }
-        }
-        finally
-        {
-            Undo.CollapseUndoOperations(undoGroup);
-        }
-
-        EditorUtility.DisplayDialog(
-            "置換結果",
-            $"置換したクリップ／カーブ：{changedClips} 件\n" +
-            $"置換先が既存のためスキップ：{conflicts} 件\n" +
-            $"対象外のクリップ：{skippedClips} 個",
-            "OK"
-        );
+        AnimationClipToolUtility.ShowResult(result, "カーブ", showConflicts: true);
     }
 }

@@ -8,7 +8,7 @@ public static class AnimationClipBindingInspector
     private static void LogSelectedBindings()
     {
         var clips =
-            Selection.GetFiltered<AnimationClip>(SelectionMode.Assets);
+            AnimationClipToolUtility.GetSelectedClips();
 
         if (clips.Length == 0)
         {
@@ -21,17 +21,9 @@ public static class AnimationClipBindingInspector
             var text = new StringBuilder();
             text.AppendLine($"AnimationClip: {clip.name}");
 
-            AppendBindings(
-                text,
-                "数値カーブ",
-                AnimationUtility.GetCurveBindings(clip)
-            );
-
-            AppendBindings(
-                text,
-                "オブジェクト参照カーブ",
-                AnimationUtility.GetObjectReferenceCurveBindings(clip)
-            );
+            var bindings = AnimationClipBindingUtility.GetBindings(clip);
+            AppendBindings(text, "数値カーブ", bindings, isObjectReference: false);
+            AppendBindings(text, "オブジェクト参照カーブ", bindings, isObjectReference: true);
 
             Debug.Log(text.ToString(), clip);
         }
@@ -40,12 +32,16 @@ public static class AnimationClipBindingInspector
     private static void AppendBindings(
         StringBuilder text,
         string category,
-        EditorCurveBinding[] bindings)
+        EditorCurveBinding[] bindings,
+        bool isObjectReference)
     {
         text.AppendLine($"\n【{category}】");
 
         foreach (var binding in bindings)
         {
+            if (binding.isPPtrCurve != isObjectReference)
+                continue;
+
             text.AppendLine(
                 $"Path: \"{binding.path}\" | " +
                 $"Type: {binding.type?.FullName} | " +

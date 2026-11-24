@@ -1,4 +1,3 @@
-using System;
 using UnityEditor;
 using UnityEngine;
 
@@ -36,7 +35,7 @@ public class AnimationEventFunctionNameReplacer : EditorWindow
         );
 
         AnimationClip[] clips =
-            Selection.GetFiltered<AnimationClip>(SelectionMode.Assets);
+            AnimationClipToolUtility.GetSelectedClips();
 
         EditorGUILayout.Space();
         EditorGUILayout.LabelField("選択中のクリップ数", clips.Length.ToString());
@@ -63,73 +62,27 @@ public class AnimationEventFunctionNameReplacer : EditorWindow
 
     private void ReplaceFunctionNames(AnimationClip[] clips)
     {
-        int changedClipCount = 0;
-        int changedEventCount = 0;
-        int skippedClipCount = 0;
+        var result = AnimationClipBatchProcessor.Run(
+            clips, "Replace Animation Event Function Names", CreateChange);
 
-        // 今回の一括置換を1回のUndoで戻せるようにする。
-        Undo.IncrementCurrentGroup();
-        int undoGroup = Undo.GetCurrentGroup();
-        Undo.SetCurrentGroupName("Replace Animation Event Function Names");
+        AnimationClipToolUtility.ShowResult(result, "イベント");
+    }
 
-        try
+    private AnimationClipChange CreateChange(AnimationClip clip)
+    {
+        var events = AnimationUtility.GetAnimationEvents(clip);
+        int replacedCount = 0;
+
+        foreach (AnimationEvent animationEvent in events)
         {
-            foreach (AnimationClip clip in clips)
-            {
-                string assetPath = AssetDatabase.GetAssetPath(clip);
+            if (animationEvent.functionName != _oldName)
+                continue;
 
-                // FBXなどに含まれるクリップは対象外。
-                if (!assetPath.EndsWith(
-                    ".anim", StringComparison.OrdinalIgnoreCase))
-                {
-                    skippedClipCount++;
-                    continue;
-                }
-
-                AnimationEvent[] events =
-                    AnimationUtility.GetAnimationEvents(clip);
-
-                int replacedCount = 0;
-
-                foreach (AnimationEvent animationEvent in events)
-                {
-                    if (animationEvent.functionName != _oldName)
-                        continue;
-
-                    animationEvent.functionName = _newName;
-                    replacedCount++;
-                }
-
-                if (replacedCount == 0)
-                    continue;
-
-                Undo.RecordObject(
-                    clip, "Replace Animation Event Function Names"
-                );
-
-                AnimationUtility.SetAnimationEvents(clip, events);
-                EditorUtility.SetDirty(clip);
-
-                changedClipCount++;
-                changedEventCount += replacedCount;
-            }
-
-            if (changedClipCount > 0)
-            {
-                AssetDatabase.SaveAssets();
-            }
-        }
-        finally
-        {
-            Undo.CollapseUndoOperations(undoGroup);
+            animationEvent.functionName = _newName;
+            replacedCount++;
         }
 
-        EditorUtility.DisplayDialog(
-            "置換結果",
-            $"変更したクリップ：{changedClipCount} 個\n" +
-            $"置換したイベント：{changedEventCount} 件\n" +
-            $"対象外のクリップ：{skippedClipCount} 個",
-            "OK"
-        );
+        return new AnimationClipChange(replacedCount, 0,
+            () => AnimationUtility.SetAnimationEvents(clip, events));
     }
 }
