@@ -27,7 +27,7 @@ public class PlayersManager : MonoBehaviour, IPlayersCollection
 
     private bool _isInitialized = false;
 
-    public bool AreAllPlayersAlive { get; private set; } = true;
+    private bool _areAllPlayersAlive = true;
 
     private void Awake()
     {
@@ -145,28 +145,23 @@ public class PlayersManager : MonoBehaviour, IPlayersCollection
 
     private void _HandlePlayerDeath(Player deadPlayer, DeathReason deathReason)
     {
-        if (!AreAllPlayersAlive)
+        if (!_areAllPlayersAlive)
             return;
+        _areAllPlayersAlive = false;
 
-        _SetPlayersDead();
         _FreezeAllPlayers();
         _gameManagerAccess.HandleFailure();
     }
 
     private void _HandlePlayerGoal(Player player)
     {
-        if (!AreAllPlayersAlive)
+        if (!_areAllPlayersAlive)
             return;
 
         if (!_AllPlayersReachedGoal())
             return;
 
         _gameManagerAccess.HandleSuccess();
-    }
-
-    private void _SetPlayersDead()
-    {
-        AreAllPlayersAlive = false;
     }
 
     private void _FreezeAllPlayers()

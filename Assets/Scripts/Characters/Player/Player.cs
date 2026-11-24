@@ -13,15 +13,14 @@ public partial class Player : Character
     private IPlayerState _currentState;
 
     private PlayerExternalEffectApplier _externalEffectApplier;
-    private bool _isAlive = true;
     private Vector2 _inputDirection;
     private IPlayerStateContext _stateContext;
 
     private AnimationTransitions _animationTransitions;
     private StageSceneContextReadonlyAccess _stageContextAccess;
 
-    public bool IsInGoalState => _currentState is GoalState;
-    public bool IsAlive => _isAlive;
+    public bool IsInGoalState => _currentState?.HasReachedGoal ?? false;
+    public bool IsAlive => _currentState?.IsAlive ?? true;
     public Vector2 InputDirection => _inputDirection;
     public IExternalEffectApplier ExternalEffectApplier => _externalEffectApplier;
 
@@ -156,7 +155,6 @@ public partial class Player : Character
 
     private void _NotifyDied(DeathReason deathReason)
     {
-        _isAlive = false;
         OnDied?.Invoke(deathReason);
     }
 

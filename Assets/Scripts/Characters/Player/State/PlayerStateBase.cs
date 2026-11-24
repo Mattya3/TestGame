@@ -35,6 +35,8 @@ public abstract class PlayerStateBase : IPlayerState
 
     public virtual void OnDisabled() { }
 
+    public virtual bool IsAlive => true;
+    public virtual bool HasReachedGoal => false;
     public virtual string GetAnimationName()
     {
         return AnimationTransitions.IGNORED_ANIMATION_NAME;

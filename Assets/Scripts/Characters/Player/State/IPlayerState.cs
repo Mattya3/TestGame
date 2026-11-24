@@ -10,5 +10,7 @@ public interface IPlayerState
     void OnEnabled();
     void OnDisabled();
 
+    bool IsAlive { get; }
+    bool HasReachedGoal { get; }
     string GetAnimationName();
 }

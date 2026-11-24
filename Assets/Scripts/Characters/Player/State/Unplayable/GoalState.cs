@@ -21,4 +21,6 @@ public class GoalState : UnplayableState
     {
         Debug.LogWarning("Die() was called while in GoalState.", Context.LogContext);
     }
+
+    public override bool HasReachedGoal => true;
 }

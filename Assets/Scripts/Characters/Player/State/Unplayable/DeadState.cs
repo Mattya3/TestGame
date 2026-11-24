@@ -43,6 +43,8 @@ public class DeadState : UnplayableState
         Debug.LogWarning("Goal() was called while in DeadState.", Context.LogContext);
     }
 
+    public override bool IsAlive => false;
+
     public override string GetAnimationName()
     {
         return "Die";
