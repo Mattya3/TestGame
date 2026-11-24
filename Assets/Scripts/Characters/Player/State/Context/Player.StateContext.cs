@@ -26,7 +26,7 @@ public partial class Player
 
         bool IPlayerStateContext.IsGrounded()
         {
-            return _player._IsGrounded();
+            return _player.IsGrounded();
         }
 
         bool IPlayerStateContext.TryJump()

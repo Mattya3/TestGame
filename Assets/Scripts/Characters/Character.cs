@@ -97,6 +97,11 @@ public abstract class Character : MonoEventReactingBehaviour
         _rigidBody.bodyType = RigidbodyType2D.Static;
     }
 
+    protected bool IsGrounded()
+    {
+        return _groundDetector.IsGrounded();
+    }
+
     public Bounds Bounds => _collider.bounds;
 
     protected CharacterEffectsPlayer EffectsPlayer => _effectsPlayer;

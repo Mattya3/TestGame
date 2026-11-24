@@ -133,14 +133,9 @@ public partial class Player : Character
         _ApplyMovement(direction);
     }
 
-    private bool _IsGrounded()
-    {
-        return _groundDetector.IsGrounded();
-    }
-
     private bool _TryJump()
     {
-        if (!_IsGrounded())
+        if (!IsGrounded())
             return false;
 
         _ApplyJump();
