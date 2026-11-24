@@ -53,16 +53,17 @@ public partial class Player : Character
         _ChangeState(_CreateInitialState());
     }
 
-    protected override void _Move()
+    protected override void Update()
     {
+        base.Update();
+
         // memo: このメソッドはここではない気がするが(character側にこれを置きたい), 次issueで対応
         _externalEffectApplier.UpdateEffectState();
 
         if (_currentState == null)
             return;
 
-        _currentState.OnMove(_inputDirection);
-
+        _currentState.Update(_inputDirection);
         _animationTransitions.SetFacingDirection(FacingDirection);
         _animationTransitions.Play(_currentState.GetAnimationName());
     }

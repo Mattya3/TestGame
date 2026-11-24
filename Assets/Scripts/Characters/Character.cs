@@ -49,12 +49,7 @@ public abstract class Character : MonoEventReactingBehaviour
         _isInitialized = true;
     }
 
-    protected virtual void Update()
-    {
-        _Move();
-    }
-
-    protected abstract void _Move();
+    protected virtual void Update() { }
 
     protected FacingDirectionType FacingDirection
     {

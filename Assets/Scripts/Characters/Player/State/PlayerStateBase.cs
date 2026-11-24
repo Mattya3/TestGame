@@ -19,7 +19,7 @@ public abstract class PlayerStateBase : IPlayerState
     protected float ElapsedTimeInState => Time.time - _enabledTime;
     protected float ElapsedUnscaledTimeInState => Time.unscaledTime - _enabledUnscaledTime;
 
-    public virtual void OnMove(Vector2 inputDirection) { }
+    public virtual void Update(Vector2 inputDirection) { }
 
     public virtual void OnJump() { }
 

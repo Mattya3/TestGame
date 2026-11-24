@@ -7,9 +7,9 @@ public class AirState : PlayableState
     public AirState(IPlayerStateContext context)
         : base(context) { }
 
-    public override void OnMove(Vector2 inputDirection)
+    public override void Update(Vector2 inputDirection)
     {
-        base.OnMove(inputDirection);
+        base.Update(inputDirection);
 
         Context.MoveByInput(inputDirection);
 

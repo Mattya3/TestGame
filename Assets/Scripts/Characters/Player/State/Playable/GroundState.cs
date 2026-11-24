@@ -7,9 +7,9 @@ public class GroundState : PlayableState
     public GroundState(IPlayerStateContext context)
         : base(context) { }
 
-    public override void OnMove(Vector2 inputDirection)
+    public override void Update(Vector2 inputDirection)
     {
-        base.OnMove(inputDirection);
+        base.Update(inputDirection);
 
         if (!Context.IsGrounded())
         {
