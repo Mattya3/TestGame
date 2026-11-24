@@ -25,6 +25,10 @@ public class AudioLooper : MonoBehaviour
         }
 
         _audioSource.clip = _audioLoop.Clip;
+    }
+
+    private void Start()
+    {
         _audioSource.Play();
     }
 
