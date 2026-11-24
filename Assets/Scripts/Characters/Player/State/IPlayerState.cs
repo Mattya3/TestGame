@@ -8,6 +8,7 @@ public interface IPlayerState
     void OnJumpInput();
     void Die(DeathReason deathReason);
     void Goal();
+    void Freeze();
     void OnEnabled();
     void OnDisabled();
 

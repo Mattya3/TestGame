@@ -14,4 +14,10 @@ public abstract class PlayableState : PlayerStateBase
     {
         Context.ChangeState(new GoalState(Context));
     }
+
+    public override void Freeze()
+    {
+        base.Freeze();
+        Context.ChangeState(new FrozenState(Context));
+    }
 }

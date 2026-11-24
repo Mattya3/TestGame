@@ -95,36 +95,23 @@ public partial class Player : Character
     {
         if (!context.performed)
             return;
-        if (_currentState == null)
-            return;
 
-        _currentState.OnJumpInput();
+        _currentState?.OnJumpInput();
     }
 
     public void Die(DeathReason deathReason)
     {
-        if (_currentState == null)
-            return;
-
-        _currentState.Die(deathReason);
+        _currentState?.Die(deathReason);
     }
 
     public void Goal()
     {
-        if (_currentState == null)
-            return;
-
-        _currentState.Goal();
+        _currentState?.Goal();
     }
 
-    public void EnterFrozenState()
+    public void Freeze()
     {
-        if (_currentState == null)
-            return;
-        if (_currentState is UnplayableState)
-            return;
-
-        _ChangeState(new FrozenState(_stateContext));
+        _currentState?.Freeze();
     }
 
     private void _ChangeState(IPlayerState nextState)

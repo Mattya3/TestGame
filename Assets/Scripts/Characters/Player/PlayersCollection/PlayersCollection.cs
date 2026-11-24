@@ -132,7 +132,6 @@ public class PlayersCollection : MonoBehaviour, IPlayersCollection
             return;
 
         _players.Add(player);
-        _aliveFlagsList.Add(true);
         player.OnDied += (reason) =>
         {
             _HandlePlayerDeath(player, reason);
@@ -168,7 +167,7 @@ public class PlayersCollection : MonoBehaviour, IPlayersCollection
     {
         foreach (var player in _players)
         {
-            player.EnterFrozenState();
+            player.Freeze();
         }
     }
 
