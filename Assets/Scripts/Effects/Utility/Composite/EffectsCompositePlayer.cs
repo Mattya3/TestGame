@@ -9,7 +9,7 @@ public class EffectsCompositePlayer
         GameObject effectPrefab,
         SoundEffectOutput soundEffectOutput,
         CameraMutableAccess cameraAccess,
-        TransformOffsetController transformOffsetController,
+        LocalTransformOffsetController transformOffsetController,
         Renderer renderer,
         Vector3 position = default,
         Quaternion rotation = default,

@@ -3,7 +3,7 @@ using UnityEngine.Animations;
 using UnityEngine.Playables;
 
 [ExecuteAlways]
-public class TransformOffsetController : MonoBehaviour, IAnimationWindowPreview
+public class LocalTransformOffsetController : MonoBehaviour, IAnimationWindowPreview
 {
     [SerializeField]
     private Transform _targetTransform;

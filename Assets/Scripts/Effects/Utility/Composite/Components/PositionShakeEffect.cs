@@ -12,7 +12,7 @@ namespace EffectsCompositeComponent
         private bool _applyPlaybackSpeedRate = true;
 
         private ShakeEffectsPlayer _shakeEffectsPlayer;
-        private TransformOffsetController _transformOffsetController;
+        private LocalTransformOffsetController _transformOffsetController;
         private bool _playInUnscaledTime = false;
         private float _playbackSpeedRate = 1.0f;
 
@@ -31,7 +31,7 @@ namespace EffectsCompositeComponent
         }
 
         public void Initialize(
-            TransformOffsetController transformOffsetController,
+            LocalTransformOffsetController transformOffsetController,
             bool playInUnscaledTime,
             float playbackSpeedRate
         )

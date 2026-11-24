@@ -9,7 +9,7 @@ public interface IEffectsCompositor
     public void Initialize(
         SoundEffectOutput soundEffectOutput,
         CameraMutableAccess cameraAccess,
-        TransformOffsetController transformOffsetController,
+        LocalTransformOffsetController transformOffsetController,
         Renderer renderer,
         Transform instantiationParent
     );

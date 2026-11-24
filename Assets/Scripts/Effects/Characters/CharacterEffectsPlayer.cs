@@ -23,7 +23,7 @@ public class CharacterEffectsPlayer : MonoBehaviour
         public EffectsCompositePlayer CreatePlayer(
             SoundEffectOutput soundEffectOutput,
             CameraMutableAccess cameraAccess,
-            TransformOffsetController transformOffsetController,
+            LocalTransformOffsetController transformOffsetController,
             Renderer renderer,
             Vector3 position,
             Quaternion rotation,
@@ -57,7 +57,7 @@ public class CharacterEffectsPlayer : MonoBehaviour
     private CameraMutableAccess _cameraAccess;
 
     [SerializeField]
-    private TransformOffsetController _transformOffsetController;
+    private LocalTransformOffsetController _transformOffsetController;
 
     [SerializeField]
     private Renderer _renderer;

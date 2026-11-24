@@ -71,7 +71,7 @@ public abstract class EffectsCompositorBase : MonoBehaviour, IEffectsCompositor
     protected void InitializeComponents(
         SoundEffectOutput soundEffectOutput,
         CameraMutableAccess cameraAccess,
-        TransformOffsetController transformOffsetController,
+        LocalTransformOffsetController transformOffsetController,
         Renderer renderer,
         Transform instantiationParent
     )
@@ -177,7 +177,7 @@ public abstract class EffectsCompositorBase : MonoBehaviour, IEffectsCompositor
     public abstract void Initialize(
         SoundEffectOutput soundEffectOutput,
         CameraMutableAccess cameraAccess,
-        TransformOffsetController transformOffsetController,
+        LocalTransformOffsetController transformOffsetController,
         Renderer renderer,
         Transform instantiationParent
     );

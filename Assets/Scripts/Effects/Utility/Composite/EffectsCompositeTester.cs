@@ -2,7 +2,7 @@
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(CameraMutableAccess))]
-[RequireComponent(typeof(TransformOffsetController))]
+[RequireComponent(typeof(LocalTransformOffsetController))]
 public class EffectsCompositeTester : MonoBehaviour
 {
     [SerializeField]
@@ -15,7 +15,7 @@ public class EffectsCompositeTester : MonoBehaviour
     private CameraMutableAccess _cameraAccess;
 
     [SerializeField]
-    private TransformOffsetController _transformOffsetController;
+    private LocalTransformOffsetController _transformOffsetController;
 
     [SerializeField]
     private Renderer _renderer;

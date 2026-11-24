@@ -18,7 +18,7 @@ public class OneShotEffectsCompositor : EffectsCompositorBase
     public override void Initialize(
         SoundEffectOutput soundEffectOutput,
         CameraMutableAccess cameraAccess,
-        TransformOffsetController transformOffsetController,
+        LocalTransformOffsetController transformOffsetController,
         Renderer renderer,
         Transform instantiationParent
     )
