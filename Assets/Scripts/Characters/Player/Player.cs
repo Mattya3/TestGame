@@ -79,12 +79,12 @@ public partial class Player : Character
         inputSetup.Setup(playerIndex);
     }
 
-    public void OnMove(InputAction.CallbackContext context)
+    public void OnMoveInput(InputAction.CallbackContext context)
     {
         _inputDirection = context.ReadValue<Vector2>();
     }
 
-    public void OnJump(InputAction.CallbackContext context)
+    public void OnJumpInput(InputAction.CallbackContext context)
     {
         if (!context.performed)
             return;
