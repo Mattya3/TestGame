@@ -11,4 +11,5 @@ public interface IPlayersCollection : IAccessTarget
     ReadOnlyCollection<bool> AliveFlags { get; }
 
     IExternalEffectTarget CreatePlayerExternalEffectTarget(int index);
+    void SetExternalEffect(int index, IExternalEffect externalEffect);
 }

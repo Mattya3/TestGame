@@ -234,7 +234,15 @@ public class PlayersCollection : MonoBehaviour, IPlayersCollection
     {
         if (index < 0 || index >= _players.Count)
             throw new System.ArgumentOutOfRangeException(nameof(index));
-            
+
         return new Player.PlayerExternalEffectTarget(_players[index]);
+    }
+
+    public void SetExternalEffect(int index, IExternalEffect externalEffect)
+    {
+        if (index < 0 || index >= _players.Count)
+            throw new System.ArgumentOutOfRangeException(nameof(index));
+
+        _players[index].SetExternalEffect(externalEffect);
     }
 }

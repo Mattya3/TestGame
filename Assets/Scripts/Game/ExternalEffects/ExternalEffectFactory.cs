@@ -6,11 +6,9 @@ public static class ExternalEffectFactory
     public static IExternalEffect Create(
         Constants.ExternalEffectType externalEffectType,
         PlayersCollectionReadonlyAccess playersAccess,
-        Player player
+        IExternalEffectTarget target
     )
     {
-        var target = new Player.PlayerExternalEffectTarget(player);
-
         switch (externalEffectType)
         {
             case Constants.ExternalEffectType.ReverseInput:

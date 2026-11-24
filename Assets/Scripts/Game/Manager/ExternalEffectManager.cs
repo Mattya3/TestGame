@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(PlayersCollectionReadonlyAccess))]
+[RequireComponent(typeof(PlayersCollectionMutableAccess))]
 public class ExternalEffectManager : MonoBehaviour
 {
     [SerializeField]
@@ -15,37 +16,33 @@ public class ExternalEffectManager : MonoBehaviour
         .ExternalEffectType
         .None;
 
-    private PlayersCollectionReadonlyAccess _playersAccess;
+    private PlayersCollectionReadonlyAccess _playersReadonlyAccess;
+    private PlayersCollectionMutableAccess _playersMutableAccess;
 
-    private IEnumerator Start()
+    private void Awake()
     {
-        Player[] players = null;
-        yield return new WaitUntil(() =>
-        {
-            players = FindObjectsByType<Player>(FindObjectsSortMode.InstanceID);
-            return players.Length == Constants.PLAYER_COUNT;
-        });
-        _playersAccess = GetComponent<PlayersCollectionReadonlyAccess>();
-        Initialize(players);
+        _playersReadonlyAccess = GetComponent<PlayersCollectionReadonlyAccess>();
+        _playersMutableAccess = GetComponent<PlayersCollectionMutableAccess>();
     }
 
-    private void Initialize(IReadOnlyList<Player> players)
+    private void Start()
     {
-        if (players == null)
-        {
-            Debug.LogError("players が null です。", this);
-            return;
-        }
+        Initialize();
+    }
 
-        for (int i = 0; i < players.Count; i++)
+    private void Initialize()
+    {
+        for (int i = 0; i < _playersMutableAccess.Count; i++)
         {
-            Player player = players[i];
-            if (player == null)
-                continue;
-
             Constants.ExternalEffectType effectType = _GetExternalEffectType(i);
-            IExternalEffect externalEffect = ExternalEffectFactory.Create(effectType, _playersAccess, player);
-            player.SetExternalEffect(externalEffect);
+            IExternalEffectTarget target = _playersMutableAccess.CreatePlayerExternalEffectTarget(i);
+            if (target == null)
+            {
+                Debug.LogError($"Failed to create external effect target for player at index {i}.", this);
+                continue;
+            }
+            IExternalEffect externalEffect = ExternalEffectFactory.Create(effectType, _playersReadonlyAccess, target);
+            _playersMutableAccess.SetExternalEffect(i, externalEffect);
         }
     }
 
