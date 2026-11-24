@@ -158,8 +158,6 @@ public class PlayersManager : MonoBehaviour, IPlayersCollection
         if (!AreAllPlayersAlive)
             return;
 
-        player.Freeze();
-
         if (!_AllPlayersReachedGoal())
             return;
 

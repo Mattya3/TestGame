@@ -11,7 +11,7 @@ public class FrozenState : UnplayableState
         base.OnEnabled();
 
         Context.SetAnimatorSpeed(0f);
-        Context.Freeze();
+        Context.FreezePhysics();
     }
 
     public override void Die(DeathReason deathReason)

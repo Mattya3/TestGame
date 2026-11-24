@@ -94,7 +94,7 @@ public abstract class Character : MonoEventReactingBehaviour
     {
     }
 
-    public void Freeze()
+    protected void FreezePhysics()
     {
         _rigidBody.linearVelocity = Vector2.zero;
         _rigidBody.bodyType = RigidbodyType2D.Static;

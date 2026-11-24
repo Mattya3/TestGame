@@ -30,7 +30,7 @@ public class DeadState : UnplayableState
         }
 
         Context.NotifyDied(_deathReason);
-        Context.Freeze();
+        Context.FreezePhysics();
     }
 
     public override void Die(DeathReason deathReason)

@@ -8,7 +8,7 @@ public interface IPlayerStateContext
     void MoveByInput(Vector2 inputDirection);
     bool IsGrounded();
     bool TryJump();
-    void Freeze();
+    void FreezePhysics();
     void NotifyDied(DeathReason deathReason);
     void NotifyGoalReached();
     void SetAnimatorSpeed(float speed);

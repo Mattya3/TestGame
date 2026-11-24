@@ -34,9 +34,9 @@ public partial class Player
             return _player._TryJump();
         }
 
-        void IPlayerStateContext.Freeze()
+        void IPlayerStateContext.FreezePhysics()
         {
-            _player.Freeze();
+            _player.FreezePhysics();
         }
 
         void IPlayerStateContext.NotifyDied(DeathReason deathReason)

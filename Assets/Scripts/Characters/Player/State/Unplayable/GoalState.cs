@@ -14,7 +14,7 @@ public class GoalState : UnplayableState
 
         Context.PlayCharacterEffect(_EFFECT_KEY_GOAL);
         Context.NotifyGoalReached();
-        Context.Freeze();
+        Context.FreezePhysics();
     }
 
     public override void Die(DeathReason deathReason)
