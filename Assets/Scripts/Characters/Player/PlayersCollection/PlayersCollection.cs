@@ -5,7 +5,7 @@ using UnityEngine;
 using static Constants;
 
 [RequireComponent(typeof(GameManagerMutableAccess))]
-public class PlayersManager : MonoBehaviour, IPlayersCollection
+public class PlayersCollection : MonoBehaviour, IPlayersCollection
 {
     private List<Player> _players = new List<Player>();
     private GameManagerMutableAccess _gameManagerAccess;
