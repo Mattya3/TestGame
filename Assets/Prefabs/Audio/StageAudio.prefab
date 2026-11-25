@@ -47,9 +47,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8aadf79ce98234568ada31f3bda2f145, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EventSnapshotTransition
-  _gameEvent: 1
-  _snapshot: {fileID: 24500006, guid: cd93d5f7040100c4c86ec28cf0fdc21a, type: 2}
-  _transitionTime: 0.05
+  _transitions:
+  - _gameEvent: 1
+    _snapshot: {fileID: 24500006, guid: cd93d5f7040100c4c86ec28cf0fdc21a, type: 2}
+    _transitionTime: 0.05
+  - _gameEvent: 3
+    _snapshot: {fileID: 2513705528181230233, guid: cd93d5f7040100c4c86ec28cf0fdc21a, type: 2}
+    _transitionTime: 0
 --- !u!114 &2520814138890532347
 MonoBehaviour:
   m_ObjectHideFlags: 0
