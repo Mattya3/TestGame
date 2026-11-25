@@ -75,6 +75,13 @@ namespace EffectsCompositeComponent
                 return _lastPlayedIndex;
             }
 
+            if (_lastPlayedIndex == -1)
+            {
+                // If no clip has been played yet, select a random index
+                _lastPlayedIndex = Random.Range(0, _audioClips.Length);
+                return _lastPlayedIndex;
+            }
+
             if (_avoidImmediateRepeat)
             {
                 int randomIncrement = Random.Range(1, _audioClips.Length);
