@@ -17,6 +17,7 @@ public class EventAudioFadeout : MonoEventReactingBehaviour
         private float _fadeOutTime;
 
         public bool IsForEvent(GameEvent gameEvent) => _gameEvent == gameEvent;
+        public GameEvent TargetEvent => _gameEvent;
         public float FadeOutTime => _fadeOutTime;
     }
 
@@ -29,6 +30,7 @@ public class EventAudioFadeout : MonoEventReactingBehaviour
     private void Awake()
     {
         _audioSource = GetComponent<AudioSource>();
+        ValidateEventFadeouts();
     }
 
     protected override void OnGameEvent(GameEvent gameEvent)
@@ -41,6 +43,25 @@ public class EventAudioFadeout : MonoEventReactingBehaviour
                     StopCoroutine(_fadeoutCoroutine);
                 _fadeoutCoroutine = StartCoroutine(_CoFadeOut(eventFadeout.FadeOutTime));
                 break;
+            }
+        }
+    }
+
+    private void ValidateEventFadeouts()
+    {
+        if (_eventFadeouts == null)
+            return;
+
+        var registeredEvents = new HashSet<GameEvent>();
+
+        for (var i = 0; i < _eventFadeouts.Count; i++)
+        {
+            var eventFadeout = _eventFadeouts[i];
+            if (!registeredEvents.Add(eventFadeout.TargetEvent))
+            {
+                Debug.LogWarning(
+                    $"同じGameEventが重複登録されています。GameEvent: {eventFadeout.TargetEvent}, Index: {i}",
+                    this);
             }
         }
     }

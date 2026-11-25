@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
@@ -15,6 +15,8 @@ public class AudioMixerSnapshotTransition : MonoEventReactingBehaviour
         private AudioMixerSnapshot _snapshot;
         [SerializeField, Min(0f)]
         private float _transitionTime;
+
+        public GameEvent TargetEvent => _gameEvent;
 
         public void TryTransition(GameEvent gameEvent)
         {
@@ -36,9 +38,11 @@ public class AudioMixerSnapshotTransition : MonoEventReactingBehaviour
     [SerializeField]
     [UnityEngine.Serialization.FormerlySerializedAs("_transitions")]
     private List<EventTransition> _eventTransitions;
-    
+
     private void Awake()
     {
+        ValidateEventTransitions();
+
         if (_startupSnapshot == null)
         {
             Debug.LogError("Startup snapshot is not assigned.");
@@ -53,6 +57,25 @@ public class AudioMixerSnapshotTransition : MonoEventReactingBehaviour
         foreach (var transition in _eventTransitions)
         {
             transition.TryTransition(gameEvent);
+        }
+    }
+
+    private void ValidateEventTransitions()
+    {
+        if (_eventTransitions == null)
+            return;
+
+        var registeredEvents = new HashSet<GameEvent>();
+
+        for (var i = 0; i < _eventTransitions.Count; i++)
+        {
+            var transition = _eventTransitions[i];
+            if (!registeredEvents.Add(transition.TargetEvent))
+            {
+                Debug.LogWarning(
+                    $"同じGameEventが重複登録されています。GameEvent: {transition.TargetEvent}, Index: {i}",
+                    this);
+            }
         }
     }
 }
