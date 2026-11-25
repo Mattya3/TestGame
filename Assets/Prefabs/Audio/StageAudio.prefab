@@ -9,6 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8008309554526490712}
+  - component: {fileID: 702472370513497203}
+  - component: {fileID: 2520814138890532347}
   m_Layer: 0
   m_Name: StageAudio
   m_TagString: Untagged
@@ -33,6 +35,33 @@ Transform:
   - {fileID: 5801518707992982387}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &702472370513497203
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2001070379339854794}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8aadf79ce98234568ada31f3bda2f145, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EventSnapshotTransition
+  _gameEvent: 1
+  _snapshot: {fileID: 24500006, guid: cd93d5f7040100c4c86ec28cf0fdc21a, type: 2}
+  _transitionTime: 0.05
+--- !u!114 &2520814138890532347
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2001070379339854794}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 350ef0f6403c0f04b914a103f74b1680, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameEventRegistrationAccess
 --- !u!1001 &5806230921912486010
 PrefabInstance:
   m_ObjectHideFlags: 0
