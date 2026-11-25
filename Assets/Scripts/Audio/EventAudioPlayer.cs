@@ -3,7 +3,7 @@ using UnityEngine;
 using static Constants;
 
 [RequireComponent(typeof(AudioSource))]
-public class EventMusicPlayer : MonoEventReactingBehaviour
+public class EventAudioPlayer : MonoEventReactingBehaviour
 {
     [SerializeField]
     private GameEvent _gameEvent;
