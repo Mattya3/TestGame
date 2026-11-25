@@ -25,11 +25,13 @@ public class EventAudioFadeout : MonoEventReactingBehaviour
     private List<EventFadeout> _eventFadeouts;
 
     private AudioSource _audioSource;
+    private float _originalVolume;
     private Coroutine _fadeoutCoroutine;
 
     private void Awake()
     {
         _audioSource = GetComponent<AudioSource>();
+        _originalVolume = _audioSource.volume;
         ValidateEventFadeouts();
     }
 
@@ -79,7 +81,7 @@ public class EventAudioFadeout : MonoEventReactingBehaviour
         }
         _audioSource.volume = 0.0f;
         _audioSource.Stop();
-        _audioSource.volume = startVolume; // 次回再生のために音量を元に戻す
+        _audioSource.volume = _originalVolume; // 次回再生のために音量を元に戻す
         _fadeoutCoroutine = null;
     }
 }
