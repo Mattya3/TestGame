@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Audio;
 using static Constants;
 
-public class EventSnapshotTransition : MonoEventReactingBehaviour
+public class AudioMixerSnapshotTransition : MonoEventReactingBehaviour
 {
     [Serializable]
     private struct SnapshotTransition
