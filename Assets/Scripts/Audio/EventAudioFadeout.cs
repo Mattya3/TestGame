@@ -1,15 +1,27 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using static Constants;
 
 [RequireComponent(typeof(AudioSource))]
 public class EventAudioFadeout : MonoEventReactingBehaviour
 {
-    [SerializeField, Min(0.0f)]
-    private float _fadeOutTimeOnFailure = 0.1f;
+    [Serializable]
+    private struct EventFadeout
+    {
+        [SerializeField]
+        private GameEvent _gameEvent;
 
-    [SerializeField, Min(0.0f)]
-    private float _fadeOutTimeOnSuccess = 1.0f;
+        [SerializeField, Min(0.0f)]
+        private float _fadeOutTime;
+
+        public bool IsForEvent(GameEvent gameEvent) => _gameEvent == gameEvent;
+        public float FadeOutTime => _fadeOutTime;
+    }
+
+    [SerializeField]
+    private List<EventFadeout> _eventFadeouts;
 
     private AudioSource _audioSource;
 
@@ -18,14 +30,16 @@ public class EventAudioFadeout : MonoEventReactingBehaviour
         _audioSource = GetComponent<AudioSource>();
     }
 
-    protected override void OnFailure()
+    protected override void OnGameEvent(GameEvent gameEvent)
     {
-        StartCoroutine(_CoFadeOut(_fadeOutTimeOnFailure));
-    }
-
-    protected override void OnSuccess()
-    {
-        StartCoroutine(_CoFadeOut(_fadeOutTimeOnSuccess));
+        foreach (var eventFadeout in _eventFadeouts)
+        {
+            if (eventFadeout.IsForEvent(gameEvent))
+            {
+                StartCoroutine(_CoFadeOut(eventFadeout.FadeOutTime));
+                break;
+            }
+        }
     }
 
     private IEnumerator _CoFadeOut(float fadeOutTime)

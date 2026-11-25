@@ -157,8 +157,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7816173083aff64bb8ce355bfd66cc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  _fadeOutTimeOnFailure: 0.1
-  _fadeOutTimeOnSuccess: 1
+  _eventFadeouts:
+  - _gameEvent: 1
+    _fadeOutTime: 0.1
+  - _gameEvent: 2
+    _fadeOutTime: 1
 --- !u!114 &47417215230264558
 MonoBehaviour:
   m_ObjectHideFlags: 0
