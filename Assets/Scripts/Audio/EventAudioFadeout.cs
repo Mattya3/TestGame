@@ -24,6 +24,7 @@ public class EventAudioFadeout : MonoEventReactingBehaviour
     private List<EventFadeout> _eventFadeouts;
 
     private AudioSource _audioSource;
+    private Coroutine _fadeoutCoroutine;
 
     private void Awake()
     {
@@ -36,7 +37,9 @@ public class EventAudioFadeout : MonoEventReactingBehaviour
         {
             if (eventFadeout.IsForEvent(gameEvent))
             {
-                StartCoroutine(_CoFadeOut(eventFadeout.FadeOutTime));
+                if (_fadeoutCoroutine != null)
+                    StopCoroutine(_fadeoutCoroutine);
+                _fadeoutCoroutine = StartCoroutine(_CoFadeOut(eventFadeout.FadeOutTime));
                 break;
             }
         }
@@ -56,5 +59,6 @@ public class EventAudioFadeout : MonoEventReactingBehaviour
         _audioSource.volume = 0.0f;
         _audioSource.Stop();
         _audioSource.volume = startVolume; // 次回再生のために音量を元に戻す
+        _fadeoutCoroutine = null;
     }
 }
