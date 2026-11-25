@@ -6,6 +6,7 @@ using static Constants;
 public class GameEventHub : MonoBehaviour, IAccessTarget
 {
     private readonly Dictionary<GameEvent, Action> _eventActions;
+    private Action<GameEvent> _argumentedEventActions;
 
     public GameEventHub()
     {
@@ -14,6 +15,7 @@ public class GameEventHub : MonoBehaviour, IAccessTarget
         {
             _eventActions[gameEvent] = null;
         }
+        _argumentedEventActions = null;
     }
 
     private void Awake()
@@ -49,6 +51,16 @@ public class GameEventHub : MonoBehaviour, IAccessTarget
 
         _eventActions[gameEvent] -= eventAction;
     }
+    
+    public void RegisterArgumentedEventAction(Action<GameEvent> eventAction)
+    {
+        _argumentedEventActions += eventAction;
+    }
+    
+    public void UnregisterArgumentedEventAction(Action<GameEvent> eventAction)
+    {
+        _argumentedEventActions -= eventAction;
+    }
 
     public void TriggerEventActions(GameEvent gameEvent)
     {
@@ -56,5 +68,6 @@ public class GameEventHub : MonoBehaviour, IAccessTarget
         {
             action?.Invoke();
         }
+        _argumentedEventActions?.Invoke(gameEvent);
     }
 }

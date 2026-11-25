@@ -17,4 +17,17 @@ public class GameEventRegistrationAccess : AccessComponent<GameEventHub>
 
         Reference?.UnregisterEventAction(gameEvent, eventAction);
     }
+
+    public void RegisterArgumentedEventAction(Action<GameEvent> eventAction)
+    {
+        Reference?.RegisterArgumentedEventAction(eventAction);
+    }
+
+    public void UnregisterArgumentedEventAction(Action<GameEvent> eventAction)
+    {
+        if (!HasReference)
+            return;
+
+        Reference?.UnregisterArgumentedEventAction(eventAction);
+    }
 }

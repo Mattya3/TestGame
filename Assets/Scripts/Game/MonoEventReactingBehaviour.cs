@@ -40,6 +40,8 @@ public abstract class MonoEventReactingBehaviour : MonoBehaviour
 
     protected virtual void OnSceneEnd() { }
 
+    protected virtual void OnGameEvent(GameEvent gameEvent) { }
+
     // オーバーライドするが，イベントを登録したくない場合はfalseを返すように実装
     protected virtual bool _ShouldSubscribe(GameEvent gameEvent) => true;
 
@@ -54,6 +56,8 @@ public abstract class MonoEventReactingBehaviour : MonoBehaviour
             if (_IsOverridden(methodName) && _ShouldSubscribe(gameEvent))
                 _eventRegistrationAccess?.RegisterEventAction(gameEvent, handler);
         }
+        if (_IsOverridden(nameof(OnGameEvent)))
+            _eventRegistrationAccess?.RegisterArgumentedEventAction(OnGameEvent);
     }
 
     protected void UnregisterEventActions()
@@ -67,6 +71,8 @@ public abstract class MonoEventReactingBehaviour : MonoBehaviour
             if (_IsOverridden(methodName) && _ShouldSubscribe(gameEvent))
                 _eventRegistrationAccess?.UnregisterEventAction(gameEvent, handler);
         }
+        if (_IsOverridden(nameof(OnGameEvent)))
+            _eventRegistrationAccess?.UnregisterArgumentedEventAction(OnGameEvent);
     }
 
     private void _GetEventRegistrationAccess()
