@@ -362,7 +362,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2001070379339854794, guid: 9ea3b84fbc0107942935cdc779888180, type: 3}
       propertyPath: m_Name
-      value: StageMusic
+      value: StageAudio
       objectReference: {fileID: 0}
     - target: {fileID: 8008309554526490712, guid: 9ea3b84fbc0107942935cdc779888180, type: 3}
       propertyPath: m_LocalPosition.x
