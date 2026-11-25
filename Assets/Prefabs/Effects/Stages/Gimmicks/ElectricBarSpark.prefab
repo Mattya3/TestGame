@@ -179,3 +179,4 @@ MonoBehaviour:
   - {fileID: 8300000, guid: fc098829e4e3e874697594c0d2db438c, type: 3}
   _outputBus: 3
   _volume: 0.5
+  _avoidImmediateRepeat: 1

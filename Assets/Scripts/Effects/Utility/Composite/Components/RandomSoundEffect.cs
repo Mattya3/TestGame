@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Unity.VisualScripting;
+using UnityEngine;
 
 namespace EffectsCompositeComponent
 {
@@ -13,7 +14,11 @@ namespace EffectsCompositeComponent
         [SerializeField, Range(0.0f, 1.0f)]
         private float _volume = 1.0f;
 
+        [SerializeField]
+        private bool _avoidImmediateRepeat = true;
+
         private SoundEffectOutput _output;
+        private int _lastPlayedIndex = -1;
 
         public bool isEnabled => enabled;
 
@@ -51,8 +56,38 @@ namespace EffectsCompositeComponent
             if (_audioClips == null || _audioClips.Length == 0 || _output == null)
                 return;
 
-            int randomIndex = Random.Range(0, _audioClips.Length);
-            _output.PlayOneShot(_audioClips[randomIndex], _volume, _outputBus);
+            int nextIndex = _GetNextIndex();
+            if (nextIndex != -1)
+            {
+                _output.PlayOneShot(_audioClips[nextIndex], _volume, _outputBus);
+            }
+        }
+
+        private int _GetNextIndex()
+        {
+            if (_audioClips == null || _audioClips.Length == 0)
+                return -1;
+
+            if (_audioClips.Length == 1)
+            {
+                // If there is only one clip, always play it
+                _lastPlayedIndex = 0;
+                return _lastPlayedIndex;
+            }
+
+            if (_avoidImmediateRepeat)
+            {
+                int randomIncrement = Random.Range(1, _audioClips.Length);
+                int nextIndex = (_lastPlayedIndex + randomIncrement) % _audioClips.Length;
+                _lastPlayedIndex = nextIndex;
+                return nextIndex;
+            }
+            else
+            {
+                int nextIndex = Random.Range(0, _audioClips.Length);
+                _lastPlayedIndex = nextIndex;
+                return nextIndex;
+            }
         }
     }
 }
