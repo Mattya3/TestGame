@@ -285,7 +285,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7979951333166815181, guid: 02b1dc68771744a05b0ca9da9086ce1c, type: 3}
       propertyPath: m_Name
-      value: WildernessWindSound
+      value: StageAmbientSound
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

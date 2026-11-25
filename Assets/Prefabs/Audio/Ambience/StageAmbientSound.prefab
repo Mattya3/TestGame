@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5232632911962273118}
   - component: {fileID: 47417215230264558}
   m_Layer: 0
-  m_Name: WildernessWindSound
+  m_Name: StageAmbientSound
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
