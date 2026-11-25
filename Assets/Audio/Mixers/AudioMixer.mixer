@@ -128,7 +128,7 @@ AudioMixerController:
   m_StartSnapshot: {fileID: 2513705528181230233}
   m_SuspendThreshold: -80
   m_EnableSuspend: 1
-  m_UpdateMode: 0
+  m_UpdateMode: 1
   m_ExposedParameters:
   - guid: b4b97921278cb664380c2a5aad793531
     name: BGMVolume
