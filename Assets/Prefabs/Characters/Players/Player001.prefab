@@ -517,6 +517,9 @@ MonoBehaviour:
   _animator: {fileID: 4295684135927181264}
   _transitions:
   - _source: Idle
+    _destination: Run
+    _oneShot: BeginRun
+  - _source: Idle
     _destination: AirUp
     _oneShot: Jump
   - _source: Run
@@ -555,6 +558,8 @@ MonoBehaviour:
     _effectPrefab: {fileID: 8555158167546874534, guid: d43b716f007c3bf4682da4f58aa8513b, type: 3}
   - _key: FallDeath
     _effectPrefab: {fileID: 8555158167546874534, guid: d286d829fee8ae34fa587ef8fda79bd4, type: 3}
+  - _key: FirstStep
+    _effectPrefab: {fileID: 2236425536881500068, guid: 3192ad4d41adb479bb4bf0fc42743f81, type: 3}
   - _key: Footstep
     _effectPrefab: {fileID: 8555158167546874534, guid: 23da21b5eec7f214899db258ac32ffc6, type: 3}
   - _key: Jump
