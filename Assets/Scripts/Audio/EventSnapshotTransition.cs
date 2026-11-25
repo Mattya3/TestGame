@@ -17,4 +17,10 @@ public class EventSnapshotTransition : MonoEventReactingBehaviour
     {
         return gameEvent == _gameEvent;
     }
+
+    protected override void OnGameEvent(GameEvent gameEvent)
+    {
+        if (gameEvent == _gameEvent)
+            _snapshot.TransitionTo(_transitionTime);
+    }
 }

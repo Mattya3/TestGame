@@ -18,19 +18,10 @@ public class EventMusicPlayer : MonoEventReactingBehaviour
         _audioSource = GetComponent<AudioSource>();
     }
 
-    protected override bool _ShouldSubscribe(GameEvent gameEvent)
+    protected override void OnGameEvent(GameEvent gameEvent)
     {
-        return gameEvent == _gameEvent;
-    }
-
-    protected override void OnFailure()
-    {
-        StartCoroutine(_CoPlay());
-    }
-
-    protected override void OnSuccess()
-    {
-        StartCoroutine(_CoPlay());
+        if (gameEvent == _gameEvent)
+            StartCoroutine(_CoPlay());
     }
 
     private IEnumerator _CoPlay()
