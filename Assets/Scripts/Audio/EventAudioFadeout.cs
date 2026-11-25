@@ -3,7 +3,7 @@ using UnityEngine;
 using static Constants;
 
 [RequireComponent(typeof(AudioSource))]
-public class BGMController : MonoEventReactingBehaviour
+public class EventAudioFadeout : MonoEventReactingBehaviour
 {
     [SerializeField, Min(0.0f)]
     private float _fadeOutTimeOnFailure = 0.1f;
