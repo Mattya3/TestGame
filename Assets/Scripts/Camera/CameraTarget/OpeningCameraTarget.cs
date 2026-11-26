@@ -10,7 +10,7 @@ public class OpeningCameraTarget : MonoEventReactingBehaviour, ICameraTarget
     [SerializeField]
     private Vector3 _positionEnd;
 
-    [SerializeField]
+    [SerializeField, HideInInspector]
     private float _progressFactor = 0f; // 0から1の範囲で、Animatorを使って進行度を制御するための値
 
     private StageSceneContextReadonlyAccess _stageSceneContextAccess;
