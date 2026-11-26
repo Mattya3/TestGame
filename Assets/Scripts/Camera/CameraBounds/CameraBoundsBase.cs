@@ -10,10 +10,22 @@ public class CameraBoundsBase : MonoBehaviour, ICameraBounds
     [SerializeField]
     private bool _freezeY = false; // Y座標を初期位置で固定するフラグ
 
-    void OnDrawGizmosSelected()
+    protected virtual void Awake()
+    {
+        AccessComponent<ICameraBounds>.RegisterReference(this);
+    }
+
+    protected virtual void OnDestroy()
+    {
+        AccessComponent<ICameraBounds>.UnregisterReference(this);
+    }
+
+    private void OnDrawGizmosSelected()
     {
         DrawGizmos();
     }
+
+    public virtual void EnsureInitialized() {}
 
     public virtual Vector3 Bound(Vector3 pos, Vector3 originalPos, Camera camera)
     {
