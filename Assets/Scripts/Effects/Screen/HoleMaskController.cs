@@ -13,7 +13,7 @@ public class HoleMaskController : MonoUIImageMaterialAccessBehaviour
     [SerializeField]
     private UIColor _color;
 
-    private float _lastMaskThreshold = float.MaxValue;
+    private bool _isDirty = true;
     private CameraReadonlyAccess _cameraAccess;
     private IHoleMaskTarget _target;
 
@@ -108,9 +108,10 @@ public class HoleMaskController : MonoUIImageMaterialAccessBehaviour
 
     protected override void SetMaterialProperties(Material material)
     {
+        _isDirty = false;
+
         material.SetColor(ColorID, _color?.Color ?? Color.black);
         material.SetFloat(MaskThresholdID, _maskThreshold);
-        _lastMaskThreshold = _maskThreshold;
 
         // エディタ上ではオブジェクトを参照せずデフォルトの値を設定
         if (!Application.isPlaying)
@@ -137,5 +138,10 @@ public class HoleMaskController : MonoUIImageMaterialAccessBehaviour
         }
     }
 
-    protected override bool IsDirty => !Mathf.Approximately(_maskThreshold, _lastMaskThreshold);
+    private void OnDidApplyAnimationProperties()
+    {
+        _isDirty = true;
+    }
+
+    protected override bool IsDirty => _isDirty;
 }
