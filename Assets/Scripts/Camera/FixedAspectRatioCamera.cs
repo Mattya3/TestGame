@@ -3,8 +3,8 @@ using UnityEngine;
 [RequireComponent(typeof(Camera))]
 public class FixedAspectRatioCamera : MonoBehaviour
 {
-    [SerializeField] private Vector2Int _referenceResolution =
-        new Vector2Int(1920, 1080);
+    [SerializeField]
+    private ScreenResolution _referenceResolution;
 
     private Camera _camera;
     private int _previousWidth;
@@ -27,7 +27,7 @@ public class FixedAspectRatioCamera : MonoBehaviour
         _previousWidth = Screen.width;
         _previousHeight = Screen.height;
 
-        float targetAspect = (float)_referenceResolution.x / _referenceResolution.y;
+        float targetAspect = _referenceResolution.AspectRatio;
         float screenAspect = (float)Screen.width / Screen.height;
         Rect rect = new Rect(0f, 0f, 1f, 1f);
 

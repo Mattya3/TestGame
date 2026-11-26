@@ -150,4 +150,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 281c142a148154a0a995e0a85b8cbc7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FixedAspectRatioCamera
-  _referenceResolution: {x: 1920, y: 1080}
+  _referenceResolution: {fileID: 11400000, guid: 792b809fa48514d379e23433226b1a33, type: 2}
