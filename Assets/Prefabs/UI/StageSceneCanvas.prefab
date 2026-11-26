@@ -337,6 +337,7 @@ GameObject:
   - component: {fileID: 4511035696984536116}
   - component: {fileID: 5695429279775785612}
   - component: {fileID: 8451612163203620338}
+  - component: {fileID: 8564661879574638054}
   m_Layer: 5
   m_Name: StageSceneCanvas
   m_TagString: Untagged
@@ -428,6 +429,22 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &8564661879574638054
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2474818677716364682}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb84370e5cdb2434a98d16fde1f12618, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CanvasAspectRatio
+  _referenceResolution: {fileID: 11400000, guid: 792b809fa48514d379e23433226b1a33, type: 2}
+  _targetAspectRatioFitters:
+  - {fileID: 1325977572359757720}
+  - {fileID: 6641308300829039444}
 --- !u!1 &3728525890098490305
 GameObject:
   m_ObjectHideFlags: 0
