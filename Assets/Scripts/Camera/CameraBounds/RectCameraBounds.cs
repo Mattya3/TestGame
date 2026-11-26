@@ -51,9 +51,9 @@ public class RectCameraBounds : CameraBoundsBase
         );
     }
 
-    public override void DrawGizmos(Camera camera, Vector3 originalPos)
+    public override void DrawGizmos()
     {
-        base.DrawGizmos(camera, originalPos);
+        base.DrawGizmos();
 
         if (!_CanDrawGizmos())
             return;
