@@ -1034,3 +1034,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   _maskThreshold: 0
+  _color: {fileID: 11400000, guid: 17379685bd6144c4ca58dd7d7e2e2bdf, type: 2}
