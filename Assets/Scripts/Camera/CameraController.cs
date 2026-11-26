@@ -15,10 +15,6 @@ public class CameraController : MonoBehaviour, IAccessTarget
     [SerializeField, Min(0f)]
     private float _smoothTimeY = 0.1f;
 
-    [Header("Constraints")]
-    [SerializeField]
-    private CameraBounds _bounds = new CameraBounds(); // カメラの移動制約
-
     private Camera _camera; // カメラコンポーネントへの参照
     private CameraTargetsStack _targetsStack; // カメラターゲットのスタック
     private Collider2D[] _colliders; // カメラのコライダーへの参照
@@ -68,16 +64,6 @@ public class CameraController : MonoBehaviour, IAccessTarget
                 "CameraControllerには少なくとも1つのICameraTargetを実装したコンポーネントが必要です",
                 this
             );
-            return false;
-        }
-        if (_bounds.HasReversedBounds())
-        {
-            Debug.LogError("カメラ制約の最小値は最大値より小さくなければなりません", this);
-            return false;
-        }
-        if (_bounds.HasNaN())
-        {
-            Debug.LogError("カメラの制約に無効な値が含まれています", this);
             return false;
         }
         return true;
@@ -204,19 +190,5 @@ public class CameraController : MonoBehaviour, IAccessTarget
 
         for (int i = 0; i < _colliders.Length; i++)
             _colliders[i].enabled = enable;
-    }
-
-    // エディタ上でカメラの移動範囲を視覚化するためのGizmosを描画
-    void OnDrawGizmosSelected()
-    {
-        // デバッグ終了時などに参照が失われる場合があるため、カメラコンポーネントへの参照を再取得
-        if (_camera == null)
-        {
-            _camera = GetComponentInChildren<Camera>();
-            if (_camera == null)
-                return;
-        }
-
-        _bounds.DrawGizmos(_camera, _camera.transform.position);
     }
 }
