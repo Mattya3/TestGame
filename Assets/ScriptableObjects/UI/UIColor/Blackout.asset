@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c18975433542f44c59267a02fb9c91e0, type: 3}
   m_Name: Blackout
   m_EditorClassIdentifier: Assembly-CSharp::UIColor
-  _color: {r: 0, g: 0.039215688, b: 0.078431375, a: 0}
+  _color: {r: 0.015686275, g: 0.047058824, b: 0.0627451, a: 0}

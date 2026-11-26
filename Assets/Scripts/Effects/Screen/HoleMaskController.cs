@@ -7,13 +7,17 @@ public class HoleMaskController : MonoUIImageMaterialAccessBehaviour
     private static readonly Vector2 CENTER_BOUNDS_MIN = new(-0.045f, -0.08f);
     private static readonly Vector2 CENTER_BOUNDS_MAX = new(1.045f, 1.08f);
 
-    [SerializeField]
+    [SerializeField, HideInInspector]
     private float _maskThreshold = 0.0f;
+
+    [SerializeField]
+    private UIColor _color;
 
     private float _lastMaskThreshold = float.MaxValue;
     private CameraReadonlyAccess _cameraAccess;
     private IHoleMaskTarget _target;
 
+    private static readonly int ColorID = Shader.PropertyToID("_BaseColor");
     private static readonly int MaskThresholdID = Shader.PropertyToID("_MaskThreshold");
     private static readonly int CameraAspectID = Shader.PropertyToID("_CameraAspect");
     private static readonly int[] TargetViewportPositionIDs = new int[MAX_NUM_TARGETS]
@@ -45,6 +49,13 @@ public class HoleMaskController : MonoUIImageMaterialAccessBehaviour
 
     protected override bool IsMaterialValid(Material material)
     {
+        if (!material.HasProperty(ColorID))
+        {
+            Debug.LogError(
+                $"Material {material.name} does not have a property named '_Color'."
+            );
+            return false;
+        }
         if (!material.HasProperty(MaskThresholdID))
         {
             Debug.LogError(
@@ -81,6 +92,7 @@ public class HoleMaskController : MonoUIImageMaterialAccessBehaviour
 
     protected override void SetMaterialProperties(Material material)
     {
+        material.SetColor(ColorID, _color?.Color ?? Color.black);
         material.SetFloat(MaskThresholdID, _maskThreshold);
         _lastMaskThreshold = _maskThreshold;
 
