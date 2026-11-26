@@ -128,6 +128,8 @@ public class CameraController : MonoBehaviour, IAccessTarget
 
     public float AspectRatio => _camera.aspect;
 
+    public Rect ViewportRect => _camera.rect;
+
     public Vector3 WorldToViewportPoint(Vector3 worldPosition)
     {
         return _camera.WorldToViewportPoint(worldPosition);

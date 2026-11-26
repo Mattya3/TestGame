@@ -20,6 +20,8 @@ public class HoleMaskController : MonoUIImageMaterialAccessBehaviour
     private static readonly int ColorID = Shader.PropertyToID("_BaseColor");
     private static readonly int MaskThresholdID = Shader.PropertyToID("_MaskThreshold");
     private static readonly int CameraAspectID = Shader.PropertyToID("_CameraAspect");
+    private static readonly int ViewportRectPositionID = Shader.PropertyToID("_ViewportRectPosition");
+    private static readonly int ViewportRectSizeID = Shader.PropertyToID("_ViewportRectSize");
     private static readonly int[] TargetViewportPositionIDs = new int[MAX_NUM_TARGETS]
     {
         Shader.PropertyToID("_TargetViewportPosition1"),
@@ -70,6 +72,20 @@ public class HoleMaskController : MonoUIImageMaterialAccessBehaviour
             );
             return false;
         }
+        if (!material.HasProperty(ViewportRectPositionID))
+        {
+            Debug.LogError(
+                $"Material {material.name} does not have a property named '_ViewportRectPosition'."
+            );
+            return false;
+        }
+        if (!material.HasProperty(ViewportRectSizeID))
+        {
+            Debug.LogError(
+                $"Material {material.name} does not have a property named '_ViewportRectSize'."
+            );
+            return false;
+        }
         for (int i = 0; i < MAX_NUM_TARGETS; i++)
         {
             if (!material.HasProperty(TargetViewportPositionIDs[i]))
@@ -101,6 +117,8 @@ public class HoleMaskController : MonoUIImageMaterialAccessBehaviour
             return;
 
         material.SetFloat(CameraAspectID, _cameraAccess.AspectRatio);
+        material.SetVector(ViewportRectPositionID, new Vector2(_cameraAccess.ViewportRect.x, _cameraAccess.ViewportRect.y));
+        material.SetVector(ViewportRectSizeID, new Vector2(_cameraAccess.ViewportRect.width, _cameraAccess.ViewportRect.height));
 
         var enabledList = _target.AreEnabled;
         var screenPositionsList = _target.ViewportPositions;
