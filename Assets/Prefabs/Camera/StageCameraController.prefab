@@ -205,6 +205,7 @@ GameObject:
   - component: {fileID: 6946700086926892314}
   - component: {fileID: 967594412041580335}
   - component: {fileID: 2110364193458618547}
+  - component: {fileID: 3575400311278889117}
   m_Layer: 6
   m_Name: StageCameraController
   m_TagString: Untagged
@@ -264,6 +265,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4032ccd99bdb0db41ab7e1769270c75d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ShakeEffectsPlayer
+--- !u!114 &3575400311278889117
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9033739131359358864}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67e0a9dbe5204424dbd984c3b348e268, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CameraBoundsReadonlyAccess
 --- !u!1001 &2827361594449915644
 PrefabInstance:
   m_ObjectHideFlags: 0

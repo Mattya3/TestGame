@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 
+[RequireComponent(typeof(CameraBoundsReadonlyAccess))]
 [RequireComponent(typeof(ShakeEffectsPlayer))]
 public class CameraController : MonoBehaviour, IAccessTarget
 {
@@ -24,6 +25,7 @@ public class CameraController : MonoBehaviour, IAccessTarget
     private Vector3 _smoothedPosition; // スムージングされたカメラの位置
     private Vector3 _velocity = Vector3.zero; // カメラの現在の速度
     private ShakeEffectsPlayer _shakeEffectsPlayer; // カメラの揺れ効果を管理するコンポーネント
+    private CameraBoundsReadonlyAccess _boundsAccess; // カメラ制約への読み取り専用アクセス
 
     private bool _isInitialized = false; // 初期化済みかどうかのフラグ
 
@@ -38,6 +40,7 @@ public class CameraController : MonoBehaviour, IAccessTarget
         }
         _colliders = _colliderRoot.GetComponentsInChildren<Collider2D>();
         _shakeEffectsPlayer = GetComponent<ShakeEffectsPlayer>();
+        _boundsAccess = GetComponent<CameraBoundsReadonlyAccess>();
 
         AccessComponent<CameraController>.RegisterReference(this);
     }
@@ -186,7 +189,7 @@ public class CameraController : MonoBehaviour, IAccessTarget
 
     private Vector3 _Bound(Vector3 pos)
     {
-        return _bounds.Bound(pos, _camera.transform.position);
+        return _boundsAccess.Bound(pos, _camera.transform.position, _camera);
     }
 
     private void _EnableColliders(bool enable)
