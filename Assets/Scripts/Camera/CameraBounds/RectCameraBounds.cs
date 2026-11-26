@@ -69,9 +69,19 @@ public class RectCameraBounds : CameraBoundsBase
         var cameraHalfHeight = camera.orthographicSize;
         var cameraHalfWidth = cameraHalfHeight * camera.aspect;
 
+        var leftLimit = _leftBound + cameraHalfWidth;
+        var rightLimit = _rightBound - cameraHalfWidth;
+        var bottomLimit = _bottomBound + cameraHalfHeight;
+        var topLimit = _topBound - cameraHalfHeight;
+
+        if (leftLimit > rightLimit)
+            leftLimit = rightLimit = (leftLimit + rightLimit) / 2f;
+        if (bottomLimit > topLimit)
+            bottomLimit = topLimit = (bottomLimit + topLimit) / 2f;
+
         return new Vector3(
-            Mathf.Clamp(boundPos.x, _leftBound + cameraHalfWidth, _rightBound - cameraHalfWidth),
-            Mathf.Clamp(boundPos.y, _bottomBound + cameraHalfHeight, _topBound - cameraHalfHeight),
+            Mathf.Clamp(boundPos.x, leftLimit, rightLimit),
+            Mathf.Clamp(boundPos.y, bottomLimit, topLimit),
             boundPos.z
         );
     }
