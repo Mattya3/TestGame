@@ -38,6 +38,15 @@ public class OpeningCameraTarget : MonoEventReactingBehaviour, ICameraTarget
     {
         get
         {
+            // カメラは原点から開始
+            return Vector3.zero;
+        }
+    }
+
+    public Vector3 AnimatedShift
+    {
+        get
+        {
             // Animatorの進行度に基づいて、開始位置と終了位置の間を線形補間する
             float progress = Mathf.Clamp01(_progressFactor);
             return Vector3.Lerp(_positionBegin, _positionEnd, progress);

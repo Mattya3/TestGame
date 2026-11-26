@@ -10569,7 +10569,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5791267972360915750, guid: c36b800694bf60a4abf2335660540b6e, type: 3}
       propertyPath: _leftBound
-      value: -10.221
+      value: -9
       objectReference: {fileID: 0}
     - target: {fileID: 5791267972360915750, guid: c36b800694bf60a4abf2335660540b6e, type: 3}
       propertyPath: _rightBound

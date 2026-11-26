@@ -77,7 +77,7 @@ public class CameraController : MonoBehaviour, IAccessTarget
         _targetsStack.Start();
 
         _colliderRoot.AlignCollidersToViewportEdges(_camera);
-        _colliderRoot.EnableColliders(_targetsStack.EnableCollider);
+        _colliderRoot.EnableColliders(_targetsStack.AreCollidersEnabled);
 
         // カメラの初期位置を設定
         var destination = _CalculateDestination();
@@ -101,13 +101,13 @@ public class CameraController : MonoBehaviour, IAccessTarget
     public void PushTarget(ICameraTarget target)
     {
         _targetsStack.Push(target);
-        _colliderRoot.EnableColliders(_targetsStack.EnableCollider);
+        _colliderRoot.EnableColliders(_targetsStack.AreCollidersEnabled);
     }
 
     public void PopTarget()
     {
         _targetsStack.Pop();
-        _colliderRoot.EnableColliders(_targetsStack.EnableCollider);
+        _colliderRoot.EnableColliders(_targetsStack.AreCollidersEnabled);
     }
 
     public void PlayShake(ShakeEffect shakeEffect, bool playInUnscaledTime, float playbackSpeedRate)
@@ -129,7 +129,7 @@ public class CameraController : MonoBehaviour, IAccessTarget
     private void FixedUpdate()
     {
         _targetsStack.Update();
-        _colliderRoot.EnableColliders(_targetsStack.EnableCollider);
+        _colliderRoot.EnableColliders(_targetsStack.AreCollidersEnabled);
 
         var destination = _CalculateDestination();
         var boundedDestination = _Bound(destination);
@@ -143,7 +143,8 @@ public class CameraController : MonoBehaviour, IAccessTarget
 
     void LateUpdate()
     {
-        var destination = _colliderRoot.transform.position;
+        var targetAnimatedShift = _targetsStack.AnimatedShift;
+        var destination = _colliderRoot.transform.position + targetAnimatedShift;
 
         var smoothedPosX = Mathf.SmoothDamp(
             _smoothedPosition.x,
@@ -164,7 +165,7 @@ public class CameraController : MonoBehaviour, IAccessTarget
         _camera.transform.position = new Vector3(
             _smoothedPosition.x + shakeOffset.x,
             _smoothedPosition.y + shakeOffset.y,
-            destination.z
+            _smoothedPosition.z
         );
     }
 

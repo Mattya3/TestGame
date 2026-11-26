@@ -76,5 +76,7 @@ public class PlayersCameraTarget : MonoBehaviour, ICameraTarget
 
     public Vector3 Position => _position;
 
+    public Vector3 AnimatedShift => Vector3.zero;
+
     public bool AreCollidersEnabled => true;
 }

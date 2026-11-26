@@ -58,7 +58,18 @@ public class CameraTargetsStack
         }
     }
 
-    public bool EnableCollider
+    public Vector3 AnimatedShift
+    {
+        get
+        {
+            if (_HasTargets)
+                return _stack.Peek().AnimatedShift;
+            else
+                return Vector3.zero; // スタックが空の場合はオフセットなし
+        }
+    }
+
+    public bool AreCollidersEnabled
     {
         get
         {
