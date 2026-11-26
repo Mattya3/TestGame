@@ -3,6 +3,7 @@ using UnityEngine;
 public class CameraCollider : MonoBehaviour
 {
     private const int EXPECTED_COLLIDER_COUNT = 2;
+    private const float ALIGNMENT_MARGIN = 0.01f; // コライダーを画面端に揃える際のマージン
 
     private Collider2D[] _colliders; // カメラのコライダーへの参照
     private bool _isValid = false;
@@ -34,8 +35,8 @@ public class CameraCollider : MonoBehaviour
         var rightColliderBounds = _colliders[1].bounds;
         float screenHalfHeight = 2f * camera.orthographicSize;
         float screenHalfWidth = screenHalfHeight * camera.aspect;
-        float leftColliderX = camera.transform.position.x - screenHalfWidth / 2f - leftColliderBounds.extents.x;
-        float rightColliderX = camera.transform.position.x + screenHalfWidth / 2f + rightColliderBounds.extents.x;
+        float leftColliderX = camera.transform.position.x - screenHalfWidth / 2f - leftColliderBounds.extents.x - ALIGNMENT_MARGIN;
+        float rightColliderX = camera.transform.position.x + screenHalfWidth / 2f + rightColliderBounds.extents.x + ALIGNMENT_MARGIN;
 
         _colliders[0].transform.position = new Vector3(leftColliderX, camera.transform.position.y, _colliders[0].transform.position.z);
         _colliders[1].transform.position = new Vector3(rightColliderX, camera.transform.position.y, _colliders[1].transform.position.z);
