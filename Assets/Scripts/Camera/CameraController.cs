@@ -84,8 +84,8 @@ public class CameraController : MonoBehaviour, IAccessTarget
         var boundedDestination = _Bound(destination);
 
         _colliderRoot.transform.position = boundedDestination;
-        _smoothedPosition = boundedDestination;
-        _camera.transform.position = boundedDestination;
+        _smoothedPosition = boundedDestination + _targetsStack.AnimatedShift;
+        _camera.transform.position = _smoothedPosition;
 
         _isInitialized = true;
     }
