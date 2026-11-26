@@ -6,7 +6,7 @@ public class CameraController : MonoBehaviour, IAccessTarget
 {
     [Header("Reference")]
     [SerializeField]
-    private GameObject _colliderRoot;
+    private CameraCollider _colliderRoot;
 
     [Header("Smoothing")]
     [SerializeField, Min(0f)]
@@ -17,7 +17,6 @@ public class CameraController : MonoBehaviour, IAccessTarget
 
     private Camera _camera; // カメラコンポーネントへの参照
     private CameraTargetsStack _targetsStack; // カメラターゲットのスタック
-    private Collider2D[] _colliders; // カメラのコライダーへの参照
     private Vector3 _smoothedPosition; // スムージングされたカメラの位置
     private Vector3 _velocity = Vector3.zero; // カメラの現在の速度
     private ShakeEffectsPlayer _shakeEffectsPlayer; // カメラの揺れ効果を管理するコンポーネント
@@ -34,7 +33,6 @@ public class CameraController : MonoBehaviour, IAccessTarget
             enabled = false;
             return;
         }
-        _colliders = _colliderRoot.GetComponentsInChildren<Collider2D>();
         _shakeEffectsPlayer = GetComponent<ShakeEffectsPlayer>();
         _boundsAccess = GetComponent<CameraBoundsReadonlyAccess>();
 
@@ -77,7 +75,9 @@ public class CameraController : MonoBehaviour, IAccessTarget
     private void _Initialize()
     {
         _targetsStack.Start();
-        _EnableColliders(_targetsStack.EnableCollider);
+
+        _colliderRoot.AlignCollidersToViewportEdges(_camera);
+        _colliderRoot.EnableColliders(_targetsStack.EnableCollider);
 
         // カメラの初期位置を設定
         var destination = _CalculateDestination();
@@ -101,13 +101,13 @@ public class CameraController : MonoBehaviour, IAccessTarget
     public void PushTarget(ICameraTarget target)
     {
         _targetsStack.Push(target);
-        _EnableColliders(_targetsStack.EnableCollider);
+        _colliderRoot.EnableColliders(_targetsStack.EnableCollider);
     }
 
     public void PopTarget()
     {
         _targetsStack.Pop();
-        _EnableColliders(_targetsStack.EnableCollider);
+        _colliderRoot.EnableColliders(_targetsStack.EnableCollider);
     }
 
     public void PlayShake(ShakeEffect shakeEffect, bool playInUnscaledTime, float playbackSpeedRate)
@@ -129,7 +129,7 @@ public class CameraController : MonoBehaviour, IAccessTarget
     private void FixedUpdate()
     {
         _targetsStack.Update();
-        _EnableColliders(_targetsStack.EnableCollider);
+        _colliderRoot.EnableColliders(_targetsStack.EnableCollider);
 
         var destination = _CalculateDestination();
         var boundedDestination = _Bound(destination);
@@ -176,19 +176,5 @@ public class CameraController : MonoBehaviour, IAccessTarget
     private Vector3 _Bound(Vector3 pos)
     {
         return _boundsAccess.Bound(pos, _camera.transform.position, _camera);
-    }
-
-    private void _EnableColliders(bool enable)
-    {
-        // 変化しない場合は早期return
-        // 先頭要素のenabled状態を確認することで、全体の状態を推測する
-        // 一部だけenableが違う状況は想定しない
-        if (_colliders == null || _colliders.Length == 0)
-            return;
-        if (_colliders[0].enabled == enable)
-            return;
-
-        for (int i = 0; i < _colliders.Length; i++)
-            _colliders[i].enabled = enable;
     }
 }

@@ -243,7 +243,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6e267d69a715fc49bfb7fad50ea8eab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CameraController
-  _colliderRoot: {fileID: 4629220188696146990}
+  _colliderRoot: {fileID: 6419628654394864360}
   _smoothTimeX: 0.2
   _smoothTimeY: 0.8
 --- !u!114 &2110364193458618547
@@ -404,8 +404,14 @@ BoxCollider2D:
   m_CorrespondingSourceObject: {fileID: 8379273108055648032, guid: bbf1791046d7e0444a2228cf46db72ff, type: 3}
   m_PrefabInstance: {fileID: 5198318526901266717}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &4629220188696146990 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 583893539742866739, guid: bbf1791046d7e0444a2228cf46db72ff, type: 3}
+--- !u!114 &6419628654394864360 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1239397093778906101, guid: bbf1791046d7e0444a2228cf46db72ff, type: 3}
   m_PrefabInstance: {fileID: 5198318526901266717}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57f6ee3354b444003928201e71be9ef3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CameraCollider
