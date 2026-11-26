@@ -126,6 +126,11 @@ public abstract class Character : MonoEventReactingBehaviour
         _animationTransitions.SetAnimatorUpdateMode(updateMode);
     }
 
+    protected void CompleteCurrentAnimation()
+    {
+        _animationTransitions.CompleteCurrentAnimation();
+    }
+
     protected void PlayCharacterEffect(string effectKey)
     {
         EffectsPlayer.Play(effectKey, FacingDirection);

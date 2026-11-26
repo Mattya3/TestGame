@@ -13,6 +13,7 @@ public interface IPlayerStateContext
     void NotifyGoalReached();
     void SetAnimatorSpeed(float speed);
     void SetAnimatorUpdateMode(AnimatorUpdateMode updateMode);
+    void CompleteCurrentAnimation();
     void PlayCharacterEffect(string effectKey);
     void StopCharacterEffect(string effectKey);
 

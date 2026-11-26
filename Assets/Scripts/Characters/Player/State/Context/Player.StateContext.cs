@@ -59,6 +59,11 @@ public partial class Player
             _player.SetAnimatorUpdateMode(updateMode);
         }
 
+        void IPlayerStateContext.CompleteCurrentAnimation()
+        {
+            _player.CompleteCurrentAnimation();
+        }
+
         void IPlayerStateContext.PlayCharacterEffect(string effectKey)
         {
             _player.PlayCharacterEffect(effectKey);

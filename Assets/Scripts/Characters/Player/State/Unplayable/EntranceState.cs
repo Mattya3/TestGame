@@ -21,6 +21,12 @@ public class EntranceState : UnplayableState
         _entranceAnimationDelay = Random.Range(0.0f, ENTRANCE_ANIMATION_MAX_DELAY);
     }
 
+    public override void OnDisabled()
+    {
+        Context.CompleteCurrentAnimation();
+        base.OnDisabled();
+    }
+
     public override void Die(DeathReason deathReason)
     {
         Debug.LogWarning("Die() was called while in EntranceState.", Context.LogContext);

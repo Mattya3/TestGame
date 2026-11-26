@@ -130,6 +130,42 @@ public class AnimationTransitions : MonoBehaviour
         _animator.updateMode = updateMode;
     }
 
+    public void CompleteCurrentAnimation()
+    {
+        if (!_animator.isActiveAndEnabled || !_animator.isInitialized)
+        {
+            Debug.LogWarning("Cannot complete current animation because the animator is not ready or not initialized");
+            return;
+        }
+        if (_animator.IsInTransition(0))
+        {
+            Debug.LogWarning("Cannot complete current animation because the animator is in transition.");
+            return;
+        }
+
+        // 意図したStateが再生されているか確認
+        var info = _animator.GetCurrentAnimatorStateInfo(0);
+        if (info.loop)
+        {
+            Debug.LogWarning("Cannot complete current animation because it is a looping animation.");
+            return;
+        }
+        if (info.normalizedTime >= 1f)
+        return;
+
+        var playbackSpeed = _animator.speed * info.speed * info.speedMultiplier;
+        if (playbackSpeed <= 0f)
+        {
+            Debug.LogWarning("Cannot complete current animation because the playback speed is non-positive.");
+            return;
+        }
+        float remainingTime = (1f - info.normalizedTime) * info.length / playbackSpeed;
+        _animator.Update(remainingTime + 1e-3f); // 浮動小数点誤差を考慮してわずかに余分に進める
+        var updatedInfo = _animator.GetCurrentAnimatorStateInfo(0);
+        if (updatedInfo.normalizedTime < 1f)
+            Debug.LogWarning("Failed to complete current animation. Normalized time is still less than 1 after update.");
+    }
+
     private void LateUpdate()
     {
         _currentPhase.Update();
