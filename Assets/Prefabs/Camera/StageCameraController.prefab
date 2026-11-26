@@ -246,13 +246,6 @@ MonoBehaviour:
   _colliderRoot: {fileID: 4629220188696146990}
   _smoothTimeX: 0.2
   _smoothTimeY: 0.8
-  _bounds:
-    _freezeX: 0
-    _freezeY: 0
-    _leftBound: -10
-    _rightBound: 10
-    _bottomBound: -10
-    _topBound: 10
 --- !u!114 &2110364193458618547
 MonoBehaviour:
   m_ObjectHideFlags: 0

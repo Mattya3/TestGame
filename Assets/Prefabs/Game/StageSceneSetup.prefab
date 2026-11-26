@@ -281,6 +281,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4276979803715152288, guid: b6f03a89d032b164498d985bf8a256de, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -435,6 +439,10 @@ PrefabInstance:
       propertyPath: m_SizeDelta.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2368972018075174837, guid: 7f4b6b30cb43e504f982b578913a481f, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2474818677716364682, guid: 7f4b6b30cb43e504f982b578913a481f, type: 3}
       propertyPath: m_Name
       value: StageSceneCanvas
@@ -449,6 +457,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6174791949105783558, guid: 7f4b6b30cb43e504f982b578913a481f, type: 3}
       propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6174791949105783558, guid: 7f4b6b30cb43e504f982b578913a481f, type: 3}
+      propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7317972671590904117, guid: 7f4b6b30cb43e504f982b578913a481f, type: 3}
