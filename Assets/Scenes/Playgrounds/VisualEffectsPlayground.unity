@@ -383,7 +383,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6e267d69a715fc49bfb7fad50ea8eab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CameraController
-  _colliderRoot: {fileID: 1436290792}
+  _colliderRoot: {fileID: 1436290794}
   _smoothTimeX: 0.1
   _smoothTimeY: 0.1
 --- !u!114 &757821893
@@ -1844,6 +1844,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1436290793}
+  - component: {fileID: 1436290794}
   m_Layer: 6
   m_Name: Colliders
   m_TagString: Untagged
@@ -1868,6 +1869,18 @@ Transform:
   - {fileID: 178064056}
   m_Father: {fileID: 757821894}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1436290794
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1436290792}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57f6ee3354b444003928201e71be9ef3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CameraCollider
 --- !u!1 &1688538434
 GameObject:
   m_ObjectHideFlags: 0
