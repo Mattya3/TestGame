@@ -4,6 +4,8 @@
 public class HoleMaskController : MonoUIImageMaterialAccessBehaviour
 {
     private const int MAX_NUM_TARGETS = 2;
+    private static readonly Vector2 CENTER_BOUNDS_MIN = new(-0.045f, -0.08f);
+    private static readonly Vector2 CENTER_BOUNDS_MAX = new(1.045f, 1.08f);
 
     [SerializeField]
     private float _maskThreshold = 0.0f;
@@ -94,8 +96,13 @@ public class HoleMaskController : MonoUIImageMaterialAccessBehaviour
         for (int i = 0; i < MAX_NUM_TARGETS; i++)
         {
             var position = i < numTargets ? screenPositionsList[i] : Vector3.zero;
+            var clampedPosition = new Vector3(
+                Mathf.Clamp(position.x, CENTER_BOUNDS_MIN.x, CENTER_BOUNDS_MAX.x),
+                Mathf.Clamp(position.y, CENTER_BOUNDS_MIN.y, CENTER_BOUNDS_MAX.y),
+                position.z
+            );
             var enabled = i < numTargets ? (enabledList[i] ? 1.0f : 0.0f) : 0.0f;
-            material.SetVector(TargetViewportPositionIDs[i], position);
+            material.SetVector(TargetViewportPositionIDs[i], clampedPosition);
             material.SetFloat(TargetEnabledIDs[i], enabled);
         }
     }
