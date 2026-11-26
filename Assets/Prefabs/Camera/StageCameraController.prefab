@@ -47,9 +47,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayersCameraTarget
   _offset: {x: 0, y: 1, z: -10}
   _shift:
-    _velocityCoeff: {x: 3, y: 0}
+    _velocityCoeff: {x: 2, y: 0}
     _deltaSmoothTime: 0.1
-    _maxShiftAmount: {x: 8, y: 0}
+    _maxShiftAmount: {x: 9, y: 0}
   _shiftDamp:
     _leftCollider: {fileID: 4354148885458570813}
     _rightCollider: {fileID: 962672201265683304}
