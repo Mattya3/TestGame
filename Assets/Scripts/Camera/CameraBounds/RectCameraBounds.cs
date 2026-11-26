@@ -16,6 +16,16 @@ public class RectCameraBounds : CameraBoundsBase
     [SerializeField]
     private float _topBound = float.PositiveInfinity; // Y座標の最大値
 
+    protected override void Awake()
+    {
+        if (!_IsConfigurationValid())
+        {
+            enabled = false;
+            return;
+        }
+        base.Awake();
+    }
+
     public bool HasReversedBounds()
     {
         return _leftBound > _rightBound || _bottomBound > _topBound;
@@ -35,6 +45,21 @@ public class RectCameraBounds : CameraBoundsBase
             || float.IsInfinity(_rightBound)
             || float.IsInfinity(_bottomBound)
             || float.IsInfinity(_topBound);
+    }
+
+    private bool _IsConfigurationValid()
+    {
+        if (HasReversedBounds())
+        {
+            Debug.LogError("カメラ制約の最小値は最大値より小さくなければなりません", this);
+            return false;
+        }
+        if (HasNaN())
+        {
+            Debug.LogError("カメラの制約に無効な値が含まれています", this);
+            return false;
+        }
+        return true;
     }
 
     public override Vector3 Bound(Vector3 pos, Vector3 originalPos, Camera camera)
